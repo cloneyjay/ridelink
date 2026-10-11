@@ -74,7 +74,7 @@ void main() {
   );
 
   test(
-    'restore while offline signs out but keeps the stored refresh token',
+    'restore while offline goes offline and keeps the stored refresh token',
     () async {
       final t = build(
         (o) => throw const SocketException('offline'),
@@ -83,10 +83,53 @@ void main() {
 
       await t.session.restore();
 
-      expect(t.session.state, isA<SignedOut>());
+      expect(t.session.state, isA<SessionOffline>());
+      expect(t.session.accessToken, isNull);
       expect(t.storage.refreshToken, 'r1');
     },
   );
+
+  test('retry after offline signs in once the server is reachable', () async {
+    var online = false;
+    final t = build((o) {
+      if (!online) throw const SocketException('offline');
+      return jsonResponse(200, sessionJson(access: 'a2', refresh: 'r2'));
+    }, storedRefresh: 'r1');
+    await t.session.restore();
+    expect(t.session.state, isA<SessionOffline>());
+
+    online = true;
+    await t.session.retry();
+
+    expect(t.session.state, isA<SignedIn>());
+    expect(t.storage.refreshToken, 'r2');
+  });
+
+  test('retry still offline stays offline; a 401 on retry signs out', () async {
+    var status = 0;
+    final t = build((o) {
+      if (status == 0) throw const SocketException('offline');
+      return jsonResponse(401, {'error': 'session expired'});
+    }, storedRefresh: 'r1');
+    await t.session.restore();
+
+    await t.session.retry();
+    expect(t.session.state, isA<SessionOffline>());
+    expect(t.storage.refreshToken, 'r1');
+
+    status = 401;
+    await t.session.retry();
+    expect(t.session.state, isA<SignedOut>());
+    expect(t.storage.refreshToken, isNull);
+  });
+
+  test('retry does nothing unless offline', () async {
+    final t = build((o) => jsonResponse(500, const {}));
+    await t.session.restore();
+    await t.session.retry();
+    expect(t.session.state, isA<SignedOut>());
+    expect(t.adapter.requests, isEmpty);
+  });
 
   test('setSession stores the refresh token and notifies listeners', () async {
     final t = build((o) => jsonResponse(500, const {}));

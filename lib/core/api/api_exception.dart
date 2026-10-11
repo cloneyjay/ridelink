@@ -29,6 +29,8 @@ class ApiException implements Exception {
 
   bool get isNetworkError => statusCode == null;
   bool get isUnauthorized => statusCode == 401;
+  bool get isEmailNotConfirmed =>
+      statusCode == 403 && message == 'email_not_confirmed';
 
   @override
   String toString() => 'ApiException($statusCode, $message)';

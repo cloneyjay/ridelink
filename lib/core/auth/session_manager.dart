@@ -28,8 +28,15 @@ class SessionManager extends ChangeNotifier implements AccessTokenSource {
   @override
   bool get hasSession => _state is SignedIn;
 
-  /// Called once at startup: restores a stored session or signs out.
+  /// Called at startup: restores a stored session, signs out, or goes offline.
   Future<void> restore() => _inflightRestore ??= _restore();
+
+  /// Retries a restore that ended offline.
+  Future<void> retry() {
+    if (_state is! SessionOffline) return Future.value();
+    _inflightRestore = null;
+    return restore();
+  }
 
   Future<void> _restore() async {
     final stored = await _storage.readRefreshToken();
@@ -40,8 +47,11 @@ class SessionManager extends ChangeNotifier implements AccessTokenSource {
     try {
       await _apply(await _authApi.refresh(stored));
     } on ApiException catch (e) {
-      // Offline at startup: keep the stored token so the next launch can restore.
-      if (!e.isNetworkError) await _storage.clear();
+      if (e.isNetworkError) {
+        _set(const SessionOffline());
+        return;
+      }
+      await _storage.clear();
       _set(const SignedOut());
     }
   }

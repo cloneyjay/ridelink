@@ -54,6 +54,12 @@ class SessionUnknown extends SessionState {
   const SessionUnknown();
 }
 
+/// A stored session exists but the server couldn't be reached at launch.
+/// The refresh token is kept; only a 401 from refresh signs the user out.
+class SessionOffline extends SessionState {
+  const SessionOffline();
+}
+
 class SignedOut extends SessionState {
   const SignedOut();
 }

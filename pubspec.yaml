@@ -43,6 +43,8 @@ dependencies:
   intl: ^0.20.3
   flutter_localizations:
     sdk: flutter
+  google_sign_in: ^7.2.0
+  crypto: ^3.0.7
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +70,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  # Bundled Poppins and DM Sans (SIL OFL); google_fonts loads them from here, never from the network.
+  assets:
+    - assets/google_fonts/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

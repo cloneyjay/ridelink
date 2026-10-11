@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 /// Typography tokens from the RideLink design system (tokens.json).
 ///
 /// Fonts: Poppins (display/headings) + DM Sans (body/UI) + system mono.
-/// Requires `google_fonts: ^6.2.1` in pubspec.yaml.
+/// Font files are bundled in assets/google_fonts (runtime fetching is disabled in main.dart).
 ///
 /// Usage:
 ///   Text('RideLink', style: AppTextStyles.displayXl)

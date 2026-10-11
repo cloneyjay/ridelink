@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../features/auth/google_auth.dart';
 import 'api/api_client.dart';
 import 'auth/auth_api.dart';
 import 'auth/session.dart';
@@ -8,6 +9,7 @@ import 'auth/token_storage.dart';
 import 'config/app_config.dart';
 import 'realtime/realtime_client.dart';
 import 'realtime/realtime_event.dart';
+import 'routing/rider_intent.dart';
 
 final appConfigProvider = Provider<AppConfig>(
   (ref) => AppConfig.fromEnvironment(),
@@ -75,3 +77,13 @@ final realtimeLifecycleProvider = Provider<void>((ref) {
 final realtimeEventsProvider = StreamProvider<RealtimeEvent>(
   (ref) => ref.watch(realtimeClientProvider).events,
 );
+
+final googleAuthProvider = Provider<GoogleAuth>(
+  (ref) => GoogleSignInAuth(ref.watch(appConfigProvider).googleServerClientId),
+);
+
+final riderIntentProvider = Provider<RiderIntent>((ref) {
+  final intent = RiderIntent();
+  ref.onDispose(intent.dispose);
+  return intent;
+});

@@ -50,6 +50,16 @@ class FakeAdapter implements HttpClientAdapter {
   void close({bool force = false}) {}
 }
 
+/// Dispatches by path under /v1 (e.g. 'auth/signin'); unknown paths get 404.
+FakeHandler routeHandler(Map<String, FakeHandler> routes) => (o) {
+  final handler = routes[o.uri.path.replaceFirst('/v1/', '')];
+  return handler == null
+      ? jsonResponse(404, {'error': 'not found'})
+      : handler(o);
+};
+
+ResponseBody emptyResponse(int status) => ResponseBody.fromString('', status);
+
 ResponseBody jsonResponse(int status, Object body) => ResponseBody.fromString(
   jsonEncode(body),
   status,
