@@ -1,0 +1,8 @@
+{
+  "@@locale": "sw",
+  "appName": "RideLink",
+  "@appName": {
+    "description": "Product name shown on the splash and placeholder screens. Brand name, kept as-is in Swahili.",
+    "x-review": "needs-review"
+  }
+}

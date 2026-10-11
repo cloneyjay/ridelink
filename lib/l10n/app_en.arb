@@ -1,0 +1,7 @@
+{
+  "@@locale": "en",
+  "appName": "RideLink",
+  "@appName": {
+    "description": "Product name shown on the splash and placeholder screens."
+  }
+}

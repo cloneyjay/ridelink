@@ -29,11 +29,11 @@ class AppShadows extends ThemeExtension<AppShadows> {
     ],
     md: [
       BoxShadow(color: Color(0x14000000), blurRadius: 12, offset: Offset(0, 4)),
-      BoxShadow(color: Color(0x08000000), blurRadius: 4,  offset: Offset(0, 2)),
+      BoxShadow(color: Color(0x08000000), blurRadius: 4, offset: Offset(0, 2)),
     ],
     lg: [
       BoxShadow(color: Color(0x18000000), blurRadius: 32, offset: Offset(0, 8)),
-      BoxShadow(color: Color(0x0C000000), blurRadius: 8,  offset: Offset(0, 4)),
+      BoxShadow(color: Color(0x0C000000), blurRadius: 8, offset: Offset(0, 4)),
     ],
     brand: [
       BoxShadow(color: Color(0x33C05818), blurRadius: 16, offset: Offset(0, 4)),
@@ -47,11 +47,11 @@ class AppShadows extends ThemeExtension<AppShadows> {
     ],
     md: [
       BoxShadow(color: Color(0x66000000), blurRadius: 12, offset: Offset(0, 4)),
-      BoxShadow(color: Color(0x33000000), blurRadius: 4,  offset: Offset(0, 2)),
+      BoxShadow(color: Color(0x33000000), blurRadius: 4, offset: Offset(0, 2)),
     ],
     lg: [
       BoxShadow(color: Color(0x99000000), blurRadius: 32, offset: Offset(0, 8)),
-      BoxShadow(color: Color(0x4D000000), blurRadius: 8,  offset: Offset(0, 4)),
+      BoxShadow(color: Color(0x4D000000), blurRadius: 8, offset: Offset(0, 4)),
     ],
     brand: [
       BoxShadow(color: Color(0x66F08030), blurRadius: 16, offset: Offset(0, 4)),
@@ -78,9 +78,9 @@ class AppShadows extends ThemeExtension<AppShadows> {
     if (other == null) return this;
     // BoxShadow.lerpList handles null gracefully
     return AppShadows(
-      sm:    BoxShadow.lerpList(sm,    other.sm,    t) ?? sm,
-      md:    BoxShadow.lerpList(md,    other.md,    t) ?? md,
-      lg:    BoxShadow.lerpList(lg,    other.lg,    t) ?? lg,
+      sm: BoxShadow.lerpList(sm, other.sm, t) ?? sm,
+      md: BoxShadow.lerpList(md, other.md, t) ?? md,
+      lg: BoxShadow.lerpList(lg, other.lg, t) ?? lg,
       brand: BoxShadow.lerpList(brand, other.brand, t) ?? brand,
     );
   }
