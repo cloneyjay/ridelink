@@ -20,6 +20,7 @@ import 'package:ridelink/core/routing/app_router.dart';
 import 'package:ridelink/core/routing/rider_intent.dart';
 import 'package:ridelink/features/booking/data/booking_models.dart';
 import 'package:ridelink/core/storage/local_store.dart';
+import 'package:ridelink/core/time/server_clock.dart';
 import 'package:ridelink/features/booking/data/booking_repository.dart';
 import 'package:ridelink/features/orders/data/order_models.dart';
 import 'package:ridelink/features/shell/account_repository.dart';
@@ -477,6 +478,7 @@ Future<BookingHarness> pumpBookingApp(
   MemoryLocalStore? store,
   ModeStore? modeStore,
   DateTime Function()? clock,
+  ServerClock? serverClock,
   String initialLocation = AppRoutes.home,
   String? goTo,
   Object? extra,
@@ -552,6 +554,8 @@ Future<BookingHarness> pumpBookingApp(
         shareServiceProvider.overrideWithValue(harness.share),
         localStoreProvider.overrideWithValue(harness.store),
         if (clock != null) clockProvider.overrideWithValue(clock),
+        if (serverClock != null)
+          serverClockProvider.overrideWithValue(serverClock),
       ],
       child: MaterialApp.router(
         theme: AppTheme.light,

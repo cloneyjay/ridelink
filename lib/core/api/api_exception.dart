@@ -43,6 +43,13 @@ class ApiException implements Exception {
 
   bool get isNetworkError => statusCode == null;
   bool get isUnauthorized => statusCode == 401;
+
+  /// A lost race on an order action: re-read the server's state, never retry automatically.
+  bool get isConflict => statusCode == 409;
+
+  /// The order's status now, sent with a 409 when the server knows it.
+  String? get currentStatus =>
+      body['status'] is String ? body['status'] as String : null;
   bool get isEmailNotConfirmed =>
       statusCode == 403 &&
       (code == 'email_not_confirmed' || message == 'email_not_confirmed');

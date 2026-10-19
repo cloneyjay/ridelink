@@ -102,7 +102,7 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen>
     if (state == AppLifecycleState.resumed) _load();
   }
 
-  DateTime get _now => ref.read(clockProvider)();
+  DateTime get _now => ref.read(serverNowProvider)();
 
   /// GET /orders/{id} with the rider and agreed terms, so the screen works after a restart.
   Future<void> _load() async {
@@ -196,6 +196,16 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen>
       _setOrder(order);
     } on ApiException catch (e) {
       if (!mounted) return;
+      if (e.isConflict) {
+        setState(() => _busy = false);
+        showSnack(
+          context,
+          conflictText(e, l),
+          key: const Key('tracking.conflict'),
+        );
+        await _load();
+        return;
+      }
       setState(() {
         _busy = false;
         _error = apiErrorText(e, l, fallback: l.trackingActionFailed);

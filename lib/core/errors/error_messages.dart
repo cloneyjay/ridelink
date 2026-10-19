@@ -151,6 +151,14 @@ String apiErrorText(Object error, AppLocalizations l, {String? fallback}) {
   return fallback ?? byStatus ?? l.errorGeneric;
 }
 
+/// The message for a 409 on an order action. Codes this build doesn't know (the backend may add
+/// more) fall back to the generic conflict message rather than the server's English text.
+String conflictText(ApiException error, AppLocalizations l) {
+  final code = error.code;
+  return (code == null ? null : errorCodeMessage(code, l, body: error.body)) ??
+      l.errCodeConflict;
+}
+
 /// The server's fallback code for a bare status (respond.codeForStatus), for older responses.
 String? _codeForStatus(int status) => switch (status) {
   400 => 'invalid_request',

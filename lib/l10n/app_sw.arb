@@ -1835,7 +1835,7 @@
   "@errCodeNotFound": {
     "x-review": "needs-review"
   },
-  "errCodeConflict": "Hili limebadilika. Onyesha upya kisha ujaribu tena.",
+  "errCodeConflict": "Hili lilisasishwa wakati huo huo. Tunaonyesha hali ya sasa.",
   "@errCodeConflict": {
     "x-review": "needs-review"
   },
@@ -2110,16 +2110,8 @@
   "@evidencePickupPhotoHint": {
     "x-review": "needs-review"
   },
-  "evidencePickupPhotoHintRide": "Piga picha mahali pa kuchukua.",
-  "@evidencePickupPhotoHintRide": {
-    "x-review": "needs-review"
-  },
   "evidenceHandoverPhotoHint": "Piga picha ya mzigo unapoukabidhi.",
   "@evidenceHandoverPhotoHint": {
-    "x-review": "needs-review"
-  },
-  "evidenceHandoverPhotoHintRide": "Piga picha mahali pa kufikisha.",
-  "@evidenceHandoverPhotoHintRide": {
     "x-review": "needs-review"
   },
   "evidenceItemPhotoHint": "Ongeza picha ya mzigo kabla mwendesha boda hajauchukua.",

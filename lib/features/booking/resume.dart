@@ -74,3 +74,20 @@ List<SenderOrder> newestFirst(List<SenderOrder> orders) {
 List<ResumeTarget> resumeTargets(List<SenderOrder> orders) => [
   for (final o in newestFirst(orders)) ?resumeTargetFor(o),
 ];
+
+/// Where the sender belongs after an order action lost a race (409), from GET /orders/{id}:
+/// a live offer or job resumes its screen, an order without one goes back to choosing a
+/// rider, a cancelled order goes home and a finished one shows its tracking summary.
+({String location, Object? extra}) senderRouteAfterConflict(SenderOrder view) {
+  final target = resumeTargetFor(view);
+  if (target != null) return (location: target.location, extra: target.extra);
+  final order = view.order;
+  return switch (order.status) {
+    'created' || 'expired' || 'offered' => (
+      location: AppRoutes.ridersFor(order.id),
+      extra: RiderListArgs(order: order),
+    ),
+    'cancelled' => (location: AppRoutes.home, extra: null),
+    _ => (location: AppRoutes.trackingFor(order.id), extra: null),
+  };
+}

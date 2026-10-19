@@ -53,10 +53,11 @@ class _RiderOfferViewState extends ConsumerState<RiderOfferView> {
     _ticker?.cancel();
     _check?.cancel();
     _error = null;
-    _total = widget.offer.window;
-    // On resume the phone clock is the only reference for time already spent.
-    final now = ref.read(clockProvider)();
+    final now = ref.read(serverNowProvider)();
     final left = widget.offer.expiresAt.difference(now);
+    _total = widget.offer.offeredAt == null
+        ? (left.isNegative ? Duration.zero : left)
+        : widget.offer.window;
     _remaining = left < _total
         ? (left.isNegative ? Duration.zero : left)
         : _total;

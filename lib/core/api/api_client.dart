@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 
 import '../auth/access_token_source.dart';
 import '../config/app_config.dart';
+import '../time/server_clock.dart';
 import 'api_exception.dart';
 
 /// REST client for the Go server. Paths are relative to /v1 (e.g. 'orders/123').
@@ -11,6 +12,7 @@ class ApiClient {
   ApiClient(
     AppConfig config, {
     required this._tokens,
+    this._serverClock,
     HttpClientAdapter? adapter,
   }) : _dio = Dio(
          BaseOptions(
@@ -20,13 +22,18 @@ class ApiClient {
        ) {
     if (adapter != null) _dio.httpClientAdapter = adapter;
     _dio.interceptors.add(
-      InterceptorsWrapper(onRequest: _onRequest, onError: _onError),
+      InterceptorsWrapper(
+        onRequest: _onRequest,
+        onResponse: _onResponse,
+        onError: _onError,
+      ),
     );
   }
 
   static const _retriedKey = 'ridelink.retried';
 
   final AccessTokenSource _tokens;
+  final ServerClock? _serverClock;
   final Dio _dio;
 
   Future<dynamic> get(String path, {Map<String, dynamic>? query}) =>
@@ -87,10 +94,24 @@ class ApiClient {
     handler.next(options);
   }
 
+  void _onResponse(
+    Response<dynamic> response,
+    ResponseInterceptorHandler handler,
+  ) {
+    _observeDate(response);
+    handler.next(response);
+  }
+
+  void _observeDate(Response<dynamic>? response) {
+    if (response == null) return;
+    _serverClock?.observe(response.headers.value('date'));
+  }
+
   Future<void> _onError(
     DioException err,
     ErrorInterceptorHandler handler,
   ) async {
+    _observeDate(err.response);
     final options = err.requestOptions;
     final eligible =
         err.response?.statusCode == 401 &&

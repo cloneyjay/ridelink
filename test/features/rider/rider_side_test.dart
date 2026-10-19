@@ -289,6 +289,7 @@ void main() {
         await pumpFor(tester);
         expect(byKey('screen.riderOffer'), findsOneWidget);
 
+        repo.activeResult = const RiderActive();
         h.emit('offer.resolved', {
           'offer_id': 'offer-9',
           'order_id': 'order-9',

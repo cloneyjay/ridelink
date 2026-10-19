@@ -382,6 +382,8 @@ void main() {
         final offenders = <String>[];
         for (final f in Directory('lib').listSync(recursive: true)) {
           if (f is! File || !f.path.endsWith('.dart')) continue;
+          // The startup cleanup names the old key only to delete it.
+          if (f.uri.pathSegments.last == 'legacy_keys.dart') continue;
           final src = f.readAsStringSync();
           if (RegExp(
             r'PendingOfferStore|pendingOfferStore|ridelink\.pending_offer',

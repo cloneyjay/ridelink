@@ -1834,9 +1834,9 @@
   "@errCodeNotFound": {
     "description": "Server error code not_found."
   },
-  "errCodeConflict": "This changed in the meantime. Refresh and try again.",
+  "errCodeConflict": "This was updated in the meantime. Showing the latest.",
   "@errCodeConflict": {
-    "description": "Server error code conflict."
+    "description": "Server error code conflict: an order action lost a race; the app has already re-read and is showing the current state."
   },
   "errCodeInvalidStatus": "This order has moved on. Refresh and try again.",
   "@errCodeInvalidStatus": {
@@ -2109,17 +2109,9 @@
   "@evidencePickupPhotoHint": {
     "description": "Rider, delivery pickup."
   },
-  "evidencePickupPhotoHintRide": "Take a photo at the pickup point.",
-  "@evidencePickupPhotoHintRide": {
-    "description": "Rider, ride pickup."
-  },
   "evidenceHandoverPhotoHint": "Take a photo of the item as you hand it over.",
   "@evidenceHandoverPhotoHint": {
     "description": "Rider, delivery handover."
-  },
-  "evidenceHandoverPhotoHintRide": "Take a photo at the drop-off point.",
-  "@evidenceHandoverPhotoHintRide": {
-    "description": "Rider, ride drop-off."
   },
   "evidenceItemPhotoHint": "Add a photo of the item before the rider collects it.",
   "@evidenceItemPhotoHint": {

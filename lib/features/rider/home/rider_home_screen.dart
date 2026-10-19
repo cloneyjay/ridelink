@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../../core/api/api_exception.dart';
 import '../../../core/errors/error_messages.dart';
 import '../../../core/format/money.dart';
 import '../../../core/location/location_service.dart';
@@ -54,6 +55,18 @@ class _RiderHomeScreenState extends ConsumerState<RiderHomeScreen> {
           OfferEnd.cancelled => l.riderOfferCancelled,
         }, key: const Key('riderHome.offerEnded'));
         ref.read(riderControllerProvider.notifier).clearOfferEnd();
+      },
+    );
+    ref.listen<ApiException?>(
+      riderControllerProvider.select((s) => s.conflict),
+      (_, conflict) {
+        if (conflict == null) return;
+        showSnack(
+          context,
+          conflictText(conflict, AppLocalizations.of(context)),
+          key: const Key('riderHome.conflict'),
+        );
+        ref.read(riderControllerProvider.notifier).clearConflict();
       },
     );
 

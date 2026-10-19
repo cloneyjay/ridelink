@@ -3,6 +3,8 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/api/api_exception.dart';
+import '../../core/errors/error_messages.dart';
 import '../../core/format/money.dart';
 import '../../core/providers.dart';
 import '../../core/routing/app_router.dart';
@@ -13,6 +15,7 @@ import '../../theme/app_text_styles.dart';
 import '../common/confirm_dialog.dart';
 import 'booking_routes.dart';
 import 'data/booking_models.dart';
+import 'resume.dart';
 import 'widgets/booking_widgets.dart';
 
 enum RiderSort { price, distance }
@@ -266,6 +269,26 @@ class _RiderListScreenState extends ConsumerState<RiderListScreen> {
       await ref.read(bookingRepositoryProvider).cancelOrder(widget.orderId);
       if (!mounted) return;
       context.go(AppRoutes.home);
+    } on ApiException catch (e) {
+      _discarding = false;
+      if (!mounted) return;
+      if (!e.isConflict) {
+        showSnack(
+          context,
+          l.discardOrderFailed,
+          key: const Key('riders.discardFailed'),
+        );
+        return;
+      }
+      showSnack(context, conflictText(e, l), key: const Key('riders.conflict'));
+      try {
+        final view = await ref
+            .read(bookingRepositoryProvider)
+            .senderOrder(widget.orderId);
+        if (!mounted) return;
+        final route = senderRouteAfterConflict(view);
+        context.go(route.location, extra: route.extra);
+      } catch (_) {}
     } catch (_) {
       _discarding = false;
       if (!mounted) return;

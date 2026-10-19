@@ -27,6 +27,7 @@ import 'realtime/realtime_event.dart';
 import 'routing/rider_intent.dart';
 import 'share/share_service.dart';
 import 'storage/local_store.dart';
+import 'time/server_clock.dart';
 
 final appConfigProvider = Provider<AppConfig>(
   (ref) => AppConfig.fromEnvironment(),
@@ -70,6 +71,7 @@ final apiClientProvider = Provider<ApiClient>(
   (ref) => ApiClient(
     ref.watch(appConfigProvider),
     tokens: ref.watch(sessionManagerProvider),
+    serverClock: ref.watch(serverClockProvider),
   ),
 );
 
@@ -170,6 +172,16 @@ final appModeProvider = Provider<AppModeController>((ref) {
 
 /// Injectable clock for countdowns and grace windows.
 final clockProvider = Provider<DateTime Function()>((ref) => DateTime.now);
+
+/// Device-to-server clock offset, fed by every API response's `Date` header.
+final serverClockProvider = Provider<ServerClock>(
+  (ref) => ServerClock(deviceNow: ref.watch(clockProvider)),
+);
+
+/// Server-adjusted "now": use it for every countdown driven by a server timestamp.
+final serverNowProvider = Provider<DateTime Function()>(
+  (ref) => ref.watch(serverClockProvider).now,
+);
 
 /// Per-app-session flags (reset on restart).
 class SessionFlags {

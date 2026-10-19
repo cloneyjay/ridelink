@@ -1355,7 +1355,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errCodeConflict =>
-      'This changed in the meantime. Refresh and try again.';
+      'This was updated in the meantime. Showing the latest.';
 
   @override
   String get errCodeInvalidStatus =>
@@ -1592,15 +1592,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Take a photo of the item as you collect it.';
 
   @override
-  String get evidencePickupPhotoHintRide => 'Take a photo at the pickup point.';
-
-  @override
   String get evidenceHandoverPhotoHint =>
       'Take a photo of the item as you hand it over.';
-
-  @override
-  String get evidenceHandoverPhotoHintRide =>
-      'Take a photo at the drop-off point.';
 
   @override
   String get evidenceItemPhotoHint =>

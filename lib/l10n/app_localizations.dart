@@ -2504,10 +2504,10 @@ abstract class AppLocalizations {
   /// **'We couldn\'t find that. It may have been removed.'**
   String get errCodeNotFound;
 
-  /// Server error code conflict.
+  /// Server error code conflict: an order action lost a race; the app has already re-read and is showing the current state.
   ///
   /// In en, this message translates to:
-  /// **'This changed in the meantime. Refresh and try again.'**
+  /// **'This was updated in the meantime. Showing the latest.'**
   String get errCodeConflict;
 
   /// Server error code invalid_status: the order is not in a status that allows this action.
@@ -2894,23 +2894,11 @@ abstract class AppLocalizations {
   /// **'Take a photo of the item as you collect it.'**
   String get evidencePickupPhotoHint;
 
-  /// Rider, ride pickup.
-  ///
-  /// In en, this message translates to:
-  /// **'Take a photo at the pickup point.'**
-  String get evidencePickupPhotoHintRide;
-
   /// Rider, delivery handover.
   ///
   /// In en, this message translates to:
   /// **'Take a photo of the item as you hand it over.'**
   String get evidenceHandoverPhotoHint;
-
-  /// Rider, ride drop-off.
-  ///
-  /// In en, this message translates to:
-  /// **'Take a photo at the drop-off point.'**
-  String get evidenceHandoverPhotoHintRide;
 
   /// Sender, optional item photo before pickup.
   ///

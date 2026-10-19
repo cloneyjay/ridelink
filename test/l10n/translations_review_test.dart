@@ -30,4 +30,38 @@ void main() {
         arb.keys.where((k) => !k.startsWith('@')).toSet();
     expect(keys(load('app_sw.arb')), containsAll(keys(load('app_en.arb'))));
   });
+
+  test('English and Swahili have exactly the same keys', () {
+    Set<String> keys(Map<String, dynamic> arb) =>
+        arb.keys.where((k) => !k.startsWith('@')).toSet();
+    final en = keys(load('app_en.arb'));
+    final sw = keys(load('app_sw.arb'));
+    expect(sw.difference(en), isEmpty, reason: 'Swahili-only keys');
+    expect(en.difference(sw), isEmpty, reason: 'English-only keys');
+  });
+
+  test(
+    'deleted strings are gone from the ARBs, generated code and sources',
+    () {
+      const deleted = [
+        'evidencePickupPhotoHintRide',
+        'evidenceHandoverPhotoHintRide',
+      ];
+      final offenders = <String>[];
+      for (final dir in ['lib', 'test']) {
+        for (final f in Directory(dir).listSync(recursive: true)) {
+          if (f is! File) continue;
+          if (!f.path.endsWith('.dart') && !f.path.endsWith('.arb')) continue;
+          if (f.uri.pathSegments.last == 'translations_review_test.dart') {
+            continue;
+          }
+          final src = f.readAsStringSync();
+          for (final key in deleted) {
+            if (src.contains(key)) offenders.add('${f.path}: $key');
+          }
+        }
+      }
+      expect(offenders, isEmpty);
+    },
+  );
 }

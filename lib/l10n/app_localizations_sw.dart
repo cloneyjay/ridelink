@@ -1359,7 +1359,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get errCodeConflict =>
-      'Hili limebadilika. Onyesha upya kisha ujaribu tena.';
+      'Hili lilisasishwa wakati huo huo. Tunaonyesha hali ya sasa.';
 
   @override
   String get errCodeInvalidStatus =>
@@ -1598,13 +1598,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get evidencePickupPhotoHint => 'Piga picha ya mzigo unapouchukua.';
 
   @override
-  String get evidencePickupPhotoHintRide => 'Piga picha mahali pa kuchukua.';
-
-  @override
   String get evidenceHandoverPhotoHint => 'Piga picha ya mzigo unapoukabidhi.';
-
-  @override
-  String get evidenceHandoverPhotoHintRide => 'Piga picha mahali pa kufikisha.';
 
   @override
   String get evidenceItemPhotoHint =>

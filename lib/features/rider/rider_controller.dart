@@ -52,7 +52,14 @@ class BlockError extends OnlineBlock {
 enum OfferEnd { expired, declined, taken, cancelled }
 
 /// Result of Accept, for the offer screen's message.
-enum AcceptResult { accepted, needsLocation, paused, unavailable, failed }
+enum AcceptResult {
+  accepted,
+  needsLocation,
+  paused,
+  unavailable,
+  conflict,
+  failed,
+}
 
 class RiderState {
   const RiderState({
@@ -65,6 +72,7 @@ class RiderState {
     this.block,
     this.toggling = false,
     this.lastOfferEnd,
+    this.conflict,
   });
 
   final bool loading;
@@ -78,6 +86,9 @@ class RiderState {
   final OnlineBlock? block;
   final bool toggling;
   final OfferEnd? lastOfferEnd;
+
+  /// One-shot: an order action lost a race (409); the home shows it while state is re-read.
+  final ApiException? conflict;
 
   bool get registered => profile != null;
   bool get online => profile?.isOnline ?? false;
@@ -96,6 +107,8 @@ class RiderState {
     bool? toggling,
     OfferEnd? lastOfferEnd,
     bool clearOfferEnd = false,
+    ApiException? conflict,
+    bool clearConflict = false,
   }) => RiderState(
     loading: loading ?? this.loading,
     loadFailed: loadFailed ?? this.loadFailed,
@@ -106,6 +119,7 @@ class RiderState {
     block: clearBlock ? null : (block ?? this.block),
     toggling: toggling ?? this.toggling,
     lastOfferEnd: clearOfferEnd ? null : (lastOfferEnd ?? this.lastOfferEnd),
+    conflict: clearConflict ? null : (conflict ?? this.conflict),
   );
 }
 
@@ -139,6 +153,7 @@ class RiderController extends Notifier<RiderState> {
   }
 
   DateTime _now() => ref.read(clockProvider)();
+  DateTime _serverNow() => ref.read(serverNowProvider)();
 
   Future<void> load() async {
     state = state.copyWith(loading: true, loadFailed: false);
@@ -174,7 +189,7 @@ class RiderController extends Notifier<RiderState> {
     if (p.verificationStatus != VerificationStatus.verified) {
       return const BlockNotVerified();
     }
-    if (p.pausedAt(_now())) {
+    if (p.pausedAt(_serverNow())) {
       return BlockPaused(
         until: p.pausedUntil!,
         reason: p.pauseReason,
@@ -203,20 +218,42 @@ class RiderController extends Notifier<RiderState> {
     state = state.copyWith(profile: profile.copyWith(isOnline: state.online));
   }
 
-  Future<void> refreshActive() async {
+  /// Re-reads GET /riders/me/active. [announceEnd] reports a vanished offer as expired; a
+  /// conflict re-read has already shown its own message.
+  /// [endedOrderId]: the job an action was just run on; if it is no longer active, its final
+  /// state from GET /orders/{id} is shown (e.g. cancelled by the sender) until dismissed.
+  Future<void> refreshActive({
+    bool announceEnd = true,
+    String? endedOrderId,
+  }) async {
     try {
       final active = await ref.read(riderRepositoryProvider).active();
+      final ended = active.order == null && endedOrderId != null
+          ? await _finalState(endedOrderId)
+          : null;
+      final keep = ended ?? _keepTerminal();
       final hadOffer = state.offer;
-      final gone = hadOffer != null && active.offer?.id != hadOffer.id;
+      final gone =
+          announceEnd && hadOffer != null && active.offer?.id != hadOffer.id;
       state = state.copyWith(
         offer: active.offer,
         clearOffer: active.offer == null,
-        job: active.order ?? _keepTerminal(),
-        clearJob: active.order == null && _keepTerminal() == null,
+        job: active.order ?? keep,
+        clearJob: active.order == null && keep == null,
         lastOfferEnd: gone && active.order == null ? OfferEnd.expired : null,
       );
       _syncTracking();
     } catch (_) {}
+  }
+
+  Future<Order?> _finalState(String orderId) async {
+    try {
+      final order = (await ref.read(ordersRepositoryProvider).details(orderId))
+          .order;
+      return order.id == orderId && order.isTerminal ? order : null;
+    } catch (_) {
+      return null;
+    }
   }
 
   // A finished job stays on screen until the rider dismisses it.
@@ -230,6 +267,14 @@ class RiderController extends Notifier<RiderState> {
   }
 
   void clearOfferEnd() => state = state.copyWith(clearOfferEnd: true);
+
+  void clearConflict() => state = state.copyWith(clearConflict: true);
+
+  /// A 409 on an order action: surface it once and re-read the server's truth. Never retries.
+  Future<void> resolveConflict(ApiException e, {String? orderId}) async {
+    state = state.copyWith(conflict: e);
+    await refreshActive(announceEnd: false, endedOrderId: orderId);
+  }
 
   // ---- online toggle and location ----
 
@@ -376,6 +421,10 @@ class RiderController extends Notifier<RiderState> {
       _syncTracking();
       return AcceptResult.accepted;
     } on ApiException catch (e) {
+      if (e.isConflict) {
+        await resolveConflict(e);
+        return AcceptResult.conflict;
+      }
       switch (e.statusCode) {
         case 422:
           return AcceptResult.needsLocation;
@@ -386,7 +435,7 @@ class RiderController extends Notifier<RiderState> {
             return AcceptResult.paused;
           }
           return AcceptResult.failed;
-        case 404 || 409:
+        case 404:
           state = state.copyWith(
             clearOffer: true,
             lastOfferEnd: OfferEnd.taken,
@@ -407,7 +456,11 @@ class RiderController extends Notifier<RiderState> {
       state = state.copyWith(clearOffer: true, lastOfferEnd: OfferEnd.declined);
       return true;
     } on ApiException catch (e) {
-      if (e.statusCode == 404 || e.statusCode == 409 || e.statusCode == 422) {
+      if (e.isConflict) {
+        await resolveConflict(e);
+        return true;
+      }
+      if (e.statusCode == 404 || e.statusCode == 422) {
         state = state.copyWith(
           clearOffer: true,
           lastOfferEnd: OfferEnd.expired,
@@ -422,12 +475,20 @@ class RiderController extends Notifier<RiderState> {
 
   // ---- job ----
 
-  /// Runs a job action; on success the returned order replaces the job. Throws [ApiException].
-  Future<void> runJob(Future<Order> Function(String orderId) call) async {
+  /// Runs a job action; on success the returned order replaces the job. A 409 is resolved
+  /// by re-reading the server ([resolveConflict]) and returns false; other failures throw
+  /// [ApiException].
+  Future<bool> runJob(Future<Order> Function(String orderId) call) async {
     final job = state.job;
-    if (job == null) return;
-    final updated = await call(job.id);
-    _setJob(updated);
+    if (job == null) return true;
+    try {
+      _setJob(await call(job.id));
+      return true;
+    } on ApiException catch (e) {
+      if (!e.isConflict) rethrow;
+      await resolveConflict(e, orderId: job.id);
+      return false;
+    }
   }
 
   void _setJob(Order order) {
@@ -457,13 +518,21 @@ class RiderController extends Notifier<RiderState> {
         final matches =
             data['offer_id'] == offer.id ||
             (data['offer_id'] == null && data['order_id'] == offer.orderId);
-        if (!matches || data['outcome'] == 'accepted') return;
+        if (!matches) return;
+        // Any outcome, known or not, ends this offer (a sender cancel may arrive with no
+        // order.updated): dismiss it and let the server say what is current.
+        final outcome = data['outcome'];
         state = state.copyWith(
           clearOffer: true,
-          lastOfferEnd: data['outcome'] == 'declined'
-              ? OfferEnd.declined
-              : OfferEnd.expired,
+          lastOfferEnd: switch (outcome) {
+            'accepted' => null,
+            'declined' => OfferEnd.declined,
+            'cancelled' => OfferEnd.cancelled,
+            // "expired" and any outcome this build doesn't know.
+            _ => OfferEnd.expired,
+          },
         );
+        unawaited(refreshActive(announceEnd: false));
       case RealtimeEventKind.orderUpdated:
         final orderId = data['order_id'];
         final job = state.job;

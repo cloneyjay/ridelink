@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/api/api_exception.dart';
+import '../../core/errors/error_messages.dart';
 import '../../core/format/money.dart';
 import '../../core/providers.dart';
 import '../../core/realtime/realtime_event.dart';
@@ -12,6 +14,7 @@ import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_dimensions.dart';
 import '../../theme/app_text_styles.dart';
+import '../common/confirm_dialog.dart';
 import '../tracking/tracking_screen.dart';
 import 'booking_routes.dart';
 import 'data/booking_models.dart';
@@ -21,7 +24,21 @@ import 'widgets/booking_widgets.dart';
 
 enum OfferOutcome { accepted, declined, expired, cancelled }
 
-/// Maps a realtime event to this offer's outcome, or null if it isn't about it.
+/// True for an `offer.resolved` about this offer, whatever its outcome (including outcomes
+/// this build doesn't know): the offer is over and the server says what is current.
+bool resolvesOffer(
+  RealtimeEvent event, {
+  required String offerId,
+  required String orderId,
+}) {
+  if (event.kind != RealtimeEventKind.offerResolved) return false;
+  final data = event.data;
+  return data['offer_id'] == offerId ||
+      (data['offer_id'] == null && data['order_id'] == orderId);
+}
+
+/// Maps a realtime event to this offer's outcome, or null if it isn't about it or the
+/// outcome is one this build doesn't know (see [resolvesOffer]).
 OfferOutcome? outcomeFromEvent(
   RealtimeEvent event, {
   required String offerId,
@@ -118,7 +135,7 @@ class _OfferWaitingScreenState extends ConsumerState<OfferWaitingScreen>
     final offer = _pending.offer;
     final window = offer.serverWindow;
     var remaining = fromServer || window == null
-        ? offer.expiresAt.difference(ref.read(clockProvider)())
+        ? offer.expiresAt.difference(ref.read(serverNowProvider)())
         : window;
     if (remaining.isNegative) remaining = Duration.zero;
     if (window != null && remaining > window) remaining = window;
@@ -302,6 +319,25 @@ class _OfferWaitingScreenState extends ConsumerState<OfferWaitingScreen>
     try {
       await ref.read(bookingRepositoryProvider).cancelOrder(_pending.order.id);
       _resolve(OfferOutcome.cancelled);
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      if (!e.isConflict) {
+        setState(() => _cancelling = false);
+        showSnack(
+          context,
+          l.cancelFailed,
+          key: const Key('waiting.cancelFailed'),
+        );
+        return;
+      }
+      // Lost the race (e.g. the rider just accepted): show it and follow the server.
+      showSnack(
+        context,
+        conflictText(e, l),
+        key: const Key('waiting.conflict'),
+      );
+      setState(() => _cancelling = false);
+      await _refresh();
     } catch (_) {
       if (!mounted) return;
       setState(() => _cancelling = false);
@@ -328,7 +364,15 @@ class _OfferWaitingScreenState extends ConsumerState<OfferWaitingScreen>
         offerId: _pending.offer.id,
         orderId: _pending.order.id,
       );
-      if (outcome != null) _onOutcome(outcome);
+      if (outcome != null) {
+        _onOutcome(outcome);
+      } else if (resolvesOffer(
+        event,
+        offerId: _pending.offer.id,
+        orderId: _pending.order.id,
+      )) {
+        unawaited(_refresh());
+      }
     });
 
     final l = AppLocalizations.of(context);

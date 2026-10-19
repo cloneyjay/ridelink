@@ -103,7 +103,7 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
     super.dispose();
   }
 
-  DateTime get _now => ref.read(clockProvider)();
+  DateTime get _now => ref.read(serverNowProvider)();
 
   Future<void> _run(Future<Order> Function(String id) call) async {
     final l = AppLocalizations.of(context);
@@ -112,6 +112,7 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
       _error = null;
     });
     try {
+      // A lost race (409) is shown by the rider home after re-reading the job.
       await ref.read(riderControllerProvider.notifier).runJob(call);
       if (mounted) setState(() => _busy = false);
     } on ApiException catch (e) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/api/api_exception.dart';
 import '../../core/errors/error_messages.dart';
 import '../../core/format/money.dart';
 import '../../core/providers.dart';
@@ -10,7 +11,9 @@ import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_dimensions.dart';
 import '../../theme/app_text_styles.dart';
+import '../common/confirm_dialog.dart';
 import 'booking_routes.dart';
+import 'resume.dart';
 import 'rider_profile_screen.dart';
 import 'widgets/booking_widgets.dart';
 
@@ -48,6 +51,16 @@ class _QuoteScreenState extends ConsumerState<QuoteScreen> {
           offer: offer,
         ),
       );
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      if (e.isConflict) {
+        await _onConflict(e);
+        return;
+      }
+      setState(() {
+        _sending = false;
+        _error = apiErrorText(e, l, fallback: l.sendRequestFailed);
+      });
     } catch (e) {
       if (mounted) {
         setState(() {
@@ -55,6 +68,23 @@ class _QuoteScreenState extends ConsumerState<QuoteScreen> {
           _error = apiErrorText(e, l, fallback: l.sendRequestFailed);
         });
       }
+    }
+  }
+
+  /// The order changed under us: say so, re-read it and go where it now belongs.
+  Future<void> _onConflict(ApiException e) async {
+    final l = AppLocalizations.of(context);
+    showSnack(context, conflictText(e, l), key: const Key('quote.conflict'));
+    final orderId = widget.choice.order.id;
+    try {
+      final view = await ref
+          .read(bookingRepositoryProvider)
+          .senderOrder(orderId);
+      if (!mounted) return;
+      final route = senderRouteAfterConflict(view);
+      context.go(route.location, extra: route.extra);
+    } catch (_) {
+      if (mounted) setState(() => _sending = false);
     }
   }
 
