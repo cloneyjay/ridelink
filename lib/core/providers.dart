@@ -1,15 +1,32 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../features/auth/google_auth.dart';
+import '../features/booking/data/booking_repository.dart';
+import '../features/booking/data/pending_offer_store.dart';
+import '../features/evidence/data/evidence_repository.dart';
+import '../features/notifications/data/notification_repository.dart';
+import '../features/orders/data/orders_repository.dart';
+import '../features/ratings/rating_prompt_store.dart';
+import '../features/rider/data/rider_repository.dart';
+import '../features/shell/account_repository.dart';
 import 'api/api_client.dart';
 import 'auth/auth_api.dart';
 import 'auth/session.dart';
 import 'auth/session_manager.dart';
 import 'auth/token_storage.dart';
 import 'config/app_config.dart';
+import 'location/geo_point.dart';
+import 'files/document_picker.dart';
+import 'location/location_service.dart';
+import 'location/location_tracker.dart';
+import 'maps/maps_config.dart';
+import 'mode/app_mode.dart';
+import 'navigation/navigation_launcher.dart';
 import 'realtime/realtime_client.dart';
 import 'realtime/realtime_event.dart';
 import 'routing/rider_intent.dart';
+import 'share/share_service.dart';
+import 'storage/local_store.dart';
 
 final appConfigProvider = Provider<AppConfig>(
   (ref) => AppConfig.fromEnvironment(),
@@ -86,4 +103,109 @@ final riderIntentProvider = Provider<RiderIntent>((ref) {
   final intent = RiderIntent();
   ref.onDispose(intent.dispose);
   return intent;
+});
+
+final bookingRepositoryProvider = Provider<BookingRepository>(
+  (ref) => ApiBookingRepository(ref.watch(apiClientProvider)),
+);
+
+final accountRepositoryProvider = Provider<AccountRepository>(
+  (ref) => ApiAccountRepository(ref.watch(apiClientProvider)),
+);
+
+final locationServiceProvider = Provider<LocationService>(
+  (ref) => GeolocatorLocationService(),
+);
+
+final mapsConfigProvider = Provider<MapsConfig>((ref) => PlatformMapsConfig());
+
+final hasMapsKeyProvider = FutureProvider<bool>(
+  (ref) => ref.watch(mapsConfigProvider).hasMapsKey(),
+  retry: (_, _) => null,
+);
+
+/// Whether the signed-in user has a rider profile; re-checked whenever the session changes.
+final isRiderProvider = FutureProvider<bool>((ref) {
+  final session = ref.watch(sessionStateProvider);
+  if (session is! SignedIn) return false;
+  return ref.watch(accountRepositoryProvider).isRider();
+}, retry: (_, _) => null);
+
+/// The sender's last known position, used to bias place search.
+final lastKnownLocationProvider =
+    NotifierProvider<LastKnownLocation, GeoPoint?>(LastKnownLocation.new);
+
+class LastKnownLocation extends Notifier<GeoPoint?> {
+  @override
+  GeoPoint? build() => null;
+
+  void set(GeoPoint? point) => state = point;
+}
+
+final riderRepositoryProvider = Provider<RiderRepository>(
+  (ref) => ApiRiderRepository(ref.watch(apiClientProvider)),
+);
+
+final locationTrackerProvider = Provider<LocationTracker>(
+  (ref) => GeolocatorLocationTracker(),
+);
+
+final documentPickerProvider = Provider<DocumentPicker>(
+  (ref) => PlatformDocumentPicker(),
+);
+
+/// Overridden in main() with the SharedPreferences-backed store.
+final modeStoreProvider = Provider<ModeStore>((ref) => MemoryModeStore());
+
+final appModeProvider = Provider<AppModeController>((ref) {
+  final controller = AppModeController(ref.watch(modeStoreProvider));
+  ref.onDispose(controller.dispose);
+  return controller;
+});
+
+/// Injectable clock for countdowns and grace windows.
+final clockProvider = Provider<DateTime Function()>((ref) => DateTime.now);
+
+/// Per-app-session flags (reset on restart).
+class SessionFlags {
+  bool trackingResumed = false;
+}
+
+final sessionFlagsProvider = Provider<SessionFlags>((ref) => SessionFlags());
+
+/// Overridden in main() with the SharedPreferences-backed store.
+final localStoreProvider = Provider<LocalStore>((ref) => MemoryLocalStore());
+
+final pendingOfferStoreProvider = Provider<PendingOfferStore>(
+  (ref) => PendingOfferStore(ref.watch(localStoreProvider)),
+);
+
+final ratingPromptStoreProvider = Provider<RatingPromptStore>(
+  (ref) => RatingPromptStore(ref.watch(localStoreProvider)),
+);
+
+final ordersRepositoryProvider = Provider<OrdersRepository>(
+  (ref) => ApiOrdersRepository(ref.watch(apiClientProvider)),
+);
+
+final evidenceRepositoryProvider = Provider<EvidenceRepository>(
+  (ref) => ApiEvidenceRepository(ref.watch(apiClientProvider)),
+);
+
+final notificationRepositoryProvider = Provider<NotificationRepository>(
+  (ref) => ApiNotificationRepository(ref.watch(apiClientProvider)),
+);
+
+final navigationLauncherProvider = Provider<NavigationLauncher>(
+  (ref) => UrlNavigationLauncher(),
+);
+
+final shareServiceProvider = Provider<ShareService>(
+  (ref) => SharePlusService(),
+);
+
+/// The signed-in user's id, or null.
+final currentUserIdProvider = Provider<String?>((ref) {
+  final session = ref.watch(sessionStateProvider);
+  return session is SignedIn ? session.session.user.id : null;
 });

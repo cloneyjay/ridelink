@@ -445,6 +445,3198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Rider setup'**
   String get riderOnboardingTitle;
+
+  /// Opens the side menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Menu'**
+  String get menuTooltip;
+
+  /// Menu entry for registered riders: opens the rider side.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to riding'**
+  String get menuSwitchToRiding;
+
+  /// Menu entry on the rider side: back to the sender home.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to sending'**
+  String get menuSwitchToSending;
+
+  /// Menu entry for users without a rider profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Become a rider'**
+  String get menuBecomeRider;
+
+  /// Shown in the menu when GET /riders/me fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t check your rider account.'**
+  String get menuRiderStatusError;
+
+  /// Menu entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get menuSignOut;
+
+  /// Title of the rider side placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Rider mode'**
+  String get riderHomeTitle;
+
+  /// Heading of the home bottom sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you need?'**
+  String get homeWhatDoYouNeed;
+
+  /// Service name.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery'**
+  String get serviceDelivery;
+
+  /// Delivery tile subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a parcel'**
+  String get serviceDeliverySubtitle;
+
+  /// Service name.
+  ///
+  /// In en, this message translates to:
+  /// **'Ride'**
+  String get serviceRide;
+
+  /// Ride tile subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Get a boda ride'**
+  String get serviceRideSubtitle;
+
+  /// Placeholder when the app has no Maps key.
+  ///
+  /// In en, this message translates to:
+  /// **'Map preview unavailable'**
+  String get mapUnavailable;
+
+  /// Location permission card title.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is off'**
+  String get locationDeniedTitle;
+
+  /// Location permission card body.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow location so we can show where you are. You can still book by searching for places.'**
+  String get locationDeniedBody;
+
+  /// Card body when device location is switched off.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on your phone\'s location to show where you are. You can still book by searching for places.'**
+  String get locationServiceOffBody;
+
+  /// Card body when location can't be read.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find your location. You can still book by searching for places.'**
+  String get locationUnavailableBody;
+
+  /// Button.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow location'**
+  String get locationAllow;
+
+  /// Button: opens app settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings'**
+  String get locationOpenSettings;
+
+  /// Button: opens device location settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location'**
+  String get locationTurnOn;
+
+  /// Screen 4 title for deliveries.
+  ///
+  /// In en, this message translates to:
+  /// **'New delivery'**
+  String get newDeliveryTitle;
+
+  /// Screen 4 title for rides.
+  ///
+  /// In en, this message translates to:
+  /// **'New ride'**
+  String get newRideTitle;
+
+  /// Route field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup'**
+  String get pickupLabel;
+
+  /// Route field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Drop-off'**
+  String get dropoffLabel;
+
+  /// Empty pickup field.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose pickup'**
+  String get choosePickup;
+
+  /// Empty drop-off field.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose drop-off'**
+  String get chooseDropoff;
+
+  /// Section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Item'**
+  String get itemSectionTitle;
+
+  /// Field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get categoryLabel;
+
+  /// Field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get descriptionLabel;
+
+  /// Field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight in kg (optional)'**
+  String get weightLabel;
+
+  /// Field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Item value'**
+  String get valueBandLabel;
+
+  /// Helper under the value choices (decision 6).
+  ///
+  /// In en, this message translates to:
+  /// **'Items worth more than KES 10,000 can\'t be booked.'**
+  String get valueBandCapNote;
+
+  /// Section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Receiver'**
+  String get receiverSectionTitle;
+
+  /// Field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Receiver\'s name'**
+  String get receiverNameLabel;
+
+  /// Screen 4 primary button.
+  ///
+  /// In en, this message translates to:
+  /// **'Find riders'**
+  String get findRidersButton;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a pickup point'**
+  String get errorPickupRequired;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a drop-off point'**
+  String get errorDropoffRequired;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the receiver\'s name'**
+  String get errorReceiverRequired;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a category'**
+  String get errorCategoryRequired;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the item'**
+  String get errorDescriptionRequired;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a weight above 0'**
+  String get errorWeightInvalid;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the item\'s value'**
+  String get errorValueBandRequired;
+
+  /// Order creation error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t create your order. Try again.'**
+  String get createOrderFailed;
+
+  /// Category load error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load item categories.'**
+  String get categoriesLoadFailed;
+
+  /// Value band.
+  ///
+  /// In en, this message translates to:
+  /// **'Under KES 500'**
+  String get valueBandUnder500;
+
+  /// Value band.
+  ///
+  /// In en, this message translates to:
+  /// **'KES 500–2,000'**
+  String get valueBand500To2000;
+
+  /// Value band.
+  ///
+  /// In en, this message translates to:
+  /// **'KES 2,000–5,000'**
+  String get valueBand2000To5000;
+
+  /// Value band.
+  ///
+  /// In en, this message translates to:
+  /// **'KES 5,000–10,000'**
+  String get valueBand5000To10000;
+
+  /// Item category.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents'**
+  String get categoryDocuments;
+
+  /// Item category.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get categoryFood;
+
+  /// Item category.
+  ///
+  /// In en, this message translates to:
+  /// **'Electronics'**
+  String get categoryElectronics;
+
+  /// Item category.
+  ///
+  /// In en, this message translates to:
+  /// **'Clothing'**
+  String get categoryClothing;
+
+  /// Item category.
+  ///
+  /// In en, this message translates to:
+  /// **'Fragile items'**
+  String get categoryFragile;
+
+  /// Item category.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication'**
+  String get categoryMedication;
+
+  /// Item category.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash'**
+  String get categoryCash;
+
+  /// Item category.
+  ///
+  /// In en, this message translates to:
+  /// **'Alcohol'**
+  String get categoryAlcohol;
+
+  /// Item category.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get categoryOther;
+
+  /// Search field hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for a place'**
+  String get placeSearchHint;
+
+  /// Shown under 2 characters.
+  ///
+  /// In en, this message translates to:
+  /// **'Type at least 2 letters'**
+  String get placeSearchMinChars;
+
+  /// Empty results.
+  ///
+  /// In en, this message translates to:
+  /// **'No places found'**
+  String get placeSearchNoResults;
+
+  /// Server returned 503 maps not configured.
+  ///
+  /// In en, this message translates to:
+  /// **'Location search is unavailable right now. Try again later.'**
+  String get placeSearchUnavailable;
+
+  /// Search error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t search. Check your connection.'**
+  String get placeSearchFailed;
+
+  /// Tooltip of the clear button.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get clearSearch;
+
+  /// Rider list title.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a rider'**
+  String get riderListTitle;
+
+  /// Sort option.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get sortByPrice;
+
+  /// Sort option.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance'**
+  String get sortByDistance;
+
+  /// Trip distance chip, e.g. 'Trip 4.8 km'.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip {distance}'**
+  String tripDistance(String distance);
+
+  /// Shown when distance_estimated is true.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance is estimated'**
+  String get distanceEstimatedNote;
+
+  /// Empty rider list.
+  ///
+  /// In en, this message translates to:
+  /// **'No riders nearby right now'**
+  String get noRidersTitle;
+
+  /// Empty rider list body.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again in a moment.'**
+  String get noRidersBody;
+
+  /// Rider list error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load riders.'**
+  String get ridersLoadFailed;
+
+  /// Rider with zero ratings.
+  ///
+  /// In en, this message translates to:
+  /// **'No ratings yet'**
+  String get noRatingsYet;
+
+  /// Rating count next to the average.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} ratings'**
+  String ratingCount(int count);
+
+  /// On-time rate.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% on time'**
+  String onTimePercent(int percent);
+
+  /// Completed jobs.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} completed'**
+  String completedJobs(int count);
+
+  /// Rider's distance to the pickup point.
+  ///
+  /// In en, this message translates to:
+  /// **'{distance} from pickup'**
+  String pickupDistanceAway(String distance);
+
+  /// Pickup window.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrives within {minutes} min'**
+  String arrivesWithin(int minutes);
+
+  /// Button on the rider list.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit route'**
+  String get editRoute;
+
+  /// After offer.resolved declined.
+  ///
+  /// In en, this message translates to:
+  /// **'The rider declined. Choose another rider.'**
+  String get offerDeclinedMessage;
+
+  /// After offer.resolved expired.
+  ///
+  /// In en, this message translates to:
+  /// **'The rider didn\'t respond in time. Choose another rider.'**
+  String get offerExpiredMessage;
+
+  /// Screen 3 title.
+  ///
+  /// In en, this message translates to:
+  /// **'Rider profile'**
+  String get riderProfileTitle;
+
+  /// Stat label.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get statRating;
+
+  /// Stat label.
+  ///
+  /// In en, this message translates to:
+  /// **'On time'**
+  String get statOnTime;
+
+  /// Stat label.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed jobs'**
+  String get statCompleted;
+
+  /// Stat label: distance to pickup and window.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup'**
+  String get statPickup;
+
+  /// Breakdown card heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Price for this trip'**
+  String get priceForThisTrip;
+
+  /// Breakdown row.
+  ///
+  /// In en, this message translates to:
+  /// **'Base fare'**
+  String get breakdownBaseFare;
+
+  /// Breakdown row, e.g. 'Platform rate for 10 km'.
+  ///
+  /// In en, this message translates to:
+  /// **'Platform rate for {distance}'**
+  String breakdownPlatform(String distance);
+
+  /// Breakdown row, e.g. 'Rider rate beyond 10 km'.
+  ///
+  /// In en, this message translates to:
+  /// **'Rider rate beyond {distance}'**
+  String breakdownRider(String distance);
+
+  /// Detail under the rider rate row.
+  ///
+  /// In en, this message translates to:
+  /// **'{distance} at {rate} per km'**
+  String breakdownRiderDetail(String distance, String rate);
+
+  /// Shown when minimum_fare_applied is true.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum fare applies to this trip'**
+  String get breakdownMinimumFare;
+
+  /// Breakdown total row.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get breakdownTotal;
+
+  /// Screen 3 primary button.
+  ///
+  /// In en, this message translates to:
+  /// **'Request'**
+  String get requestButton;
+
+  /// Screen 5 title.
+  ///
+  /// In en, this message translates to:
+  /// **'Price quote'**
+  String get quoteTitle;
+
+  /// Above the total.
+  ///
+  /// In en, this message translates to:
+  /// **'You pay'**
+  String get youPay;
+
+  /// Screen 5 note.
+  ///
+  /// In en, this message translates to:
+  /// **'This price is final. It is locked once the rider accepts.'**
+  String get quoteFinalNote;
+
+  /// Screen 5 primary button.
+  ///
+  /// In en, this message translates to:
+  /// **'Send request'**
+  String get sendRequestButton;
+
+  /// Offer error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t send the request. Try again.'**
+  String get sendRequestFailed;
+
+  /// Waiting screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for {name}'**
+  String waitingTitle(String name);
+
+  /// Waiting screen body.
+  ///
+  /// In en, this message translates to:
+  /// **'The rider has a short time to accept your request.'**
+  String get waitingBody;
+
+  /// After the countdown reaches zero.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking the rider\'s response…'**
+  String get waitingChecking;
+
+  /// Under the countdown number.
+  ///
+  /// In en, this message translates to:
+  /// **'seconds'**
+  String get secondsLabel;
+
+  /// Waiting screen button.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel request'**
+  String get cancelRequestButton;
+
+  /// Confirm dialog title.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel this request?'**
+  String get cancelConfirmTitle;
+
+  /// Confirm dialog body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order will be cancelled.'**
+  String get cancelConfirmBody;
+
+  /// Confirm dialog action.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel order'**
+  String get cancelConfirmYes;
+
+  /// Confirm dialog dismiss.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep waiting'**
+  String get cancelConfirmNo;
+
+  /// Cancel error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t cancel. The rider may have already responded.'**
+  String get cancelFailed;
+
+  /// Snackbar after cancelling.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order was cancelled.'**
+  String get orderCancelledMessage;
+
+  /// Button.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to home'**
+  String get backToHome;
+
+  /// Edit route screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit route'**
+  String get editRouteTitle;
+
+  /// Edit route button.
+  ///
+  /// In en, this message translates to:
+  /// **'Save route'**
+  String get saveRouteButton;
+
+  /// PATCH route error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update the route. Try again.'**
+  String get routeUpdateFailed;
+
+  /// PATCH route 422.
+  ///
+  /// In en, this message translates to:
+  /// **'This route can no longer be changed.'**
+  String get routeLocked;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get closeTooltip;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your rider profile.'**
+  String get riderLoadFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Register your boda boda to start receiving delivery and ride requests. Next you will upload your documents for review.'**
+  String get registerIntro;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle'**
+  String get vehicleLabel;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Boda boda'**
+  String get vehicleBodaBoda;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Boda boda is the only vehicle at launch.'**
+  String get vehicleOnlyBoda;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Number plate'**
+  String get plateLabel;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. KMFA 123B'**
+  String get plateHint;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 3 to 12 letters, digits or spaces'**
+  String get plateInvalid;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get registerButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t register. Try again.'**
+  String get registerFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents'**
+  String get documentsTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'RideLink staff review each document. You can go online once all of them are approved.'**
+  String get documentsIntro;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} uploaded'**
+  String documentsProgress(int done, int total);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get documentsContinue;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload every document to continue.'**
+  String get documentsUploadAll;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your documents.'**
+  String get documentsLoadFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Rider photo'**
+  String get docRiderPhoto;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'A clear photo of your face. Senders see it before and during a job.'**
+  String get docRiderPhotoHint;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'National ID'**
+  String get docNationalId;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Front of your national ID card.'**
+  String get docNationalIdHint;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Driving licence'**
+  String get docDrivingLicence;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Motorcycle licence (Class A), with its expiry date.'**
+  String get docDrivingLicenceHint;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Police clearance certificate'**
+  String get docPoliceClearance;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'DCI good conduct certificate, with its issue date. Valid for 12 months.'**
+  String get docPoliceClearanceHint;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'PSV insurance'**
+  String get docPsvInsurance;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Your PSV insurance certificate, with its expiry date.'**
+  String get docPsvInsuranceHint;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Logbook or sale agreement'**
+  String get docLogbook;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Proof that you own or may use the bike.'**
+  String get docLogbookHint;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Bike rear photo'**
+  String get docBikeRearPhoto;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'A photo of the back of your bike with the number plate visible.'**
+  String get docBikeRearPhotoHint;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Not uploaded'**
+  String get docStatusMissing;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'In review'**
+  String get docStatusPending;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get docStatusApproved;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get docStatusRejected;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason: {reason}'**
+  String docRejectedReason(String reason);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires {date}'**
+  String docExpiresOn(String date);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Issued {date}'**
+  String docIssuedOn(String date);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Your approved document stays valid while this one is reviewed.'**
+  String get docPendingStillValid;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload'**
+  String get docUploadAction;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace'**
+  String get docReplaceAction;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} uploaded'**
+  String docUploaded(String name);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'JPEG or PNG photo, up to 10 MB.'**
+  String get docFormatsImage;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'JPEG or PNG photo, or a PDF, up to 10 MB.'**
+  String get docFormatsAny;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose expiry date'**
+  String get docChooseExpiry;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose issue date'**
+  String get docChooseIssued;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Take photo'**
+  String get docTakePhoto;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get docChooseGallery;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose PDF or image file'**
+  String get docChooseFile;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload'**
+  String get docUploadButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'File must be 10 MB or smaller.'**
+  String get docTooLarge;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'This document must be a photo (JPEG or PNG).'**
+  String get docImageOnly;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the date first.'**
+  String get docDateRequired;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open the file. Try again.'**
+  String get docPickFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t upload. Check your connection and try again.'**
+  String get docUploadFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification'**
+  String get verificationTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Your documents are being reviewed'**
+  String get verificationPendingTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll notify you when the review is complete.'**
+  String get verificationPendingBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re approved'**
+  String get verificationApprovedTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You can go online and start receiving requests.'**
+  String get verificationApprovedBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Some documents need attention'**
+  String get verificationRejectedTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the reasons and upload new documents.'**
+  String get verificationRejectedBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish uploading your documents'**
+  String get verificationIncompleteTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Review starts once every document is uploaded.'**
+  String get verificationIncompleteBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to rider home'**
+  String get goToRiderHome;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload documents'**
+  String get fixDocumentsButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'View documents'**
+  String get viewDocumentsButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get refreshButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t registered as a rider yet'**
+  String get riderNotRegisteredTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re online'**
+  String get riderOnline;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline'**
+  String get riderOffline;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Receiving requests with pickups within {distance}'**
+  String riderOnlineBody(String distance);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Go online to receive delivery and ride requests.'**
+  String get riderOfflineBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup radius {radius} · Delivery {delivery}/km · Ride {ride}/km'**
+  String riderSettingsSummary(String radius, String delivery, String ride);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Boda boda {plate}'**
+  String riderPlate(String plate);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account isn\'t approved yet'**
+  String get blockNotVerifiedTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You can go online once RideLink approves your documents.'**
+  String get blockNotVerifiedBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'View status'**
+  String get viewStatusButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents need attention'**
+  String get blockDocumentsTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Renew or upload: {documents}'**
+  String blockDocumentsBody(String documents);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'One or more documents are missing or expired.'**
+  String get blockDocumentsBodyGeneric;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Update documents'**
+  String get updateDocumentsButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re paused until {time}'**
+  String blockPausedTitle(String time);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'After {count} missed pickups in 24 hours you can\'t receive requests until then.'**
+  String blockPausedMissedPickups(int count);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t receive requests until then.'**
+  String get blockPausedBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location to go online'**
+  String get blockLocationTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'RideLink shares your location while you are online so senders can find you and pickups are recorded.'**
+  String get blockLocationBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t change your status'**
+  String get blockErrorTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re online'**
+  String get onlineNotificationTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'RideLink is sharing your location for requests and pickups.'**
+  String get onlineNotificationBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Online status'**
+  String get onlineNotificationChannel;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'New request'**
+  String get riderOfferTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Time is up. Checking the request…'**
+  String get riderOfferChecking;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You earn'**
+  String get youEarn;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach pickup within {minutes} min'**
+  String reachPickupWithin(int minutes);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get acceptButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline'**
+  String get declineButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location to accept. Your location must be recent.'**
+  String get acceptNeedsLocation;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t accept. Try again.'**
+  String get acceptFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t decline. Try again.'**
+  String get declineFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'The request expired.'**
+  String get riderOfferExpired;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You declined the request.'**
+  String get riderOfferDeclined;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'This request is no longer available.'**
+  String get riderOfferTaken;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'The sender cancelled the request.'**
+  String get riderOfferCancelled;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Current job'**
+  String get jobTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Head to pickup'**
+  String get jobToPickup;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'At pickup'**
+  String get jobAtPickup;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival recorded. Collect and tap Picked up.'**
+  String get jobAtPickupNote;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Picked up'**
+  String get jobPickedUp;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'On the way to drop-off'**
+  String get jobInTransit;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'At drop-off'**
+  String get jobAtDropoff;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Request payment from the sender before handing over.'**
+  String get jobAtDropoffBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get jobPayment;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for the sender to pay {amount} in cash.'**
+  String jobWaitingForSender(String amount);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'The sender says they paid {amount} in cash. Confirm once you have it.'**
+  String jobSenderPaid(String amount);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment received'**
+  String get jobPaid;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment confirmed. Hand over, then mark it below.'**
+  String get jobPaidBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Handed over'**
+  String get jobHandedOver;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Job complete'**
+  String get jobCompleted;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You earned {amount}.'**
+  String jobCompletedBody(String amount);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Job cancelled'**
+  String get jobCancelled;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'The sender cancelled this order.'**
+  String get jobCancelledBySender;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'The pickup window passed, so the order was cancelled.'**
+  String get jobCancelledTimeout;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You cancelled this order.'**
+  String get jobCancelledByYou;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'This order was cancelled.'**
+  String get jobCancelledGeneric;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Agreed price'**
+  String get agreedPrice;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach pickup in'**
+  String get reachPickupIn;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Deadline {time}'**
+  String pickupDeadlineAt(String time);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival is recorded automatically when you are within 150 m of the pickup point.'**
+  String get arrivalAutoNote;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Heading to pickup'**
+  String get headingToPickup;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Heading to drop-off'**
+  String get headingToDropoff;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Receiver: {name}'**
+  String receiverIs(String name);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ve arrived'**
+  String get actionArrivedAtPickup;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Picked up'**
+  String get actionPickedUp;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Start trip to drop-off'**
+  String get actionStartTrip;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived at drop-off'**
+  String get actionArrivedAtDropoff;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Request payment'**
+  String get actionRequestPayment;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark handed over'**
+  String get actionHandOver;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete job'**
+  String get actionComplete;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update the job. Try again.'**
+  String get jobActionFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment received'**
+  String get paymentReceivedButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Received {amount} in cash?'**
+  String paymentReceivedConfirmTitle(String amount);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Only confirm once the cash is in your hand. This is recorded and cannot be undone.'**
+  String get paymentReceivedConfirmBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Not received'**
+  String get paymentNotReceivedButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Report payment not received?'**
+  String get paymentNotReceivedConfirmTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'The order goes to RideLink for review.'**
+  String get paymentNotReceivedConfirmBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Go back'**
+  String get goBackButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel job'**
+  String get riderCancelButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel this job?'**
+  String get riderCancelTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You accepted less than 2 minutes ago, so cancelling now won\'t count toward a pause ({time} left). It still shows in your cancellation record.'**
+  String riderCancelWithinGrace(String time);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'More than 2 minutes have passed since you accepted, so this counts like a missed pickup. 3 in 24 hours pauses you.'**
+  String get riderCancelAfterGrace;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel job'**
+  String get riderCancelConfirm;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep job'**
+  String get riderCancelKeep;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get doneButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re reviewing this payment'**
+  String get paymentUnderReview;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You reported that the cash was not received. RideLink will review this order.'**
+  String get paymentUnderReviewRiderBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider reported that the cash was not received. RideLink will review this order.'**
+  String get paymentUnderReviewSenderBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order'**
+  String get trackingScreenTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your order.'**
+  String get trackingLoadFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update the order. Try again.'**
+  String get trackingActionFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Rider arrives in {minutes} min'**
+  String riderArrivesIn(int minutes);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider has arrived'**
+  String get riderArrivedAtPickup;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'On the way to the drop-off'**
+  String get trackingOnTheWay;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider is at the drop-off'**
+  String get riderAtDropoff;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get delivered;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip complete'**
+  String get tripComplete;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'The rider didn\'t reach pickup in time, so the order was cancelled.'**
+  String get orderCancelledTimeout;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'The rider cancelled this order.'**
+  String get orderCancelledByRider;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You cancelled this order.'**
+  String get orderCancelledBySender;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted'**
+  String get stepAccepted;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'At pickup'**
+  String get stepAtPickup;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'In transit'**
+  String get stepInTransit;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get stepPayment;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get stepDelivered;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Dropped off'**
+  String get stepDroppedOff;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay {amount} in cash to your rider'**
+  String payInCash(String amount);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Then tap \"I\'ve paid\". Your rider confirms when they have the cash.'**
+  String get payInCashBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ve paid'**
+  String get ivePaidButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Have you paid {amount}?'**
+  String ivePaidConfirmTitle(String amount);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Only confirm after handing the cash to your rider. This is recorded.'**
+  String get ivePaidConfirmBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for your rider to confirm the payment'**
+  String get waitingForRiderConfirm;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment of {amount} confirmed'**
+  String paymentConfirmed(String amount);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'View terms'**
+  String get viewTerms;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Agreed terms'**
+  String get termsTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'These terms were locked when the rider accepted.'**
+  String get termsLockedNote;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup window'**
+  String get termsPickupWindow;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String minutesShort(int minutes);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel order'**
+  String get senderCancelButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel this order?'**
+  String get senderCancelTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'The rider has accepted and is on the way. Your order will be cancelled.'**
+  String get senderCancelBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep order'**
+  String get senderCancelKeep;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard this order?'**
+  String get discardOrderTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order will be cancelled.'**
+  String get discardOrderBody;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get discardOrderConfirm;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep order'**
+  String get discardOrderKeep;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t discard the order. Try again.'**
+  String get discardOrderFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You have an order in progress'**
+  String get activeOrderBanner;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'View'**
+  String get viewButton;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Pricing and settings'**
+  String get settingsTitle;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance'**
+  String get settingsDistanceSection;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup radius'**
+  String get settingsPickupRadius;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'How far you travel to collect. Up to {max}.'**
+  String settingsPickupRadiusHelp(String max);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Platform-rate distance'**
+  String get settingsMaxDistance;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Trips up to this distance use the platform price; your rate applies beyond it. At least {min}.'**
+  String settingsMaxDistanceHelp(String min);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rates'**
+  String get settingsRatesSection;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Charged per km beyond your platform-rate distance.'**
+  String get settingsRatesNote;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery rate'**
+  String get settingsDeliveryRate;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Ride rate'**
+  String get settingsRideRate;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Between {min} and {max} per km'**
+  String settingsRateRange(String min, String max);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Load'**
+  String get settingsLoadSection;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum parcel weight'**
+  String get settingsMaxWeight;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Heaviest parcel you will carry.'**
+  String get settingsMaxWeightHelp;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get settingsSave;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings saved'**
+  String get settingsSaved;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save. Try again.'**
+  String get settingsSaveFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your settings.'**
+  String get settingsLoadFailed;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a value'**
+  String get settingsRequired;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a number'**
+  String get settingsNotNumber;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a value above 0'**
+  String get settingsMustBePositive;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'This value is too large'**
+  String get settingsTooHigh;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'At most {max}'**
+  String settingsRadiusTooHigh(String max);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'At least {min}'**
+  String settingsDistanceTooLow(String min);
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'km'**
+  String get unitKm;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'KES/km'**
+  String get unitPerKm;
+
+  /// Phase 2 rider side / tracking.
+  ///
+  /// In en, this message translates to:
+  /// **'kg'**
+  String get unitKg;
+
+  /// Server error code invalid_request (400 fallback).
+  ///
+  /// In en, this message translates to:
+  /// **'Some details aren\'t valid. Check them and try again.'**
+  String get errCodeInvalidRequest;
+
+  /// Server error code unauthorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session has ended. Please sign in again.'**
+  String get errCodeUnauthorized;
+
+  /// Server error code forbidden.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have permission to do this.'**
+  String get errCodeForbidden;
+
+  /// Server error code not_found.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find that. It may have been removed.'**
+  String get errCodeNotFound;
+
+  /// Server error code conflict.
+  ///
+  /// In en, this message translates to:
+  /// **'This changed in the meantime. Refresh and try again.'**
+  String get errCodeConflict;
+
+  /// Server error code invalid_status: the order is not in a status that allows this action.
+  ///
+  /// In en, this message translates to:
+  /// **'This order has moved on. Refresh and try again.'**
+  String get errCodeInvalidStatus;
+
+  /// Server error code file_too_large.
+  ///
+  /// In en, this message translates to:
+  /// **'The file is too large. Use one under 10 MB.'**
+  String get errCodeFileTooLarge;
+
+  /// Server error code internal_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong on our side. Please try again.'**
+  String get errCodeInternalError;
+
+  /// Server error code upstream_unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'A service we rely on isn\'t responding. Please try again.'**
+  String get errCodeUpstreamUnavailable;
+
+  /// Server error code service_unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This isn\'t available right now. Please try again later.'**
+  String get errCodeServiceUnavailable;
+
+  /// Server error code invalid_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Names must be 1 to 50 characters.'**
+  String get errCodeInvalidName;
+
+  /// Server error code missing_fields.
+  ///
+  /// In en, this message translates to:
+  /// **'Fill in all required fields.'**
+  String get errCodeMissingFields;
+
+  /// Server error code password_breached.
+  ///
+  /// In en, this message translates to:
+  /// **'This password has appeared in a data breach. Choose a different one.'**
+  String get errCodePasswordBreached;
+
+  /// Server error code password_reused.
+  ///
+  /// In en, this message translates to:
+  /// **'Your new password must be different from the current one.'**
+  String get errCodePasswordReused;
+
+  /// Server error code session_expired.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session has expired. Please sign in again.'**
+  String get errCodeSessionExpired;
+
+  /// Server error code email_not_confirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your email first with the code we sent you.'**
+  String get errCodeEmailNotConfirmed;
+
+  /// Server error code errand_unavailable (errands are post-beta).
+  ///
+  /// In en, this message translates to:
+  /// **'Errands aren\'t available yet.'**
+  String get errCodeErrandUnavailable;
+
+  /// Server error code unknown_category.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose an item category from the list.'**
+  String get errCodeUnknownCategory;
+
+  /// Server error code category_not_allowed (e.g. prohibited at beta).
+  ///
+  /// In en, this message translates to:
+  /// **'This item can\'t be sent with RideLink.'**
+  String get errCodeCategoryNotAllowed;
+
+  /// Server error code order_not_editable.
+  ///
+  /// In en, this message translates to:
+  /// **'The route can\'t be changed any more.'**
+  String get errCodeOrderNotEditable;
+
+  /// Server error code order_not_cancellable.
+  ///
+  /// In en, this message translates to:
+  /// **'This order can no longer be cancelled.'**
+  String get errCodeOrderNotCancellable;
+
+  /// Server error code order_unavailable (taken or withdrawn).
+  ///
+  /// In en, this message translates to:
+  /// **'This order is no longer available.'**
+  String get errCodeOrderUnavailable;
+
+  /// Server error code no_active_offer.
+  ///
+  /// In en, this message translates to:
+  /// **'There\'s no open request on this order.'**
+  String get errCodeNoActiveOffer;
+
+  /// Server error code offer_not_for_you.
+  ///
+  /// In en, this message translates to:
+  /// **'This request was sent to another rider.'**
+  String get errCodeOfferNotForYou;
+
+  /// Server error code rider_not_available.
+  ///
+  /// In en, this message translates to:
+  /// **'This rider can\'t take the order right now. Choose another rider.'**
+  String get errCodeRiderNotAvailable;
+
+  /// Server error code rider_not_found.
+  ///
+  /// In en, this message translates to:
+  /// **'Rider not found.'**
+  String get errCodeRiderNotFound;
+
+  /// Server error code rider_already_registered.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re already registered as a rider.'**
+  String get errCodeRiderAlreadyRegistered;
+
+  /// Server error code rider_not_verified.
+  ///
+  /// In en, this message translates to:
+  /// **'Only verified riders can go online.'**
+  String get errCodeRiderNotVerified;
+
+  /// Server error code documents_missing.
+  ///
+  /// In en, this message translates to:
+  /// **'Some required documents are missing or expired.'**
+  String get errCodeDocumentsMissing;
+
+  /// Server error code rider_paused.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re paused after missed pickups. Try again after the pause ends.'**
+  String get errCodeRiderPaused;
+
+  /// Server error code location_required.
+  ///
+  /// In en, this message translates to:
+  /// **'We need your current location. Turn on location and try again.'**
+  String get errCodeLocationRequired;
+
+  /// Server error code location_stale.
+  ///
+  /// In en, this message translates to:
+  /// **'Your location is out of date. Wait a moment and try again.'**
+  String get errCodeLocationStale;
+
+  /// Server error code too_far_from_pickup.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re too far from the pickup point.'**
+  String get errCodeTooFarFromPickup;
+
+  /// Server error code pickup_window_passed.
+  ///
+  /// In en, this message translates to:
+  /// **'The pickup time has passed.'**
+  String get errCodePickupWindowPassed;
+
+  /// Server error code already_arrived.
+  ///
+  /// In en, this message translates to:
+  /// **'Your arrival is already recorded.'**
+  String get errCodeAlreadyArrived;
+
+  /// Server error code value_out_of_range.
+  ///
+  /// In en, this message translates to:
+  /// **'A value is outside the allowed range.'**
+  String get errCodeValueOutOfRange;
+
+  /// Server error code invalid_file_type.
+  ///
+  /// In en, this message translates to:
+  /// **'This file type isn\'t accepted.'**
+  String get errCodeInvalidFileType;
+
+  /// Server error code photo_not_found.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo not available.'**
+  String get errCodePhotoNotFound;
+
+  /// Server error code already_rated.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve already rated this order.'**
+  String get errCodeAlreadyRated;
+
+  /// Server error code no_agreed_price.
+  ///
+  /// In en, this message translates to:
+  /// **'This order has no agreed price yet.'**
+  String get errCodeNoAgreedPrice;
+
+  /// Server error code reserved_event_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Only RideLink can add this entry to the record.'**
+  String get errCodeReservedEventType;
+
+  /// Server error code invalid_media_kind.
+  ///
+  /// In en, this message translates to:
+  /// **'This photo type isn\'t accepted.'**
+  String get errCodeInvalidMediaKind;
+
+  /// Server error code invalid_hash.
+  ///
+  /// In en, this message translates to:
+  /// **'The photo couldn\'t be verified. Please try again.'**
+  String get errCodeInvalidHash;
+
+  /// Server error code hash_mismatch: the server's SHA-256 of the photo differs from the device's.
+  ///
+  /// In en, this message translates to:
+  /// **'The photo changed during upload. Please try again.'**
+  String get errCodeHashMismatch;
+
+  /// Screen 10 title and the link to it from tracking, the job and history.
+  ///
+  /// In en, this message translates to:
+  /// **'Evidence record'**
+  String get evidenceTitle;
+
+  /// Short explanation at the top of the evidence record.
+  ///
+  /// In en, this message translates to:
+  /// **'Every step of this order is recorded in a tamper-evident chain. Anyone can check it has not been changed.'**
+  String get evidenceIntro;
+
+  /// Heading above the list of evidence events.
+  ///
+  /// In en, this message translates to:
+  /// **'Timeline'**
+  String get evidenceTimelineTitle;
+
+  /// Evidence record with no events.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing has been recorded yet.'**
+  String get evidenceEmpty;
+
+  /// Evidence record failed to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the evidence record.'**
+  String get evidenceLoadFailed;
+
+  /// Button that asks the server to recompute every hash in the chain.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify record'**
+  String get evidenceVerifyButton;
+
+  /// Verify button after a result is shown.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify again'**
+  String get evidenceVerifyAgain;
+
+  /// The verify call itself failed (network or server).
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t check the record right now.'**
+  String get evidenceVerifyFailed;
+
+  /// Verification result: the chain is unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Record intact'**
+  String get evidenceIntactTitle;
+
+  /// Verification result body with the number of events.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 event checked. Nothing has been changed.} other{{count} events checked. Nothing has been changed.}}'**
+  String evidenceIntactBody(int count);
+
+  /// Verification result: the chain does not match.
+  ///
+  /// In en, this message translates to:
+  /// **'Record does not verify'**
+  String get evidenceTamperedTitle;
+
+  /// Verification failed: tampered or damaged chain.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 event checked. The chain does not match, so this record may have been altered.} other{{count} events checked. The chain does not match, so this record may have been altered.}}'**
+  String evidenceTamperedBody(int count);
+
+  /// Short preview of an event hash, shown in mono.
+  ///
+  /// In en, this message translates to:
+  /// **'Hash {hash}'**
+  String evidenceHash(String hash);
+
+  /// Accessibility label for an evidence photo thumbnail.
+  ///
+  /// In en, this message translates to:
+  /// **'Open photo'**
+  String get evidenceOpenPhoto;
+
+  /// Who recorded an evidence event: the current user.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get evidenceActorYou;
+
+  /// Who recorded an evidence event: the rider.
+  ///
+  /// In en, this message translates to:
+  /// **'Rider'**
+  String get evidenceActorRider;
+
+  /// Who recorded an evidence event: the sender (deliveries).
+  ///
+  /// In en, this message translates to:
+  /// **'Sender'**
+  String get evidenceActorSender;
+
+  /// Who recorded an evidence event: the passenger (rides).
+  ///
+  /// In en, this message translates to:
+  /// **'Passenger'**
+  String get evidenceActorPassenger;
+
+  /// Who recorded an evidence event when the role is unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Other party'**
+  String get evidenceActorOtherParty;
+
+  /// Event recorded by the system.
+  ///
+  /// In en, this message translates to:
+  /// **'RideLink'**
+  String get evidenceActorRideLink;
+
+  /// Evidence photo kind pickup_photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup photo'**
+  String get evidencePickupPhoto;
+
+  /// Evidence photo kind handover_photo (deliveries).
+  ///
+  /// In en, this message translates to:
+  /// **'Handover photo'**
+  String get evidenceHandoverPhoto;
+
+  /// Evidence photo kind handover_photo on a ride.
+  ///
+  /// In en, this message translates to:
+  /// **'Drop-off photo'**
+  String get evidenceDropoffPhoto;
+
+  /// Evidence photo kind item_photo (sender, before pickup).
+  ///
+  /// In en, this message translates to:
+  /// **'Item photo'**
+  String get evidenceItemPhoto;
+
+  /// Rider, delivery pickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo of the item as you collect it.'**
+  String get evidencePickupPhotoHint;
+
+  /// Rider, ride pickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo at the pickup point.'**
+  String get evidencePickupPhotoHintRide;
+
+  /// Rider, delivery handover.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo of the item as you hand it over.'**
+  String get evidenceHandoverPhotoHint;
+
+  /// Rider, ride drop-off.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo at the drop-off point.'**
+  String get evidenceHandoverPhotoHintRide;
+
+  /// Sender, optional item photo before pickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a photo of the item before the rider collects it.'**
+  String get evidenceItemPhotoHint;
+
+  /// Opens the camera for an evidence photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Take photo'**
+  String get evidenceTakePhoto;
+
+  /// Take a new evidence photo after a failed upload.
+  ///
+  /// In en, this message translates to:
+  /// **'Retake'**
+  String get evidenceRetake;
+
+  /// Shown with the upload progress bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading photo...'**
+  String get evidenceUploading;
+
+  /// Evidence photo upload failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t upload the photo. Check your connection and try again.'**
+  String get evidenceUploadFailed;
+
+  /// Evidence photo uploaded and chained.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo added to the evidence record'**
+  String get evidencePhotoAdded;
+
+  /// Evidence event payment_requested.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment requested'**
+  String get evidenceEventPaymentRequested;
+
+  /// Evidence event cash_payment_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash marked as paid'**
+  String get evidenceEventCashSent;
+
+  /// Evidence event cash_payment_received.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash received'**
+  String get evidenceEventCashReceived;
+
+  /// Evidence event cash_payment_disputed.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash reported not received'**
+  String get evidenceEventCashDisputed;
+
+  /// Marks an optional step.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional'**
+  String get optionalLabel;
+
+  /// Rating sheet title for the sender.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate your rider'**
+  String get rateRiderTitle;
+
+  /// Rating sheet title for the rider on a delivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate the sender'**
+  String get rateSenderTitle;
+
+  /// Rating sheet title for the rider on a ride.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate your passenger'**
+  String get ratePassengerTitle;
+
+  /// Rating sheet subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How did it go? Your rating helps keep RideLink trustworthy.'**
+  String get rateBody;
+
+  /// Accessibility label for a star score.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 star} other{{count} stars}}'**
+  String ratingStarsLabel(int count);
+
+  /// Optional rating comment field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Comment'**
+  String get ratingCommentLabel;
+
+  /// Rating comment field hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional'**
+  String get ratingCommentHint;
+
+  /// Submit the rating.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit rating'**
+  String get ratingSubmit;
+
+  /// Close the rating sheet without rating.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get ratingSkip;
+
+  /// Shown after a rating is saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for your rating.'**
+  String get ratingThanks;
+
+  /// Rating submit failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save your rating. Please try again.'**
+  String get ratingFailed;
+
+  /// Order detail: the rating you gave.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rating'**
+  String get yourRating;
+
+  /// Order detail: no rating given yet.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t rated this order.'**
+  String get notRatedYet;
+
+  /// Order detail: open the rating sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate'**
+  String get rateButton;
+
+  /// Notifications screen title and bell tooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notificationsTitle;
+
+  /// Empty notifications list.
+  ///
+  /// In en, this message translates to:
+  /// **'No notifications yet.'**
+  String get notificationsEmpty;
+
+  /// Notifications failed to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load notifications.'**
+  String get notificationsLoadFailed;
+
+  /// Notification payment_requested (to the sender).
+  ///
+  /// In en, this message translates to:
+  /// **'Payment requested'**
+  String get notifPaymentRequestedTitle;
+
+  /// Notification payment_requested body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider has requested payment. Pay {amount} in cash.'**
+  String notifPaymentRequestedBody(String amount);
+
+  /// Notification payment_requested body without an amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider has requested payment. Pay the agreed amount in cash.'**
+  String get notifPaymentRequestedBodyNoAmount;
+
+  /// Notification payment_sent (to the rider).
+  ///
+  /// In en, this message translates to:
+  /// **'Cash payment sent'**
+  String get notifPaymentSentTitle;
+
+  /// Notification payment_sent body.
+  ///
+  /// In en, this message translates to:
+  /// **'The sender says they have paid {amount}. Confirm when you have the cash.'**
+  String notifPaymentSentBody(String amount);
+
+  /// Notification payment_sent body without an amount.
+  ///
+  /// In en, this message translates to:
+  /// **'The sender says they have paid. Confirm when you have the cash.'**
+  String get notifPaymentSentBodyNoAmount;
+
+  /// Notification payment_confirmed (to the sender).
+  ///
+  /// In en, this message translates to:
+  /// **'Payment confirmed'**
+  String get notifPaymentConfirmedTitle;
+
+  /// Notification payment_confirmed body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider confirmed receiving {amount} in cash.'**
+  String notifPaymentConfirmedBody(String amount);
+
+  /// Notification payment_confirmed body without an amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider confirmed receiving your cash payment.'**
+  String get notifPaymentConfirmedBodyNoAmount;
+
+  /// Notification payment_unresolved (both parties).
+  ///
+  /// In en, this message translates to:
+  /// **'Payment unresolved'**
+  String get notifPaymentUnresolvedTitle;
+
+  /// Notification payment_unresolved body.
+  ///
+  /// In en, this message translates to:
+  /// **'The rider reported the cash as not received. RideLink will review this order.'**
+  String get notifPaymentUnresolvedBody;
+
+  /// Notification pickup_arrived (to the sender).
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider has arrived'**
+  String get notifPickupArrivedTitle;
+
+  /// Notification pickup_arrived body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider is at the pickup point.'**
+  String get notifPickupArrivedBody;
+
+  /// Notification pickup_timeout (to the sender).
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider didn\'t reach pickup in time'**
+  String get notifPickupTimeoutTitle;
+
+  /// Notification pickup_timeout body.
+  ///
+  /// In en, this message translates to:
+  /// **'The order was cancelled. You can book another rider.'**
+  String get notifPickupTimeoutBody;
+
+  /// Notification pickup_timeout_rider (to the rider).
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup window missed'**
+  String get notifPickupTimeoutRiderTitle;
+
+  /// Notification pickup_timeout_rider body.
+  ///
+  /// In en, this message translates to:
+  /// **'The order was cancelled because you didn\'t reach the pickup in time. Missed pickups count toward a pause.'**
+  String get notifPickupTimeoutRiderBody;
+
+  /// Notification receiver_location_shared (to the rider).
+  ///
+  /// In en, this message translates to:
+  /// **'Receiver shared their location'**
+  String get notifReceiverLocationTitle;
+
+  /// Notification receiver_location_shared body.
+  ///
+  /// In en, this message translates to:
+  /// **'The receiver pinned their exact drop-off spot. Open the order to see it.'**
+  String get notifReceiverLocationBody;
+
+  /// Notification document_expiring title; doc is the localized document name.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =0{Your {doc} expires today} =1{Your {doc} expires tomorrow} other{Your {doc} expires in {days} days}}'**
+  String notifDocumentExpiringTitle(String doc, int days);
+
+  /// Notification document_expiring body.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload a renewed document before {date} to keep receiving orders.'**
+  String notifDocumentExpiringBody(String date);
+
+  /// Notification document_expired title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your {doc} has expired'**
+  String notifDocumentExpiredTitle(String doc);
+
+  /// Notification document_expired body.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t go online until a valid replacement is approved.'**
+  String get notifDocumentExpiredBody;
+
+  /// Drawer entry to order history.
+  ///
+  /// In en, this message translates to:
+  /// **'Order history'**
+  String get menuHistory;
+
+  /// Drawer entry to the profile screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get menuProfile;
+
+  /// Profile screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTitle;
+
+  /// Profile failed to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your profile.'**
+  String get profileLoadFailed;
+
+  /// Save the edited names.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get profileSave;
+
+  /// Names saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name was updated.'**
+  String get profileSaved;
+
+  /// Names save failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save your name. Please try again.'**
+  String get profileSaveFailed;
+
+  /// Note under the name fields.
+  ///
+  /// In en, this message translates to:
+  /// **'Others see your first name and last initial, like \"Moses O.\"'**
+  String get profileNameShownAs;
+
+  /// Verified riders cannot rename themselves (auth-onboarding decision 15).
+  ///
+  /// In en, this message translates to:
+  /// **'Your name matches your verified ID, so it can\'t be changed here. To change it, contact RideLink support.'**
+  String get profileNameLocked;
+
+  /// Profile row label.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get profileLanguage;
+
+  /// The app has no language switch; it follows the device.
+  ///
+  /// In en, this message translates to:
+  /// **'Follows your phone\'s language'**
+  String get profileLanguageValue;
+
+  /// History screen title (sender side).
+  ///
+  /// In en, this message translates to:
+  /// **'Order history'**
+  String get historyTitle;
+
+  /// History screen title (rider side).
+  ///
+  /// In en, this message translates to:
+  /// **'Trip history'**
+  String get historyRiderTitle;
+
+  /// Empty history.
+  ///
+  /// In en, this message translates to:
+  /// **'No orders yet.'**
+  String get historyEmpty;
+
+  /// History failed to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your orders.'**
+  String get historyLoadFailed;
+
+  /// History row: the pickup address.
+  ///
+  /// In en, this message translates to:
+  /// **'From {place}'**
+  String historyFrom(String place);
+
+  /// Order detail screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Order details'**
+  String get orderDetailTitle;
+
+  /// Order detail failed to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load this order.'**
+  String get orderLoadFailed;
+
+  /// Order detail: jump to tracking or the rider job while it runs.
+  ///
+  /// In en, this message translates to:
+  /// **'Open live order'**
+  String get openLiveOrder;
+
+  /// Order detail: label above the rider name.
+  ///
+  /// In en, this message translates to:
+  /// **'Rider'**
+  String get detailRider;
+
+  /// Order detail: label above the sender name.
+  ///
+  /// In en, this message translates to:
+  /// **'Sender'**
+  String get detailSender;
+
+  /// Order detail: label above the passenger name.
+  ///
+  /// In en, this message translates to:
+  /// **'Passenger'**
+  String get detailPassenger;
+
+  /// Order status created.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get statusCreated;
+
+  /// Order status offered.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for rider'**
+  String get statusOffered;
+
+  /// Order status accepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Rider on the way'**
+  String get statusAccepted;
+
+  /// Order status started / in_transit.
+  ///
+  /// In en, this message translates to:
+  /// **'In transit'**
+  String get statusInTransit;
+
+  /// Order status arrived.
+  ///
+  /// In en, this message translates to:
+  /// **'At drop-off'**
+  String get statusArrived;
+
+  /// Order status payment_requested / cash_pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get statusPayment;
+
+  /// Order status paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get statusPaid;
+
+  /// Order status handed_over (delivery).
+  ///
+  /// In en, this message translates to:
+  /// **'Handed over'**
+  String get statusHandedOver;
+
+  /// Order status handed_over (ride).
+  ///
+  /// In en, this message translates to:
+  /// **'Dropped off'**
+  String get statusDroppedOff;
+
+  /// Order status completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get statusCompleted;
+
+  /// Order status cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get statusCancelled;
+
+  /// Order status expired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired'**
+  String get statusExpired;
+
+  /// Order status payment_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment failed'**
+  String get statusPaymentFailed;
+
+  /// Order status unresolved.
+  ///
+  /// In en, this message translates to:
+  /// **'Under review'**
+  String get statusUnresolved;
+
+  /// Sender tracking: create the receiver link and open the share sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Share with receiver'**
+  String get shareWithReceiver;
+
+  /// Note under the share button.
+  ///
+  /// In en, this message translates to:
+  /// **'The receiver can follow the delivery and pin their exact spot for the rider.'**
+  String get shareWithReceiverNote;
+
+  /// Message sent through the Android share sheet with the receiver link.
+  ///
+  /// In en, this message translates to:
+  /// **'Your RideLink delivery is on its way. Follow it and share your exact location with the rider here: {url}'**
+  String receiverShareMessage(String url);
+
+  /// Receiver link creation failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t create the receiver link. Please try again.'**
+  String get receiverLinkFailed;
+
+  /// Rider job: the receiver shared their location.
+  ///
+  /// In en, this message translates to:
+  /// **'The receiver pinned their exact spot'**
+  String get receiverSpotTitle;
+
+  /// Rider job: the receiver's landmark note.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: {note}'**
+  String receiverSpotNote(String note);
+
+  /// Rider job: open Google Maps navigation to the pickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Navigate to pickup'**
+  String get navigateToPickup;
+
+  /// Rider job: open Google Maps navigation to the drop-off.
+  ///
+  /// In en, this message translates to:
+  /// **'Navigate to drop-off'**
+  String get navigateToDropoff;
+
+  /// Rider job: navigate to the receiver's pinned spot.
+  ///
+  /// In en, this message translates to:
+  /// **'Navigate to receiver\'s spot'**
+  String get navigateToReceiver;
+
+  /// No app could handle the navigation hand-off.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open Google Maps on this phone.'**
+  String get navigateFailed;
+
+  /// Rider job: the sender display name.
+  ///
+  /// In en, this message translates to:
+  /// **'Sender: {name}'**
+  String senderIs(String name);
+
+  /// Rider job: the passenger display name.
+  ///
+  /// In en, this message translates to:
+  /// **'Passenger: {name}'**
+  String passengerIs(String name);
+
+  /// Rider tried to switch to sending during a job.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish your job first'**
+  String get switchMidJobTitle;
+
+  /// Body of the mid-job switch dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'You can switch to sending once this job is complete.'**
+  String get switchMidJobBody;
+
+  /// Online rider tries to switch to sending.
+  ///
+  /// In en, this message translates to:
+  /// **'Go offline to switch?'**
+  String get switchGoOfflineTitle;
+
+  /// Body of the go-offline dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll stop getting requests while you send.'**
+  String get switchGoOfflineBody;
+
+  /// Confirm going offline and switching.
+  ///
+  /// In en, this message translates to:
+  /// **'Go offline'**
+  String get switchGoOfflineConfirm;
+
+  /// Cancel the switch.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay online'**
+  String get switchStayOnline;
+
+  /// Going offline failed, so the switch was stopped.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t go offline. Please try again.'**
+  String get switchGoOfflineFailed;
+
+  /// Sender tracking after the pickup deadline, until the server cancels.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider is running late'**
+  String get riderRunningLate;
+
+  /// Rider job after the pickup deadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Running late'**
+  String get jobRunningLate;
+
+  /// Rider job after the pickup deadline.
+  ///
+  /// In en, this message translates to:
+  /// **'The pickup window has passed. RideLink will cancel this order shortly.'**
+  String get jobRunningLateBody;
+
+  /// Rider job title after pickup on a ride.
+  ///
+  /// In en, this message translates to:
+  /// **'Passenger picked up'**
+  String get jobPassengerPickedUp;
+
+  /// Rider job action at pickup on a ride.
+  ///
+  /// In en, this message translates to:
+  /// **'Passenger picked up'**
+  String get actionPassengerPickedUp;
+
+  /// Rider job at pickup on a ride.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival recorded. Once your passenger is on, tap Passenger picked up.'**
+  String get jobAtPickupNoteRide;
+
+  /// Rider job at drop-off on a ride.
+  ///
+  /// In en, this message translates to:
+  /// **'Request payment from your passenger before they get off.'**
+  String get jobAtDropoffBodyRide;
+
+  /// Rider job, ride payment requested.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for the passenger to pay {amount} in cash.'**
+  String jobWaitingForPassenger(String amount);
+
+  /// Rider job, ride cash pending.
+  ///
+  /// In en, this message translates to:
+  /// **'The passenger says they paid {amount} in cash. Confirm once you have it.'**
+  String jobPassengerPaid(String amount);
+
+  /// Rider job, ride paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment confirmed. Mark the passenger dropped off below.'**
+  String get jobPaidBodyRide;
+
+  /// Rider job title after drop-off on a ride.
+  ///
+  /// In en, this message translates to:
+  /// **'Passenger dropped off'**
+  String get jobPassengerDroppedOff;
+
+  /// Rider job action at drop-off on a ride.
+  ///
+  /// In en, this message translates to:
+  /// **'Passenger dropped off'**
+  String get actionPassengerDroppedOff;
+
+  /// Rider job title when a ride is complete.
+  ///
+  /// In en, this message translates to:
+  /// **'Ride complete'**
+  String get jobRideComplete;
+
+  /// Rider job action to complete a ride.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete ride'**
+  String get actionCompleteRide;
+
+  /// Rider job, ride cancelled by the passenger.
+  ///
+  /// In en, this message translates to:
+  /// **'The passenger cancelled this ride.'**
+  String get jobCancelledByPassenger;
 }
 
 class _AppLocalizationsDelegate

@@ -95,11 +95,30 @@ void main() {
           on401: on401 ?? AuthUnauthorized.wrongCredentials,
         );
 
-    test('400 shows the server message', () {
+    test('400s are localized by code; unknown codes show the server text', () {
       expect(
-        msg(400, m: 'this password has appeared in a data breach'),
-        'this password has appeared in a data breach',
+        authErrorMessage(
+          const ApiException(
+            statusCode: 400,
+            code: 'password_breached',
+            message: 'this password has appeared in a data breach',
+          ),
+          l,
+        ),
+        l.errCodePasswordBreached,
       );
+      expect(
+        authErrorMessage(
+          const ApiException(
+            statusCode: 400,
+            code: 'some_future_code',
+            message: 'server text',
+          ),
+          l,
+        ),
+        'server text',
+      );
+      expect(msg(400, m: 'no code'), l.errCodeInvalidRequest);
     });
 
     test('401 depends on the screen', () {

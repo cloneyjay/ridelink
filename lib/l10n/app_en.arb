@@ -1,127 +1,2681 @@
 {
   "@@locale": "en",
   "appName": "RideLink",
-  "@appName": {"description": "Product name."},
+  "@appName": {
+    "description": "Product name."
+  },
   "appTagline": "Deliveries and rides you can trust",
-  "@appTagline": {"description": "Short line under the logo on the sign-in screen. Launch services are deliveries and rides only (no errands)."},
-
+  "@appTagline": {
+    "description": "Short line under the logo on the sign-in screen. Launch services are deliveries and rides only (no errands)."
+  },
   "signInTitle": "Sign in",
-  "@signInTitle": {"description": "Heading of the sign-in screen."},
+  "@signInTitle": {
+    "description": "Heading of the sign-in screen."
+  },
   "emailLabel": "Email",
-  "@emailLabel": {"description": "Email field label."},
+  "@emailLabel": {
+    "description": "Email field label."
+  },
   "passwordLabel": "Password",
-  "@passwordLabel": {"description": "Password field label."},
+  "@passwordLabel": {
+    "description": "Password field label."
+  },
   "showPassword": "Show password",
-  "@showPassword": {"description": "Accessibility label for the eye icon that reveals the password."},
+  "@showPassword": {
+    "description": "Accessibility label for the eye icon that reveals the password."
+  },
   "hidePassword": "Hide password",
-  "@hidePassword": {"description": "Accessibility label for the eye icon that hides the password."},
+  "@hidePassword": {
+    "description": "Accessibility label for the eye icon that hides the password."
+  },
   "forgotPasswordLink": "Forgot password?",
-  "@forgotPasswordLink": {"description": "Link on the sign-in screen to reset a password."},
+  "@forgotPasswordLink": {
+    "description": "Link on the sign-in screen to reset a password."
+  },
   "signInButton": "Sign in",
-  "@signInButton": {"description": "Primary button on the sign-in screen."},
+  "@signInButton": {
+    "description": "Primary button on the sign-in screen."
+  },
   "orDivider": "or",
-  "@orDivider": {"description": "Divider between email sign-in and Google sign-in."},
+  "@orDivider": {
+    "description": "Divider between email sign-in and Google sign-in."
+  },
   "continueWithGoogle": "Continue with Google",
-  "@continueWithGoogle": {"description": "Google sign-in button."},
+  "@continueWithGoogle": {
+    "description": "Google sign-in button."
+  },
   "noAccountPrompt": "New to RideLink?",
-  "@noAccountPrompt": {"description": "Text before the create-account link."},
+  "@noAccountPrompt": {
+    "description": "Text before the create-account link."
+  },
   "createAccountLink": "Create an account",
-  "@createAccountLink": {"description": "Link to the sign-up screen."},
+  "@createAccountLink": {
+    "description": "Link to the sign-up screen."
+  },
   "riderPrompt": "Want to earn as a rider?",
-  "@riderPrompt": {"description": "Text above the rider sign-up link at the bottom of the sign-in screen."},
+  "@riderPrompt": {
+    "description": "Text above the rider sign-up link at the bottom of the sign-in screen."
+  },
   "riderJoinLink": "Join as a boda boda rider",
-  "@riderJoinLink": {"description": "Link that starts sign-up with the intent to become a rider."},
-
+  "@riderJoinLink": {
+    "description": "Link that starts sign-up with the intent to become a rider."
+  },
   "signUpTitle": "Create your account",
-  "@signUpTitle": {"description": "Heading of the sign-up screen."},
+  "@signUpTitle": {
+    "description": "Heading of the sign-up screen."
+  },
   "signUpRiderNote": "You'll set up your rider profile after confirming your email.",
-  "@signUpRiderNote": {"description": "Shown on sign-up when the user came from 'Join as a boda boda rider'."},
+  "@signUpRiderNote": {
+    "description": "Shown on sign-up when the user came from 'Join as a boda boda rider'."
+  },
   "firstNameLabel": "First name",
-  "@firstNameLabel": {"description": "First name field label."},
+  "@firstNameLabel": {
+    "description": "First name field label."
+  },
   "lastNameLabel": "Last name",
-  "@lastNameLabel": {"description": "Last name field label."},
+  "@lastNameLabel": {
+    "description": "Last name field label."
+  },
   "passwordHint": "At least 15 characters",
-  "@passwordHint": {"description": "Live hint under a new-password field. No other password rules apply."},
+  "@passwordHint": {
+    "description": "Live hint under a new-password field. No other password rules apply."
+  },
   "signUpButton": "Create account",
-  "@signUpButton": {"description": "Primary button on the sign-up screen."},
+  "@signUpButton": {
+    "description": "Primary button on the sign-up screen."
+  },
   "haveAccountPrompt": "Already have an account?",
-  "@haveAccountPrompt": {"description": "Text before the sign-in link on the sign-up screen."},
+  "@haveAccountPrompt": {
+    "description": "Text before the sign-in link on the sign-up screen."
+  },
   "signInLink": "Sign in",
-  "@signInLink": {"description": "Link back to the sign-in screen."},
-
+  "@signInLink": {
+    "description": "Link back to the sign-in screen."
+  },
   "verifyTitle": "Check your email",
-  "@verifyTitle": {"description": "Heading of the email confirmation code screen."},
+  "@verifyTitle": {
+    "description": "Heading of the email confirmation code screen."
+  },
   "verifySentTo": "We sent a 6-digit code to {email}.",
-  "@verifySentTo": {"description": "Explains where the confirmation code was sent.", "placeholders": {"email": {"type": "String"}}},
+  "@verifySentTo": {
+    "description": "Explains where the confirmation code was sent.",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
   "verifyNotConfirmed": "Your email {email} isn't confirmed yet. Request a new code and enter it below.",
-  "@verifyNotConfirmed": {"description": "Shown when a sign-in found an unconfirmed email.", "placeholders": {"email": {"type": "String"}}},
+  "@verifyNotConfirmed": {
+    "description": "Shown when a sign-in found an unconfirmed email.",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
   "codeLabel": "6-digit code",
-  "@codeLabel": {"description": "Label of the confirmation code field."},
+  "@codeLabel": {
+    "description": "Label of the confirmation code field."
+  },
   "verifyButton": "Confirm",
-  "@verifyButton": {"description": "Button that submits the confirmation code."},
+  "@verifyButton": {
+    "description": "Button that submits the confirmation code."
+  },
   "resendCode": "Resend code",
-  "@resendCode": {"description": "Button to send a new code."},
+  "@resendCode": {
+    "description": "Button to send a new code."
+  },
   "resendIn": "Resend code in {seconds}s",
-  "@resendIn": {"description": "Disabled resend button with a countdown.", "placeholders": {"seconds": {"type": "int"}}},
+  "@resendIn": {
+    "description": "Disabled resend button with a countdown.",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
   "codeResent": "We sent a new code.",
-  "@codeResent": {"description": "Confirmation after a new code is sent."},
-
+  "@codeResent": {
+    "description": "Confirmation after a new code is sent."
+  },
   "forgotTitle": "Reset your password",
-  "@forgotTitle": {"description": "Heading of the forgot-password screen."},
+  "@forgotTitle": {
+    "description": "Heading of the forgot-password screen."
+  },
   "forgotBody": "Enter your account email and we'll send you a code.",
-  "@forgotBody": {"description": "Instructions on the forgot-password screen."},
+  "@forgotBody": {
+    "description": "Instructions on the forgot-password screen."
+  },
   "sendCodeButton": "Send code",
-  "@sendCodeButton": {"description": "Button that requests a password reset code."},
+  "@sendCodeButton": {
+    "description": "Button that requests a password reset code."
+  },
   "backToSignIn": "Back to sign in",
-  "@backToSignIn": {"description": "Link back to the sign-in screen."},
-
+  "@backToSignIn": {
+    "description": "Link back to the sign-in screen."
+  },
   "resetTitle": "Choose a new password",
-  "@resetTitle": {"description": "Heading of the reset-password screen."},
+  "@resetTitle": {
+    "description": "Heading of the reset-password screen."
+  },
   "resetSentTo": "If an account exists for {email}, we sent it a 6-digit code.",
-  "@resetSentTo": {"description": "Neutral wording: the server never reveals whether the account exists.", "placeholders": {"email": {"type": "String"}}},
+  "@resetSentTo": {
+    "description": "Neutral wording: the server never reveals whether the account exists.",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
   "newPasswordLabel": "New password",
-  "@newPasswordLabel": {"description": "New password field label."},
+  "@newPasswordLabel": {
+    "description": "New password field label."
+  },
   "resetButton": "Save new password",
-  "@resetButton": {"description": "Button that sets the new password."},
-
+  "@resetButton": {
+    "description": "Button that sets the new password."
+  },
   "errorEmailInvalid": "Enter a valid email address.",
-  "@errorEmailInvalid": {"description": "Validation error."},
+  "@errorEmailInvalid": {
+    "description": "Validation error."
+  },
   "errorFirstNameRequired": "Enter your first name.",
-  "@errorFirstNameRequired": {"description": "Validation error."},
+  "@errorFirstNameRequired": {
+    "description": "Validation error."
+  },
   "errorLastNameRequired": "Enter your last name.",
-  "@errorLastNameRequired": {"description": "Validation error."},
+  "@errorLastNameRequired": {
+    "description": "Validation error."
+  },
   "errorNameTooLong": "Use 50 characters or fewer.",
-  "@errorNameTooLong": {"description": "Validation error for names."},
+  "@errorNameTooLong": {
+    "description": "Validation error for names."
+  },
   "errorPasswordRequired": "Enter your password.",
-  "@errorPasswordRequired": {"description": "Validation error."},
+  "@errorPasswordRequired": {
+    "description": "Validation error."
+  },
   "errorPasswordTooShort": "Use at least 15 characters.",
-  "@errorPasswordTooShort": {"description": "Validation error for new passwords."},
+  "@errorPasswordTooShort": {
+    "description": "Validation error for new passwords."
+  },
   "errorPasswordTooLong": "Use 72 characters or fewer.",
-  "@errorPasswordTooLong": {"description": "Validation error for new passwords."},
+  "@errorPasswordTooLong": {
+    "description": "Validation error for new passwords."
+  },
   "errorCodeFormat": "Enter the 6-digit code.",
-  "@errorCodeFormat": {"description": "Validation error for the code field."},
+  "@errorCodeFormat": {
+    "description": "Validation error for the code field."
+  },
   "errorWrongCredentials": "Email or password is incorrect.",
-  "@errorWrongCredentials": {"description": "Sign-in failed."},
+  "@errorWrongCredentials": {
+    "description": "Sign-in failed."
+  },
   "errorInvalidCode": "That code is wrong or has expired.",
-  "@errorInvalidCode": {"description": "Code rejected by the server."},
+  "@errorInvalidCode": {
+    "description": "Code rejected by the server."
+  },
   "errorTooManyAttempts": "Too many attempts. Please wait a moment and try again.",
-  "@errorTooManyAttempts": {"description": "Server rate limit (429)."},
+  "@errorTooManyAttempts": {
+    "description": "Server rate limit (429)."
+  },
   "errorServiceUnavailable": "We couldn't complete that right now. Please try again shortly.",
-  "@errorServiceUnavailable": {"description": "Server or upstream error (5xx)."},
+  "@errorServiceUnavailable": {
+    "description": "Server or upstream error (5xx)."
+  },
   "errorNetwork": "No internet connection. Check your connection and try again.",
-  "@errorNetwork": {"description": "The server could not be reached."},
+  "@errorNetwork": {
+    "description": "The server could not be reached."
+  },
   "errorGeneric": "Something went wrong. Please try again.",
-  "@errorGeneric": {"description": "Fallback error."},
+  "@errorGeneric": {
+    "description": "Fallback error."
+  },
   "errorGoogleFailed": "Google sign-in didn't work. Please try again.",
-  "@errorGoogleFailed": {"description": "Google sign-in failed (not cancelled)."},
-
+  "@errorGoogleFailed": {
+    "description": "Google sign-in failed (not cancelled)."
+  },
   "offlineTitle": "You're offline",
-  "@offlineTitle": {"description": "Splash heading when a stored session can't be checked because there is no connection."},
+  "@offlineTitle": {
+    "description": "Splash heading when a stored session can't be checked because there is no connection."
+  },
   "offlineBody": "We couldn't reach RideLink. You're still signed in.",
-  "@offlineBody": {"description": "Splash body for the offline state."},
+  "@offlineBody": {
+    "description": "Splash body for the offline state."
+  },
   "retryButton": "Try again",
-  "@retryButton": {"description": "Retry button."},
-
+  "@retryButton": {
+    "description": "Retry button."
+  },
   "riderOnboardingTitle": "Rider setup",
-  "@riderOnboardingTitle": {"description": "Heading of the placeholder rider onboarding screen (real screens come later)."}
+  "@riderOnboardingTitle": {
+    "description": "Heading of the placeholder rider onboarding screen (real screens come later)."
+  },
+  "menuTooltip": "Menu",
+  "@menuTooltip": {
+    "description": "Opens the side menu."
+  },
+  "menuSwitchToRiding": "Switch to riding",
+  "@menuSwitchToRiding": {
+    "description": "Menu entry for registered riders: opens the rider side."
+  },
+  "menuSwitchToSending": "Switch to sending",
+  "@menuSwitchToSending": {
+    "description": "Menu entry on the rider side: back to the sender home."
+  },
+  "menuBecomeRider": "Become a rider",
+  "@menuBecomeRider": {
+    "description": "Menu entry for users without a rider profile."
+  },
+  "menuRiderStatusError": "Couldn't check your rider account.",
+  "@menuRiderStatusError": {
+    "description": "Shown in the menu when GET /riders/me fails."
+  },
+  "menuSignOut": "Sign out",
+  "@menuSignOut": {
+    "description": "Menu entry."
+  },
+  "riderHomeTitle": "Rider mode",
+  "@riderHomeTitle": {
+    "description": "Title of the rider side placeholder."
+  },
+  "homeWhatDoYouNeed": "What do you need?",
+  "@homeWhatDoYouNeed": {
+    "description": "Heading of the home bottom sheet."
+  },
+  "serviceDelivery": "Delivery",
+  "@serviceDelivery": {
+    "description": "Service name."
+  },
+  "serviceDeliverySubtitle": "Send a parcel",
+  "@serviceDeliverySubtitle": {
+    "description": "Delivery tile subtitle."
+  },
+  "serviceRide": "Ride",
+  "@serviceRide": {
+    "description": "Service name."
+  },
+  "serviceRideSubtitle": "Get a boda ride",
+  "@serviceRideSubtitle": {
+    "description": "Ride tile subtitle."
+  },
+  "mapUnavailable": "Map preview unavailable",
+  "@mapUnavailable": {
+    "description": "Placeholder when the app has no Maps key."
+  },
+  "locationDeniedTitle": "Location is off",
+  "@locationDeniedTitle": {
+    "description": "Location permission card title."
+  },
+  "locationDeniedBody": "Allow location so we can show where you are. You can still book by searching for places.",
+  "@locationDeniedBody": {
+    "description": "Location permission card body."
+  },
+  "locationServiceOffBody": "Turn on your phone's location to show where you are. You can still book by searching for places.",
+  "@locationServiceOffBody": {
+    "description": "Card body when device location is switched off."
+  },
+  "locationUnavailableBody": "We couldn't find your location. You can still book by searching for places.",
+  "@locationUnavailableBody": {
+    "description": "Card body when location can't be read."
+  },
+  "locationAllow": "Allow location",
+  "@locationAllow": {
+    "description": "Button."
+  },
+  "locationOpenSettings": "Open settings",
+  "@locationOpenSettings": {
+    "description": "Button: opens app settings."
+  },
+  "locationTurnOn": "Turn on location",
+  "@locationTurnOn": {
+    "description": "Button: opens device location settings."
+  },
+  "newDeliveryTitle": "New delivery",
+  "@newDeliveryTitle": {
+    "description": "Screen 4 title for deliveries."
+  },
+  "newRideTitle": "New ride",
+  "@newRideTitle": {
+    "description": "Screen 4 title for rides."
+  },
+  "pickupLabel": "Pickup",
+  "@pickupLabel": {
+    "description": "Route field label."
+  },
+  "dropoffLabel": "Drop-off",
+  "@dropoffLabel": {
+    "description": "Route field label."
+  },
+  "choosePickup": "Choose pickup",
+  "@choosePickup": {
+    "description": "Empty pickup field."
+  },
+  "chooseDropoff": "Choose drop-off",
+  "@chooseDropoff": {
+    "description": "Empty drop-off field."
+  },
+  "itemSectionTitle": "Item",
+  "@itemSectionTitle": {
+    "description": "Section heading."
+  },
+  "categoryLabel": "Category",
+  "@categoryLabel": {
+    "description": "Field label."
+  },
+  "descriptionLabel": "Description",
+  "@descriptionLabel": {
+    "description": "Field label."
+  },
+  "weightLabel": "Weight in kg (optional)",
+  "@weightLabel": {
+    "description": "Field label."
+  },
+  "valueBandLabel": "Item value",
+  "@valueBandLabel": {
+    "description": "Field label."
+  },
+  "valueBandCapNote": "Items worth more than KES 10,000 can't be booked.",
+  "@valueBandCapNote": {
+    "description": "Helper under the value choices (decision 6)."
+  },
+  "receiverSectionTitle": "Receiver",
+  "@receiverSectionTitle": {
+    "description": "Section heading."
+  },
+  "receiverNameLabel": "Receiver's name",
+  "@receiverNameLabel": {
+    "description": "Field label."
+  },
+  "findRidersButton": "Find riders",
+  "@findRidersButton": {
+    "description": "Screen 4 primary button."
+  },
+  "errorPickupRequired": "Choose a pickup point",
+  "@errorPickupRequired": {
+    "description": "Validation."
+  },
+  "errorDropoffRequired": "Choose a drop-off point",
+  "@errorDropoffRequired": {
+    "description": "Validation."
+  },
+  "errorReceiverRequired": "Enter the receiver's name",
+  "@errorReceiverRequired": {
+    "description": "Validation."
+  },
+  "errorCategoryRequired": "Choose a category",
+  "@errorCategoryRequired": {
+    "description": "Validation."
+  },
+  "errorDescriptionRequired": "Describe the item",
+  "@errorDescriptionRequired": {
+    "description": "Validation."
+  },
+  "errorWeightInvalid": "Enter a weight above 0",
+  "@errorWeightInvalid": {
+    "description": "Validation."
+  },
+  "errorValueBandRequired": "Choose the item's value",
+  "@errorValueBandRequired": {
+    "description": "Validation."
+  },
+  "createOrderFailed": "Couldn't create your order. Try again.",
+  "@createOrderFailed": {
+    "description": "Order creation error."
+  },
+  "categoriesLoadFailed": "Couldn't load item categories.",
+  "@categoriesLoadFailed": {
+    "description": "Category load error."
+  },
+  "valueBandUnder500": "Under KES 500",
+  "@valueBandUnder500": {
+    "description": "Value band."
+  },
+  "valueBand500To2000": "KES 500–2,000",
+  "@valueBand500To2000": {
+    "description": "Value band."
+  },
+  "valueBand2000To5000": "KES 2,000–5,000",
+  "@valueBand2000To5000": {
+    "description": "Value band."
+  },
+  "valueBand5000To10000": "KES 5,000–10,000",
+  "@valueBand5000To10000": {
+    "description": "Value band."
+  },
+  "categoryDocuments": "Documents",
+  "@categoryDocuments": {
+    "description": "Item category."
+  },
+  "categoryFood": "Food",
+  "@categoryFood": {
+    "description": "Item category."
+  },
+  "categoryElectronics": "Electronics",
+  "@categoryElectronics": {
+    "description": "Item category."
+  },
+  "categoryClothing": "Clothing",
+  "@categoryClothing": {
+    "description": "Item category."
+  },
+  "categoryFragile": "Fragile items",
+  "@categoryFragile": {
+    "description": "Item category."
+  },
+  "categoryMedication": "Medication",
+  "@categoryMedication": {
+    "description": "Item category."
+  },
+  "categoryCash": "Cash",
+  "@categoryCash": {
+    "description": "Item category."
+  },
+  "categoryAlcohol": "Alcohol",
+  "@categoryAlcohol": {
+    "description": "Item category."
+  },
+  "categoryOther": "Other",
+  "@categoryOther": {
+    "description": "Item category."
+  },
+  "placeSearchHint": "Search for a place",
+  "@placeSearchHint": {
+    "description": "Search field hint."
+  },
+  "placeSearchMinChars": "Type at least 2 letters",
+  "@placeSearchMinChars": {
+    "description": "Shown under 2 characters."
+  },
+  "placeSearchNoResults": "No places found",
+  "@placeSearchNoResults": {
+    "description": "Empty results."
+  },
+  "placeSearchUnavailable": "Location search is unavailable right now. Try again later.",
+  "@placeSearchUnavailable": {
+    "description": "Server returned 503 maps not configured."
+  },
+  "placeSearchFailed": "Couldn't search. Check your connection.",
+  "@placeSearchFailed": {
+    "description": "Search error."
+  },
+  "clearSearch": "Clear",
+  "@clearSearch": {
+    "description": "Tooltip of the clear button."
+  },
+  "riderListTitle": "Choose a rider",
+  "@riderListTitle": {
+    "description": "Rider list title."
+  },
+  "sortByPrice": "Price",
+  "@sortByPrice": {
+    "description": "Sort option."
+  },
+  "sortByDistance": "Distance",
+  "@sortByDistance": {
+    "description": "Sort option."
+  },
+  "tripDistance": "Trip {distance}",
+  "@tripDistance": {
+    "description": "Trip distance chip, e.g. 'Trip 4.8 km'.",
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "distanceEstimatedNote": "Distance is estimated",
+  "@distanceEstimatedNote": {
+    "description": "Shown when distance_estimated is true."
+  },
+  "noRidersTitle": "No riders nearby right now",
+  "@noRidersTitle": {
+    "description": "Empty rider list."
+  },
+  "noRidersBody": "Try again in a moment.",
+  "@noRidersBody": {
+    "description": "Empty rider list body."
+  },
+  "ridersLoadFailed": "Couldn't load riders.",
+  "@ridersLoadFailed": {
+    "description": "Rider list error."
+  },
+  "noRatingsYet": "No ratings yet",
+  "@noRatingsYet": {
+    "description": "Rider with zero ratings."
+  },
+  "ratingCount": "{count} ratings",
+  "@ratingCount": {
+    "description": "Rating count next to the average.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "onTimePercent": "{percent}% on time",
+  "@onTimePercent": {
+    "description": "On-time rate.",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "completedJobs": "{count} completed",
+  "@completedJobs": {
+    "description": "Completed jobs.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pickupDistanceAway": "{distance} from pickup",
+  "@pickupDistanceAway": {
+    "description": "Rider's distance to the pickup point.",
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "arrivesWithin": "Arrives within {minutes} min",
+  "@arrivesWithin": {
+    "description": "Pickup window.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "editRoute": "Edit route",
+  "@editRoute": {
+    "description": "Button on the rider list."
+  },
+  "offerDeclinedMessage": "The rider declined. Choose another rider.",
+  "@offerDeclinedMessage": {
+    "description": "After offer.resolved declined."
+  },
+  "offerExpiredMessage": "The rider didn't respond in time. Choose another rider.",
+  "@offerExpiredMessage": {
+    "description": "After offer.resolved expired."
+  },
+  "riderProfileTitle": "Rider profile",
+  "@riderProfileTitle": {
+    "description": "Screen 3 title."
+  },
+  "statRating": "Rating",
+  "@statRating": {
+    "description": "Stat label."
+  },
+  "statOnTime": "On time",
+  "@statOnTime": {
+    "description": "Stat label."
+  },
+  "statCompleted": "Completed jobs",
+  "@statCompleted": {
+    "description": "Stat label."
+  },
+  "statPickup": "Pickup",
+  "@statPickup": {
+    "description": "Stat label: distance to pickup and window."
+  },
+  "priceForThisTrip": "Price for this trip",
+  "@priceForThisTrip": {
+    "description": "Breakdown card heading."
+  },
+  "breakdownBaseFare": "Base fare",
+  "@breakdownBaseFare": {
+    "description": "Breakdown row."
+  },
+  "breakdownPlatform": "Platform rate for {distance}",
+  "@breakdownPlatform": {
+    "description": "Breakdown row, e.g. 'Platform rate for 10 km'.",
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "breakdownRider": "Rider rate beyond {distance}",
+  "@breakdownRider": {
+    "description": "Breakdown row, e.g. 'Rider rate beyond 10 km'.",
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "breakdownRiderDetail": "{distance} at {rate} per km",
+  "@breakdownRiderDetail": {
+    "description": "Detail under the rider rate row.",
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "rate": {
+        "type": "String"
+      }
+    }
+  },
+  "breakdownMinimumFare": "Minimum fare applies to this trip",
+  "@breakdownMinimumFare": {
+    "description": "Shown when minimum_fare_applied is true."
+  },
+  "breakdownTotal": "Total",
+  "@breakdownTotal": {
+    "description": "Breakdown total row."
+  },
+  "requestButton": "Request",
+  "@requestButton": {
+    "description": "Screen 3 primary button."
+  },
+  "quoteTitle": "Price quote",
+  "@quoteTitle": {
+    "description": "Screen 5 title."
+  },
+  "youPay": "You pay",
+  "@youPay": {
+    "description": "Above the total."
+  },
+  "quoteFinalNote": "This price is final. It is locked once the rider accepts.",
+  "@quoteFinalNote": {
+    "description": "Screen 5 note."
+  },
+  "sendRequestButton": "Send request",
+  "@sendRequestButton": {
+    "description": "Screen 5 primary button."
+  },
+  "sendRequestFailed": "Couldn't send the request. Try again.",
+  "@sendRequestFailed": {
+    "description": "Offer error."
+  },
+  "waitingTitle": "Waiting for {name}",
+  "@waitingTitle": {
+    "description": "Waiting screen title.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "waitingBody": "The rider has a short time to accept your request.",
+  "@waitingBody": {
+    "description": "Waiting screen body."
+  },
+  "waitingChecking": "Checking the rider's response…",
+  "@waitingChecking": {
+    "description": "After the countdown reaches zero."
+  },
+  "secondsLabel": "seconds",
+  "@secondsLabel": {
+    "description": "Under the countdown number."
+  },
+  "cancelRequestButton": "Cancel request",
+  "@cancelRequestButton": {
+    "description": "Waiting screen button."
+  },
+  "cancelConfirmTitle": "Cancel this request?",
+  "@cancelConfirmTitle": {
+    "description": "Confirm dialog title."
+  },
+  "cancelConfirmBody": "Your order will be cancelled.",
+  "@cancelConfirmBody": {
+    "description": "Confirm dialog body."
+  },
+  "cancelConfirmYes": "Cancel order",
+  "@cancelConfirmYes": {
+    "description": "Confirm dialog action."
+  },
+  "cancelConfirmNo": "Keep waiting",
+  "@cancelConfirmNo": {
+    "description": "Confirm dialog dismiss."
+  },
+  "cancelFailed": "Couldn't cancel. The rider may have already responded.",
+  "@cancelFailed": {
+    "description": "Cancel error."
+  },
+  "orderCancelledMessage": "Your order was cancelled.",
+  "@orderCancelledMessage": {
+    "description": "Snackbar after cancelling."
+  },
+  "backToHome": "Back to home",
+  "@backToHome": {
+    "description": "Button."
+  },
+  "editRouteTitle": "Edit route",
+  "@editRouteTitle": {
+    "description": "Edit route screen title."
+  },
+  "saveRouteButton": "Save route",
+  "@saveRouteButton": {
+    "description": "Edit route button."
+  },
+  "routeUpdateFailed": "Couldn't update the route. Try again.",
+  "@routeUpdateFailed": {
+    "description": "PATCH route error."
+  },
+  "routeLocked": "This route can no longer be changed.",
+  "@routeLocked": {
+    "description": "PATCH route 422."
+  },
+  "closeTooltip": "Close",
+  "@closeTooltip": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderLoadFailed": "Couldn't load your rider profile.",
+  "@riderLoadFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "registerIntro": "Register your boda boda to start receiving delivery and ride requests. Next you will upload your documents for review.",
+  "@registerIntro": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "vehicleLabel": "Vehicle",
+  "@vehicleLabel": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "vehicleBodaBoda": "Boda boda",
+  "@vehicleBodaBoda": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "vehicleOnlyBoda": "Boda boda is the only vehicle at launch.",
+  "@vehicleOnlyBoda": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "plateLabel": "Number plate",
+  "@plateLabel": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "plateHint": "e.g. KMFA 123B",
+  "@plateHint": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "plateInvalid": "Enter 3 to 12 letters, digits or spaces",
+  "@plateInvalid": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "registerButton": "Register",
+  "@registerButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "registerFailed": "Couldn't register. Try again.",
+  "@registerFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "documentsTitle": "Documents",
+  "@documentsTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "documentsIntro": "RideLink staff review each document. You can go online once all of them are approved.",
+  "@documentsIntro": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "documentsProgress": "{done} of {total} uploaded",
+  "@documentsProgress": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "documentsContinue": "Continue",
+  "@documentsContinue": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "documentsUploadAll": "Upload every document to continue.",
+  "@documentsUploadAll": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "documentsLoadFailed": "Couldn't load your documents.",
+  "@documentsLoadFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docRiderPhoto": "Rider photo",
+  "@docRiderPhoto": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docRiderPhotoHint": "A clear photo of your face. Senders see it before and during a job.",
+  "@docRiderPhotoHint": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docNationalId": "National ID",
+  "@docNationalId": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docNationalIdHint": "Front of your national ID card.",
+  "@docNationalIdHint": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docDrivingLicence": "Driving licence",
+  "@docDrivingLicence": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docDrivingLicenceHint": "Motorcycle licence (Class A), with its expiry date.",
+  "@docDrivingLicenceHint": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docPoliceClearance": "Police clearance certificate",
+  "@docPoliceClearance": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docPoliceClearanceHint": "DCI good conduct certificate, with its issue date. Valid for 12 months.",
+  "@docPoliceClearanceHint": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docPsvInsurance": "PSV insurance",
+  "@docPsvInsurance": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docPsvInsuranceHint": "Your PSV insurance certificate, with its expiry date.",
+  "@docPsvInsuranceHint": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docLogbook": "Logbook or sale agreement",
+  "@docLogbook": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docLogbookHint": "Proof that you own or may use the bike.",
+  "@docLogbookHint": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docBikeRearPhoto": "Bike rear photo",
+  "@docBikeRearPhoto": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docBikeRearPhotoHint": "A photo of the back of your bike with the number plate visible.",
+  "@docBikeRearPhotoHint": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docStatusMissing": "Not uploaded",
+  "@docStatusMissing": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docStatusPending": "In review",
+  "@docStatusPending": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docStatusApproved": "Approved",
+  "@docStatusApproved": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docStatusRejected": "Rejected",
+  "@docStatusRejected": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docRejectedReason": "Reason: {reason}",
+  "@docRejectedReason": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "docExpiresOn": "Expires {date}",
+  "@docExpiresOn": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "docIssuedOn": "Issued {date}",
+  "@docIssuedOn": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "docPendingStillValid": "Your approved document stays valid while this one is reviewed.",
+  "@docPendingStillValid": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docUploadAction": "Upload",
+  "@docUploadAction": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docReplaceAction": "Replace",
+  "@docReplaceAction": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docUploaded": "{name} uploaded",
+  "@docUploaded": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "docFormatsImage": "JPEG or PNG photo, up to 10 MB.",
+  "@docFormatsImage": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docFormatsAny": "JPEG or PNG photo, or a PDF, up to 10 MB.",
+  "@docFormatsAny": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docChooseExpiry": "Choose expiry date",
+  "@docChooseExpiry": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docChooseIssued": "Choose issue date",
+  "@docChooseIssued": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docTakePhoto": "Take photo",
+  "@docTakePhoto": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docChooseGallery": "Choose from gallery",
+  "@docChooseGallery": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docChooseFile": "Choose PDF or image file",
+  "@docChooseFile": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docUploadButton": "Upload",
+  "@docUploadButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docTooLarge": "File must be 10 MB or smaller.",
+  "@docTooLarge": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docImageOnly": "This document must be a photo (JPEG or PNG).",
+  "@docImageOnly": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docDateRequired": "Choose the date first.",
+  "@docDateRequired": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docPickFailed": "Couldn't open the file. Try again.",
+  "@docPickFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "docUploadFailed": "Couldn't upload. Check your connection and try again.",
+  "@docUploadFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "verificationTitle": "Verification",
+  "@verificationTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "verificationPendingTitle": "Your documents are being reviewed",
+  "@verificationPendingTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "verificationPendingBody": "We'll notify you when the review is complete.",
+  "@verificationPendingBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "verificationApprovedTitle": "You're approved",
+  "@verificationApprovedTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "verificationApprovedBody": "You can go online and start receiving requests.",
+  "@verificationApprovedBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "verificationRejectedTitle": "Some documents need attention",
+  "@verificationRejectedTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "verificationRejectedBody": "Check the reasons and upload new documents.",
+  "@verificationRejectedBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "verificationIncompleteTitle": "Finish uploading your documents",
+  "@verificationIncompleteTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "verificationIncompleteBody": "Review starts once every document is uploaded.",
+  "@verificationIncompleteBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "goToRiderHome": "Go to rider home",
+  "@goToRiderHome": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "fixDocumentsButton": "Upload documents",
+  "@fixDocumentsButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "viewDocumentsButton": "View documents",
+  "@viewDocumentsButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "refreshButton": "Refresh",
+  "@refreshButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderNotRegisteredTitle": "You haven't registered as a rider yet",
+  "@riderNotRegisteredTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderOnline": "You're online",
+  "@riderOnline": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderOffline": "You're offline",
+  "@riderOffline": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderOnlineBody": "Receiving requests with pickups within {distance}",
+  "@riderOnlineBody": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "riderOfflineBody": "Go online to receive delivery and ride requests.",
+  "@riderOfflineBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderSettingsSummary": "Pickup radius {radius} · Delivery {delivery}/km · Ride {ride}/km",
+  "@riderSettingsSummary": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      },
+      "delivery": {
+        "type": "String"
+      },
+      "ride": {
+        "type": "String"
+      }
+    }
+  },
+  "riderPlate": "Boda boda {plate}",
+  "@riderPlate": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "plate": {
+        "type": "String"
+      }
+    }
+  },
+  "blockNotVerifiedTitle": "Your account isn't approved yet",
+  "@blockNotVerifiedTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "blockNotVerifiedBody": "You can go online once RideLink approves your documents.",
+  "@blockNotVerifiedBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "viewStatusButton": "View status",
+  "@viewStatusButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "blockDocumentsTitle": "Documents need attention",
+  "@blockDocumentsTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "blockDocumentsBody": "Renew or upload: {documents}",
+  "@blockDocumentsBody": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "documents": {
+        "type": "String"
+      }
+    }
+  },
+  "blockDocumentsBodyGeneric": "One or more documents are missing or expired.",
+  "@blockDocumentsBodyGeneric": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "updateDocumentsButton": "Update documents",
+  "@updateDocumentsButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "blockPausedTitle": "You're paused until {time}",
+  "@blockPausedTitle": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "blockPausedMissedPickups": "After {count} missed pickups in 24 hours you can't receive requests until then.",
+  "@blockPausedMissedPickups": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "blockPausedBody": "You can't receive requests until then.",
+  "@blockPausedBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "blockLocationTitle": "Turn on location to go online",
+  "@blockLocationTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "blockLocationBody": "RideLink shares your location while you are online so senders can find you and pickups are recorded.",
+  "@blockLocationBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "blockErrorTitle": "Couldn't change your status",
+  "@blockErrorTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "onlineNotificationTitle": "You're online",
+  "@onlineNotificationTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "onlineNotificationBody": "RideLink is sharing your location for requests and pickups.",
+  "@onlineNotificationBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "onlineNotificationChannel": "Online status",
+  "@onlineNotificationChannel": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderOfferTitle": "New request",
+  "@riderOfferTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderOfferChecking": "Time is up. Checking the request…",
+  "@riderOfferChecking": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "youEarn": "You earn",
+  "@youEarn": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "reachPickupWithin": "Reach pickup within {minutes} min",
+  "@reachPickupWithin": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "acceptButton": "Accept",
+  "@acceptButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "declineButton": "Decline",
+  "@declineButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "acceptNeedsLocation": "Turn on location to accept. Your location must be recent.",
+  "@acceptNeedsLocation": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "acceptFailed": "Couldn't accept. Try again.",
+  "@acceptFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "declineFailed": "Couldn't decline. Try again.",
+  "@declineFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderOfferExpired": "The request expired.",
+  "@riderOfferExpired": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderOfferDeclined": "You declined the request.",
+  "@riderOfferDeclined": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderOfferTaken": "This request is no longer available.",
+  "@riderOfferTaken": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderOfferCancelled": "The sender cancelled the request.",
+  "@riderOfferCancelled": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobTitle": "Current job",
+  "@jobTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobToPickup": "Head to pickup",
+  "@jobToPickup": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobAtPickup": "At pickup",
+  "@jobAtPickup": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobAtPickupNote": "Arrival recorded. Collect and tap Picked up.",
+  "@jobAtPickupNote": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobPickedUp": "Picked up",
+  "@jobPickedUp": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobInTransit": "On the way to drop-off",
+  "@jobInTransit": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobAtDropoff": "At drop-off",
+  "@jobAtDropoff": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobAtDropoffBody": "Request payment from the sender before handing over.",
+  "@jobAtDropoffBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobPayment": "Payment",
+  "@jobPayment": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobWaitingForSender": "Waiting for the sender to pay {amount} in cash.",
+  "@jobWaitingForSender": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "jobSenderPaid": "The sender says they paid {amount} in cash. Confirm once you have it.",
+  "@jobSenderPaid": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "jobPaid": "Payment received",
+  "@jobPaid": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobPaidBody": "Payment confirmed. Hand over, then mark it below.",
+  "@jobPaidBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobHandedOver": "Handed over",
+  "@jobHandedOver": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobCompleted": "Job complete",
+  "@jobCompleted": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobCompletedBody": "You earned {amount}.",
+  "@jobCompletedBody": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "jobCancelled": "Job cancelled",
+  "@jobCancelled": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobCancelledBySender": "The sender cancelled this order.",
+  "@jobCancelledBySender": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobCancelledTimeout": "The pickup window passed, so the order was cancelled.",
+  "@jobCancelledTimeout": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobCancelledByYou": "You cancelled this order.",
+  "@jobCancelledByYou": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobCancelledGeneric": "This order was cancelled.",
+  "@jobCancelledGeneric": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "agreedPrice": "Agreed price",
+  "@agreedPrice": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "reachPickupIn": "Reach pickup in",
+  "@reachPickupIn": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "pickupDeadlineAt": "Deadline {time}",
+  "@pickupDeadlineAt": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "arrivalAutoNote": "Arrival is recorded automatically when you are within 150 m of the pickup point.",
+  "@arrivalAutoNote": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "headingToPickup": "Heading to pickup",
+  "@headingToPickup": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "headingToDropoff": "Heading to drop-off",
+  "@headingToDropoff": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "receiverIs": "Receiver: {name}",
+  "@receiverIs": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "actionArrivedAtPickup": "I've arrived",
+  "@actionArrivedAtPickup": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "actionPickedUp": "Picked up",
+  "@actionPickedUp": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "actionStartTrip": "Start trip to drop-off",
+  "@actionStartTrip": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "actionArrivedAtDropoff": "Arrived at drop-off",
+  "@actionArrivedAtDropoff": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "actionRequestPayment": "Request payment",
+  "@actionRequestPayment": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "actionHandOver": "Mark handed over",
+  "@actionHandOver": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "actionComplete": "Complete job",
+  "@actionComplete": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "jobActionFailed": "Couldn't update the job. Try again.",
+  "@jobActionFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "paymentReceivedButton": "Payment received",
+  "@paymentReceivedButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "paymentReceivedConfirmTitle": "Received {amount} in cash?",
+  "@paymentReceivedConfirmTitle": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentReceivedConfirmBody": "Only confirm once the cash is in your hand. This is recorded and cannot be undone.",
+  "@paymentReceivedConfirmBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "paymentNotReceivedButton": "Not received",
+  "@paymentNotReceivedButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "paymentNotReceivedConfirmTitle": "Report payment not received?",
+  "@paymentNotReceivedConfirmTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "paymentNotReceivedConfirmBody": "The order goes to RideLink for review.",
+  "@paymentNotReceivedConfirmBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "goBackButton": "Go back",
+  "@goBackButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderCancelButton": "Cancel job",
+  "@riderCancelButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderCancelTitle": "Cancel this job?",
+  "@riderCancelTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderCancelWithinGrace": "You accepted less than 2 minutes ago, so cancelling now won't count toward a pause ({time} left). It still shows in your cancellation record.",
+  "@riderCancelWithinGrace": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "riderCancelAfterGrace": "More than 2 minutes have passed since you accepted, so this counts like a missed pickup. 3 in 24 hours pauses you.",
+  "@riderCancelAfterGrace": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderCancelConfirm": "Cancel job",
+  "@riderCancelConfirm": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderCancelKeep": "Keep job",
+  "@riderCancelKeep": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "doneButton": "Done",
+  "@doneButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "paymentUnderReview": "We're reviewing this payment",
+  "@paymentUnderReview": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "paymentUnderReviewRiderBody": "You reported that the cash was not received. RideLink will review this order.",
+  "@paymentUnderReviewRiderBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "paymentUnderReviewSenderBody": "Your rider reported that the cash was not received. RideLink will review this order.",
+  "@paymentUnderReviewSenderBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "trackingScreenTitle": "Your order",
+  "@trackingScreenTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "trackingLoadFailed": "Couldn't load your order.",
+  "@trackingLoadFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "trackingActionFailed": "Couldn't update the order. Try again.",
+  "@trackingActionFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderArrivesIn": "Rider arrives in {minutes} min",
+  "@riderArrivesIn": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "riderArrivedAtPickup": "Your rider has arrived",
+  "@riderArrivedAtPickup": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "trackingOnTheWay": "On the way to the drop-off",
+  "@trackingOnTheWay": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "riderAtDropoff": "Your rider is at the drop-off",
+  "@riderAtDropoff": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "delivered": "Delivered",
+  "@delivered": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "tripComplete": "Trip complete",
+  "@tripComplete": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "orderCancelledTimeout": "The rider didn't reach pickup in time, so the order was cancelled.",
+  "@orderCancelledTimeout": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "orderCancelledByRider": "The rider cancelled this order.",
+  "@orderCancelledByRider": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "orderCancelledBySender": "You cancelled this order.",
+  "@orderCancelledBySender": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "stepAccepted": "Accepted",
+  "@stepAccepted": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "stepAtPickup": "At pickup",
+  "@stepAtPickup": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "stepInTransit": "In transit",
+  "@stepInTransit": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "stepPayment": "Payment",
+  "@stepPayment": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "stepDelivered": "Delivered",
+  "@stepDelivered": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "stepDroppedOff": "Dropped off",
+  "@stepDroppedOff": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "payInCash": "Pay {amount} in cash to your rider",
+  "@payInCash": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "payInCashBody": "Then tap \"I've paid\". Your rider confirms when they have the cash.",
+  "@payInCashBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "ivePaidButton": "I've paid",
+  "@ivePaidButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "ivePaidConfirmTitle": "Have you paid {amount}?",
+  "@ivePaidConfirmTitle": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "ivePaidConfirmBody": "Only confirm after handing the cash to your rider. This is recorded.",
+  "@ivePaidConfirmBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "waitingForRiderConfirm": "Waiting for your rider to confirm the payment",
+  "@waitingForRiderConfirm": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "paymentConfirmed": "Payment of {amount} confirmed",
+  "@paymentConfirmed": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "viewTerms": "View terms",
+  "@viewTerms": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "termsTitle": "Agreed terms",
+  "@termsTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "termsLockedNote": "These terms were locked when the rider accepted.",
+  "@termsLockedNote": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "termsPickupWindow": "Pickup window",
+  "@termsPickupWindow": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "minutesShort": "{minutes} min",
+  "@minutesShort": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "senderCancelButton": "Cancel order",
+  "@senderCancelButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "senderCancelTitle": "Cancel this order?",
+  "@senderCancelTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "senderCancelBody": "The rider has accepted and is on the way. Your order will be cancelled.",
+  "@senderCancelBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "senderCancelKeep": "Keep order",
+  "@senderCancelKeep": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "discardOrderTitle": "Discard this order?",
+  "@discardOrderTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "discardOrderBody": "Your order will be cancelled.",
+  "@discardOrderBody": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "discardOrderConfirm": "Discard",
+  "@discardOrderConfirm": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "discardOrderKeep": "Keep order",
+  "@discardOrderKeep": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "discardOrderFailed": "Couldn't discard the order. Try again.",
+  "@discardOrderFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "activeOrderBanner": "You have an order in progress",
+  "@activeOrderBanner": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "viewButton": "View",
+  "@viewButton": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsTitle": "Pricing and settings",
+  "@settingsTitle": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsDistanceSection": "Distance",
+  "@settingsDistanceSection": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsPickupRadius": "Pickup radius",
+  "@settingsPickupRadius": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsPickupRadiusHelp": "How far you travel to collect. Up to {max}.",
+  "@settingsPickupRadiusHelp": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsMaxDistance": "Platform-rate distance",
+  "@settingsMaxDistance": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsMaxDistanceHelp": "Trips up to this distance use the platform price; your rate applies beyond it. At least {min}.",
+  "@settingsMaxDistanceHelp": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsRatesSection": "Your rates",
+  "@settingsRatesSection": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsRatesNote": "Charged per km beyond your platform-rate distance.",
+  "@settingsRatesNote": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsDeliveryRate": "Delivery rate",
+  "@settingsDeliveryRate": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsRideRate": "Ride rate",
+  "@settingsRideRate": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsRateRange": "Between {min} and {max} per km",
+  "@settingsRateRange": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsLoadSection": "Load",
+  "@settingsLoadSection": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsMaxWeight": "Maximum parcel weight",
+  "@settingsMaxWeight": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsMaxWeightHelp": "Heaviest parcel you will carry.",
+  "@settingsMaxWeightHelp": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsSave": "Save",
+  "@settingsSave": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsSaved": "Settings saved",
+  "@settingsSaved": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsSaveFailed": "Couldn't save. Try again.",
+  "@settingsSaveFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsLoadFailed": "Couldn't load your settings.",
+  "@settingsLoadFailed": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsRequired": "Enter a value",
+  "@settingsRequired": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsNotNumber": "Enter a number",
+  "@settingsNotNumber": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsMustBePositive": "Enter a value above 0",
+  "@settingsMustBePositive": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsTooHigh": "This value is too large",
+  "@settingsTooHigh": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "settingsRadiusTooHigh": "At most {max}",
+  "@settingsRadiusTooHigh": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDistanceTooLow": "At least {min}",
+  "@settingsDistanceTooLow": {
+    "description": "Phase 2 rider side / tracking.",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      }
+    }
+  },
+  "unitKm": "km",
+  "@unitKm": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "unitPerKm": "KES/km",
+  "@unitPerKm": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "unitKg": "kg",
+  "@unitKg": {
+    "description": "Phase 2 rider side / tracking."
+  },
+  "errCodeInvalidRequest": "Some details aren't valid. Check them and try again.",
+  "@errCodeInvalidRequest": {
+    "description": "Server error code invalid_request (400 fallback)."
+  },
+  "errCodeUnauthorized": "Your session has ended. Please sign in again.",
+  "@errCodeUnauthorized": {
+    "description": "Server error code unauthorized."
+  },
+  "errCodeForbidden": "You don't have permission to do this.",
+  "@errCodeForbidden": {
+    "description": "Server error code forbidden."
+  },
+  "errCodeNotFound": "We couldn't find that. It may have been removed.",
+  "@errCodeNotFound": {
+    "description": "Server error code not_found."
+  },
+  "errCodeConflict": "This changed in the meantime. Refresh and try again.",
+  "@errCodeConflict": {
+    "description": "Server error code conflict."
+  },
+  "errCodeInvalidStatus": "This order has moved on. Refresh and try again.",
+  "@errCodeInvalidStatus": {
+    "description": "Server error code invalid_status: the order is not in a status that allows this action."
+  },
+  "errCodeFileTooLarge": "The file is too large. Use one under 10 MB.",
+  "@errCodeFileTooLarge": {
+    "description": "Server error code file_too_large."
+  },
+  "errCodeInternalError": "Something went wrong on our side. Please try again.",
+  "@errCodeInternalError": {
+    "description": "Server error code internal_error."
+  },
+  "errCodeUpstreamUnavailable": "A service we rely on isn't responding. Please try again.",
+  "@errCodeUpstreamUnavailable": {
+    "description": "Server error code upstream_unavailable."
+  },
+  "errCodeServiceUnavailable": "This isn't available right now. Please try again later.",
+  "@errCodeServiceUnavailable": {
+    "description": "Server error code service_unavailable."
+  },
+  "errCodeInvalidName": "Names must be 1 to 50 characters.",
+  "@errCodeInvalidName": {
+    "description": "Server error code invalid_name."
+  },
+  "errCodeMissingFields": "Fill in all required fields.",
+  "@errCodeMissingFields": {
+    "description": "Server error code missing_fields."
+  },
+  "errCodePasswordBreached": "This password has appeared in a data breach. Choose a different one.",
+  "@errCodePasswordBreached": {
+    "description": "Server error code password_breached."
+  },
+  "errCodePasswordReused": "Your new password must be different from the current one.",
+  "@errCodePasswordReused": {
+    "description": "Server error code password_reused."
+  },
+  "errCodeSessionExpired": "Your session has expired. Please sign in again.",
+  "@errCodeSessionExpired": {
+    "description": "Server error code session_expired."
+  },
+  "errCodeEmailNotConfirmed": "Confirm your email first with the code we sent you.",
+  "@errCodeEmailNotConfirmed": {
+    "description": "Server error code email_not_confirmed."
+  },
+  "errCodeErrandUnavailable": "Errands aren't available yet.",
+  "@errCodeErrandUnavailable": {
+    "description": "Server error code errand_unavailable (errands are post-beta)."
+  },
+  "errCodeUnknownCategory": "Choose an item category from the list.",
+  "@errCodeUnknownCategory": {
+    "description": "Server error code unknown_category."
+  },
+  "errCodeCategoryNotAllowed": "This item can't be sent with RideLink.",
+  "@errCodeCategoryNotAllowed": {
+    "description": "Server error code category_not_allowed (e.g. prohibited at beta)."
+  },
+  "errCodeOrderNotEditable": "The route can't be changed any more.",
+  "@errCodeOrderNotEditable": {
+    "description": "Server error code order_not_editable."
+  },
+  "errCodeOrderNotCancellable": "This order can no longer be cancelled.",
+  "@errCodeOrderNotCancellable": {
+    "description": "Server error code order_not_cancellable."
+  },
+  "errCodeOrderUnavailable": "This order is no longer available.",
+  "@errCodeOrderUnavailable": {
+    "description": "Server error code order_unavailable (taken or withdrawn)."
+  },
+  "errCodeNoActiveOffer": "There's no open request on this order.",
+  "@errCodeNoActiveOffer": {
+    "description": "Server error code no_active_offer."
+  },
+  "errCodeOfferNotForYou": "This request was sent to another rider.",
+  "@errCodeOfferNotForYou": {
+    "description": "Server error code offer_not_for_you."
+  },
+  "errCodeRiderNotAvailable": "This rider can't take the order right now. Choose another rider.",
+  "@errCodeRiderNotAvailable": {
+    "description": "Server error code rider_not_available."
+  },
+  "errCodeRiderNotFound": "Rider not found.",
+  "@errCodeRiderNotFound": {
+    "description": "Server error code rider_not_found."
+  },
+  "errCodeRiderAlreadyRegistered": "You're already registered as a rider.",
+  "@errCodeRiderAlreadyRegistered": {
+    "description": "Server error code rider_already_registered."
+  },
+  "errCodeRiderNotVerified": "Only verified riders can go online.",
+  "@errCodeRiderNotVerified": {
+    "description": "Server error code rider_not_verified."
+  },
+  "errCodeDocumentsMissing": "Some required documents are missing or expired.",
+  "@errCodeDocumentsMissing": {
+    "description": "Server error code documents_missing."
+  },
+  "errCodeRiderPaused": "You're paused after missed pickups. Try again after the pause ends.",
+  "@errCodeRiderPaused": {
+    "description": "Server error code rider_paused."
+  },
+  "errCodeLocationRequired": "We need your current location. Turn on location and try again.",
+  "@errCodeLocationRequired": {
+    "description": "Server error code location_required."
+  },
+  "errCodeLocationStale": "Your location is out of date. Wait a moment and try again.",
+  "@errCodeLocationStale": {
+    "description": "Server error code location_stale."
+  },
+  "errCodeTooFarFromPickup": "You're too far from the pickup point.",
+  "@errCodeTooFarFromPickup": {
+    "description": "Server error code too_far_from_pickup."
+  },
+  "errCodePickupWindowPassed": "The pickup time has passed.",
+  "@errCodePickupWindowPassed": {
+    "description": "Server error code pickup_window_passed."
+  },
+  "errCodeAlreadyArrived": "Your arrival is already recorded.",
+  "@errCodeAlreadyArrived": {
+    "description": "Server error code already_arrived."
+  },
+  "errCodeValueOutOfRange": "A value is outside the allowed range.",
+  "@errCodeValueOutOfRange": {
+    "description": "Server error code value_out_of_range."
+  },
+  "errCodeInvalidFileType": "This file type isn't accepted.",
+  "@errCodeInvalidFileType": {
+    "description": "Server error code invalid_file_type."
+  },
+  "errCodePhotoNotFound": "Photo not available.",
+  "@errCodePhotoNotFound": {
+    "description": "Server error code photo_not_found."
+  },
+  "errCodeAlreadyRated": "You've already rated this order.",
+  "@errCodeAlreadyRated": {
+    "description": "Server error code already_rated."
+  },
+  "errCodeNoAgreedPrice": "This order has no agreed price yet.",
+  "@errCodeNoAgreedPrice": {
+    "description": "Server error code no_agreed_price."
+  },
+  "errCodeReservedEventType": "Only RideLink can add this entry to the record.",
+  "@errCodeReservedEventType": {
+    "description": "Server error code reserved_event_type."
+  },
+  "errCodeInvalidMediaKind": "This photo type isn't accepted.",
+  "@errCodeInvalidMediaKind": {
+    "description": "Server error code invalid_media_kind."
+  },
+  "errCodeInvalidHash": "The photo couldn't be verified. Please try again.",
+  "@errCodeInvalidHash": {
+    "description": "Server error code invalid_hash."
+  },
+  "errCodeHashMismatch": "The photo changed during upload. Please try again.",
+  "@errCodeHashMismatch": {
+    "description": "Server error code hash_mismatch: the server's SHA-256 of the photo differs from the device's."
+  },
+  "evidenceTitle": "Evidence record",
+  "@evidenceTitle": {
+    "description": "Screen 10 title and the link to it from tracking, the job and history."
+  },
+  "evidenceIntro": "Every step of this order is recorded in a tamper-evident chain. Anyone can check it has not been changed.",
+  "@evidenceIntro": {
+    "description": "Short explanation at the top of the evidence record."
+  },
+  "evidenceTimelineTitle": "Timeline",
+  "@evidenceTimelineTitle": {
+    "description": "Heading above the list of evidence events."
+  },
+  "evidenceEmpty": "Nothing has been recorded yet.",
+  "@evidenceEmpty": {
+    "description": "Evidence record with no events."
+  },
+  "evidenceLoadFailed": "Couldn't load the evidence record.",
+  "@evidenceLoadFailed": {
+    "description": "Evidence record failed to load."
+  },
+  "evidenceVerifyButton": "Verify record",
+  "@evidenceVerifyButton": {
+    "description": "Button that asks the server to recompute every hash in the chain."
+  },
+  "evidenceVerifyAgain": "Verify again",
+  "@evidenceVerifyAgain": {
+    "description": "Verify button after a result is shown."
+  },
+  "evidenceVerifyFailed": "Couldn't check the record right now.",
+  "@evidenceVerifyFailed": {
+    "description": "The verify call itself failed (network or server)."
+  },
+  "evidenceIntactTitle": "Record intact",
+  "@evidenceIntactTitle": {
+    "description": "Verification result: the chain is unchanged."
+  },
+  "evidenceIntactBody": "{count, plural, =1{1 event checked. Nothing has been changed.} other{{count} events checked. Nothing has been changed.}}",
+  "@evidenceIntactBody": {
+    "description": "Verification result body with the number of events.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "evidenceTamperedTitle": "Record does not verify",
+  "@evidenceTamperedTitle": {
+    "description": "Verification result: the chain does not match."
+  },
+  "evidenceTamperedBody": "{count, plural, =1{1 event checked. The chain does not match, so this record may have been altered.} other{{count} events checked. The chain does not match, so this record may have been altered.}}",
+  "@evidenceTamperedBody": {
+    "description": "Verification failed: tampered or damaged chain.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "evidenceHash": "Hash {hash}",
+  "@evidenceHash": {
+    "description": "Short preview of an event hash, shown in mono.",
+    "placeholders": {
+      "hash": {
+        "type": "String"
+      }
+    }
+  },
+  "evidenceOpenPhoto": "Open photo",
+  "@evidenceOpenPhoto": {
+    "description": "Accessibility label for an evidence photo thumbnail."
+  },
+  "evidenceActorYou": "You",
+  "@evidenceActorYou": {
+    "description": "Who recorded an evidence event: the current user."
+  },
+  "evidenceActorRider": "Rider",
+  "@evidenceActorRider": {
+    "description": "Who recorded an evidence event: the rider."
+  },
+  "evidenceActorSender": "Sender",
+  "@evidenceActorSender": {
+    "description": "Who recorded an evidence event: the sender (deliveries)."
+  },
+  "evidenceActorPassenger": "Passenger",
+  "@evidenceActorPassenger": {
+    "description": "Who recorded an evidence event: the passenger (rides)."
+  },
+  "evidenceActorOtherParty": "Other party",
+  "@evidenceActorOtherParty": {
+    "description": "Who recorded an evidence event when the role is unknown."
+  },
+  "evidenceActorRideLink": "RideLink",
+  "@evidenceActorRideLink": {
+    "description": "Event recorded by the system."
+  },
+  "evidencePickupPhoto": "Pickup photo",
+  "@evidencePickupPhoto": {
+    "description": "Evidence photo kind pickup_photo."
+  },
+  "evidenceHandoverPhoto": "Handover photo",
+  "@evidenceHandoverPhoto": {
+    "description": "Evidence photo kind handover_photo (deliveries)."
+  },
+  "evidenceDropoffPhoto": "Drop-off photo",
+  "@evidenceDropoffPhoto": {
+    "description": "Evidence photo kind handover_photo on a ride."
+  },
+  "evidenceItemPhoto": "Item photo",
+  "@evidenceItemPhoto": {
+    "description": "Evidence photo kind item_photo (sender, before pickup)."
+  },
+  "evidencePickupPhotoHint": "Take a photo of the item as you collect it.",
+  "@evidencePickupPhotoHint": {
+    "description": "Rider, delivery pickup."
+  },
+  "evidencePickupPhotoHintRide": "Take a photo at the pickup point.",
+  "@evidencePickupPhotoHintRide": {
+    "description": "Rider, ride pickup."
+  },
+  "evidenceHandoverPhotoHint": "Take a photo of the item as you hand it over.",
+  "@evidenceHandoverPhotoHint": {
+    "description": "Rider, delivery handover."
+  },
+  "evidenceHandoverPhotoHintRide": "Take a photo at the drop-off point.",
+  "@evidenceHandoverPhotoHintRide": {
+    "description": "Rider, ride drop-off."
+  },
+  "evidenceItemPhotoHint": "Add a photo of the item before the rider collects it.",
+  "@evidenceItemPhotoHint": {
+    "description": "Sender, optional item photo before pickup."
+  },
+  "evidenceTakePhoto": "Take photo",
+  "@evidenceTakePhoto": {
+    "description": "Opens the camera for an evidence photo."
+  },
+  "evidenceRetake": "Retake",
+  "@evidenceRetake": {
+    "description": "Take a new evidence photo after a failed upload."
+  },
+  "evidenceUploading": "Uploading photo...",
+  "@evidenceUploading": {
+    "description": "Shown with the upload progress bar."
+  },
+  "evidenceUploadFailed": "Couldn't upload the photo. Check your connection and try again.",
+  "@evidenceUploadFailed": {
+    "description": "Evidence photo upload failed."
+  },
+  "evidencePhotoAdded": "Photo added to the evidence record",
+  "@evidencePhotoAdded": {
+    "description": "Evidence photo uploaded and chained."
+  },
+  "evidenceEventPaymentRequested": "Payment requested",
+  "@evidenceEventPaymentRequested": {
+    "description": "Evidence event payment_requested."
+  },
+  "evidenceEventCashSent": "Cash marked as paid",
+  "@evidenceEventCashSent": {
+    "description": "Evidence event cash_payment_sent."
+  },
+  "evidenceEventCashReceived": "Cash received",
+  "@evidenceEventCashReceived": {
+    "description": "Evidence event cash_payment_received."
+  },
+  "evidenceEventCashDisputed": "Cash reported not received",
+  "@evidenceEventCashDisputed": {
+    "description": "Evidence event cash_payment_disputed."
+  },
+  "optionalLabel": "Optional",
+  "@optionalLabel": {
+    "description": "Marks an optional step."
+  },
+  "rateRiderTitle": "Rate your rider",
+  "@rateRiderTitle": {
+    "description": "Rating sheet title for the sender."
+  },
+  "rateSenderTitle": "Rate the sender",
+  "@rateSenderTitle": {
+    "description": "Rating sheet title for the rider on a delivery."
+  },
+  "ratePassengerTitle": "Rate your passenger",
+  "@ratePassengerTitle": {
+    "description": "Rating sheet title for the rider on a ride."
+  },
+  "rateBody": "How did it go? Your rating helps keep RideLink trustworthy.",
+  "@rateBody": {
+    "description": "Rating sheet subtitle."
+  },
+  "ratingStarsLabel": "{count, plural, =1{1 star} other{{count} stars}}",
+  "@ratingStarsLabel": {
+    "description": "Accessibility label for a star score.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingCommentLabel": "Comment",
+  "@ratingCommentLabel": {
+    "description": "Optional rating comment field label."
+  },
+  "ratingCommentHint": "Optional",
+  "@ratingCommentHint": {
+    "description": "Rating comment field hint."
+  },
+  "ratingSubmit": "Submit rating",
+  "@ratingSubmit": {
+    "description": "Submit the rating."
+  },
+  "ratingSkip": "Skip",
+  "@ratingSkip": {
+    "description": "Close the rating sheet without rating."
+  },
+  "ratingThanks": "Thanks for your rating.",
+  "@ratingThanks": {
+    "description": "Shown after a rating is saved."
+  },
+  "ratingFailed": "Couldn't save your rating. Please try again.",
+  "@ratingFailed": {
+    "description": "Rating submit failed."
+  },
+  "yourRating": "Your rating",
+  "@yourRating": {
+    "description": "Order detail: the rating you gave."
+  },
+  "notRatedYet": "You haven't rated this order.",
+  "@notRatedYet": {
+    "description": "Order detail: no rating given yet."
+  },
+  "rateButton": "Rate",
+  "@rateButton": {
+    "description": "Order detail: open the rating sheet."
+  },
+  "notificationsTitle": "Notifications",
+  "@notificationsTitle": {
+    "description": "Notifications screen title and bell tooltip."
+  },
+  "notificationsEmpty": "No notifications yet.",
+  "@notificationsEmpty": {
+    "description": "Empty notifications list."
+  },
+  "notificationsLoadFailed": "Couldn't load notifications.",
+  "@notificationsLoadFailed": {
+    "description": "Notifications failed to load."
+  },
+  "notifPaymentRequestedTitle": "Payment requested",
+  "@notifPaymentRequestedTitle": {
+    "description": "Notification payment_requested (to the sender)."
+  },
+  "notifPaymentRequestedBody": "Your rider has requested payment. Pay {amount} in cash.",
+  "@notifPaymentRequestedBody": {
+    "description": "Notification payment_requested body.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "notifPaymentRequestedBodyNoAmount": "Your rider has requested payment. Pay the agreed amount in cash.",
+  "@notifPaymentRequestedBodyNoAmount": {
+    "description": "Notification payment_requested body without an amount."
+  },
+  "notifPaymentSentTitle": "Cash payment sent",
+  "@notifPaymentSentTitle": {
+    "description": "Notification payment_sent (to the rider)."
+  },
+  "notifPaymentSentBody": "The sender says they have paid {amount}. Confirm when you have the cash.",
+  "@notifPaymentSentBody": {
+    "description": "Notification payment_sent body.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "notifPaymentSentBodyNoAmount": "The sender says they have paid. Confirm when you have the cash.",
+  "@notifPaymentSentBodyNoAmount": {
+    "description": "Notification payment_sent body without an amount."
+  },
+  "notifPaymentConfirmedTitle": "Payment confirmed",
+  "@notifPaymentConfirmedTitle": {
+    "description": "Notification payment_confirmed (to the sender)."
+  },
+  "notifPaymentConfirmedBody": "Your rider confirmed receiving {amount} in cash.",
+  "@notifPaymentConfirmedBody": {
+    "description": "Notification payment_confirmed body.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "notifPaymentConfirmedBodyNoAmount": "Your rider confirmed receiving your cash payment.",
+  "@notifPaymentConfirmedBodyNoAmount": {
+    "description": "Notification payment_confirmed body without an amount."
+  },
+  "notifPaymentUnresolvedTitle": "Payment unresolved",
+  "@notifPaymentUnresolvedTitle": {
+    "description": "Notification payment_unresolved (both parties)."
+  },
+  "notifPaymentUnresolvedBody": "The rider reported the cash as not received. RideLink will review this order.",
+  "@notifPaymentUnresolvedBody": {
+    "description": "Notification payment_unresolved body."
+  },
+  "notifPickupArrivedTitle": "Your rider has arrived",
+  "@notifPickupArrivedTitle": {
+    "description": "Notification pickup_arrived (to the sender)."
+  },
+  "notifPickupArrivedBody": "Your rider is at the pickup point.",
+  "@notifPickupArrivedBody": {
+    "description": "Notification pickup_arrived body."
+  },
+  "notifPickupTimeoutTitle": "Your rider didn't reach pickup in time",
+  "@notifPickupTimeoutTitle": {
+    "description": "Notification pickup_timeout (to the sender)."
+  },
+  "notifPickupTimeoutBody": "The order was cancelled. You can book another rider.",
+  "@notifPickupTimeoutBody": {
+    "description": "Notification pickup_timeout body."
+  },
+  "notifPickupTimeoutRiderTitle": "Pickup window missed",
+  "@notifPickupTimeoutRiderTitle": {
+    "description": "Notification pickup_timeout_rider (to the rider)."
+  },
+  "notifPickupTimeoutRiderBody": "The order was cancelled because you didn't reach the pickup in time. Missed pickups count toward a pause.",
+  "@notifPickupTimeoutRiderBody": {
+    "description": "Notification pickup_timeout_rider body."
+  },
+  "notifReceiverLocationTitle": "Receiver shared their location",
+  "@notifReceiverLocationTitle": {
+    "description": "Notification receiver_location_shared (to the rider)."
+  },
+  "notifReceiverLocationBody": "The receiver pinned their exact drop-off spot. Open the order to see it.",
+  "@notifReceiverLocationBody": {
+    "description": "Notification receiver_location_shared body."
+  },
+  "notifDocumentExpiringTitle": "{days, plural, =0{Your {doc} expires today} =1{Your {doc} expires tomorrow} other{Your {doc} expires in {days} days}}",
+  "@notifDocumentExpiringTitle": {
+    "description": "Notification document_expiring title; doc is the localized document name.",
+    "placeholders": {
+      "doc": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "notifDocumentExpiringBody": "Upload a renewed document before {date} to keep receiving orders.",
+  "@notifDocumentExpiringBody": {
+    "description": "Notification document_expiring body.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDocumentExpiredTitle": "Your {doc} has expired",
+  "@notifDocumentExpiredTitle": {
+    "description": "Notification document_expired title.",
+    "placeholders": {
+      "doc": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDocumentExpiredBody": "You can't go online until a valid replacement is approved.",
+  "@notifDocumentExpiredBody": {
+    "description": "Notification document_expired body."
+  },
+  "menuHistory": "Order history",
+  "@menuHistory": {
+    "description": "Drawer entry to order history."
+  },
+  "menuProfile": "Profile",
+  "@menuProfile": {
+    "description": "Drawer entry to the profile screen."
+  },
+  "profileTitle": "Profile",
+  "@profileTitle": {
+    "description": "Profile screen title."
+  },
+  "profileLoadFailed": "Couldn't load your profile.",
+  "@profileLoadFailed": {
+    "description": "Profile failed to load."
+  },
+  "profileSave": "Save changes",
+  "@profileSave": {
+    "description": "Save the edited names."
+  },
+  "profileSaved": "Your name was updated.",
+  "@profileSaved": {
+    "description": "Names saved."
+  },
+  "profileSaveFailed": "Couldn't save your name. Please try again.",
+  "@profileSaveFailed": {
+    "description": "Names save failed."
+  },
+  "profileNameShownAs": "Others see your first name and last initial, like \"Moses O.\"",
+  "@profileNameShownAs": {
+    "description": "Note under the name fields."
+  },
+  "profileNameLocked": "Your name matches your verified ID, so it can't be changed here. To change it, contact RideLink support.",
+  "@profileNameLocked": {
+    "description": "Verified riders cannot rename themselves (auth-onboarding decision 15)."
+  },
+  "profileLanguage": "Language",
+  "@profileLanguage": {
+    "description": "Profile row label."
+  },
+  "profileLanguageValue": "Follows your phone's language",
+  "@profileLanguageValue": {
+    "description": "The app has no language switch; it follows the device."
+  },
+  "historyTitle": "Order history",
+  "@historyTitle": {
+    "description": "History screen title (sender side)."
+  },
+  "historyRiderTitle": "Trip history",
+  "@historyRiderTitle": {
+    "description": "History screen title (rider side)."
+  },
+  "historyEmpty": "No orders yet.",
+  "@historyEmpty": {
+    "description": "Empty history."
+  },
+  "historyLoadFailed": "Couldn't load your orders.",
+  "@historyLoadFailed": {
+    "description": "History failed to load."
+  },
+  "historyFrom": "From {place}",
+  "@historyFrom": {
+    "description": "History row: the pickup address.",
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "orderDetailTitle": "Order details",
+  "@orderDetailTitle": {
+    "description": "Order detail screen title."
+  },
+  "orderLoadFailed": "Couldn't load this order.",
+  "@orderLoadFailed": {
+    "description": "Order detail failed to load."
+  },
+  "openLiveOrder": "Open live order",
+  "@openLiveOrder": {
+    "description": "Order detail: jump to tracking or the rider job while it runs."
+  },
+  "detailRider": "Rider",
+  "@detailRider": {
+    "description": "Order detail: label above the rider name."
+  },
+  "detailSender": "Sender",
+  "@detailSender": {
+    "description": "Order detail: label above the sender name."
+  },
+  "detailPassenger": "Passenger",
+  "@detailPassenger": {
+    "description": "Order detail: label above the passenger name."
+  },
+  "statusCreated": "Draft",
+  "@statusCreated": {
+    "description": "Order status created."
+  },
+  "statusOffered": "Waiting for rider",
+  "@statusOffered": {
+    "description": "Order status offered."
+  },
+  "statusAccepted": "Rider on the way",
+  "@statusAccepted": {
+    "description": "Order status accepted."
+  },
+  "statusInTransit": "In transit",
+  "@statusInTransit": {
+    "description": "Order status started / in_transit."
+  },
+  "statusArrived": "At drop-off",
+  "@statusArrived": {
+    "description": "Order status arrived."
+  },
+  "statusPayment": "Payment",
+  "@statusPayment": {
+    "description": "Order status payment_requested / cash_pending."
+  },
+  "statusPaid": "Paid",
+  "@statusPaid": {
+    "description": "Order status paid."
+  },
+  "statusHandedOver": "Handed over",
+  "@statusHandedOver": {
+    "description": "Order status handed_over (delivery)."
+  },
+  "statusDroppedOff": "Dropped off",
+  "@statusDroppedOff": {
+    "description": "Order status handed_over (ride)."
+  },
+  "statusCompleted": "Completed",
+  "@statusCompleted": {
+    "description": "Order status completed."
+  },
+  "statusCancelled": "Cancelled",
+  "@statusCancelled": {
+    "description": "Order status cancelled."
+  },
+  "statusExpired": "Expired",
+  "@statusExpired": {
+    "description": "Order status expired."
+  },
+  "statusPaymentFailed": "Payment failed",
+  "@statusPaymentFailed": {
+    "description": "Order status payment_failed."
+  },
+  "statusUnresolved": "Under review",
+  "@statusUnresolved": {
+    "description": "Order status unresolved."
+  },
+  "shareWithReceiver": "Share with receiver",
+  "@shareWithReceiver": {
+    "description": "Sender tracking: create the receiver link and open the share sheet."
+  },
+  "shareWithReceiverNote": "The receiver can follow the delivery and pin their exact spot for the rider.",
+  "@shareWithReceiverNote": {
+    "description": "Note under the share button."
+  },
+  "receiverShareMessage": "Your RideLink delivery is on its way. Follow it and share your exact location with the rider here: {url}",
+  "@receiverShareMessage": {
+    "description": "Message sent through the Android share sheet with the receiver link.",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "receiverLinkFailed": "Couldn't create the receiver link. Please try again.",
+  "@receiverLinkFailed": {
+    "description": "Receiver link creation failed."
+  },
+  "receiverSpotTitle": "The receiver pinned their exact spot",
+  "@receiverSpotTitle": {
+    "description": "Rider job: the receiver shared their location."
+  },
+  "receiverSpotNote": "Note: {note}",
+  "@receiverSpotNote": {
+    "description": "Rider job: the receiver's landmark note.",
+    "placeholders": {
+      "note": {
+        "type": "String"
+      }
+    }
+  },
+  "navigateToPickup": "Navigate to pickup",
+  "@navigateToPickup": {
+    "description": "Rider job: open Google Maps navigation to the pickup."
+  },
+  "navigateToDropoff": "Navigate to drop-off",
+  "@navigateToDropoff": {
+    "description": "Rider job: open Google Maps navigation to the drop-off."
+  },
+  "navigateToReceiver": "Navigate to receiver's spot",
+  "@navigateToReceiver": {
+    "description": "Rider job: navigate to the receiver's pinned spot."
+  },
+  "navigateFailed": "Couldn't open Google Maps on this phone.",
+  "@navigateFailed": {
+    "description": "No app could handle the navigation hand-off."
+  },
+  "senderIs": "Sender: {name}",
+  "@senderIs": {
+    "description": "Rider job: the sender display name.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "passengerIs": "Passenger: {name}",
+  "@passengerIs": {
+    "description": "Rider job: the passenger display name.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "switchMidJobTitle": "Finish your job first",
+  "@switchMidJobTitle": {
+    "description": "Rider tried to switch to sending during a job."
+  },
+  "switchMidJobBody": "You can switch to sending once this job is complete.",
+  "@switchMidJobBody": {
+    "description": "Body of the mid-job switch dialog."
+  },
+  "switchGoOfflineTitle": "Go offline to switch?",
+  "@switchGoOfflineTitle": {
+    "description": "Online rider tries to switch to sending."
+  },
+  "switchGoOfflineBody": "You'll stop getting requests while you send.",
+  "@switchGoOfflineBody": {
+    "description": "Body of the go-offline dialog."
+  },
+  "switchGoOfflineConfirm": "Go offline",
+  "@switchGoOfflineConfirm": {
+    "description": "Confirm going offline and switching."
+  },
+  "switchStayOnline": "Stay online",
+  "@switchStayOnline": {
+    "description": "Cancel the switch."
+  },
+  "switchGoOfflineFailed": "Couldn't go offline. Please try again.",
+  "@switchGoOfflineFailed": {
+    "description": "Going offline failed, so the switch was stopped."
+  },
+  "riderRunningLate": "Your rider is running late",
+  "@riderRunningLate": {
+    "description": "Sender tracking after the pickup deadline, until the server cancels."
+  },
+  "jobRunningLate": "Running late",
+  "@jobRunningLate": {
+    "description": "Rider job after the pickup deadline."
+  },
+  "jobRunningLateBody": "The pickup window has passed. RideLink will cancel this order shortly.",
+  "@jobRunningLateBody": {
+    "description": "Rider job after the pickup deadline."
+  },
+  "jobPassengerPickedUp": "Passenger picked up",
+  "@jobPassengerPickedUp": {
+    "description": "Rider job title after pickup on a ride."
+  },
+  "actionPassengerPickedUp": "Passenger picked up",
+  "@actionPassengerPickedUp": {
+    "description": "Rider job action at pickup on a ride."
+  },
+  "jobAtPickupNoteRide": "Arrival recorded. Once your passenger is on, tap Passenger picked up.",
+  "@jobAtPickupNoteRide": {
+    "description": "Rider job at pickup on a ride."
+  },
+  "jobAtDropoffBodyRide": "Request payment from your passenger before they get off.",
+  "@jobAtDropoffBodyRide": {
+    "description": "Rider job at drop-off on a ride."
+  },
+  "jobWaitingForPassenger": "Waiting for the passenger to pay {amount} in cash.",
+  "@jobWaitingForPassenger": {
+    "description": "Rider job, ride payment requested.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "jobPassengerPaid": "The passenger says they paid {amount} in cash. Confirm once you have it.",
+  "@jobPassengerPaid": {
+    "description": "Rider job, ride cash pending.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "jobPaidBodyRide": "Payment confirmed. Mark the passenger dropped off below.",
+  "@jobPaidBodyRide": {
+    "description": "Rider job, ride paid."
+  },
+  "jobPassengerDroppedOff": "Passenger dropped off",
+  "@jobPassengerDroppedOff": {
+    "description": "Rider job title after drop-off on a ride."
+  },
+  "actionPassengerDroppedOff": "Passenger dropped off",
+  "@actionPassengerDroppedOff": {
+    "description": "Rider job action at drop-off on a ride."
+  },
+  "jobRideComplete": "Ride complete",
+  "@jobRideComplete": {
+    "description": "Rider job title when a ride is complete."
+  },
+  "actionCompleteRide": "Complete ride",
+  "@actionCompleteRide": {
+    "description": "Rider job action to complete a ride."
+  },
+  "jobCancelledByPassenger": "The passenger cancelled this ride.",
+  "@jobCancelledByPassenger": {
+    "description": "Rider job, ride cancelled by the passenger."
+  }
 }

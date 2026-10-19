@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 
 import '../auth/access_token_source.dart';
@@ -30,8 +32,38 @@ class ApiClient {
   Future<dynamic> get(String path, {Map<String, dynamic>? query}) =>
       _send(() => _dio.get(path, queryParameters: query));
 
+  /// Raw response bytes (e.g. images).
+  Future<Uint8List> getBytes(String path) async {
+    final data = await _send(
+      () => _dio.get<List<int>>(
+        path,
+        options: Options(responseType: ResponseType.bytes),
+      ),
+    );
+    return data is Uint8List ? data : Uint8List.fromList(data as List<int>);
+  }
+
   Future<dynamic> post(String path, {Object? data}) =>
       _send(() => _dio.post(path, data: data));
+
+  /// multipart/form-data upload; [fields] are text parts, [file] is the binary part named `file`.
+  Future<dynamic> postMultipart(
+    String path, {
+    required Map<String, String> fields,
+    required List<int> fileBytes,
+    required String fileName,
+    void Function(int sent, int total)? onProgress,
+  }) => _send(
+    () => _dio.post(
+      path,
+      data: FormData.fromMap({
+        ...fields,
+        'file': MultipartFile.fromBytes(fileBytes, filename: fileName),
+      }),
+      options: Options(contentType: Headers.multipartFormDataContentType),
+      onSendProgress: onProgress,
+    ),
+  );
 
   Future<dynamic> patch(String path, {Object? data}) =>
       _send(() => _dio.patch(path, data: data));
@@ -78,6 +110,10 @@ class ApiClient {
     }
     try {
       options.extra[_retriedKey] = true;
+      // A sent FormData is finalized and can't be streamed twice.
+      if (options.data is FormData) {
+        options.data = (options.data as FormData).clone();
+      }
       options.headers['Authorization'] = 'Bearer ${_tokens.accessToken}';
       handler.resolve(await _dio.fetch<dynamic>(options));
     } on DioException catch (retryErr) {

@@ -1,127 +1,2682 @@
 {
   "@@locale": "sw",
   "appName": "RideLink",
-  "@appName": {"description": "Brand name, kept as-is in Swahili.", "x-review": "needs-review"},
+  "@appName": {
+    "description": "Brand name, kept as-is in Swahili.",
+    "x-review": "needs-review"
+  },
   "appTagline": "Mizigo na safari unazoweza kuamini",
-  "@appTagline": {"x-review": "needs-review"},
-
+  "@appTagline": {
+    "x-review": "needs-review"
+  },
   "signInTitle": "Ingia",
-  "@signInTitle": {"x-review": "needs-review"},
+  "@signInTitle": {
+    "x-review": "needs-review"
+  },
   "emailLabel": "Barua pepe",
-  "@emailLabel": {"x-review": "needs-review"},
+  "@emailLabel": {
+    "x-review": "needs-review"
+  },
   "passwordLabel": "Nenosiri",
-  "@passwordLabel": {"x-review": "needs-review"},
+  "@passwordLabel": {
+    "x-review": "needs-review"
+  },
   "showPassword": "Onyesha nenosiri",
-  "@showPassword": {"x-review": "needs-review"},
+  "@showPassword": {
+    "x-review": "needs-review"
+  },
   "hidePassword": "Ficha nenosiri",
-  "@hidePassword": {"x-review": "needs-review"},
+  "@hidePassword": {
+    "x-review": "needs-review"
+  },
   "forgotPasswordLink": "Umesahau nenosiri?",
-  "@forgotPasswordLink": {"x-review": "needs-review"},
+  "@forgotPasswordLink": {
+    "x-review": "needs-review"
+  },
   "signInButton": "Ingia",
-  "@signInButton": {"x-review": "needs-review"},
+  "@signInButton": {
+    "x-review": "needs-review"
+  },
   "orDivider": "au",
-  "@orDivider": {"x-review": "needs-review"},
+  "@orDivider": {
+    "x-review": "needs-review"
+  },
   "continueWithGoogle": "Endelea na Google",
-  "@continueWithGoogle": {"x-review": "needs-review"},
+  "@continueWithGoogle": {
+    "x-review": "needs-review"
+  },
   "noAccountPrompt": "Mgeni kwenye RideLink?",
-  "@noAccountPrompt": {"x-review": "needs-review"},
+  "@noAccountPrompt": {
+    "x-review": "needs-review"
+  },
   "createAccountLink": "Fungua akaunti",
-  "@createAccountLink": {"x-review": "needs-review"},
+  "@createAccountLink": {
+    "x-review": "needs-review"
+  },
   "riderPrompt": "Unataka kupata kipato kama mwendesha boda?",
-  "@riderPrompt": {"x-review": "needs-review"},
+  "@riderPrompt": {
+    "x-review": "needs-review"
+  },
   "riderJoinLink": "Jiunge kama mwendesha boda boda",
-  "@riderJoinLink": {"x-review": "needs-review"},
-
+  "@riderJoinLink": {
+    "x-review": "needs-review"
+  },
   "signUpTitle": "Fungua akaunti yako",
-  "@signUpTitle": {"x-review": "needs-review"},
+  "@signUpTitle": {
+    "x-review": "needs-review"
+  },
   "signUpRiderNote": "Utaweka wasifu wako wa mwendesha boda baada ya kuthibitisha barua pepe yako.",
-  "@signUpRiderNote": {"x-review": "needs-review"},
+  "@signUpRiderNote": {
+    "x-review": "needs-review"
+  },
   "firstNameLabel": "Jina la kwanza",
-  "@firstNameLabel": {"x-review": "needs-review"},
+  "@firstNameLabel": {
+    "x-review": "needs-review"
+  },
   "lastNameLabel": "Jina la mwisho",
-  "@lastNameLabel": {"x-review": "needs-review"},
+  "@lastNameLabel": {
+    "x-review": "needs-review"
+  },
   "passwordHint": "Angalau herufi 15",
-  "@passwordHint": {"x-review": "needs-review"},
+  "@passwordHint": {
+    "x-review": "needs-review"
+  },
   "signUpButton": "Fungua akaunti",
-  "@signUpButton": {"x-review": "needs-review"},
+  "@signUpButton": {
+    "x-review": "needs-review"
+  },
   "haveAccountPrompt": "Tayari una akaunti?",
-  "@haveAccountPrompt": {"x-review": "needs-review"},
+  "@haveAccountPrompt": {
+    "x-review": "needs-review"
+  },
   "signInLink": "Ingia",
-  "@signInLink": {"x-review": "needs-review"},
-
+  "@signInLink": {
+    "x-review": "needs-review"
+  },
   "verifyTitle": "Angalia barua pepe yako",
-  "@verifyTitle": {"x-review": "needs-review"},
+  "@verifyTitle": {
+    "x-review": "needs-review"
+  },
   "verifySentTo": "Tumetuma nambari ya tarakimu 6 kwa {email}.",
-  "@verifySentTo": {"placeholders": {"email": {"type": "String"}}, "x-review": "needs-review"},
+  "@verifySentTo": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
   "verifyNotConfirmed": "Barua pepe yako {email} bado haijathibitishwa. Omba nambari mpya kisha uiweke hapa chini.",
-  "@verifyNotConfirmed": {"placeholders": {"email": {"type": "String"}}, "x-review": "needs-review"},
+  "@verifyNotConfirmed": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
   "codeLabel": "Nambari ya tarakimu 6",
-  "@codeLabel": {"x-review": "needs-review"},
+  "@codeLabel": {
+    "x-review": "needs-review"
+  },
   "verifyButton": "Thibitisha",
-  "@verifyButton": {"x-review": "needs-review"},
+  "@verifyButton": {
+    "x-review": "needs-review"
+  },
   "resendCode": "Tuma nambari tena",
-  "@resendCode": {"x-review": "needs-review"},
+  "@resendCode": {
+    "x-review": "needs-review"
+  },
   "resendIn": "Tuma tena baada ya sekunde {seconds}",
-  "@resendIn": {"placeholders": {"seconds": {"type": "int"}}, "x-review": "needs-review"},
+  "@resendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
   "codeResent": "Tumetuma nambari mpya.",
-  "@codeResent": {"x-review": "needs-review"},
-
+  "@codeResent": {
+    "x-review": "needs-review"
+  },
   "forgotTitle": "Badilisha nenosiri lako",
-  "@forgotTitle": {"x-review": "needs-review"},
+  "@forgotTitle": {
+    "x-review": "needs-review"
+  },
   "forgotBody": "Weka barua pepe ya akaunti yako, tutakutumia nambari.",
-  "@forgotBody": {"x-review": "needs-review"},
+  "@forgotBody": {
+    "x-review": "needs-review"
+  },
   "sendCodeButton": "Tuma nambari",
-  "@sendCodeButton": {"x-review": "needs-review"},
+  "@sendCodeButton": {
+    "x-review": "needs-review"
+  },
   "backToSignIn": "Rudi kwenye kuingia",
-  "@backToSignIn": {"x-review": "needs-review"},
-
+  "@backToSignIn": {
+    "x-review": "needs-review"
+  },
   "resetTitle": "Chagua nenosiri jipya",
-  "@resetTitle": {"x-review": "needs-review"},
+  "@resetTitle": {
+    "x-review": "needs-review"
+  },
   "resetSentTo": "Kama kuna akaunti ya {email}, tumeitumia nambari ya tarakimu 6.",
-  "@resetSentTo": {"placeholders": {"email": {"type": "String"}}, "x-review": "needs-review"},
+  "@resetSentTo": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
   "newPasswordLabel": "Nenosiri jipya",
-  "@newPasswordLabel": {"x-review": "needs-review"},
+  "@newPasswordLabel": {
+    "x-review": "needs-review"
+  },
   "resetButton": "Hifadhi nenosiri jipya",
-  "@resetButton": {"x-review": "needs-review"},
-
+  "@resetButton": {
+    "x-review": "needs-review"
+  },
   "errorEmailInvalid": "Weka barua pepe sahihi.",
-  "@errorEmailInvalid": {"x-review": "needs-review"},
+  "@errorEmailInvalid": {
+    "x-review": "needs-review"
+  },
   "errorFirstNameRequired": "Weka jina lako la kwanza.",
-  "@errorFirstNameRequired": {"x-review": "needs-review"},
+  "@errorFirstNameRequired": {
+    "x-review": "needs-review"
+  },
   "errorLastNameRequired": "Weka jina lako la mwisho.",
-  "@errorLastNameRequired": {"x-review": "needs-review"},
+  "@errorLastNameRequired": {
+    "x-review": "needs-review"
+  },
   "errorNameTooLong": "Tumia herufi 50 au chache.",
-  "@errorNameTooLong": {"x-review": "needs-review"},
+  "@errorNameTooLong": {
+    "x-review": "needs-review"
+  },
   "errorPasswordRequired": "Weka nenosiri lako.",
-  "@errorPasswordRequired": {"x-review": "needs-review"},
+  "@errorPasswordRequired": {
+    "x-review": "needs-review"
+  },
   "errorPasswordTooShort": "Tumia angalau herufi 15.",
-  "@errorPasswordTooShort": {"x-review": "needs-review"},
+  "@errorPasswordTooShort": {
+    "x-review": "needs-review"
+  },
   "errorPasswordTooLong": "Tumia herufi 72 au chache.",
-  "@errorPasswordTooLong": {"x-review": "needs-review"},
+  "@errorPasswordTooLong": {
+    "x-review": "needs-review"
+  },
   "errorCodeFormat": "Weka nambari ya tarakimu 6.",
-  "@errorCodeFormat": {"x-review": "needs-review"},
+  "@errorCodeFormat": {
+    "x-review": "needs-review"
+  },
   "errorWrongCredentials": "Barua pepe au nenosiri si sahihi.",
-  "@errorWrongCredentials": {"x-review": "needs-review"},
+  "@errorWrongCredentials": {
+    "x-review": "needs-review"
+  },
   "errorInvalidCode": "Nambari hiyo si sahihi au muda wake umeisha.",
-  "@errorInvalidCode": {"x-review": "needs-review"},
+  "@errorInvalidCode": {
+    "x-review": "needs-review"
+  },
   "errorTooManyAttempts": "Umejaribu mara nyingi mno. Subiri kidogo kisha ujaribu tena.",
-  "@errorTooManyAttempts": {"x-review": "needs-review"},
+  "@errorTooManyAttempts": {
+    "x-review": "needs-review"
+  },
   "errorServiceUnavailable": "Hatukuweza kukamilisha hilo sasa hivi. Tafadhali jaribu tena baadaye kidogo.",
-  "@errorServiceUnavailable": {"x-review": "needs-review"},
+  "@errorServiceUnavailable": {
+    "x-review": "needs-review"
+  },
   "errorNetwork": "Hakuna mtandao. Angalia muunganisho wako kisha ujaribu tena.",
-  "@errorNetwork": {"x-review": "needs-review"},
+  "@errorNetwork": {
+    "x-review": "needs-review"
+  },
   "errorGeneric": "Kuna hitilafu. Tafadhali jaribu tena.",
-  "@errorGeneric": {"x-review": "needs-review"},
+  "@errorGeneric": {
+    "x-review": "needs-review"
+  },
   "errorGoogleFailed": "Kuingia kwa Google hakukufanikiwa. Tafadhali jaribu tena.",
-  "@errorGoogleFailed": {"x-review": "needs-review"},
-
+  "@errorGoogleFailed": {
+    "x-review": "needs-review"
+  },
   "offlineTitle": "Huna mtandao",
-  "@offlineTitle": {"x-review": "needs-review"},
+  "@offlineTitle": {
+    "x-review": "needs-review"
+  },
   "offlineBody": "Hatukuweza kufikia RideLink. Bado umeingia kwenye akaunti yako.",
-  "@offlineBody": {"x-review": "needs-review"},
+  "@offlineBody": {
+    "x-review": "needs-review"
+  },
   "retryButton": "Jaribu tena",
-  "@retryButton": {"x-review": "needs-review"},
-
+  "@retryButton": {
+    "x-review": "needs-review"
+  },
   "riderOnboardingTitle": "Usajili wa mwendesha boda",
-  "@riderOnboardingTitle": {"x-review": "needs-review"}
+  "@riderOnboardingTitle": {
+    "x-review": "needs-review"
+  },
+  "menuTooltip": "Menyu",
+  "@menuTooltip": {
+    "x-review": "needs-review"
+  },
+  "menuSwitchToRiding": "Badili uendeshe boda",
+  "@menuSwitchToRiding": {
+    "x-review": "needs-review"
+  },
+  "menuSwitchToSending": "Badili utume",
+  "@menuSwitchToSending": {
+    "x-review": "needs-review"
+  },
+  "menuBecomeRider": "Kuwa mwendesha boda",
+  "@menuBecomeRider": {
+    "x-review": "needs-review"
+  },
+  "menuRiderStatusError": "Hatukuweza kuangalia akaunti yako ya mwendesha boda.",
+  "@menuRiderStatusError": {
+    "x-review": "needs-review"
+  },
+  "menuSignOut": "Toka",
+  "@menuSignOut": {
+    "x-review": "needs-review"
+  },
+  "riderHomeTitle": "Hali ya mwendesha boda",
+  "@riderHomeTitle": {
+    "x-review": "needs-review"
+  },
+  "homeWhatDoYouNeed": "Unahitaji nini?",
+  "@homeWhatDoYouNeed": {
+    "x-review": "needs-review"
+  },
+  "serviceDelivery": "Kutuma mzigo",
+  "@serviceDelivery": {
+    "x-review": "needs-review"
+  },
+  "serviceDeliverySubtitle": "Tuma kifurushi",
+  "@serviceDeliverySubtitle": {
+    "x-review": "needs-review"
+  },
+  "serviceRide": "Safari",
+  "@serviceRide": {
+    "x-review": "needs-review"
+  },
+  "serviceRideSubtitle": "Pata safari ya boda",
+  "@serviceRideSubtitle": {
+    "x-review": "needs-review"
+  },
+  "mapUnavailable": "Ramani haipatikani kwa sasa",
+  "@mapUnavailable": {
+    "x-review": "needs-review"
+  },
+  "locationDeniedTitle": "Mahali pamezimwa",
+  "@locationDeniedTitle": {
+    "x-review": "needs-review"
+  },
+  "locationDeniedBody": "Ruhusu mahali ili tukuonyeshe ulipo. Bado unaweza kuagiza kwa kutafuta maeneo.",
+  "@locationDeniedBody": {
+    "x-review": "needs-review"
+  },
+  "locationServiceOffBody": "Washa mahali kwenye simu yako ili tukuonyeshe ulipo. Bado unaweza kuagiza kwa kutafuta maeneo.",
+  "@locationServiceOffBody": {
+    "x-review": "needs-review"
+  },
+  "locationUnavailableBody": "Hatukuweza kupata mahali ulipo. Bado unaweza kuagiza kwa kutafuta maeneo.",
+  "@locationUnavailableBody": {
+    "x-review": "needs-review"
+  },
+  "locationAllow": "Ruhusu mahali",
+  "@locationAllow": {
+    "x-review": "needs-review"
+  },
+  "locationOpenSettings": "Fungua mipangilio",
+  "@locationOpenSettings": {
+    "x-review": "needs-review"
+  },
+  "locationTurnOn": "Washa mahali",
+  "@locationTurnOn": {
+    "x-review": "needs-review"
+  },
+  "newDeliveryTitle": "Mzigo mpya",
+  "@newDeliveryTitle": {
+    "x-review": "needs-review"
+  },
+  "newRideTitle": "Safari mpya",
+  "@newRideTitle": {
+    "x-review": "needs-review"
+  },
+  "pickupLabel": "Mahali pa kuchukua",
+  "@pickupLabel": {
+    "x-review": "needs-review"
+  },
+  "dropoffLabel": "Mahali pa kufikisha",
+  "@dropoffLabel": {
+    "x-review": "needs-review"
+  },
+  "choosePickup": "Chagua mahali pa kuchukua",
+  "@choosePickup": {
+    "x-review": "needs-review"
+  },
+  "chooseDropoff": "Chagua mahali pa kufikisha",
+  "@chooseDropoff": {
+    "x-review": "needs-review"
+  },
+  "itemSectionTitle": "Mzigo",
+  "@itemSectionTitle": {
+    "x-review": "needs-review"
+  },
+  "categoryLabel": "Aina",
+  "@categoryLabel": {
+    "x-review": "needs-review"
+  },
+  "descriptionLabel": "Maelezo",
+  "@descriptionLabel": {
+    "x-review": "needs-review"
+  },
+  "weightLabel": "Uzito kwa kg (si lazima)",
+  "@weightLabel": {
+    "x-review": "needs-review"
+  },
+  "valueBandLabel": "Thamani ya mzigo",
+  "@valueBandLabel": {
+    "x-review": "needs-review"
+  },
+  "valueBandCapNote": "Mizigo yenye thamani zaidi ya KES 10,000 haiwezi kuagizwa.",
+  "@valueBandCapNote": {
+    "x-review": "needs-review"
+  },
+  "receiverSectionTitle": "Mpokeaji",
+  "@receiverSectionTitle": {
+    "x-review": "needs-review"
+  },
+  "receiverNameLabel": "Jina la mpokeaji",
+  "@receiverNameLabel": {
+    "x-review": "needs-review"
+  },
+  "findRidersButton": "Tafuta waendesha boda",
+  "@findRidersButton": {
+    "x-review": "needs-review"
+  },
+  "errorPickupRequired": "Chagua mahali pa kuchukua",
+  "@errorPickupRequired": {
+    "x-review": "needs-review"
+  },
+  "errorDropoffRequired": "Chagua mahali pa kufikisha",
+  "@errorDropoffRequired": {
+    "x-review": "needs-review"
+  },
+  "errorReceiverRequired": "Weka jina la mpokeaji",
+  "@errorReceiverRequired": {
+    "x-review": "needs-review"
+  },
+  "errorCategoryRequired": "Chagua aina",
+  "@errorCategoryRequired": {
+    "x-review": "needs-review"
+  },
+  "errorDescriptionRequired": "Eleza mzigo",
+  "@errorDescriptionRequired": {
+    "x-review": "needs-review"
+  },
+  "errorWeightInvalid": "Weka uzito zaidi ya 0",
+  "@errorWeightInvalid": {
+    "x-review": "needs-review"
+  },
+  "errorValueBandRequired": "Chagua thamani ya mzigo",
+  "@errorValueBandRequired": {
+    "x-review": "needs-review"
+  },
+  "createOrderFailed": "Hatukuweza kuunda oda yako. Jaribu tena.",
+  "@createOrderFailed": {
+    "x-review": "needs-review"
+  },
+  "categoriesLoadFailed": "Hatukuweza kupakia aina za mizigo.",
+  "@categoriesLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "valueBandUnder500": "Chini ya KES 500",
+  "@valueBandUnder500": {
+    "x-review": "needs-review"
+  },
+  "valueBand500To2000": "KES 500–2,000",
+  "@valueBand500To2000": {
+    "x-review": "needs-review"
+  },
+  "valueBand2000To5000": "KES 2,000–5,000",
+  "@valueBand2000To5000": {
+    "x-review": "needs-review"
+  },
+  "valueBand5000To10000": "KES 5,000–10,000",
+  "@valueBand5000To10000": {
+    "x-review": "needs-review"
+  },
+  "categoryDocuments": "Nyaraka",
+  "@categoryDocuments": {
+    "x-review": "needs-review"
+  },
+  "categoryFood": "Chakula",
+  "@categoryFood": {
+    "x-review": "needs-review"
+  },
+  "categoryElectronics": "Vifaa vya elektroniki",
+  "@categoryElectronics": {
+    "x-review": "needs-review"
+  },
+  "categoryClothing": "Nguo",
+  "@categoryClothing": {
+    "x-review": "needs-review"
+  },
+  "categoryFragile": "Vitu vinavyovunjika",
+  "@categoryFragile": {
+    "x-review": "needs-review"
+  },
+  "categoryMedication": "Dawa",
+  "@categoryMedication": {
+    "x-review": "needs-review"
+  },
+  "categoryCash": "Pesa taslimu",
+  "@categoryCash": {
+    "x-review": "needs-review"
+  },
+  "categoryAlcohol": "Pombe",
+  "@categoryAlcohol": {
+    "x-review": "needs-review"
+  },
+  "categoryOther": "Nyingine",
+  "@categoryOther": {
+    "x-review": "needs-review"
+  },
+  "placeSearchHint": "Tafuta mahali",
+  "@placeSearchHint": {
+    "x-review": "needs-review"
+  },
+  "placeSearchMinChars": "Andika angalau herufi 2",
+  "@placeSearchMinChars": {
+    "x-review": "needs-review"
+  },
+  "placeSearchNoResults": "Hakuna maeneo yaliyopatikana",
+  "@placeSearchNoResults": {
+    "x-review": "needs-review"
+  },
+  "placeSearchUnavailable": "Utafutaji wa maeneo haupatikani kwa sasa. Jaribu tena baadaye.",
+  "@placeSearchUnavailable": {
+    "x-review": "needs-review"
+  },
+  "placeSearchFailed": "Hatukuweza kutafuta. Angalia mtandao wako.",
+  "@placeSearchFailed": {
+    "x-review": "needs-review"
+  },
+  "clearSearch": "Futa",
+  "@clearSearch": {
+    "x-review": "needs-review"
+  },
+  "riderListTitle": "Chagua mwendesha boda",
+  "@riderListTitle": {
+    "x-review": "needs-review"
+  },
+  "sortByPrice": "Bei",
+  "@sortByPrice": {
+    "x-review": "needs-review"
+  },
+  "sortByDistance": "Umbali",
+  "@sortByDistance": {
+    "x-review": "needs-review"
+  },
+  "tripDistance": "Safari {distance}",
+  "@tripDistance": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "distanceEstimatedNote": "Umbali ni wa makadirio",
+  "@distanceEstimatedNote": {
+    "x-review": "needs-review"
+  },
+  "noRidersTitle": "Hakuna waendesha boda karibu kwa sasa",
+  "@noRidersTitle": {
+    "x-review": "needs-review"
+  },
+  "noRidersBody": "Jaribu tena baada ya muda mfupi.",
+  "@noRidersBody": {
+    "x-review": "needs-review"
+  },
+  "ridersLoadFailed": "Hatukuweza kupakia waendesha boda.",
+  "@ridersLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "noRatingsYet": "Bado hana ukadiriaji",
+  "@noRatingsYet": {
+    "x-review": "needs-review"
+  },
+  "ratingCount": "Ukadiriaji {count}",
+  "@ratingCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "onTimePercent": "{percent}% kwa wakati",
+  "@onTimePercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "completedJobs": "{count} zimekamilika",
+  "@completedJobs": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "pickupDistanceAway": "{distance} kutoka mahali pa kuchukua",
+  "@pickupDistanceAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "arrivesWithin": "Atafika ndani ya dakika {minutes}",
+  "@arrivesWithin": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "editRoute": "Badilisha njia",
+  "@editRoute": {
+    "x-review": "needs-review"
+  },
+  "offerDeclinedMessage": "Mwendesha boda amekataa. Chagua mwingine.",
+  "@offerDeclinedMessage": {
+    "x-review": "needs-review"
+  },
+  "offerExpiredMessage": "Mwendesha boda hakujibu kwa wakati. Chagua mwingine.",
+  "@offerExpiredMessage": {
+    "x-review": "needs-review"
+  },
+  "riderProfileTitle": "Wasifu wa mwendesha boda",
+  "@riderProfileTitle": {
+    "x-review": "needs-review"
+  },
+  "statRating": "Ukadiriaji",
+  "@statRating": {
+    "x-review": "needs-review"
+  },
+  "statOnTime": "Kwa wakati",
+  "@statOnTime": {
+    "x-review": "needs-review"
+  },
+  "statCompleted": "Kazi zilizokamilika",
+  "@statCompleted": {
+    "x-review": "needs-review"
+  },
+  "statPickup": "Kuchukua",
+  "@statPickup": {
+    "x-review": "needs-review"
+  },
+  "priceForThisTrip": "Bei ya safari hii",
+  "@priceForThisTrip": {
+    "x-review": "needs-review"
+  },
+  "breakdownBaseFare": "Nauli ya msingi",
+  "@breakdownBaseFare": {
+    "x-review": "needs-review"
+  },
+  "breakdownPlatform": "Bei ya jukwaa kwa {distance}",
+  "@breakdownPlatform": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "breakdownRider": "Bei ya mwendesha boda zaidi ya {distance}",
+  "@breakdownRider": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "breakdownRiderDetail": "{distance} kwa {rate} kwa kila km",
+  "@breakdownRiderDetail": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "rate": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "breakdownMinimumFare": "Nauli ya chini inatumika kwa safari hii",
+  "@breakdownMinimumFare": {
+    "x-review": "needs-review"
+  },
+  "breakdownTotal": "Jumla",
+  "@breakdownTotal": {
+    "x-review": "needs-review"
+  },
+  "requestButton": "Omba",
+  "@requestButton": {
+    "x-review": "needs-review"
+  },
+  "quoteTitle": "Bei ya safari",
+  "@quoteTitle": {
+    "x-review": "needs-review"
+  },
+  "youPay": "Utalipa",
+  "@youPay": {
+    "x-review": "needs-review"
+  },
+  "quoteFinalNote": "Bei hii ni ya mwisho. Itafungwa mwendesha boda akikubali.",
+  "@quoteFinalNote": {
+    "x-review": "needs-review"
+  },
+  "sendRequestButton": "Tuma ombi",
+  "@sendRequestButton": {
+    "x-review": "needs-review"
+  },
+  "sendRequestFailed": "Hatukuweza kutuma ombi. Jaribu tena.",
+  "@sendRequestFailed": {
+    "x-review": "needs-review"
+  },
+  "waitingTitle": "Tunamsubiri {name}",
+  "@waitingTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "waitingBody": "Mwendesha boda ana muda mfupi wa kukubali ombi lako.",
+  "@waitingBody": {
+    "x-review": "needs-review"
+  },
+  "waitingChecking": "Tunaangalia jibu la mwendesha boda…",
+  "@waitingChecking": {
+    "x-review": "needs-review"
+  },
+  "secondsLabel": "sekunde",
+  "@secondsLabel": {
+    "x-review": "needs-review"
+  },
+  "cancelRequestButton": "Ghairi ombi",
+  "@cancelRequestButton": {
+    "x-review": "needs-review"
+  },
+  "cancelConfirmTitle": "Ghairi ombi hili?",
+  "@cancelConfirmTitle": {
+    "x-review": "needs-review"
+  },
+  "cancelConfirmBody": "Oda yako itaghairiwa.",
+  "@cancelConfirmBody": {
+    "x-review": "needs-review"
+  },
+  "cancelConfirmYes": "Ghairi oda",
+  "@cancelConfirmYes": {
+    "x-review": "needs-review"
+  },
+  "cancelConfirmNo": "Endelea kusubiri",
+  "@cancelConfirmNo": {
+    "x-review": "needs-review"
+  },
+  "cancelFailed": "Hatukuweza kughairi. Huenda mwendesha boda amesha jibu.",
+  "@cancelFailed": {
+    "x-review": "needs-review"
+  },
+  "orderCancelledMessage": "Oda yako imeghairiwa.",
+  "@orderCancelledMessage": {
+    "x-review": "needs-review"
+  },
+  "backToHome": "Rudi mwanzo",
+  "@backToHome": {
+    "x-review": "needs-review"
+  },
+  "editRouteTitle": "Badilisha njia",
+  "@editRouteTitle": {
+    "x-review": "needs-review"
+  },
+  "saveRouteButton": "Hifadhi njia",
+  "@saveRouteButton": {
+    "x-review": "needs-review"
+  },
+  "routeUpdateFailed": "Hatukuweza kubadilisha njia. Jaribu tena.",
+  "@routeUpdateFailed": {
+    "x-review": "needs-review"
+  },
+  "routeLocked": "Njia hii haiwezi kubadilishwa tena.",
+  "@routeLocked": {
+    "x-review": "needs-review"
+  },
+  "closeTooltip": "Funga",
+  "@closeTooltip": {
+    "x-review": "needs-review"
+  },
+  "riderLoadFailed": "Hatukuweza kupakia wasifu wako wa mwendesha boda.",
+  "@riderLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "registerIntro": "Sajili boda boda yako ili uanze kupokea maombi ya kusafirisha mizigo na abiria. Kisha utapakia hati zako zikaguliwe.",
+  "@registerIntro": {
+    "x-review": "needs-review"
+  },
+  "vehicleLabel": "Chombo",
+  "@vehicleLabel": {
+    "x-review": "needs-review"
+  },
+  "vehicleBodaBoda": "Boda boda",
+  "@vehicleBodaBoda": {
+    "x-review": "needs-review"
+  },
+  "vehicleOnlyBoda": "Boda boda ndicho chombo pekee kwa sasa.",
+  "@vehicleOnlyBoda": {
+    "x-review": "needs-review"
+  },
+  "plateLabel": "Nambari ya usajili",
+  "@plateLabel": {
+    "x-review": "needs-review"
+  },
+  "plateHint": "mfano KMFA 123B",
+  "@plateHint": {
+    "x-review": "needs-review"
+  },
+  "plateInvalid": "Weka herufi, tarakimu au nafasi 3 hadi 12",
+  "@plateInvalid": {
+    "x-review": "needs-review"
+  },
+  "registerButton": "Jisajili",
+  "@registerButton": {
+    "x-review": "needs-review"
+  },
+  "registerFailed": "Hatukuweza kukusajili. Jaribu tena.",
+  "@registerFailed": {
+    "x-review": "needs-review"
+  },
+  "documentsTitle": "Hati",
+  "@documentsTitle": {
+    "x-review": "needs-review"
+  },
+  "documentsIntro": "Wafanyakazi wa RideLink hukagua kila hati. Unaweza kuingia mtandaoni zote zikishaidhinishwa.",
+  "@documentsIntro": {
+    "x-review": "needs-review"
+  },
+  "documentsProgress": "{done} kati ya {total} zimepakiwa",
+  "@documentsProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "documentsContinue": "Endelea",
+  "@documentsContinue": {
+    "x-review": "needs-review"
+  },
+  "documentsUploadAll": "Pakia kila hati ili uendelee.",
+  "@documentsUploadAll": {
+    "x-review": "needs-review"
+  },
+  "documentsLoadFailed": "Hatukuweza kupakia hati zako.",
+  "@documentsLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "docRiderPhoto": "Picha ya mwendesha boda",
+  "@docRiderPhoto": {
+    "x-review": "needs-review"
+  },
+  "docRiderPhotoHint": "Picha safi ya uso wako. Wateja huiona kabla na wakati wa kazi.",
+  "@docRiderPhotoHint": {
+    "x-review": "needs-review"
+  },
+  "docNationalId": "Kitambulisho cha taifa",
+  "@docNationalId": {
+    "x-review": "needs-review"
+  },
+  "docNationalIdHint": "Upande wa mbele wa kitambulisho chako.",
+  "@docNationalIdHint": {
+    "x-review": "needs-review"
+  },
+  "docDrivingLicence": "Leseni ya udereva",
+  "@docDrivingLicence": {
+    "x-review": "needs-review"
+  },
+  "docDrivingLicenceHint": "Leseni ya pikipiki (Daraja A), pamoja na tarehe inapoisha.",
+  "@docDrivingLicenceHint": {
+    "x-review": "needs-review"
+  },
+  "docPoliceClearance": "Cheti cha tabia njema",
+  "@docPoliceClearance": {
+    "x-review": "needs-review"
+  },
+  "docPoliceClearanceHint": "Cheti cha tabia njema cha DCI, pamoja na tarehe kilipotolewa. Ni halali kwa miezi 12.",
+  "@docPoliceClearanceHint": {
+    "x-review": "needs-review"
+  },
+  "docPsvInsurance": "Bima ya PSV",
+  "@docPsvInsurance": {
+    "x-review": "needs-review"
+  },
+  "docPsvInsuranceHint": "Cheti cha bima yako ya PSV, pamoja na tarehe inapoisha.",
+  "@docPsvInsuranceHint": {
+    "x-review": "needs-review"
+  },
+  "docLogbook": "Kitabu cha usajili au mkataba wa mauzo",
+  "@docLogbook": {
+    "x-review": "needs-review"
+  },
+  "docLogbookHint": "Ushahidi kwamba unamiliki au unaruhusiwa kutumia pikipiki.",
+  "@docLogbookHint": {
+    "x-review": "needs-review"
+  },
+  "docBikeRearPhoto": "Picha ya nyuma ya pikipiki",
+  "@docBikeRearPhoto": {
+    "x-review": "needs-review"
+  },
+  "docBikeRearPhotoHint": "Picha ya nyuma ya pikipiki yako ikionyesha nambari ya usajili.",
+  "@docBikeRearPhotoHint": {
+    "x-review": "needs-review"
+  },
+  "docStatusMissing": "Haijapakiwa",
+  "@docStatusMissing": {
+    "x-review": "needs-review"
+  },
+  "docStatusPending": "Inakaguliwa",
+  "@docStatusPending": {
+    "x-review": "needs-review"
+  },
+  "docStatusApproved": "Imeidhinishwa",
+  "@docStatusApproved": {
+    "x-review": "needs-review"
+  },
+  "docStatusRejected": "Imekataliwa",
+  "@docStatusRejected": {
+    "x-review": "needs-review"
+  },
+  "docRejectedReason": "Sababu: {reason}",
+  "@docRejectedReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "docExpiresOn": "Inaisha {date}",
+  "@docExpiresOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "docIssuedOn": "Ilitolewa {date}",
+  "@docIssuedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "docPendingStillValid": "Hati yako iliyoidhinishwa inaendelea kutumika hii ikikaguliwa.",
+  "@docPendingStillValid": {
+    "x-review": "needs-review"
+  },
+  "docUploadAction": "Pakia",
+  "@docUploadAction": {
+    "x-review": "needs-review"
+  },
+  "docReplaceAction": "Badilisha",
+  "@docReplaceAction": {
+    "x-review": "needs-review"
+  },
+  "docUploaded": "{name} imepakiwa",
+  "@docUploaded": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "docFormatsImage": "Picha ya JPEG au PNG, hadi MB 10.",
+  "@docFormatsImage": {
+    "x-review": "needs-review"
+  },
+  "docFormatsAny": "Picha ya JPEG au PNG, au PDF, hadi MB 10.",
+  "@docFormatsAny": {
+    "x-review": "needs-review"
+  },
+  "docChooseExpiry": "Chagua tarehe ya kuisha",
+  "@docChooseExpiry": {
+    "x-review": "needs-review"
+  },
+  "docChooseIssued": "Chagua tarehe ya kutolewa",
+  "@docChooseIssued": {
+    "x-review": "needs-review"
+  },
+  "docTakePhoto": "Piga picha",
+  "@docTakePhoto": {
+    "x-review": "needs-review"
+  },
+  "docChooseGallery": "Chagua kutoka kwenye picha",
+  "@docChooseGallery": {
+    "x-review": "needs-review"
+  },
+  "docChooseFile": "Chagua faili ya PDF au picha",
+  "@docChooseFile": {
+    "x-review": "needs-review"
+  },
+  "docUploadButton": "Pakia",
+  "@docUploadButton": {
+    "x-review": "needs-review"
+  },
+  "docTooLarge": "Faili lazima iwe MB 10 au chini.",
+  "@docTooLarge": {
+    "x-review": "needs-review"
+  },
+  "docImageOnly": "Hati hii lazima iwe picha (JPEG au PNG).",
+  "@docImageOnly": {
+    "x-review": "needs-review"
+  },
+  "docDateRequired": "Chagua tarehe kwanza.",
+  "@docDateRequired": {
+    "x-review": "needs-review"
+  },
+  "docPickFailed": "Hatukuweza kufungua faili. Jaribu tena.",
+  "@docPickFailed": {
+    "x-review": "needs-review"
+  },
+  "docUploadFailed": "Hatukuweza kupakia. Angalia mtandao wako kisha ujaribu tena.",
+  "@docUploadFailed": {
+    "x-review": "needs-review"
+  },
+  "verificationTitle": "Uthibitisho",
+  "@verificationTitle": {
+    "x-review": "needs-review"
+  },
+  "verificationPendingTitle": "Hati zako zinakaguliwa",
+  "@verificationPendingTitle": {
+    "x-review": "needs-review"
+  },
+  "verificationPendingBody": "Tutakujulisha ukaguzi ukikamilika.",
+  "@verificationPendingBody": {
+    "x-review": "needs-review"
+  },
+  "verificationApprovedTitle": "Umeidhinishwa",
+  "@verificationApprovedTitle": {
+    "x-review": "needs-review"
+  },
+  "verificationApprovedBody": "Unaweza kuingia mtandaoni na kuanza kupokea maombi.",
+  "@verificationApprovedBody": {
+    "x-review": "needs-review"
+  },
+  "verificationRejectedTitle": "Baadhi ya hati zinahitaji kurekebishwa",
+  "@verificationRejectedTitle": {
+    "x-review": "needs-review"
+  },
+  "verificationRejectedBody": "Angalia sababu kisha upakie hati mpya.",
+  "@verificationRejectedBody": {
+    "x-review": "needs-review"
+  },
+  "verificationIncompleteTitle": "Maliza kupakia hati zako",
+  "@verificationIncompleteTitle": {
+    "x-review": "needs-review"
+  },
+  "verificationIncompleteBody": "Ukaguzi unaanza kila hati ikishapakiwa.",
+  "@verificationIncompleteBody": {
+    "x-review": "needs-review"
+  },
+  "goToRiderHome": "Nenda ukurasa wa mwendesha boda",
+  "@goToRiderHome": {
+    "x-review": "needs-review"
+  },
+  "fixDocumentsButton": "Pakia hati",
+  "@fixDocumentsButton": {
+    "x-review": "needs-review"
+  },
+  "viewDocumentsButton": "Tazama hati",
+  "@viewDocumentsButton": {
+    "x-review": "needs-review"
+  },
+  "refreshButton": "Onyesha upya",
+  "@refreshButton": {
+    "x-review": "needs-review"
+  },
+  "riderNotRegisteredTitle": "Bado hujajisajili kama mwendesha boda",
+  "@riderNotRegisteredTitle": {
+    "x-review": "needs-review"
+  },
+  "riderOnline": "Uko mtandaoni",
+  "@riderOnline": {
+    "x-review": "needs-review"
+  },
+  "riderOffline": "Hauko mtandaoni",
+  "@riderOffline": {
+    "x-review": "needs-review"
+  },
+  "riderOnlineBody": "Unapokea maombi yenye kuchukua ndani ya {distance}",
+  "@riderOnlineBody": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "riderOfflineBody": "Ingia mtandaoni ili upokee maombi ya mizigo na abiria.",
+  "@riderOfflineBody": {
+    "x-review": "needs-review"
+  },
+  "riderSettingsSummary": "Umbali wa kuchukua {radius} · Mizigo {delivery}/km · Abiria {ride}/km",
+  "@riderSettingsSummary": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      },
+      "delivery": {
+        "type": "String"
+      },
+      "ride": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "riderPlate": "Boda boda {plate}",
+  "@riderPlate": {
+    "placeholders": {
+      "plate": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "blockNotVerifiedTitle": "Akaunti yako bado haijaidhinishwa",
+  "@blockNotVerifiedTitle": {
+    "x-review": "needs-review"
+  },
+  "blockNotVerifiedBody": "Utaweza kuingia mtandaoni RideLink ikishaidhinisha hati zako.",
+  "@blockNotVerifiedBody": {
+    "x-review": "needs-review"
+  },
+  "viewStatusButton": "Tazama hali",
+  "@viewStatusButton": {
+    "x-review": "needs-review"
+  },
+  "blockDocumentsTitle": "Hati zinahitaji kushughulikiwa",
+  "@blockDocumentsTitle": {
+    "x-review": "needs-review"
+  },
+  "blockDocumentsBody": "Huisha au pakia: {documents}",
+  "@blockDocumentsBody": {
+    "placeholders": {
+      "documents": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "blockDocumentsBodyGeneric": "Hati moja au zaidi hazipo au zimeisha muda.",
+  "@blockDocumentsBodyGeneric": {
+    "x-review": "needs-review"
+  },
+  "updateDocumentsButton": "Sasisha hati",
+  "@updateDocumentsButton": {
+    "x-review": "needs-review"
+  },
+  "blockPausedTitle": "Umesimamishwa hadi {time}",
+  "@blockPausedTitle": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "blockPausedMissedPickups": "Baada ya kukosa kuchukua mara {count} ndani ya saa 24, hutapokea maombi hadi wakati huo.",
+  "@blockPausedMissedPickups": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "blockPausedBody": "Hutapokea maombi hadi wakati huo.",
+  "@blockPausedBody": {
+    "x-review": "needs-review"
+  },
+  "blockLocationTitle": "Washa eneo ili uingie mtandaoni",
+  "@blockLocationTitle": {
+    "x-review": "needs-review"
+  },
+  "blockLocationBody": "RideLink hutumia eneo lako ukiwa mtandaoni ili wateja wakupate na kuchukua kurekodiwe.",
+  "@blockLocationBody": {
+    "x-review": "needs-review"
+  },
+  "blockErrorTitle": "Hatukuweza kubadilisha hali yako",
+  "@blockErrorTitle": {
+    "x-review": "needs-review"
+  },
+  "onlineNotificationTitle": "Uko mtandaoni",
+  "@onlineNotificationTitle": {
+    "x-review": "needs-review"
+  },
+  "onlineNotificationBody": "RideLink inatumia eneo lako kwa maombi na kuchukua mizigo.",
+  "@onlineNotificationBody": {
+    "x-review": "needs-review"
+  },
+  "onlineNotificationChannel": "Hali ya mtandaoni",
+  "@onlineNotificationChannel": {
+    "x-review": "needs-review"
+  },
+  "riderOfferTitle": "Ombi jipya",
+  "@riderOfferTitle": {
+    "x-review": "needs-review"
+  },
+  "riderOfferChecking": "Muda umeisha. Tunaangalia ombi…",
+  "@riderOfferChecking": {
+    "x-review": "needs-review"
+  },
+  "youEarn": "Utapata",
+  "@youEarn": {
+    "x-review": "needs-review"
+  },
+  "reachPickupWithin": "Fika mahali pa kuchukua ndani ya dakika {minutes}",
+  "@reachPickupWithin": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "acceptButton": "Kubali",
+  "@acceptButton": {
+    "x-review": "needs-review"
+  },
+  "declineButton": "Kataa",
+  "@declineButton": {
+    "x-review": "needs-review"
+  },
+  "acceptNeedsLocation": "Washa eneo ili ukubali. Eneo lako lazima liwe la sasa.",
+  "@acceptNeedsLocation": {
+    "x-review": "needs-review"
+  },
+  "acceptFailed": "Hatukuweza kukubali. Jaribu tena.",
+  "@acceptFailed": {
+    "x-review": "needs-review"
+  },
+  "declineFailed": "Hatukuweza kukataa. Jaribu tena.",
+  "@declineFailed": {
+    "x-review": "needs-review"
+  },
+  "riderOfferExpired": "Ombi limeisha muda.",
+  "@riderOfferExpired": {
+    "x-review": "needs-review"
+  },
+  "riderOfferDeclined": "Umekataa ombi.",
+  "@riderOfferDeclined": {
+    "x-review": "needs-review"
+  },
+  "riderOfferTaken": "Ombi hili halipatikani tena.",
+  "@riderOfferTaken": {
+    "x-review": "needs-review"
+  },
+  "riderOfferCancelled": "Mteja ameghairi ombi.",
+  "@riderOfferCancelled": {
+    "x-review": "needs-review"
+  },
+  "jobTitle": "Kazi ya sasa",
+  "@jobTitle": {
+    "x-review": "needs-review"
+  },
+  "jobToPickup": "Elekea mahali pa kuchukua",
+  "@jobToPickup": {
+    "x-review": "needs-review"
+  },
+  "jobAtPickup": "Uko mahali pa kuchukua",
+  "@jobAtPickup": {
+    "x-review": "needs-review"
+  },
+  "jobAtPickupNote": "Kufika kumerekodiwa. Chukua kisha bonyeza Nimechukua.",
+  "@jobAtPickupNote": {
+    "x-review": "needs-review"
+  },
+  "jobPickedUp": "Umechukua",
+  "@jobPickedUp": {
+    "x-review": "needs-review"
+  },
+  "jobInTransit": "Njiani kwenda mahali pa kufikisha",
+  "@jobInTransit": {
+    "x-review": "needs-review"
+  },
+  "jobAtDropoff": "Uko mahali pa kufikisha",
+  "@jobAtDropoff": {
+    "x-review": "needs-review"
+  },
+  "jobAtDropoffBody": "Omba malipo kutoka kwa mteja kabla ya kukabidhi.",
+  "@jobAtDropoffBody": {
+    "x-review": "needs-review"
+  },
+  "jobPayment": "Malipo",
+  "@jobPayment": {
+    "x-review": "needs-review"
+  },
+  "jobWaitingForSender": "Unasubiri mteja alipe {amount} taslimu.",
+  "@jobWaitingForSender": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "jobSenderPaid": "Mteja anasema amelipa {amount} taslimu. Thibitisha ukishapokea.",
+  "@jobSenderPaid": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "jobPaid": "Malipo yamepokelewa",
+  "@jobPaid": {
+    "x-review": "needs-review"
+  },
+  "jobPaidBody": "Malipo yamethibitishwa. Kabidhi, kisha weka alama hapa chini.",
+  "@jobPaidBody": {
+    "x-review": "needs-review"
+  },
+  "jobHandedOver": "Imekabidhiwa",
+  "@jobHandedOver": {
+    "x-review": "needs-review"
+  },
+  "jobCompleted": "Kazi imekamilika",
+  "@jobCompleted": {
+    "x-review": "needs-review"
+  },
+  "jobCompletedBody": "Umepata {amount}.",
+  "@jobCompletedBody": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "jobCancelled": "Kazi imeghairiwa",
+  "@jobCancelled": {
+    "x-review": "needs-review"
+  },
+  "jobCancelledBySender": "Mteja ameghairi oda hii.",
+  "@jobCancelledBySender": {
+    "x-review": "needs-review"
+  },
+  "jobCancelledTimeout": "Muda wa kufika mahali pa kuchukua umepita, kwa hiyo oda imeghairiwa.",
+  "@jobCancelledTimeout": {
+    "x-review": "needs-review"
+  },
+  "jobCancelledByYou": "Umeghairi oda hii.",
+  "@jobCancelledByYou": {
+    "x-review": "needs-review"
+  },
+  "jobCancelledGeneric": "Oda hii imeghairiwa.",
+  "@jobCancelledGeneric": {
+    "x-review": "needs-review"
+  },
+  "agreedPrice": "Bei iliyokubaliwa",
+  "@agreedPrice": {
+    "x-review": "needs-review"
+  },
+  "reachPickupIn": "Fika mahali pa kuchukua ndani ya",
+  "@reachPickupIn": {
+    "x-review": "needs-review"
+  },
+  "pickupDeadlineAt": "Mwisho {time}",
+  "@pickupDeadlineAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "arrivalAutoNote": "Kufika hurekodiwa moja kwa moja ukiwa ndani ya mita 150 kutoka mahali pa kuchukua.",
+  "@arrivalAutoNote": {
+    "x-review": "needs-review"
+  },
+  "headingToPickup": "Unaelekea kuchukua",
+  "@headingToPickup": {
+    "x-review": "needs-review"
+  },
+  "headingToDropoff": "Unaelekea kufikisha",
+  "@headingToDropoff": {
+    "x-review": "needs-review"
+  },
+  "receiverIs": "Mpokeaji: {name}",
+  "@receiverIs": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "actionArrivedAtPickup": "Nimefika",
+  "@actionArrivedAtPickup": {
+    "x-review": "needs-review"
+  },
+  "actionPickedUp": "Nimechukua",
+  "@actionPickedUp": {
+    "x-review": "needs-review"
+  },
+  "actionStartTrip": "Anza safari kwenda kufikisha",
+  "@actionStartTrip": {
+    "x-review": "needs-review"
+  },
+  "actionArrivedAtDropoff": "Nimefika mahali pa kufikisha",
+  "@actionArrivedAtDropoff": {
+    "x-review": "needs-review"
+  },
+  "actionRequestPayment": "Omba malipo",
+  "@actionRequestPayment": {
+    "x-review": "needs-review"
+  },
+  "actionHandOver": "Weka alama imekabidhiwa",
+  "@actionHandOver": {
+    "x-review": "needs-review"
+  },
+  "actionComplete": "Kamilisha kazi",
+  "@actionComplete": {
+    "x-review": "needs-review"
+  },
+  "jobActionFailed": "Hatukuweza kusasisha kazi. Jaribu tena.",
+  "@jobActionFailed": {
+    "x-review": "needs-review"
+  },
+  "paymentReceivedButton": "Nimepokea malipo",
+  "@paymentReceivedButton": {
+    "x-review": "needs-review"
+  },
+  "paymentReceivedConfirmTitle": "Umepokea {amount} taslimu?",
+  "@paymentReceivedConfirmTitle": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "paymentReceivedConfirmBody": "Thibitisha tu pesa zikiwa mkononi mwako. Hii inarekodiwa na haiwezi kubadilishwa.",
+  "@paymentReceivedConfirmBody": {
+    "x-review": "needs-review"
+  },
+  "paymentNotReceivedButton": "Sijapokea",
+  "@paymentNotReceivedButton": {
+    "x-review": "needs-review"
+  },
+  "paymentNotReceivedConfirmTitle": "Ripoti kwamba hujapokea malipo?",
+  "@paymentNotReceivedConfirmTitle": {
+    "x-review": "needs-review"
+  },
+  "paymentNotReceivedConfirmBody": "Oda itapelekwa RideLink ikaguliwe.",
+  "@paymentNotReceivedConfirmBody": {
+    "x-review": "needs-review"
+  },
+  "goBackButton": "Rudi",
+  "@goBackButton": {
+    "x-review": "needs-review"
+  },
+  "riderCancelButton": "Ghairi kazi",
+  "@riderCancelButton": {
+    "x-review": "needs-review"
+  },
+  "riderCancelTitle": "Ghairi kazi hii?",
+  "@riderCancelTitle": {
+    "x-review": "needs-review"
+  },
+  "riderCancelWithinGrace": "Ulikubali chini ya dakika 2 zilizopita, kwa hiyo kughairi sasa hakutahesabiwa kwenye kusimamishwa (zimebaki {time}). Bado kutaonekana kwenye rekodi yako ya kughairi.",
+  "@riderCancelWithinGrace": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "riderCancelAfterGrace": "Zaidi ya dakika 2 zimepita tangu ukubali, kwa hiyo hii inahesabiwa kama kukosa kuchukua. Mara 3 ndani ya saa 24 hukusimamisha.",
+  "@riderCancelAfterGrace": {
+    "x-review": "needs-review"
+  },
+  "riderCancelConfirm": "Ghairi kazi",
+  "@riderCancelConfirm": {
+    "x-review": "needs-review"
+  },
+  "riderCancelKeep": "Endelea na kazi",
+  "@riderCancelKeep": {
+    "x-review": "needs-review"
+  },
+  "doneButton": "Sawa",
+  "@doneButton": {
+    "x-review": "needs-review"
+  },
+  "paymentUnderReview": "Tunakagua malipo haya",
+  "@paymentUnderReview": {
+    "x-review": "needs-review"
+  },
+  "paymentUnderReviewRiderBody": "Umeripoti kwamba hukupokea pesa. RideLink itakagua oda hii.",
+  "@paymentUnderReviewRiderBody": {
+    "x-review": "needs-review"
+  },
+  "paymentUnderReviewSenderBody": "Mwendesha boda wako ameripoti kwamba hakupokea pesa. RideLink itakagua oda hii.",
+  "@paymentUnderReviewSenderBody": {
+    "x-review": "needs-review"
+  },
+  "trackingScreenTitle": "Oda yako",
+  "@trackingScreenTitle": {
+    "x-review": "needs-review"
+  },
+  "trackingLoadFailed": "Hatukuweza kupakia oda yako.",
+  "@trackingLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "trackingActionFailed": "Hatukuweza kusasisha oda. Jaribu tena.",
+  "@trackingActionFailed": {
+    "x-review": "needs-review"
+  },
+  "riderArrivesIn": "Mwendesha boda atafika baada ya dakika {minutes}",
+  "@riderArrivesIn": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "riderArrivedAtPickup": "Mwendesha boda wako amefika",
+  "@riderArrivedAtPickup": {
+    "x-review": "needs-review"
+  },
+  "trackingOnTheWay": "Njiani kwenda mahali pa kufikisha",
+  "@trackingOnTheWay": {
+    "x-review": "needs-review"
+  },
+  "riderAtDropoff": "Mwendesha boda wako yuko mahali pa kufikisha",
+  "@riderAtDropoff": {
+    "x-review": "needs-review"
+  },
+  "delivered": "Imefikishwa",
+  "@delivered": {
+    "x-review": "needs-review"
+  },
+  "tripComplete": "Safari imekamilika",
+  "@tripComplete": {
+    "x-review": "needs-review"
+  },
+  "orderCancelledTimeout": "Mwendesha boda hakufika kwa wakati, kwa hiyo oda imeghairiwa.",
+  "@orderCancelledTimeout": {
+    "x-review": "needs-review"
+  },
+  "orderCancelledByRider": "Mwendesha boda ameghairi oda hii.",
+  "@orderCancelledByRider": {
+    "x-review": "needs-review"
+  },
+  "orderCancelledBySender": "Umeghairi oda hii.",
+  "@orderCancelledBySender": {
+    "x-review": "needs-review"
+  },
+  "stepAccepted": "Imekubaliwa",
+  "@stepAccepted": {
+    "x-review": "needs-review"
+  },
+  "stepAtPickup": "Mahali pa kuchukua",
+  "@stepAtPickup": {
+    "x-review": "needs-review"
+  },
+  "stepInTransit": "Njiani",
+  "@stepInTransit": {
+    "x-review": "needs-review"
+  },
+  "stepPayment": "Malipo",
+  "@stepPayment": {
+    "x-review": "needs-review"
+  },
+  "stepDelivered": "Imefikishwa",
+  "@stepDelivered": {
+    "x-review": "needs-review"
+  },
+  "stepDroppedOff": "Umefikishwa",
+  "@stepDroppedOff": {
+    "x-review": "needs-review"
+  },
+  "payInCash": "Lipa {amount} taslimu kwa mwendesha boda wako",
+  "@payInCash": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "payInCashBody": "Kisha bonyeza \"Nimelipa\". Mwendesha boda atathibitisha akipokea pesa.",
+  "@payInCashBody": {
+    "x-review": "needs-review"
+  },
+  "ivePaidButton": "Nimelipa",
+  "@ivePaidButton": {
+    "x-review": "needs-review"
+  },
+  "ivePaidConfirmTitle": "Umelipa {amount}?",
+  "@ivePaidConfirmTitle": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "ivePaidConfirmBody": "Thibitisha tu baada ya kumpa mwendesha boda pesa. Hii inarekodiwa.",
+  "@ivePaidConfirmBody": {
+    "x-review": "needs-review"
+  },
+  "waitingForRiderConfirm": "Unasubiri mwendesha boda athibitishe malipo",
+  "@waitingForRiderConfirm": {
+    "x-review": "needs-review"
+  },
+  "paymentConfirmed": "Malipo ya {amount} yamethibitishwa",
+  "@paymentConfirmed": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "viewTerms": "Tazama masharti",
+  "@viewTerms": {
+    "x-review": "needs-review"
+  },
+  "termsTitle": "Masharti yaliyokubaliwa",
+  "@termsTitle": {
+    "x-review": "needs-review"
+  },
+  "termsLockedNote": "Masharti haya yalifungwa mwendesha boda alipokubali.",
+  "@termsLockedNote": {
+    "x-review": "needs-review"
+  },
+  "termsPickupWindow": "Muda wa kufika kuchukua",
+  "@termsPickupWindow": {
+    "x-review": "needs-review"
+  },
+  "minutesShort": "Dakika {minutes}",
+  "@minutesShort": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "senderCancelButton": "Ghairi oda",
+  "@senderCancelButton": {
+    "x-review": "needs-review"
+  },
+  "senderCancelTitle": "Ghairi oda hii?",
+  "@senderCancelTitle": {
+    "x-review": "needs-review"
+  },
+  "senderCancelBody": "Mwendesha boda amekubali na yuko njiani. Oda yako itaghairiwa.",
+  "@senderCancelBody": {
+    "x-review": "needs-review"
+  },
+  "senderCancelKeep": "Endelea na oda",
+  "@senderCancelKeep": {
+    "x-review": "needs-review"
+  },
+  "discardOrderTitle": "Futa oda hii?",
+  "@discardOrderTitle": {
+    "x-review": "needs-review"
+  },
+  "discardOrderBody": "Oda yako itaghairiwa.",
+  "@discardOrderBody": {
+    "x-review": "needs-review"
+  },
+  "discardOrderConfirm": "Futa",
+  "@discardOrderConfirm": {
+    "x-review": "needs-review"
+  },
+  "discardOrderKeep": "Endelea na oda",
+  "@discardOrderKeep": {
+    "x-review": "needs-review"
+  },
+  "discardOrderFailed": "Hatukuweza kufuta oda. Jaribu tena.",
+  "@discardOrderFailed": {
+    "x-review": "needs-review"
+  },
+  "activeOrderBanner": "Una oda inayoendelea",
+  "@activeOrderBanner": {
+    "x-review": "needs-review"
+  },
+  "viewButton": "Tazama",
+  "@viewButton": {
+    "x-review": "needs-review"
+  },
+  "settingsTitle": "Bei na mipangilio",
+  "@settingsTitle": {
+    "x-review": "needs-review"
+  },
+  "settingsDistanceSection": "Umbali",
+  "@settingsDistanceSection": {
+    "x-review": "needs-review"
+  },
+  "settingsPickupRadius": "Umbali wa kuchukua",
+  "@settingsPickupRadius": {
+    "x-review": "needs-review"
+  },
+  "settingsPickupRadiusHelp": "Umbali utakaosafiri kuchukua. Hadi {max}.",
+  "@settingsPickupRadiusHelp": {
+    "placeholders": {
+      "max": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "settingsMaxDistance": "Umbali wa bei ya jukwaa",
+  "@settingsMaxDistance": {
+    "x-review": "needs-review"
+  },
+  "settingsMaxDistanceHelp": "Safari hadi umbali huu zinatumia bei ya jukwaa; bei yako inatumika zaidi ya hapo. Angalau {min}.",
+  "@settingsMaxDistanceHelp": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "settingsRatesSection": "Bei zako",
+  "@settingsRatesSection": {
+    "x-review": "needs-review"
+  },
+  "settingsRatesNote": "Hutozwa kwa kila km zaidi ya umbali wa bei ya jukwaa.",
+  "@settingsRatesNote": {
+    "x-review": "needs-review"
+  },
+  "settingsDeliveryRate": "Bei ya mizigo",
+  "@settingsDeliveryRate": {
+    "x-review": "needs-review"
+  },
+  "settingsRideRate": "Bei ya abiria",
+  "@settingsRideRate": {
+    "x-review": "needs-review"
+  },
+  "settingsRateRange": "Kati ya {min} na {max} kwa km",
+  "@settingsRateRange": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "settingsLoadSection": "Mzigo",
+  "@settingsLoadSection": {
+    "x-review": "needs-review"
+  },
+  "settingsMaxWeight": "Uzito wa juu wa mzigo",
+  "@settingsMaxWeight": {
+    "x-review": "needs-review"
+  },
+  "settingsMaxWeightHelp": "Mzigo mzito zaidi utakaobeba.",
+  "@settingsMaxWeightHelp": {
+    "x-review": "needs-review"
+  },
+  "settingsSave": "Hifadhi",
+  "@settingsSave": {
+    "x-review": "needs-review"
+  },
+  "settingsSaved": "Mipangilio imehifadhiwa",
+  "@settingsSaved": {
+    "x-review": "needs-review"
+  },
+  "settingsSaveFailed": "Hatukuweza kuhifadhi. Jaribu tena.",
+  "@settingsSaveFailed": {
+    "x-review": "needs-review"
+  },
+  "settingsLoadFailed": "Hatukuweza kupakia mipangilio yako.",
+  "@settingsLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "settingsRequired": "Weka thamani",
+  "@settingsRequired": {
+    "x-review": "needs-review"
+  },
+  "settingsNotNumber": "Weka nambari",
+  "@settingsNotNumber": {
+    "x-review": "needs-review"
+  },
+  "settingsMustBePositive": "Weka thamani zaidi ya 0",
+  "@settingsMustBePositive": {
+    "x-review": "needs-review"
+  },
+  "settingsTooHigh": "Thamani hii ni kubwa mno",
+  "@settingsTooHigh": {
+    "x-review": "needs-review"
+  },
+  "settingsRadiusTooHigh": "Isizidi {max}",
+  "@settingsRadiusTooHigh": {
+    "placeholders": {
+      "max": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "settingsDistanceTooLow": "Angalau {min}",
+  "@settingsDistanceTooLow": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "unitKm": "km",
+  "@unitKm": {
+    "x-review": "needs-review"
+  },
+  "unitPerKm": "KES/km",
+  "@unitPerKm": {
+    "x-review": "needs-review"
+  },
+  "unitKg": "kg",
+  "@unitKg": {
+    "x-review": "needs-review"
+  },
+  "errCodeInvalidRequest": "Baadhi ya taarifa si sahihi. Ziangalie kisha ujaribu tena.",
+  "@errCodeInvalidRequest": {
+    "x-review": "needs-review"
+  },
+  "errCodeUnauthorized": "Muda wako wa kuingia umeisha. Tafadhali ingia tena.",
+  "@errCodeUnauthorized": {
+    "x-review": "needs-review"
+  },
+  "errCodeForbidden": "Huna ruhusa ya kufanya hivi.",
+  "@errCodeForbidden": {
+    "x-review": "needs-review"
+  },
+  "errCodeNotFound": "Hatukupata hicho. Huenda kimeondolewa.",
+  "@errCodeNotFound": {
+    "x-review": "needs-review"
+  },
+  "errCodeConflict": "Hili limebadilika. Onyesha upya kisha ujaribu tena.",
+  "@errCodeConflict": {
+    "x-review": "needs-review"
+  },
+  "errCodeInvalidStatus": "Oda hii imeshabadilika. Onyesha upya kisha ujaribu tena.",
+  "@errCodeInvalidStatus": {
+    "x-review": "needs-review"
+  },
+  "errCodeFileTooLarge": "Faili ni kubwa mno. Tumia faili lililo chini ya MB 10.",
+  "@errCodeFileTooLarge": {
+    "x-review": "needs-review"
+  },
+  "errCodeInternalError": "Kuna hitilafu upande wetu. Tafadhali jaribu tena.",
+  "@errCodeInternalError": {
+    "x-review": "needs-review"
+  },
+  "errCodeUpstreamUnavailable": "Huduma tunayoitegemea haijibu. Tafadhali jaribu tena.",
+  "@errCodeUpstreamUnavailable": {
+    "x-review": "needs-review"
+  },
+  "errCodeServiceUnavailable": "Hii haipatikani kwa sasa. Tafadhali jaribu tena baadaye.",
+  "@errCodeServiceUnavailable": {
+    "x-review": "needs-review"
+  },
+  "errCodeInvalidName": "Majina yawe na herufi 1 hadi 50.",
+  "@errCodeInvalidName": {
+    "x-review": "needs-review"
+  },
+  "errCodeMissingFields": "Jaza sehemu zote zinazohitajika.",
+  "@errCodeMissingFields": {
+    "x-review": "needs-review"
+  },
+  "errCodePasswordBreached": "Nenosiri hili limeonekana kwenye uvujaji wa data. Chagua jingine.",
+  "@errCodePasswordBreached": {
+    "x-review": "needs-review"
+  },
+  "errCodePasswordReused": "Nenosiri jipya lazima liwe tofauti na la sasa.",
+  "@errCodePasswordReused": {
+    "x-review": "needs-review"
+  },
+  "errCodeSessionExpired": "Muda wako wa kuingia umeisha. Tafadhali ingia tena.",
+  "@errCodeSessionExpired": {
+    "x-review": "needs-review"
+  },
+  "errCodeEmailNotConfirmed": "Thibitisha barua pepe yako kwanza kwa nambari tuliyokutumia.",
+  "@errCodeEmailNotConfirmed": {
+    "x-review": "needs-review"
+  },
+  "errCodeErrandUnavailable": "Huduma ya kutumwa bado haipatikani.",
+  "@errCodeErrandUnavailable": {
+    "x-review": "needs-review"
+  },
+  "errCodeUnknownCategory": "Chagua aina ya mzigo kutoka kwenye orodha.",
+  "@errCodeUnknownCategory": {
+    "x-review": "needs-review"
+  },
+  "errCodeCategoryNotAllowed": "Mzigo huu hauwezi kutumwa kupitia RideLink.",
+  "@errCodeCategoryNotAllowed": {
+    "x-review": "needs-review"
+  },
+  "errCodeOrderNotEditable": "Njia haiwezi kubadilishwa tena.",
+  "@errCodeOrderNotEditable": {
+    "x-review": "needs-review"
+  },
+  "errCodeOrderNotCancellable": "Oda hii haiwezi kughairiwa tena.",
+  "@errCodeOrderNotCancellable": {
+    "x-review": "needs-review"
+  },
+  "errCodeOrderUnavailable": "Oda hii haipatikani tena.",
+  "@errCodeOrderUnavailable": {
+    "x-review": "needs-review"
+  },
+  "errCodeNoActiveOffer": "Hakuna ombi lililo wazi kwa oda hii.",
+  "@errCodeNoActiveOffer": {
+    "x-review": "needs-review"
+  },
+  "errCodeOfferNotForYou": "Ombi hili lilitumwa kwa mwendesha boda mwingine.",
+  "@errCodeOfferNotForYou": {
+    "x-review": "needs-review"
+  },
+  "errCodeRiderNotAvailable": "Mwendesha boda huyu hawezi kuchukua oda sasa. Chagua mwingine.",
+  "@errCodeRiderNotAvailable": {
+    "x-review": "needs-review"
+  },
+  "errCodeRiderNotFound": "Mwendesha boda hakupatikana.",
+  "@errCodeRiderNotFound": {
+    "x-review": "needs-review"
+  },
+  "errCodeRiderAlreadyRegistered": "Tayari umesajiliwa kama mwendesha boda.",
+  "@errCodeRiderAlreadyRegistered": {
+    "x-review": "needs-review"
+  },
+  "errCodeRiderNotVerified": "Ni waendesha boda waliothibitishwa pekee wanaoweza kuwa mtandaoni.",
+  "@errCodeRiderNotVerified": {
+    "x-review": "needs-review"
+  },
+  "errCodeDocumentsMissing": "Baadhi ya hati zinazohitajika hazipo au zimeisha muda.",
+  "@errCodeDocumentsMissing": {
+    "x-review": "needs-review"
+  },
+  "errCodeRiderPaused": "Umesimamishwa kwa muda baada ya kukosa kufika mahali pa kuchukua. Jaribu tena muda huo ukiisha.",
+  "@errCodeRiderPaused": {
+    "x-review": "needs-review"
+  },
+  "errCodeLocationRequired": "Tunahitaji mahali ulipo sasa. Washa eneo kisha ujaribu tena.",
+  "@errCodeLocationRequired": {
+    "x-review": "needs-review"
+  },
+  "errCodeLocationStale": "Mahali pako hapajasasishwa. Subiri kidogo kisha ujaribu tena.",
+  "@errCodeLocationStale": {
+    "x-review": "needs-review"
+  },
+  "errCodeTooFarFromPickup": "Uko mbali sana na mahali pa kuchukua.",
+  "@errCodeTooFarFromPickup": {
+    "x-review": "needs-review"
+  },
+  "errCodePickupWindowPassed": "Muda wa kufika mahali pa kuchukua umepita.",
+  "@errCodePickupWindowPassed": {
+    "x-review": "needs-review"
+  },
+  "errCodeAlreadyArrived": "Kufika kwako tayari kumerekodiwa.",
+  "@errCodeAlreadyArrived": {
+    "x-review": "needs-review"
+  },
+  "errCodeValueOutOfRange": "Thamani moja iko nje ya kiwango kinachoruhusiwa.",
+  "@errCodeValueOutOfRange": {
+    "x-review": "needs-review"
+  },
+  "errCodeInvalidFileType": "Aina hii ya faili haikubaliki.",
+  "@errCodeInvalidFileType": {
+    "x-review": "needs-review"
+  },
+  "errCodePhotoNotFound": "Picha haipatikani.",
+  "@errCodePhotoNotFound": {
+    "x-review": "needs-review"
+  },
+  "errCodeAlreadyRated": "Tayari umeitathmini oda hii.",
+  "@errCodeAlreadyRated": {
+    "x-review": "needs-review"
+  },
+  "errCodeNoAgreedPrice": "Oda hii bado haina bei iliyokubaliwa.",
+  "@errCodeNoAgreedPrice": {
+    "x-review": "needs-review"
+  },
+  "errCodeReservedEventType": "Ni RideLink pekee inayoweza kuongeza kipengele hiki kwenye rekodi.",
+  "@errCodeReservedEventType": {
+    "x-review": "needs-review"
+  },
+  "errCodeInvalidMediaKind": "Aina hii ya picha haikubaliki.",
+  "@errCodeInvalidMediaKind": {
+    "x-review": "needs-review"
+  },
+  "errCodeInvalidHash": "Picha haikuweza kuthibitishwa. Tafadhali jaribu tena.",
+  "@errCodeInvalidHash": {
+    "x-review": "needs-review"
+  },
+  "errCodeHashMismatch": "Picha ilibadilika wakati wa kupakia. Tafadhali jaribu tena.",
+  "@errCodeHashMismatch": {
+    "x-review": "needs-review"
+  },
+  "evidenceTitle": "Rekodi ya ushahidi",
+  "@evidenceTitle": {
+    "x-review": "needs-review"
+  },
+  "evidenceIntro": "Kila hatua ya oda hii inarekodiwa kwenye mnyororo usioweza kubadilishwa kwa siri. Unaweza kuhakikisha haujabadilishwa.",
+  "@evidenceIntro": {
+    "x-review": "needs-review"
+  },
+  "evidenceTimelineTitle": "Mfuatano wa matukio",
+  "@evidenceTimelineTitle": {
+    "x-review": "needs-review"
+  },
+  "evidenceEmpty": "Bado hakuna kilichorekodiwa.",
+  "@evidenceEmpty": {
+    "x-review": "needs-review"
+  },
+  "evidenceLoadFailed": "Imeshindikana kupakia rekodi ya ushahidi.",
+  "@evidenceLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "evidenceVerifyButton": "Thibitisha rekodi",
+  "@evidenceVerifyButton": {
+    "x-review": "needs-review"
+  },
+  "evidenceVerifyAgain": "Thibitisha tena",
+  "@evidenceVerifyAgain": {
+    "x-review": "needs-review"
+  },
+  "evidenceVerifyFailed": "Imeshindikana kukagua rekodi kwa sasa.",
+  "@evidenceVerifyFailed": {
+    "x-review": "needs-review"
+  },
+  "evidenceIntactTitle": "Rekodi iko salama",
+  "@evidenceIntactTitle": {
+    "x-review": "needs-review"
+  },
+  "evidenceIntactBody": "{count, plural, =1{Tukio 1 limekaguliwa. Hakuna kilichobadilishwa.} other{Matukio {count} yamekaguliwa. Hakuna kilichobadilishwa.}}",
+  "@evidenceIntactBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "evidenceTamperedTitle": "Rekodi haijathibitishwa",
+  "@evidenceTamperedTitle": {
+    "x-review": "needs-review"
+  },
+  "evidenceTamperedBody": "{count, plural, =1{Tukio 1 limekaguliwa. Mnyororo haulingani, hivyo huenda rekodi hii imebadilishwa.} other{Matukio {count} yamekaguliwa. Mnyororo haulingani, hivyo huenda rekodi hii imebadilishwa.}}",
+  "@evidenceTamperedBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "evidenceHash": "Hashi {hash}",
+  "@evidenceHash": {
+    "placeholders": {
+      "hash": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "evidenceOpenPhoto": "Fungua picha",
+  "@evidenceOpenPhoto": {
+    "x-review": "needs-review"
+  },
+  "evidenceActorYou": "Wewe",
+  "@evidenceActorYou": {
+    "x-review": "needs-review"
+  },
+  "evidenceActorRider": "Mwendesha boda",
+  "@evidenceActorRider": {
+    "x-review": "needs-review"
+  },
+  "evidenceActorSender": "Mteja",
+  "@evidenceActorSender": {
+    "x-review": "needs-review"
+  },
+  "evidenceActorPassenger": "Abiria",
+  "@evidenceActorPassenger": {
+    "x-review": "needs-review"
+  },
+  "evidenceActorOtherParty": "Upande mwingine",
+  "@evidenceActorOtherParty": {
+    "x-review": "needs-review"
+  },
+  "evidenceActorRideLink": "RideLink",
+  "@evidenceActorRideLink": {
+    "x-review": "needs-review"
+  },
+  "evidencePickupPhoto": "Picha ya kuchukua",
+  "@evidencePickupPhoto": {
+    "x-review": "needs-review"
+  },
+  "evidenceHandoverPhoto": "Picha ya kukabidhi",
+  "@evidenceHandoverPhoto": {
+    "x-review": "needs-review"
+  },
+  "evidenceDropoffPhoto": "Picha ya kufikisha",
+  "@evidenceDropoffPhoto": {
+    "x-review": "needs-review"
+  },
+  "evidenceItemPhoto": "Picha ya mzigo",
+  "@evidenceItemPhoto": {
+    "x-review": "needs-review"
+  },
+  "evidencePickupPhotoHint": "Piga picha ya mzigo unapouchukua.",
+  "@evidencePickupPhotoHint": {
+    "x-review": "needs-review"
+  },
+  "evidencePickupPhotoHintRide": "Piga picha mahali pa kuchukua.",
+  "@evidencePickupPhotoHintRide": {
+    "x-review": "needs-review"
+  },
+  "evidenceHandoverPhotoHint": "Piga picha ya mzigo unapoukabidhi.",
+  "@evidenceHandoverPhotoHint": {
+    "x-review": "needs-review"
+  },
+  "evidenceHandoverPhotoHintRide": "Piga picha mahali pa kufikisha.",
+  "@evidenceHandoverPhotoHintRide": {
+    "x-review": "needs-review"
+  },
+  "evidenceItemPhotoHint": "Ongeza picha ya mzigo kabla mwendesha boda hajauchukua.",
+  "@evidenceItemPhotoHint": {
+    "x-review": "needs-review"
+  },
+  "evidenceTakePhoto": "Piga picha",
+  "@evidenceTakePhoto": {
+    "x-review": "needs-review"
+  },
+  "evidenceRetake": "Piga upya",
+  "@evidenceRetake": {
+    "x-review": "needs-review"
+  },
+  "evidenceUploading": "Inapakia picha...",
+  "@evidenceUploading": {
+    "x-review": "needs-review"
+  },
+  "evidenceUploadFailed": "Imeshindikana kupakia picha. Angalia mtandao kisha ujaribu tena.",
+  "@evidenceUploadFailed": {
+    "x-review": "needs-review"
+  },
+  "evidencePhotoAdded": "Picha imeongezwa kwenye rekodi ya ushahidi",
+  "@evidencePhotoAdded": {
+    "x-review": "needs-review"
+  },
+  "evidenceEventPaymentRequested": "Malipo yameombwa",
+  "@evidenceEventPaymentRequested": {
+    "x-review": "needs-review"
+  },
+  "evidenceEventCashSent": "Pesa taslimu imewekwa alama imelipwa",
+  "@evidenceEventCashSent": {
+    "x-review": "needs-review"
+  },
+  "evidenceEventCashReceived": "Pesa taslimu imepokelewa",
+  "@evidenceEventCashReceived": {
+    "x-review": "needs-review"
+  },
+  "evidenceEventCashDisputed": "Imeripotiwa pesa taslimu haijapokelewa",
+  "@evidenceEventCashDisputed": {
+    "x-review": "needs-review"
+  },
+  "optionalLabel": "Si lazima",
+  "@optionalLabel": {
+    "x-review": "needs-review"
+  },
+  "rateRiderTitle": "Mtathmini mwendesha boda wako",
+  "@rateRiderTitle": {
+    "x-review": "needs-review"
+  },
+  "rateSenderTitle": "Mtathmini mteja",
+  "@rateSenderTitle": {
+    "x-review": "needs-review"
+  },
+  "ratePassengerTitle": "Mtathmini abiria wako",
+  "@ratePassengerTitle": {
+    "x-review": "needs-review"
+  },
+  "rateBody": "Ilikuwaje? Tathmini yako inasaidia RideLink kuaminika.",
+  "@rateBody": {
+    "x-review": "needs-review"
+  },
+  "ratingStarsLabel": "{count, plural, =1{Nyota 1} other{Nyota {count}}}",
+  "@ratingStarsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "ratingCommentLabel": "Maoni",
+  "@ratingCommentLabel": {
+    "x-review": "needs-review"
+  },
+  "ratingCommentHint": "Si lazima",
+  "@ratingCommentHint": {
+    "x-review": "needs-review"
+  },
+  "ratingSubmit": "Tuma tathmini",
+  "@ratingSubmit": {
+    "x-review": "needs-review"
+  },
+  "ratingSkip": "Ruka",
+  "@ratingSkip": {
+    "x-review": "needs-review"
+  },
+  "ratingThanks": "Asante kwa tathmini yako.",
+  "@ratingThanks": {
+    "x-review": "needs-review"
+  },
+  "ratingFailed": "Imeshindikana kuhifadhi tathmini yako. Tafadhali jaribu tena.",
+  "@ratingFailed": {
+    "x-review": "needs-review"
+  },
+  "yourRating": "Tathmini yako",
+  "@yourRating": {
+    "x-review": "needs-review"
+  },
+  "notRatedYet": "Bado hujaitathmini oda hii.",
+  "@notRatedYet": {
+    "x-review": "needs-review"
+  },
+  "rateButton": "Tathmini",
+  "@rateButton": {
+    "x-review": "needs-review"
+  },
+  "notificationsTitle": "Arifa",
+  "@notificationsTitle": {
+    "x-review": "needs-review"
+  },
+  "notificationsEmpty": "Bado hakuna arifa.",
+  "@notificationsEmpty": {
+    "x-review": "needs-review"
+  },
+  "notificationsLoadFailed": "Imeshindikana kupakia arifa.",
+  "@notificationsLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentRequestedTitle": "Malipo yameombwa",
+  "@notifPaymentRequestedTitle": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentRequestedBody": "Mwendesha boda wako ameomba malipo. Lipa {amount} taslimu.",
+  "@notifPaymentRequestedBody": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "notifPaymentRequestedBodyNoAmount": "Mwendesha boda wako ameomba malipo. Lipa kiasi kilichokubaliwa taslimu.",
+  "@notifPaymentRequestedBodyNoAmount": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentSentTitle": "Malipo ya taslimu yametumwa",
+  "@notifPaymentSentTitle": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentSentBody": "Mteja anasema amelipa {amount}. Thibitisha ukishapokea pesa.",
+  "@notifPaymentSentBody": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "notifPaymentSentBodyNoAmount": "Mteja anasema amelipa. Thibitisha ukishapokea pesa.",
+  "@notifPaymentSentBodyNoAmount": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentConfirmedTitle": "Malipo yamethibitishwa",
+  "@notifPaymentConfirmedTitle": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentConfirmedBody": "Mwendesha boda wako amethibitisha kupokea {amount} taslimu.",
+  "@notifPaymentConfirmedBody": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "notifPaymentConfirmedBodyNoAmount": "Mwendesha boda wako amethibitisha kupokea malipo yako ya taslimu.",
+  "@notifPaymentConfirmedBodyNoAmount": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentUnresolvedTitle": "Malipo hayajatatuliwa",
+  "@notifPaymentUnresolvedTitle": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentUnresolvedBody": "Mwendesha boda ameripoti kuwa pesa taslimu haijapokelewa. RideLink itakagua oda hii.",
+  "@notifPaymentUnresolvedBody": {
+    "x-review": "needs-review"
+  },
+  "notifPickupArrivedTitle": "Mwendesha boda wako amefika",
+  "@notifPickupArrivedTitle": {
+    "x-review": "needs-review"
+  },
+  "notifPickupArrivedBody": "Mwendesha boda wako yuko mahali pa kuchukua.",
+  "@notifPickupArrivedBody": {
+    "x-review": "needs-review"
+  },
+  "notifPickupTimeoutTitle": "Mwendesha boda wako hakufika kwa wakati",
+  "@notifPickupTimeoutTitle": {
+    "x-review": "needs-review"
+  },
+  "notifPickupTimeoutBody": "Oda imeghairiwa. Unaweza kuchagua mwendesha boda mwingine.",
+  "@notifPickupTimeoutBody": {
+    "x-review": "needs-review"
+  },
+  "notifPickupTimeoutRiderTitle": "Muda wa kuchukua umepita",
+  "@notifPickupTimeoutRiderTitle": {
+    "x-review": "needs-review"
+  },
+  "notifPickupTimeoutRiderBody": "Oda imeghairiwa kwa sababu hukufika mahali pa kuchukua kwa wakati. Kukosa kufika kunahesabiwa kuelekea kusimamishwa kwa muda.",
+  "@notifPickupTimeoutRiderBody": {
+    "x-review": "needs-review"
+  },
+  "notifReceiverLocationTitle": "Mpokeaji ameshiriki mahali alipo",
+  "@notifReceiverLocationTitle": {
+    "x-review": "needs-review"
+  },
+  "notifReceiverLocationBody": "Mpokeaji ameweka alama mahali hasa pa kufikisha. Fungua oda kuiona.",
+  "@notifReceiverLocationBody": {
+    "x-review": "needs-review"
+  },
+  "notifDocumentExpiringTitle": "{days, plural, =0{{doc} yako inaisha muda leo} =1{{doc} yako inaisha muda kesho} other{{doc} yako inaisha muda baada ya siku {days}}}",
+  "@notifDocumentExpiringTitle": {
+    "placeholders": {
+      "doc": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "notifDocumentExpiringBody": "Pakia hati mpya kabla ya {date} ili uendelee kupokea oda.",
+  "@notifDocumentExpiringBody": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "notifDocumentExpiredTitle": "{doc} yako imeisha muda",
+  "@notifDocumentExpiredTitle": {
+    "placeholders": {
+      "doc": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "notifDocumentExpiredBody": "Huwezi kuwa mtandaoni hadi hati mpya halali iidhinishwe.",
+  "@notifDocumentExpiredBody": {
+    "x-review": "needs-review"
+  },
+  "menuHistory": "Historia ya oda",
+  "@menuHistory": {
+    "x-review": "needs-review"
+  },
+  "menuProfile": "Wasifu",
+  "@menuProfile": {
+    "x-review": "needs-review"
+  },
+  "profileTitle": "Wasifu",
+  "@profileTitle": {
+    "x-review": "needs-review"
+  },
+  "profileLoadFailed": "Imeshindikana kupakia wasifu wako.",
+  "@profileLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "profileSave": "Hifadhi mabadiliko",
+  "@profileSave": {
+    "x-review": "needs-review"
+  },
+  "profileSaved": "Jina lako limesasishwa.",
+  "@profileSaved": {
+    "x-review": "needs-review"
+  },
+  "profileSaveFailed": "Imeshindikana kuhifadhi jina lako. Tafadhali jaribu tena.",
+  "@profileSaveFailed": {
+    "x-review": "needs-review"
+  },
+  "profileNameShownAs": "Wengine wanaona jina lako la kwanza na herufi ya kwanza ya jina la mwisho, kama \"Moses O.\"",
+  "@profileNameShownAs": {
+    "x-review": "needs-review"
+  },
+  "profileNameLocked": "Jina lako linalingana na kitambulisho chako kilichothibitishwa, hivyo haliwezi kubadilishwa hapa. Ili kulibadilisha, wasiliana na huduma kwa wateja ya RideLink.",
+  "@profileNameLocked": {
+    "x-review": "needs-review"
+  },
+  "profileLanguage": "Lugha",
+  "@profileLanguage": {
+    "x-review": "needs-review"
+  },
+  "profileLanguageValue": "Inafuata lugha ya simu yako",
+  "@profileLanguageValue": {
+    "x-review": "needs-review"
+  },
+  "historyTitle": "Historia ya oda",
+  "@historyTitle": {
+    "x-review": "needs-review"
+  },
+  "historyRiderTitle": "Historia ya safari",
+  "@historyRiderTitle": {
+    "x-review": "needs-review"
+  },
+  "historyEmpty": "Bado hakuna oda.",
+  "@historyEmpty": {
+    "x-review": "needs-review"
+  },
+  "historyLoadFailed": "Imeshindikana kupakia oda zako.",
+  "@historyLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "historyFrom": "Kutoka {place}",
+  "@historyFrom": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "orderDetailTitle": "Maelezo ya oda",
+  "@orderDetailTitle": {
+    "x-review": "needs-review"
+  },
+  "orderLoadFailed": "Imeshindikana kupakia oda hii.",
+  "@orderLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "openLiveOrder": "Fungua oda inayoendelea",
+  "@openLiveOrder": {
+    "x-review": "needs-review"
+  },
+  "detailRider": "Mwendesha boda",
+  "@detailRider": {
+    "x-review": "needs-review"
+  },
+  "detailSender": "Mteja",
+  "@detailSender": {
+    "x-review": "needs-review"
+  },
+  "detailPassenger": "Abiria",
+  "@detailPassenger": {
+    "x-review": "needs-review"
+  },
+  "statusCreated": "Rasimu",
+  "@statusCreated": {
+    "x-review": "needs-review"
+  },
+  "statusOffered": "Inasubiri mwendesha boda",
+  "@statusOffered": {
+    "x-review": "needs-review"
+  },
+  "statusAccepted": "Mwendesha boda yuko njiani",
+  "@statusAccepted": {
+    "x-review": "needs-review"
+  },
+  "statusInTransit": "Njiani",
+  "@statusInTransit": {
+    "x-review": "needs-review"
+  },
+  "statusArrived": "Mahali pa kufikisha",
+  "@statusArrived": {
+    "x-review": "needs-review"
+  },
+  "statusPayment": "Malipo",
+  "@statusPayment": {
+    "x-review": "needs-review"
+  },
+  "statusPaid": "Imelipwa",
+  "@statusPaid": {
+    "x-review": "needs-review"
+  },
+  "statusHandedOver": "Imekabidhiwa",
+  "@statusHandedOver": {
+    "x-review": "needs-review"
+  },
+  "statusDroppedOff": "Amefikishwa",
+  "@statusDroppedOff": {
+    "x-review": "needs-review"
+  },
+  "statusCompleted": "Imekamilika",
+  "@statusCompleted": {
+    "x-review": "needs-review"
+  },
+  "statusCancelled": "Imeghairiwa",
+  "@statusCancelled": {
+    "x-review": "needs-review"
+  },
+  "statusExpired": "Muda umeisha",
+  "@statusExpired": {
+    "x-review": "needs-review"
+  },
+  "statusPaymentFailed": "Malipo yameshindikana",
+  "@statusPaymentFailed": {
+    "x-review": "needs-review"
+  },
+  "statusUnresolved": "Inakaguliwa",
+  "@statusUnresolved": {
+    "x-review": "needs-review"
+  },
+  "shareWithReceiver": "Shiriki na mpokeaji",
+  "@shareWithReceiver": {
+    "x-review": "needs-review"
+  },
+  "shareWithReceiverNote": "Mpokeaji anaweza kufuatilia mzigo na kuweka alama mahali hasa alipo kwa ajili ya mwendesha boda.",
+  "@shareWithReceiverNote": {
+    "x-review": "needs-review"
+  },
+  "receiverShareMessage": "Mzigo wako wa RideLink uko njiani. Ufuatilie na umwonyeshe mwendesha boda mahali hasa ulipo hapa: {url}",
+  "@receiverShareMessage": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "receiverLinkFailed": "Imeshindikana kutengeneza kiungo cha mpokeaji. Tafadhali jaribu tena.",
+  "@receiverLinkFailed": {
+    "x-review": "needs-review"
+  },
+  "receiverSpotTitle": "Mpokeaji ameweka alama mahali hasa alipo",
+  "@receiverSpotTitle": {
+    "x-review": "needs-review"
+  },
+  "receiverSpotNote": "Maelezo: {note}",
+  "@receiverSpotNote": {
+    "placeholders": {
+      "note": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "navigateToPickup": "Elekezwa mahali pa kuchukua",
+  "@navigateToPickup": {
+    "x-review": "needs-review"
+  },
+  "navigateToDropoff": "Elekezwa mahali pa kufikisha",
+  "@navigateToDropoff": {
+    "x-review": "needs-review"
+  },
+  "navigateToReceiver": "Elekezwa mahali pa mpokeaji",
+  "@navigateToReceiver": {
+    "x-review": "needs-review"
+  },
+  "navigateFailed": "Imeshindikana kufungua Google Maps kwenye simu hii.",
+  "@navigateFailed": {
+    "x-review": "needs-review"
+  },
+  "senderIs": "Mteja: {name}",
+  "@senderIs": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "passengerIs": "Abiria: {name}",
+  "@passengerIs": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "switchMidJobTitle": "Maliza kazi yako kwanza",
+  "@switchMidJobTitle": {
+    "x-review": "needs-review"
+  },
+  "switchMidJobBody": "Unaweza kubadili kutuma kazi hii ikishakamilika.",
+  "@switchMidJobBody": {
+    "x-review": "needs-review"
+  },
+  "switchGoOfflineTitle": "Uzime mtandao ili ubadili?",
+  "@switchGoOfflineTitle": {
+    "x-review": "needs-review"
+  },
+  "switchGoOfflineBody": "Hutapokea maombi ukiwa unatuma.",
+  "@switchGoOfflineBody": {
+    "x-review": "needs-review"
+  },
+  "switchGoOfflineConfirm": "Zima mtandao",
+  "@switchGoOfflineConfirm": {
+    "x-review": "needs-review"
+  },
+  "switchStayOnline": "Baki mtandaoni",
+  "@switchStayOnline": {
+    "x-review": "needs-review"
+  },
+  "switchGoOfflineFailed": "Imeshindikana kuzima mtandao. Tafadhali jaribu tena.",
+  "@switchGoOfflineFailed": {
+    "x-review": "needs-review"
+  },
+  "riderRunningLate": "Mwendesha boda wako amechelewa",
+  "@riderRunningLate": {
+    "x-review": "needs-review"
+  },
+  "jobRunningLate": "Umechelewa",
+  "@jobRunningLate": {
+    "x-review": "needs-review"
+  },
+  "jobRunningLateBody": "Muda wa kuchukua umepita. RideLink itaghairi oda hii hivi karibuni.",
+  "@jobRunningLateBody": {
+    "x-review": "needs-review"
+  },
+  "jobPassengerPickedUp": "Abiria amepanda",
+  "@jobPassengerPickedUp": {
+    "x-review": "needs-review"
+  },
+  "actionPassengerPickedUp": "Abiria amepanda",
+  "@actionPassengerPickedUp": {
+    "x-review": "needs-review"
+  },
+  "jobAtPickupNoteRide": "Kufika kumerekodiwa. Abiria akishapanda, bonyeza Abiria amepanda.",
+  "@jobAtPickupNoteRide": {
+    "x-review": "needs-review"
+  },
+  "jobAtDropoffBodyRide": "Omba malipo kutoka kwa abiria kabla hajashuka.",
+  "@jobAtDropoffBodyRide": {
+    "x-review": "needs-review"
+  },
+  "jobWaitingForPassenger": "Unasubiri abiria alipe {amount} taslimu.",
+  "@jobWaitingForPassenger": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "jobPassengerPaid": "Abiria anasema amelipa {amount} taslimu. Thibitisha ukishapokea.",
+  "@jobPassengerPaid": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "jobPaidBodyRide": "Malipo yamethibitishwa. Weka alama abiria amefikishwa hapa chini.",
+  "@jobPaidBodyRide": {
+    "x-review": "needs-review"
+  },
+  "jobPassengerDroppedOff": "Abiria amefikishwa",
+  "@jobPassengerDroppedOff": {
+    "x-review": "needs-review"
+  },
+  "actionPassengerDroppedOff": "Abiria amefikishwa",
+  "@actionPassengerDroppedOff": {
+    "x-review": "needs-review"
+  },
+  "jobRideComplete": "Safari imekamilika",
+  "@jobRideComplete": {
+    "x-review": "needs-review"
+  },
+  "actionCompleteRide": "Kamilisha safari",
+  "@actionCompleteRide": {
+    "x-review": "needs-review"
+  },
+  "jobCancelledByPassenger": "Abiria ameghairi safari hii.",
+  "@jobCancelledByPassenger": {
+    "x-review": "needs-review"
+  }
 }

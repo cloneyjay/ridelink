@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:flutter/services.dart';
 
 import '../../../l10n/app_localizations.dart';
@@ -59,7 +60,7 @@ class BrandHeader extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppRadius.lg),
             boxShadow: context.shadows.brand,
           ),
-          child: Icon(Icons.two_wheeler, color: c.inkOnBrand),
+          child: Icon(Symbols.two_wheeler, color: c.inkOnBrand),
         ),
         const SizedBox(height: AppSpacing.s3),
         Text(l.appName, style: AppTextStyles.displayXl.copyWith(color: c.ink)),

@@ -45,6 +45,17 @@ dependencies:
     sdk: flutter
   google_sign_in: ^7.2.0
   crypto: ^3.0.7
+  google_maps_flutter: ^2.18.2
+  geolocator: ^14.1.1
+  material_symbols_icons: ^4.2960.0
+  image_picker: ^1.2.4
+  file_picker: ^13.1.0
+  shared_preferences: ^2.5.6
+  permission_handler: ^13.0.2
+  share_plus: ^13.3.1
+  url_launcher: ^6.3.3
+  flutter_svg: ^2.3.0
+  google_sign_in_platform_interface: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +85,8 @@ flutter:
   # Bundled Poppins and DM Sans (SIL OFL); google_fonts loads them from here, never from the network.
   assets:
     - assets/google_fonts/
+    # Official Google "G" mark for the sign-in button (Google sign-in branding guidelines).
+    - assets/brand/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

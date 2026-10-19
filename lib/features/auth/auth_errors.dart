@@ -1,10 +1,11 @@
 import '../../core/api/api_exception.dart';
+import '../../core/errors/error_messages.dart';
 import '../../l10n/app_localizations.dart';
 
 /// What a 401 means on the screen that made the call.
 enum AuthUnauthorized { wrongCredentials, invalidCode, google }
 
-/// 400s show the server's own message; everything else gets a friendly local string.
+/// Error codes are localized; a 401 without a specific code takes the screen's meaning.
 String authErrorMessage(
   ApiException e,
   AppLocalizations l, {
@@ -12,15 +13,14 @@ String authErrorMessage(
 }) {
   final status = e.statusCode;
   if (status == null) return l.errorNetwork;
-  if (status == 400 && e.message.isNotEmpty) return e.message;
   if (status == 401) {
-    return switch (on401) {
-      AuthUnauthorized.wrongCredentials => l.errorWrongCredentials,
-      AuthUnauthorized.invalidCode => l.errorInvalidCode,
-      AuthUnauthorized.google => l.errorGoogleFailed,
-    };
+    if (on401 == AuthUnauthorized.google) return l.errorGoogleFailed;
+    if (e.code == null || e.code == 'unauthorized') {
+      return on401 == AuthUnauthorized.invalidCode
+          ? l.errorInvalidCode
+          : l.errorWrongCredentials;
+    }
   }
-  if (status == 429) return l.errorTooManyAttempts;
   if (status >= 500) return l.errorServiceUnavailable;
-  return l.errorGeneric;
+  return apiErrorText(e, l);
 }

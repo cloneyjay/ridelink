@@ -221,13 +221,14 @@ void main() {
       },
     );
 
-    testWidgets('400 shows the server message', (tester) async {
+    testWidgets('400 is shown localized by its error code', (tester) async {
       await pumpAuthApp(
         tester,
         initialLocation: AppRoutes.signUp,
         handler: routeHandler({
           'auth/signup': (o) => jsonResponse(400, {
             'error': 'this password has appeared in a data breach; choose a different one',
+            'code': 'password_breached',
           }),
         }),
       );
@@ -235,12 +236,7 @@ void main() {
       await fillSignUp(tester);
       await tapSubmit(tester);
 
-      expect(
-        find.text(
-          'this password has appeared in a data breach; choose a different one',
-        ),
-        findsOneWidget,
-      );
+      expect(find.text(l10n(tester).errCodePasswordBreached), findsOneWidget);
     });
 
     testWidgets(

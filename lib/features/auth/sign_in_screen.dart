@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/providers.dart';
@@ -152,10 +153,17 @@ class _SignInScreenState extends ConsumerState<SignInScreen>
             ],
           ),
           const SizedBox(height: AppSpacing.s4),
-          OutlinedButton(
+          OutlinedButton.icon(
             key: const Key('auth.google'),
             onPressed: _googleBusy ? null : _signInWithGoogle,
-            child: Text(l.continueWithGoogle),
+            icon: SvgPicture.asset(
+              googleMarkAsset,
+              key: const Key('auth.google.mark'),
+              width: AppSpacing.s5,
+              height: AppSpacing.s5,
+              excludeFromSemantics: true,
+            ),
+            label: Text(l.continueWithGoogle),
           ),
         ],
         const SizedBox(height: AppSpacing.s4),
