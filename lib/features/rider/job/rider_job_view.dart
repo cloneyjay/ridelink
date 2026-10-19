@@ -45,6 +45,10 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
   Timer? _ticker;
   bool _busy = false;
   String? _error;
+  final _photoCard = GlobalKey<PhotoEvidenceCardState>();
+
+  /// Photos uploaded from this screen, before the evidence chain reloads.
+  final _uploaded = <MediaKind>{};
 
   @override
   void initState() {
@@ -58,6 +62,7 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
   @override
   void didUpdateWidget(RiderJobView old) {
     super.didUpdateWidget(old);
+    if (old.order.id != widget.order.id) _uploaded.clear();
     if (old.order.status != widget.order.status ||
         old.order.pickupArrivedAt != widget.order.pickupArrivedAt) {
       _error = null;
@@ -111,10 +116,20 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
       if (mounted) setState(() => _busy = false);
     } on ApiException catch (e) {
       if (!mounted) return;
+      final missing = e.code == 'evidence_photo_required'
+          ? MediaKind.fromWire(e.body['kind'] as String?)
+          : null;
       setState(() {
         _busy = false;
         _error = apiErrorText(e, l, fallback: l.jobActionFailed);
+        if (missing != null) _uploaded.remove(missing);
       });
+      if (missing != null) {
+        ref.invalidate(evidenceChainProvider(widget.order.id));
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) unawaited(_photoCard.currentState?.capture());
+        });
+      }
     } catch (_) {
       if (!mounted) return;
       setState(() {
@@ -237,6 +252,8 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
     final ride = o.serviceType == ServiceType.ride;
     final details = ref.watch(orderDetailsProvider(o.id)).value;
     final action = nextAction(o);
+    final photoNeeded = requiredPhoto(o, action);
+    final photoMissing = photoNeeded != null && !_photoRecorded(o, photoNeeded);
     final countdown = pickupCountdown(o, _now);
     final late = countdown == Duration.zero;
     final amount = o.agreedPrice == null ? null : formatKes(o.agreedPrice!);
@@ -377,13 +394,25 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
           onPressed: _busy ? null : _notReceived,
           child: Text(l.paymentNotReceivedButton),
         ),
-      ] else if (action != JobAction.none && action != JobAction.waitForSender)
+      ] else if (action != JobAction.none &&
+          action != JobAction.waitForSender) ...[
+        if (photoMissing) ...[
+          NoteRow(
+            photoNeeded == MediaKind.pickupPhoto
+                ? l.jobPickupPhotoRequired
+                : l.jobHandoverPhotoRequired,
+            key: const Key('job.photoRequired'),
+            icon: Icons.photo_camera_outlined,
+          ),
+          const SizedBox(height: AppSpacing.s3),
+        ],
         PrimaryButton(
           key: Key('job.action.${action.name}'),
           label: _actionLabel(l, action, o.serviceType),
           loading: _busy,
-          onPressed: () => _onAction(action),
+          onPressed: photoMissing ? null : () => _onAction(action),
         ),
+      ],
       if (o.isTerminal)
         PrimaryButton(
           key: const Key('job.done'),
@@ -440,29 +469,29 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
     );
   }
 
-  /// Pickup photo at the pickup, handover photo at the drop-off (screen 9).
+  bool _photoRecorded(Order o, MediaKind kind) =>
+      _uploaded.contains(kind) ||
+      (ref
+              .watch(evidenceChainProvider(o.id))
+              .value
+              ?.any((e) => e.mediaKind == kind) ??
+          false);
+
+  /// Deliveries: pickup photo at the pickup, handover photo at the drop-off (screen 9).
+  /// Rides have no photo steps.
   List<Widget> _photoCards(AppLocalizations l, Order o) {
-    final ride = o.serviceType == ServiceType.ride;
-    final kind = switch (o.status) {
-      'accepted' when o.arrivedAtPickup => MediaKind.pickupPhoto,
-      'started' => MediaKind.pickupPhoto,
-      'paid' || 'handed_over' => MediaKind.handoverPhoto,
-      _ => null,
-    };
+    final kind = photoStepFor(o);
     if (kind == null) return const [];
     return [
       const SizedBox(height: AppSpacing.s4),
       PhotoEvidenceCard(
+        key: _photoCard,
         orderId: o.id,
         kind: kind,
-        hint: switch (kind) {
-          MediaKind.pickupPhoto =>
-            ride ? l.evidencePickupPhotoHintRide : l.evidencePickupPhotoHint,
-          _ =>
-            ride
-                ? l.evidenceHandoverPhotoHintRide
-                : l.evidenceHandoverPhotoHint,
-        },
+        hint: kind == MediaKind.pickupPhoto
+            ? l.evidencePickupPhotoHint
+            : l.evidenceHandoverPhotoHint,
+        onRecorded: () => setState(() => _uploaded.add(kind)),
       ),
     ];
   }

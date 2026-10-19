@@ -14,6 +14,8 @@ import '../../theme/app_dimensions.dart';
 import '../../theme/app_text_styles.dart';
 import '../tracking/tracking_screen.dart';
 import 'booking_routes.dart';
+import 'data/booking_models.dart';
+import 'resume.dart';
 import 'rider_profile_screen.dart';
 import 'widgets/booking_widgets.dart';
 
@@ -63,17 +65,20 @@ class OfferWaitingScreen extends ConsumerStatefulWidget {
   ConsumerState<OfferWaitingScreen> createState() => _OfferWaitingScreenState();
 }
 
-class _OfferWaitingScreenState extends ConsumerState<OfferWaitingScreen> {
+class _OfferWaitingScreenState extends ConsumerState<OfferWaitingScreen>
+    with WidgetsBindingObserver {
   static const _tick = Duration(seconds: 1);
   static const _maxStatusChecks = 6;
 
-  late final Duration _total;
+  late PendingOffer _pending;
+  Duration _total = Duration.zero;
   Duration _elapsed = Duration.zero;
   Timer? _ticker;
   Timer? _statusTimer;
   int _statusChecks = 0;
   bool _resolved = false;
   bool _cancelling = false;
+  bool _refreshing = false;
 
   Duration get _remaining {
     final r = _total - _elapsed;
@@ -83,19 +88,49 @@ class _OfferWaitingScreenState extends ConsumerState<OfferWaitingScreen> {
   @override
   void initState() {
     super.initState();
-    final offer = widget.pending.offer;
-    final window =
-        offer.serverWindow ?? offer.expiresAt.difference(DateTime.now());
-    _total = window.isNegative ? Duration.zero : window;
-    _ticker = Timer.periodic(_tick, (_) => _onTick());
-    if (_total == Duration.zero) _scheduleStatusCheck();
+    WidgetsBinding.instance.addObserver(this);
+    _pending = widget.pending;
+    _markOpened();
+    _startCountdown(fromServer: _pending.fromServer);
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _ticker?.cancel();
     _statusTimer?.cancel();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) unawaited(_refresh());
+  }
+
+  void _markOpened() => ref
+      .read(sessionFlagsProvider)
+      .openedLiveScreens
+      .add(waitingScreenKey(_pending.offer.id));
+
+  /// A just-sent offer starts at the server's full window (clock-skew free); an offer read
+  /// back from the server counts down to its `expires_at`.
+  void _startCountdown({required bool fromServer}) {
+    final offer = _pending.offer;
+    final window = offer.serverWindow;
+    var remaining = fromServer || window == null
+        ? offer.expiresAt.difference(ref.read(clockProvider)())
+        : window;
+    if (remaining.isNegative) remaining = Duration.zero;
+    if (window != null && remaining > window) remaining = window;
+    _total = window ?? remaining;
+    _elapsed = _total - remaining;
+    _ticker?.cancel();
+    _statusTimer?.cancel();
+    if (remaining == Duration.zero) {
+      _scheduleStatusCheck();
+    } else {
+      _ticker = Timer.periodic(_tick, (_) => _onTick());
+    }
   }
 
   void _onTick() {
@@ -116,25 +151,85 @@ class _OfferWaitingScreenState extends ConsumerState<OfferWaitingScreen> {
   Future<void> _checkStatus() async {
     if (_resolved || !mounted) return;
     _statusChecks++;
-    try {
-      final order = await ref
-          .read(bookingRepositoryProvider)
-          .getOrder(widget.pending.order.id);
-      final outcome = switch (order.status) {
-        'accepted' || 'started' || 'completed' => OfferOutcome.accepted,
-        'created' || 'expired' => OfferOutcome.expired,
-        'cancelled' => OfferOutcome.cancelled,
-        _ => null,
-      };
-      if (outcome != null) {
-        _resolve(outcome);
-        return;
-      }
-    } catch (_) {
-      // Network trouble: try again below.
-    }
-    if (!_resolved && mounted && _statusChecks < _maxStatusChecks) {
+    final applied = await _refresh();
+    if (!applied &&
+        !_resolved &&
+        mounted &&
+        _remaining == Duration.zero &&
+        _statusChecks < _maxStatusChecks) {
       _scheduleStatusCheck();
+    }
+  }
+
+  /// Re-reads the order (with its live offer) from the server so the screen never shows a
+  /// stale offer. [ended] is the outcome a realtime event reported for the shown offer.
+  /// Returns true when the screen was resolved or shows a live offer.
+  Future<bool> _refresh({OfferOutcome? ended}) async {
+    if (_resolved || !mounted || _refreshing) return false;
+    _refreshing = true;
+    try {
+      final view = await ref
+          .read(bookingRepositoryProvider)
+          .senderOrder(_pending.order.id);
+      if (!mounted || _resolved) return false;
+      return _apply(view, ended: ended);
+    } catch (_) {
+      // Network trouble: trust the event when there was one, otherwise try again later.
+      if (ended != null) {
+        _resolve(ended);
+        return true;
+      }
+      return false;
+    } finally {
+      _refreshing = false;
+    }
+  }
+
+  bool _apply(SenderOrder view, {OfferOutcome? ended}) {
+    final offer = view.offer;
+    final rider = view.rider;
+    if (offer != null &&
+        rider != null &&
+        (ended == null || offer.id != _pending.offer.id)) {
+      setState(() {
+        _pending = PendingOffer(
+          order: view.order,
+          rider: rider,
+          offer: offer,
+          fromServer: true,
+        );
+        _markOpened();
+        _startCountdown(fromServer: true);
+      });
+      return _remaining > Duration.zero;
+    }
+    final status = view.order.status;
+    final outcome = switch (status) {
+      'cancelled' => OfferOutcome.cancelled,
+      'completed' => OfferOutcome.accepted,
+      _ when activeJobStatuses.contains(status) => OfferOutcome.accepted,
+      'created' || 'expired' => ended ?? OfferOutcome.expired,
+      // Still "offered" with no live offer: it has just ended server-side.
+      _ => ended,
+    };
+    if (outcome != null) {
+      _resolve(outcome);
+      return true;
+    }
+    if (_remaining > Duration.zero) {
+      _ticker?.cancel();
+      setState(() => _elapsed = _total);
+      _scheduleStatusCheck();
+    }
+    return false;
+  }
+
+  void _onOutcome(OfferOutcome outcome) {
+    switch (outcome) {
+      case OfferOutcome.accepted || OfferOutcome.cancelled:
+        _resolve(outcome);
+      case OfferOutcome.declined || OfferOutcome.expired:
+        unawaited(_refresh(ended: outcome));
     }
   }
 
@@ -143,10 +238,13 @@ class _OfferWaitingScreenState extends ConsumerState<OfferWaitingScreen> {
     _resolved = true;
     _ticker?.cancel();
     _statusTimer?.cancel();
-    unawaited(ref.read(pendingOfferStoreProvider).clear());
-    final p = widget.pending;
+    final p = _pending;
     switch (outcome) {
       case OfferOutcome.accepted:
+        ref
+            .read(sessionFlagsProvider)
+            .openedLiveScreens
+            .add(trackingScreenKey(p.order.id));
         context.go(
           AppRoutes.trackingFor(p.order.id),
           extra: TrackingArgs(
@@ -202,9 +300,7 @@ class _OfferWaitingScreenState extends ConsumerState<OfferWaitingScreen> {
     if (confirmed != true || !mounted || _resolved) return;
     setState(() => _cancelling = true);
     try {
-      await ref
-          .read(bookingRepositoryProvider)
-          .cancelOrder(widget.pending.order.id);
+      await ref.read(bookingRepositoryProvider).cancelOrder(_pending.order.id);
       _resolve(OfferOutcome.cancelled);
     } catch (_) {
       if (!mounted) return;
@@ -223,17 +319,21 @@ class _OfferWaitingScreenState extends ConsumerState<OfferWaitingScreen> {
     ref.listen<AsyncValue<RealtimeEvent>>(realtimeEventsProvider, (_, next) {
       final event = next.value;
       if (event == null) return;
+      if (event.kind == RealtimeEventKind.connected) {
+        unawaited(_refresh());
+        return;
+      }
       final outcome = outcomeFromEvent(
         event,
-        offerId: widget.pending.offer.id,
-        orderId: widget.pending.order.id,
+        offerId: _pending.offer.id,
+        orderId: _pending.order.id,
       );
-      if (outcome != null) _resolve(outcome);
+      if (outcome != null) _onOutcome(outcome);
     });
 
     final l = AppLocalizations.of(context);
     final c = context.colors;
-    final p = widget.pending;
+    final p = _pending;
     final total = p.offer.quotedTotal ?? p.rider.total;
     final expired = _remaining == Duration.zero;
     return PopScope(

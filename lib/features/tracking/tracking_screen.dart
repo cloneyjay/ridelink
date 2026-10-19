@@ -19,6 +19,7 @@ import '../../theme/app_dimensions.dart';
 import '../../theme/app_shadows.dart';
 import '../../theme/app_text_styles.dart';
 import '../booking/data/booking_models.dart';
+import '../booking/resume.dart' show trackingScreenKey;
 import '../booking/widgets/booking_widgets.dart';
 import '../common/confirm_dialog.dart';
 import '../evidence/data/evidence_models.dart';
@@ -76,6 +77,10 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _order = widget.args?.order;
+    ref
+        .read(sessionFlagsProvider)
+        .openedLiveScreens
+        .add(trackingScreenKey(widget.orderId));
     _load();
     _ticker = Timer.periodic(const Duration(seconds: 1), (_) {
       final o = _order;

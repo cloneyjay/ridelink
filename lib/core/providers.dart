@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../features/auth/google_auth.dart';
 import '../features/booking/data/booking_repository.dart';
-import '../features/booking/data/pending_offer_store.dart';
 import '../features/evidence/data/evidence_repository.dart';
 import '../features/notifications/data/notification_repository.dart';
 import '../features/orders/data/orders_repository.dart';
@@ -17,6 +16,7 @@ import 'auth/token_storage.dart';
 import 'config/app_config.dart';
 import 'location/geo_point.dart';
 import 'files/document_picker.dart';
+import 'files/evidence_camera.dart';
 import 'location/location_service.dart';
 import 'location/location_tracker.dart';
 import 'maps/maps_config.dart';
@@ -154,6 +154,11 @@ final documentPickerProvider = Provider<DocumentPicker>(
   (ref) => PlatformDocumentPicker(),
 );
 
+/// Evidence photos come from the camera only (founder decision 2026-10-19).
+final evidenceCameraProvider = Provider<EvidenceCamera>(
+  (ref) => PlatformEvidenceCamera(),
+);
+
 /// Overridden in main() with the SharedPreferences-backed store.
 final modeStoreProvider = Provider<ModeStore>((ref) => MemoryModeStore());
 
@@ -168,17 +173,15 @@ final clockProvider = Provider<DateTime Function()>((ref) => DateTime.now);
 
 /// Per-app-session flags (reset on restart).
 class SessionFlags {
-  bool trackingResumed = false;
+  /// Live screens (waiting/tracking) already opened this session, so a resume never
+  /// sends the sender back to one they deliberately left.
+  final openedLiveScreens = <String>{};
 }
 
 final sessionFlagsProvider = Provider<SessionFlags>((ref) => SessionFlags());
 
 /// Overridden in main() with the SharedPreferences-backed store.
 final localStoreProvider = Provider<LocalStore>((ref) => MemoryLocalStore());
-
-final pendingOfferStoreProvider = Provider<PendingOfferStore>(
-  (ref) => PendingOfferStore(ref.watch(localStoreProvider)),
-);
 
 final ratingPromptStoreProvider = Provider<RatingPromptStore>(
   (ref) => RatingPromptStore(ref.watch(localStoreProvider)),

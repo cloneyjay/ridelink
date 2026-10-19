@@ -2036,4 +2036,22 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get jobCancelledByPassenger => 'Abiria ameghairi safari hii.';
+
+  @override
+  String get errCodeEvidencePhotoRequired => 'Piga picha inayohitajika kwanza.';
+
+  @override
+  String get errCodeEvidencePickupPhotoRequired =>
+      'Piga picha ya kuchukua kabla ya kuthibitisha kuwa umechukua mzigo.';
+
+  @override
+  String get errCodeEvidenceHandoverPhotoRequired =>
+      'Piga picha ya kukabidhi kabla ya kuthibitisha kuwa umekabidhi mzigo.';
+
+  @override
+  String get jobPickupPhotoRequired => 'Piga picha ya kuchukua ili kuendelea.';
+
+  @override
+  String get jobHandoverPhotoRequired =>
+      'Piga picha ya kukabidhi ili kuendelea.';
 }

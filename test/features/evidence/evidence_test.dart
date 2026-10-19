@@ -59,17 +59,17 @@ void main() {
     testWidgets(
       'rider takes the pickup photo with the camera; the device hash is sent',
       (tester) async {
-        final picker = FakeDocumentPicker()
+        final camera = FakeEvidenceCamera()
           ..next = PickedDocument(bytes: photo, name: 'pickup.jpg');
         final h = await pumpBookingApp(
           tester,
           clock: () => testNow,
           riderRepo: atPickup(),
-          picker: picker,
+          camera: camera,
           goTo: AppRoutes.riderHome,
         );
         await tap(tester, 'evidence.pickup_photo.capture');
-        expect(picker.sources, [DocumentSource.camera]);
+        expect(camera.shots, 1);
         expect(h.evidence.uploads, hasLength(1));
         final upload = h.evidence.uploads.single;
         expect(upload.orderId, 'order-9');
@@ -105,13 +105,13 @@ void main() {
       (tester) async {
         final evidence = FakeEvidenceRepository()
           ..uploadErrors.add(apiError(422, 'hash_mismatch'));
-        final picker = FakeDocumentPicker()
+        final camera = FakeEvidenceCamera()
           ..next = PickedDocument(bytes: photo, name: 'pickup.jpg');
         await pumpBookingApp(
           tester,
           clock: () => testNow,
           riderRepo: atPickup(),
-          picker: picker,
+          camera: camera,
           evidence: evidence,
           goTo: AppRoutes.riderHome,
         );
@@ -121,7 +121,7 @@ void main() {
         expect(find.text(l.errCodeHashMismatch), findsOneWidget);
 
         await tap(tester, 'evidence.pickup_photo.retry');
-        expect(picker.sources, hasLength(1), reason: 'retry reuses the photo');
+        expect(camera.shots, 1, reason: 'retry reuses the photo');
         expect(evidence.uploads, hasLength(2));
         expect(evidence.uploads.map((u) => u.sha256).toSet(), {photoHash});
         expect(byKey('evidence.pickup_photo.done'), findsOneWidget);
@@ -133,19 +133,19 @@ void main() {
     ) async {
       final evidence = FakeEvidenceRepository()
         ..uploadErrors.add(apiError(500, 'internal_error'));
-      final picker = FakeDocumentPicker();
+      final camera = FakeEvidenceCamera();
       await pumpBookingApp(
         tester,
         clock: () => testNow,
         riderRepo: atPickup(),
-        picker: picker,
+        camera: camera,
         evidence: evidence,
         goTo: AppRoutes.riderHome,
       );
       await tap(tester, 'evidence.pickup_photo.capture');
       expect(find.text(l10nOf(tester).evidenceUploadFailed), findsOneWidget);
       await tap(tester, 'evidence.pickup_photo.retake');
-      expect(picker.sources, hasLength(2));
+      expect(camera.shots, 2);
       expect(byKey('evidence.pickup_photo.done'), findsOneWidget);
     });
 

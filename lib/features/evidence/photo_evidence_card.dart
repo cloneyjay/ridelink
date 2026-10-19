@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/errors/error_messages.dart';
-import '../../core/files/document_picker.dart';
+import '../../core/files/document_picker.dart' show PickedDocument;
 import '../../core/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
@@ -24,8 +24,8 @@ String mediaKindTitle(AppLocalizations l, MediaKind k) => switch (k) {
 
 enum _Phase { idle, uploading, failed, done }
 
-/// Screens 9: take a photo with the camera, hash it on the device, upload it into the order's
-/// evidence chain. Shows progress, and on failure keeps the photo for a retry.
+/// Screen 9: take a photo with the camera (never the gallery), hash it on the device, upload it
+/// into the order's evidence chain. Shows progress, and on failure keeps the photo for a retry.
 class PhotoEvidenceCard extends ConsumerStatefulWidget {
   const PhotoEvidenceCard({
     super.key,
@@ -33,6 +33,7 @@ class PhotoEvidenceCard extends ConsumerStatefulWidget {
     required this.kind,
     required this.hint,
     this.optional = false,
+    this.onRecorded,
   });
 
   final String orderId;
@@ -40,11 +41,14 @@ class PhotoEvidenceCard extends ConsumerStatefulWidget {
   final String hint;
   final bool optional;
 
+  /// Called once the photo is stored on the server.
+  final VoidCallback? onRecorded;
+
   @override
-  ConsumerState<PhotoEvidenceCard> createState() => _PhotoEvidenceCardState();
+  ConsumerState<PhotoEvidenceCard> createState() => PhotoEvidenceCardState();
 }
 
-class _PhotoEvidenceCardState extends ConsumerState<PhotoEvidenceCard> {
+class PhotoEvidenceCardState extends ConsumerState<PhotoEvidenceCard> {
   _Phase _phase = _Phase.idle;
   PickedDocument? _photo;
   String? _hash;
@@ -53,10 +57,11 @@ class _PhotoEvidenceCardState extends ConsumerState<PhotoEvidenceCard> {
 
   String get _key => 'evidence.${widget.kind.wire}';
 
+  /// Opens the camera, e.g. when the server says this photo is still missing.
+  Future<void> capture() => _capture();
+
   Future<void> _capture() async {
-    final photo = await ref
-        .read(documentPickerProvider)
-        .pick(DocumentSource.camera);
+    final photo = await ref.read(evidenceCameraProvider).takePhoto();
     if (photo == null || !mounted) return;
     _photo = photo;
     _hash = sha256OfBytes(photo.bytes);
@@ -90,6 +95,7 @@ class _PhotoEvidenceCardState extends ConsumerState<PhotoEvidenceCard> {
           );
       if (!mounted) return;
       setState(() => _phase = _Phase.done);
+      widget.onRecorded?.call();
       ref.invalidate(evidenceChainProvider(widget.orderId));
     } catch (e) {
       if (!mounted) return;

@@ -159,7 +159,7 @@ void main() {
       tester,
     ) async {
       final repo = FakeBookingRepository()
-        ..myOrdersList = [jobFixture(status: 'in_transit')]
+        ..activeList = [SenderOrder(order: jobFixture(status: 'in_transit'))]
         ..order = jobFixture(status: 'in_transit');
       await pumpBookingApp(tester, repo: repo, clock: () => testNow);
       expect(byKey('screen.tracking'), findsOneWidget);
@@ -167,8 +167,8 @@ void main() {
 
       await tapKeyAndSettle(tester, 'tracking.back');
       expect(byKey('screen.home'), findsOneWidget);
-      expect(byKey('home.activeOrder'), findsOneWidget);
-      await tapKeyAndSettle(tester, 'home.activeOrder');
+      expect(byKey('home.activeOrder.order-9'), findsOneWidget);
+      await tapKeyAndSettle(tester, 'home.activeOrder.order-9');
       expect(byKey('screen.tracking'), findsOneWidget);
     });
   });

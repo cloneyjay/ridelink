@@ -2678,5 +2678,25 @@
   "jobCancelledByPassenger": "Abiria ameghairi safari hii.",
   "@jobCancelledByPassenger": {
     "x-review": "needs-review"
+  },
+  "errCodeEvidencePhotoRequired": "Piga picha inayohitajika kwanza.",
+  "@errCodeEvidencePhotoRequired": {
+    "x-review": "needs-review"
+  },
+  "errCodeEvidencePickupPhotoRequired": "Piga picha ya kuchukua kabla ya kuthibitisha kuwa umechukua mzigo.",
+  "@errCodeEvidencePickupPhotoRequired": {
+    "x-review": "needs-review"
+  },
+  "errCodeEvidenceHandoverPhotoRequired": "Piga picha ya kukabidhi kabla ya kuthibitisha kuwa umekabidhi mzigo.",
+  "@errCodeEvidenceHandoverPhotoRequired": {
+    "x-review": "needs-review"
+  },
+  "jobPickupPhotoRequired": "Piga picha ya kuchukua ili kuendelea.",
+  "@jobPickupPhotoRequired": {
+    "x-review": "needs-review"
+  },
+  "jobHandoverPhotoRequired": "Piga picha ya kukabidhi ili kuendelea.",
+  "@jobHandoverPhotoRequired": {
+    "x-review": "needs-review"
   }
 }

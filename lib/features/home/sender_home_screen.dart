@@ -9,6 +9,7 @@ import '../../core/location/geo_point.dart';
 import '../../core/mode/app_mode.dart';
 import '../../core/location/location_service.dart';
 import '../../core/providers.dart';
+import '../../core/realtime/realtime_event.dart';
 import '../../core/routing/app_router.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
@@ -16,7 +17,7 @@ import '../../theme/app_dimensions.dart';
 import '../../theme/app_shadows.dart';
 import '../../theme/app_text_styles.dart';
 import '../booking/booking_labels.dart';
-import '../booking/booking_routes.dart';
+import '../booking/resume.dart';
 import '../booking/data/booking_models.dart';
 import '../notifications/notifications_screen.dart';
 import '../rider/rider_controller.dart';
@@ -34,7 +35,8 @@ class SenderHomeScreen extends ConsumerStatefulWidget {
 class _SenderHomeScreenState extends ConsumerState<SenderHomeScreen>
     with WidgetsBindingObserver {
   LocationResult? _location;
-  Order? _activeOrder;
+  List<ResumeTarget> _active = const [];
+  bool _resuming = false;
 
   @override
   void initState() {
@@ -44,43 +46,34 @@ class _SenderHomeScreenState extends ConsumerState<SenderHomeScreen>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       ref.read(appModeProvider).set(AppMode.sender);
-      unawaited(_checkActiveOrder());
+      unawaited(_resume());
       unawaited(_resumeRiderSide());
     });
   }
 
-  /// Resume after a restart: the order a rider is working on opens its tracking screen once
-  /// per app session, and stays reachable from the sheet. An order still waiting on a rider's
-  /// answer reopens the waiting screen when this device sent the offer.
-  Future<void> _checkActiveOrder() async {
+  /// The server is the only source of live order state: on start, foreground and realtime
+  /// reconnect, GET /orders/active decides where the sender belongs. Home only redirects
+  /// while it is the visible screen, and never back to a live screen opened this session.
+  Future<void> _resume() async {
+    if (_resuming) return;
+    _resuming = true;
     try {
-      final orders = await ref.read(bookingRepositoryProvider).myOrders();
-      final active = orders.where((o) => o.isActiveJob).firstOrNull;
+      final orders = await ref.read(bookingRepositoryProvider).activeOrders();
       if (!mounted) return;
-      setState(() => _activeOrder = active);
-      final flags = ref.read(sessionFlagsProvider);
-      if (flags.trackingResumed) return;
-      if (active != null) {
-        flags.trackingResumed = true;
-        context.go(AppRoutes.trackingFor(active.id));
-        return;
-      }
-      final offered = orders.where((o) => o.status == 'offered').firstOrNull;
-      final stored = offered == null
-          ? null
-          : ref.read(pendingOfferStoreProvider).read(offered.id);
-      if (offered != null && stored != null) {
-        flags.trackingResumed = true;
-        context.go(
-          AppRoutes.waitingFor(offered.id),
-          extra: PendingOffer(
-            order: offered,
-            rider: stored.rider,
-            offer: stored.offer,
-          ),
-        );
-      }
-    } catch (_) {}
+      final targets = resumeTargets(orders);
+      setState(() => _active = targets);
+      if (targets.isEmpty) return;
+      final target = targets.first;
+      final opened = ref.read(sessionFlagsProvider).openedLiveScreens;
+      final visible = ModalRoute.of(context)?.isCurrent ?? false;
+      if (!visible || opened.contains(target.key)) return;
+      opened.add(target.key);
+      context.go(target.location, extra: target.extra);
+    } catch (_) {
+      // Offline: the next foreground or reconnect tries again.
+    } finally {
+      _resuming = false;
+    }
   }
 
   /// A rider who is online server-side keeps sharing location while in sender mode (e.g. the
@@ -100,10 +93,10 @@ class _SenderHomeScreenState extends ConsumerState<SenderHomeScreen>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) return;
+    unawaited(_resume());
     // Back from system settings: pick up a newly granted permission or enabled GPS.
-    if (state == AppLifecycleState.resumed && _location is! LocationFound) {
-      unawaited(_load(prompt: false));
-    }
+    if (_location is! LocationFound) unawaited(_load(prompt: false));
   }
 
   Future<void> _load({required bool prompt}) async {
@@ -120,6 +113,9 @@ class _SenderHomeScreenState extends ConsumerState<SenderHomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<AsyncValue<RealtimeEvent>>(realtimeEventsProvider, (_, next) {
+      if (next.value?.kind == RealtimeEventKind.connected) unawaited(_resume());
+    });
     final location = _location;
     return RiderOfferWatcher(
       child: Scaffold(
@@ -145,7 +141,7 @@ class _SenderHomeScreenState extends ConsumerState<SenderHomeScreen>
               alignment: Alignment.bottomCenter,
               child: _HomeSheet(
                 location: location,
-                activeOrder: _activeOrder,
+                active: _active,
                 onAllow: () => _load(prompt: true),
                 onRetry: () => _load(prompt: false),
                 onOpenAppSettings: () =>
@@ -236,7 +232,7 @@ class MapPlaceholder extends StatelessWidget {
 class _HomeSheet extends StatelessWidget {
   const _HomeSheet({
     required this.location,
-    required this.activeOrder,
+    required this.active,
     required this.onAllow,
     required this.onRetry,
     required this.onOpenAppSettings,
@@ -244,7 +240,7 @@ class _HomeSheet extends StatelessWidget {
   });
 
   final LocationResult? location;
-  final Order? activeOrder;
+  final List<ResumeTarget> active;
   final VoidCallback onAllow;
   final VoidCallback onRetry;
   final VoidCallback onOpenAppSettings;
@@ -288,8 +284,21 @@ class _HomeSheet extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: AppSpacing.s4),
-              if (activeOrder != null) ...[
-                _ActiveOrderCard(order: activeOrder!),
+              if (active.isNotEmpty) ...[
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      key: const Key('home.activeOrders'),
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        for (final (i, t) in active.indexed) ...[
+                          if (i > 0) const SizedBox(height: AppSpacing.s2),
+                          _ActiveOrderCard(target: t),
+                        ],
+                      ],
+                    ),
+                  ),
+                ),
                 const SizedBox(height: AppSpacing.s4),
               ],
               if (_locationCard(context) case final card?) ...[
@@ -443,22 +452,34 @@ class _ServiceTile extends StatelessWidget {
   }
 }
 
+/// One live order (waiting on a rider, or in progress); every active order stays reachable.
 class _ActiveOrderCard extends StatelessWidget {
-  const _ActiveOrderCard({required this.order});
+  const _ActiveOrderCard({required this.target});
 
-  final Order order;
+  final ResumeTarget target;
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
     final c = context.colors;
+    final t = target;
+    final order = switch (t) {
+      ResumeWaiting() => t.pending.order,
+      ResumeTracking() => t.order,
+    };
+    final title = switch (t) {
+      ResumeWaiting() => l.waitingTitle(t.pending.rider.displayName),
+      ResumeTracking() => l.activeOrderBanner,
+    };
     return Material(
       color: serviceTint(c, order.serviceType),
       borderRadius: BorderRadius.circular(AppRadius.md),
       child: InkWell(
-        key: const Key('home.activeOrder'),
+        key: Key('home.activeOrder.${order.id}'),
         borderRadius: BorderRadius.circular(AppRadius.md),
-        onTap: () => context.go(AppRoutes.trackingFor(order.id)),
+        onTap: () {
+          context.go(t.location, extra: t.extra);
+        },
         child: ConstrainedBox(
           constraints: const BoxConstraints(minHeight: AppLayout.minTapTarget),
           child: Padding(
@@ -471,11 +492,26 @@ class _ActiveOrderCard extends StatelessWidget {
                 ),
                 const SizedBox(width: AppSpacing.s3),
                 Expanded(
-                  child: Text(
-                    l.activeOrderBanner,
-                    style: AppTextStyles.labelLg.copyWith(color: c.ink),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: AppTextStyles.labelLg.copyWith(color: c.ink),
+                      ),
+                      if (order.dropoffAddress.isNotEmpty)
+                        Text(
+                          order.dropoffAddress,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyles.bodySm.copyWith(
+                            color: c.inkMuted,
+                          ),
+                        ),
+                    ],
                   ),
                 ),
+                const SizedBox(width: AppSpacing.s2),
                 Text(
                   l.viewButton,
                   style: AppTextStyles.label.copyWith(color: c.brand700),

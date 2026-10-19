@@ -54,10 +54,16 @@ const knownErrorCodes = <String>[
   'invalid_media_kind',
   'invalid_hash',
   'hash_mismatch',
+  'evidence_photo_required',
 ];
 
 /// The localized message for a server error code, or null for a code this build doesn't know.
-String? errorCodeMessage(String code, AppLocalizations l) => switch (code) {
+/// [body] is the error body, for codes whose message depends on a field (e.g. `kind`).
+String? errorCodeMessage(
+  String code,
+  AppLocalizations l, {
+  Map<String, dynamic> body = const {},
+}) => switch (code) {
   'invalid_request' => l.errCodeInvalidRequest,
   'unauthorized' => l.errCodeUnauthorized,
   'forbidden' => l.errCodeForbidden,
@@ -109,6 +115,11 @@ String? errorCodeMessage(String code, AppLocalizations l) => switch (code) {
   'invalid_media_kind' => l.errCodeInvalidMediaKind,
   'invalid_hash' => l.errCodeInvalidHash,
   'hash_mismatch' => l.errCodeHashMismatch,
+  'evidence_photo_required' => switch (body['kind']) {
+    'pickup_photo' => l.errCodeEvidencePickupPhotoRequired,
+    'handover_photo' => l.errCodeEvidenceHandoverPhotoRequired,
+    _ => l.errCodeEvidencePhotoRequired,
+  },
   _ => null,
 };
 
@@ -131,7 +142,7 @@ String apiErrorText(Object error, AppLocalizations l, {String? fallback}) {
     return fallback;
   }
   if (code != null) {
-    final known = errorCodeMessage(code, l);
+    final known = errorCodeMessage(code, l, body: error.body);
     if (known != null) return known;
     if (error.message.isNotEmpty) return error.message;
   }

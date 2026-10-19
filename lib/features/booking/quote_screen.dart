@@ -39,7 +39,6 @@ class _QuoteScreenState extends ConsumerState<QuoteScreen> {
       final offer = await ref
           .read(bookingRepositoryProvider)
           .sendOffer(orderId: choice.order.id, riderId: choice.rider.riderId);
-      await ref.read(pendingOfferStoreProvider).save(offer, choice.rider);
       if (!mounted) return;
       context.pushReplacement(
         AppRoutes.waitingFor(choice.order.id),

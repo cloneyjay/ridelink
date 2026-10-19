@@ -2677,5 +2677,25 @@
   "jobCancelledByPassenger": "The passenger cancelled this ride.",
   "@jobCancelledByPassenger": {
     "description": "Rider job, ride cancelled by the passenger."
+  },
+  "errCodeEvidencePhotoRequired": "Take the required photo first.",
+  "@errCodeEvidencePhotoRequired": {
+    "description": "Server error code evidence_photo_required without a known kind: a delivery step needs its evidence photo first."
+  },
+  "errCodeEvidencePickupPhotoRequired": "Take the pickup photo before marking the item picked up.",
+  "@errCodeEvidencePickupPhotoRequired": {
+    "description": "Server error code evidence_photo_required, kind pickup_photo."
+  },
+  "errCodeEvidenceHandoverPhotoRequired": "Take the handover photo before marking the item handed over.",
+  "@errCodeEvidenceHandoverPhotoRequired": {
+    "description": "Server error code evidence_photo_required, kind handover_photo."
+  },
+  "jobPickupPhotoRequired": "Take the pickup photo to continue.",
+  "@jobPickupPhotoRequired": {
+    "description": "Rider delivery job: shown above the disabled Picked up button until the pickup photo is uploaded."
+  },
+  "jobHandoverPhotoRequired": "Take the handover photo to continue.",
+  "@jobHandoverPhotoRequired": {
+    "description": "Rider delivery job: shown above the disabled Hand over button until the handover photo is uploaded."
   }
 }

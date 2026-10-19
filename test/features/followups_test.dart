@@ -3,11 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ridelink/core/auth/nonce.dart';
 import 'package:ridelink/core/routing/app_router.dart';
-import 'package:ridelink/core/storage/local_store.dart';
 import 'package:ridelink/features/auth/google_auth.dart';
-import 'package:ridelink/features/booking/booking_routes.dart';
 import 'package:ridelink/features/booking/data/booking_models.dart';
-import 'package:ridelink/features/booking/data/pending_offer_store.dart';
 import 'package:ridelink/features/orders/data/order_models.dart';
 import 'package:ridelink/features/rider/data/rider_models.dart';
 import 'package:ridelink/features/rider/rider_controller.dart';
@@ -255,58 +252,6 @@ void main() {
   });
 
   group('resume after restart', () {
-    test('pending offer store round-trips per order', () async {
-      final store = PendingOfferStore(MemoryLocalStore());
-      await store.save(offerFixture(orderId: 'order-1'), riderFixture());
-      final read = store.read('order-1')!;
-      expect(read.offer.id, 'offer-1');
-      expect(read.offer.expiresAt, offerFixture().expiresAt);
-      expect(read.offer.quotedTotal, 214);
-      expect(read.rider.displayName, 'Moses O.');
-      expect(read.rider.breakdown.platformAmount, 77);
-      expect(store.read('other-order'), isNull);
-      await store.clear();
-      expect(store.read('order-1'), isNull);
-    });
-
-    testWidgets('sending a request remembers it on the device', (tester) async {
-      final h = await pumpBookingApp(
-        tester,
-        goTo: AppRoutes.quoteFor('order-1'),
-        extra: RiderChoice(order: orderFixture(), rider: riderFixture()),
-      );
-      await tapKeyAndSettle(tester, 'quote.send');
-      expect(PendingOfferStore(h.store).read('order-1'), isNotNull);
-    });
-
-    testWidgets('an offered order reopens the waiting screen', (tester) async {
-      final store = MemoryLocalStore();
-      await PendingOfferStore(store)
-          .save(offerFixture(orderId: 'order-1'), riderFixture());
-      await pumpBookingApp(
-        tester,
-        repo: FakeBookingRepository()
-          ..myOrdersList = [orderFixture(status: 'offered')],
-        store: store,
-        settle: false,
-      );
-      await pumpFor(tester);
-      expect(byKey('screen.offerWaiting'), findsOneWidget);
-      expect(
-        find.text(l10nOf(tester).waitingTitle('Moses O.')),
-        findsOneWidget,
-      );
-    });
-
-    testWidgets('without a stored offer the sender stays home', (tester) async {
-      await pumpBookingApp(
-        tester,
-        repo: FakeBookingRepository()
-          ..myOrdersList = [orderFixture(status: 'offered')],
-      );
-      expect(byKey('screen.home'), findsOneWidget);
-    });
-
     testWidgets('tracking without route extras uses GET /orders/{id} details', (
       tester,
     ) async {

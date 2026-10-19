@@ -23,9 +23,14 @@ class PendingOffer {
     required this.order,
     required this.rider,
     required this.offer,
+    this.fromServer = false,
   });
 
   final Order order;
   final RiderQuote rider;
   final Offer offer;
+
+  /// Read back from the server (resume) rather than just sent: the countdown then runs to
+  /// `expires_at` instead of starting at the full window.
+  final bool fromServer;
 }

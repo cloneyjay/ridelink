@@ -29,6 +29,12 @@ abstract class BookingRepository {
 
   Future<Order> getOrder(String orderId);
 
+  /// GET /orders/{id} as the sender, including `pending_offer`.
+  Future<SenderOrder> senderOrder(String orderId);
+
+  /// GET /orders/active: the sender's non-terminal orders, newest first.
+  Future<List<SenderOrder>> activeOrders();
+
   Future<Order> updateRoute(String orderId, RouteInput route);
 
   Future<RiderList> ridersForOrder(String orderId);
@@ -118,6 +124,19 @@ class ApiBookingRepository implements BookingRepository {
   @override
   Future<Order> getOrder(String orderId) async =>
       Order.fromJson(_map(await _api.get('orders/$orderId')));
+
+  @override
+  Future<SenderOrder> senderOrder(String orderId) async =>
+      SenderOrder.fromJson(_map(await _api.get('orders/$orderId')));
+
+  @override
+  Future<List<SenderOrder>> activeOrders() async {
+    final data = _map(await _api.get('orders/active'));
+    return [
+      for (final o in (data['orders'] as List? ?? const []))
+        SenderOrder.fromJson(_map(o)),
+    ];
+  }
 
   @override
   Future<Order> updateRoute(String orderId, RouteInput route) async =>

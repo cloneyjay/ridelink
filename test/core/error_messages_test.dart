@@ -42,6 +42,30 @@ void main() {
       },
     );
 
+    test('evidence_photo_required names the missing photo by kind', () {
+      ApiException missing(String? kind) => ApiException(
+        statusCode: 422,
+        code: 'evidence_photo_required',
+        message: 'take the photo first',
+        body: {'code': 'evidence_photo_required', 'kind': ?kind},
+      );
+      for (final l in [en, sw]) {
+        expect(
+          apiErrorText(missing('pickup_photo'), l),
+          l.errCodeEvidencePickupPhotoRequired,
+        );
+        expect(
+          apiErrorText(missing('handover_photo'), l),
+          l.errCodeEvidenceHandoverPhotoRequired,
+        );
+        expect(apiErrorText(missing(null), l), l.errCodeEvidencePhotoRequired);
+      }
+      expect(
+        sw.errCodeEvidencePickupPhotoRequired,
+        isNot(en.errCodeEvidencePickupPhotoRequired),
+      );
+    });
+
     test('an unknown code shows the server text', () {
       const e = ApiException(
         statusCode: 400,

@@ -191,6 +191,16 @@ class FakeBookingRepository implements BookingRepository {
   Object? cancelError;
 
   List<Order> myOrdersList = const [];
+
+  /// GET /orders/active.
+  List<SenderOrder> activeList = const [];
+  Object? activeError;
+  int activeCalls = 0;
+
+  /// GET /orders/{id} as the sender; defaults to [order] with no pending offer.
+  SenderOrder? senderOrderResult;
+  Object? senderOrderError;
+
   int paymentSentCalls = 0;
   Object? paymentSentError;
   Order Function(String orderId)? onPaymentSent;
@@ -237,6 +247,21 @@ class FakeBookingRepository implements BookingRepository {
     getOrderCalls++;
     if (getOrderError != null) throw getOrderError!;
     return order;
+  }
+
+  @override
+  Future<SenderOrder> senderOrder(String orderId) async {
+    getOrderCalls++;
+    if (senderOrderError != null) throw senderOrderError!;
+    if (getOrderError != null) throw getOrderError!;
+    return senderOrderResult ?? SenderOrder(order: order);
+  }
+
+  @override
+  Future<List<SenderOrder>> activeOrders() async {
+    activeCalls++;
+    if (activeError != null) throw activeError!;
+    return activeList;
   }
 
   @override
@@ -396,6 +421,7 @@ class BookingHarness {
     required this.riderRepo,
     required this.tracker,
     required this.picker,
+    required this.camera,
     required this.mode,
     required this.orders,
     required this.evidence,
@@ -414,6 +440,7 @@ class BookingHarness {
   final FakeRiderRepository riderRepo;
   final FakeLocationTracker tracker;
   final FakeDocumentPicker picker;
+  final FakeEvidenceCamera camera;
   final AppModeController mode;
 
   final GoRouter router;
@@ -443,6 +470,7 @@ Future<BookingHarness> pumpBookingApp(
   FakeRiderRepository? riderRepo,
   FakeLocationTracker? tracker,
   FakeDocumentPicker? picker,
+  FakeEvidenceCamera? camera,
   FakeOrdersRepository? orders,
   FakeEvidenceRepository? evidence,
   FakeNotificationRepository? notifications,
@@ -485,6 +513,7 @@ Future<BookingHarness> pumpBookingApp(
     riderRepo: riderRepo ?? FakeRiderRepository(),
     tracker: tracker ?? FakeLocationTracker(),
     picker: picker ?? FakeDocumentPicker(),
+    camera: camera ?? FakeEvidenceCamera(),
     mode: mode,
     orders: ordersRepo,
     evidence: evidence ?? FakeEvidenceRepository(),
@@ -514,6 +543,7 @@ Future<BookingHarness> pumpBookingApp(
         riderRepositoryProvider.overrideWithValue(harness.riderRepo),
         locationTrackerProvider.overrideWithValue(harness.tracker),
         documentPickerProvider.overrideWithValue(harness.picker),
+        evidenceCameraProvider.overrideWithValue(harness.camera),
         appModeProvider.overrideWithValue(mode),
         ordersRepositoryProvider.overrideWithValue(harness.orders),
         evidenceRepositoryProvider.overrideWithValue(harness.evidence),

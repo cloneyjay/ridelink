@@ -1,4 +1,5 @@
 import '../../booking/data/booking_models.dart';
+import '../../evidence/data/evidence_models.dart';
 
 /// What the rider can do next on an active job.
 enum JobAction {
@@ -43,6 +44,28 @@ String? statusFor(JobAction action) => switch (action) {
   JobAction.complete => 'completed',
   _ => null,
 };
+
+/// The evidence photo [action] needs first: deliveries only, never rides (founder decision
+/// 2026-10-19; the server answers 422 evidence_photo_required otherwise).
+MediaKind? requiredPhoto(Order o, JobAction action) {
+  if (o.serviceType != ServiceType.delivery) return null;
+  return switch (action) {
+    JobAction.pickedUp => MediaKind.pickupPhoto,
+    JobAction.handOver => MediaKind.handoverPhoto,
+    _ => null,
+  };
+}
+
+/// The photo card a delivery shows in [o]'s status, or null (rides never show one).
+MediaKind? photoStepFor(Order o) {
+  if (o.serviceType != ServiceType.delivery) return null;
+  return switch (o.status) {
+    'accepted' when o.arrivedAtPickup => MediaKind.pickupPhoto,
+    'started' => MediaKind.pickupPhoto,
+    'paid' || 'handed_over' => MediaKind.handoverPhoto,
+    _ => null,
+  };
+}
 
 /// Only before pickup (accepted -> cancelled is the only cancel transition after acceptance).
 bool riderCanCancel(Order o) => o.status == 'accepted';

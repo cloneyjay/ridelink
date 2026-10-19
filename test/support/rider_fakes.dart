@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ridelink/core/files/document_picker.dart';
+import 'package:ridelink/core/files/evidence_camera.dart';
 import 'package:ridelink/core/location/geo_point.dart';
 import 'package:ridelink/core/location/location_tracker.dart';
 import 'package:ridelink/features/booking/data/booking_models.dart';
@@ -320,6 +321,21 @@ class FakeDocumentPicker implements DocumentPicker {
   @override
   Future<PickedDocument?> pick(DocumentSource source) async {
     sources.add(source);
+    return next;
+  }
+}
+
+/// Camera-only evidence capture; counts every time the camera opens.
+class FakeEvidenceCamera implements EvidenceCamera {
+  PickedDocument? next = PickedDocument(
+    bytes: List.filled(100, 2),
+    name: 'evidence.jpg',
+  );
+  int shots = 0;
+
+  @override
+  Future<PickedDocument?> takePhoto() async {
+    shots++;
     return next;
   }
 }

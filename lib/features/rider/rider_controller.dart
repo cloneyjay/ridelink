@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flutter/widgets.dart' show AppLifecycleListener;
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/api/api_exception.dart';
@@ -128,6 +130,9 @@ class RiderController extends Notifier<RiderState> {
       final event = next.value;
       if (event != null) _onEvent(event);
     });
+    // Realtime may have dropped while in the background: re-read the server's state.
+    final lifecycle = AppLifecycleListener(onResume: _resync);
+    ref.onDispose(lifecycle.dispose);
     ref.onDispose(() => _stopTracking());
     Future.microtask(load);
     return const RiderState();
@@ -218,6 +223,10 @@ class RiderController extends Notifier<RiderState> {
   Order? _keepTerminal() {
     final job = state.job;
     return job != null && job.isTerminal ? job : null;
+  }
+
+  void _resync() {
+    if (state.registered) unawaited(refreshActive());
   }
 
   void clearOfferEnd() => state = state.copyWith(clearOfferEnd: true);
@@ -438,6 +447,8 @@ class RiderController extends Notifier<RiderState> {
     if (!state.registered) return;
     final data = event.data;
     switch (event.kind) {
+      case RealtimeEventKind.connected:
+        _resync();
       case RealtimeEventKind.offerReceived:
         unawaited(refreshActive());
       case RealtimeEventKind.offerResolved:

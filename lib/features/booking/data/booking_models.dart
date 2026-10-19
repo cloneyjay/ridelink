@@ -500,3 +500,32 @@ class Offer {
     'pickup_window_mins': pickupWindowMins,
   };
 }
+
+/// The sender's view of one order (GET /orders/{id}, GET /orders/active): the order plus the
+/// live offer while one is pending. The server is the only source of this state.
+class SenderOrder {
+  const SenderOrder({required this.order, this.offer, this.rider});
+
+  factory SenderOrder.fromJson(Map<String, dynamic> json) {
+    final order = Order.fromJson(json);
+    final pending = json['pending_offer'];
+    if (pending is Map && pending['offer'] is Map && pending['rider'] is Map) {
+      try {
+        return SenderOrder(
+          order: order,
+          offer: Offer.fromJson((pending['offer'] as Map).cast()),
+          rider: RiderQuote.fromJson((pending['rider'] as Map).cast()),
+        );
+      } catch (_) {
+        // A malformed offer is treated as none; the order itself is still valid.
+      }
+    }
+    return SenderOrder(order: order);
+  }
+
+  final Order order;
+  final Offer? offer;
+  final RiderQuote? rider;
+
+  bool get hasPendingOffer => offer != null && rider != null;
+}

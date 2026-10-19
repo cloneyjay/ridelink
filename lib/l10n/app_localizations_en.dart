@@ -2027,4 +2027,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get jobCancelledByPassenger => 'The passenger cancelled this ride.';
+
+  @override
+  String get errCodeEvidencePhotoRequired => 'Take the required photo first.';
+
+  @override
+  String get errCodeEvidencePickupPhotoRequired =>
+      'Take the pickup photo before marking the item picked up.';
+
+  @override
+  String get errCodeEvidenceHandoverPhotoRequired =>
+      'Take the handover photo before marking the item handed over.';
+
+  @override
+  String get jobPickupPhotoRequired => 'Take the pickup photo to continue.';
+
+  @override
+  String get jobHandoverPhotoRequired => 'Take the handover photo to continue.';
 }

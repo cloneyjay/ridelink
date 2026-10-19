@@ -3637,6 +3637,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The passenger cancelled this ride.'**
   String get jobCancelledByPassenger;
+
+  /// Server error code evidence_photo_required without a known kind: a delivery step needs its evidence photo first.
+  ///
+  /// In en, this message translates to:
+  /// **'Take the required photo first.'**
+  String get errCodeEvidencePhotoRequired;
+
+  /// Server error code evidence_photo_required, kind pickup_photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Take the pickup photo before marking the item picked up.'**
+  String get errCodeEvidencePickupPhotoRequired;
+
+  /// Server error code evidence_photo_required, kind handover_photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Take the handover photo before marking the item handed over.'**
+  String get errCodeEvidenceHandoverPhotoRequired;
+
+  /// Rider delivery job: shown above the disabled Picked up button until the pickup photo is uploaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Take the pickup photo to continue.'**
+  String get jobPickupPhotoRequired;
+
+  /// Rider delivery job: shown above the disabled Hand over button until the handover photo is uploaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Take the handover photo to continue.'**
+  String get jobHandoverPhotoRequired;
 }
 
 class _AppLocalizationsDelegate

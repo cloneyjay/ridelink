@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -33,32 +31,13 @@ class RiderHomeScreen extends ConsumerStatefulWidget {
   ConsumerState<RiderHomeScreen> createState() => _RiderHomeScreenState();
 }
 
-class _RiderHomeScreenState extends ConsumerState<RiderHomeScreen>
-    with WidgetsBindingObserver {
+class _RiderHomeScreenState extends ConsumerState<RiderHomeScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) ref.read(appModeProvider).set(AppMode.rider);
     });
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    // Realtime may have dropped while in the background; re-read what's pending.
-    if (state == AppLifecycleState.resumed) {
-      final s = ref.read(riderControllerProvider);
-      if (s.registered) {
-        unawaited(ref.read(riderControllerProvider.notifier).refreshActive());
-      }
-    }
   }
 
   @override

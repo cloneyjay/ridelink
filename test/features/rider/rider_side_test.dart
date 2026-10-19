@@ -353,6 +353,8 @@ void main() {
 
         await tap(tester, 'job.action.arrivedAtPickup');
         expect(byKey('job.pickupCountdown'), findsNothing);
+        // Deliveries need the pickup photo before "Picked up".
+        await tap(tester, 'evidence.pickup_photo.capture');
         await tap(tester, 'job.action.pickedUp');
         await tap(tester, 'job.action.startTrip');
         await tap(tester, 'job.action.arrivedAtDropoff');
@@ -369,6 +371,7 @@ void main() {
         await tap(tester, 'job.paymentReceived');
         expect(byKey('job.receivedDialog'), findsOneWidget);
         await tap(tester, 'job.receivedDialog.yes');
+        await tap(tester, 'evidence.handover_photo.capture');
         await tap(tester, 'job.action.handOver');
         await tap(tester, 'job.action.complete');
         expect(byKey('job.status.completed'), findsOneWidget);
