@@ -13,7 +13,8 @@ plugins {
 
 android {
     namespace = "com.example.ridelink"
-    compileSdk = flutter.compileSdkVersion
+    // permission_handler_android requires compiling against API 37.
+    compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
