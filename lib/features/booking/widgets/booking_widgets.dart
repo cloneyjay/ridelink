@@ -297,6 +297,7 @@ class RouteFields extends StatelessWidget {
     required this.onDropoff,
     this.pickupError,
     this.dropoffError,
+    this.pickupLoading = false,
   });
 
   final String? pickup;
@@ -305,6 +306,9 @@ class RouteFields extends StatelessWidget {
   final VoidCallback onDropoff;
   final String? pickupError;
   final String? dropoffError;
+
+  /// The current location is being read for the default pickup.
+  final bool pickupLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -319,6 +323,7 @@ class RouteFields extends StatelessWidget {
       required String? value,
       required String? error,
       required VoidCallback onTap,
+      Widget? trailing,
     }) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -357,7 +362,7 @@ class RouteFields extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Icon(Icons.chevron_right, color: c.inkFaint),
+                  trailing ?? Icon(Icons.chevron_right, color: c.inkFaint),
                 ],
               ),
             ),
@@ -386,10 +391,34 @@ class RouteFields extends StatelessWidget {
             icon: Icons.location_on,
             color: c.forest500,
             label: l.pickupLabel,
-            placeholder: l.choosePickup,
+            placeholder: pickupLoading
+                ? l.findingLocationLabel
+                : l.choosePickup,
             value: pickup,
             error: pickupError,
             onTap: onPickup,
+            trailing: pickupLoading
+                ? SizedBox.square(
+                    key: const Key('route.pickup.locating'),
+                    dimension: AppSpacing.s5,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: c.inkMuted,
+                    ),
+                  )
+                : pickup == null
+                ? null
+                : TextButton(
+                    key: const Key('route.pickup.change'),
+                    style: TextButton.styleFrom(
+                      minimumSize: const Size(
+                        AppLayout.minTapTarget,
+                        AppLayout.minTapTarget,
+                      ),
+                    ),
+                    onPressed: onPickup,
+                    child: Text(l.changeButton),
+                  ),
           ),
           const Divider(),
           field(

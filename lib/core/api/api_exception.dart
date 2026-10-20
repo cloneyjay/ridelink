@@ -7,6 +7,7 @@ class ApiException implements Exception {
     required this.message,
     this.code,
     this.body = const {},
+    this.retryAfter,
   });
 
   factory ApiException.fromDio(DioException e) {
@@ -27,7 +28,14 @@ class ApiException implements Exception {
           'HTTP ${response.statusCode}',
       code: map?['code'] is String ? map!['code'] as String : null,
       body: map ?? const {},
+      retryAfter: _parseRetryAfter(response.headers.value('retry-after')),
     );
+  }
+
+  /// Delay-seconds form only (what the Go server sends); HTTP-date values are ignored.
+  static Duration? _parseRetryAfter(String? value) {
+    final seconds = int.tryParse(value?.trim() ?? '');
+    return seconds == null || seconds < 0 ? null : Duration(seconds: seconds);
   }
 
   final int? statusCode;
@@ -40,6 +48,9 @@ class ApiException implements Exception {
 
   /// The full error body, for structured extras such as `paused_until` or `documents`.
   final Map<String, dynamic> body;
+
+  /// The server's `Retry-After` (e.g. on a 429), when sent.
+  final Duration? retryAfter;
 
   bool get isNetworkError => statusCode == null;
   bool get isUnauthorized => statusCode == 401;

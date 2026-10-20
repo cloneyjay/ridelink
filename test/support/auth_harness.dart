@@ -68,7 +68,11 @@ Future<AuthHarness> pumpAuthApp(
   final adapter = FakeAdapter(handler);
   final storage = FakeTokenStorage();
   final authApi = AuthApi(config, adapter: adapter);
-  final session = SessionManager(storage: storage, authApi: authApi);
+  final session = SessionManager(
+    storage: storage,
+    authApi: authApi,
+    timer: InertTimer.new,
+  );
   await session.restore();
   final intent = RiderIntent();
   final router = buildRouter(session, intent, initialLocation: initialLocation);

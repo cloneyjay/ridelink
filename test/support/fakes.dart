@@ -79,3 +79,20 @@ Map<String, dynamic> sessionJson({
   'token_type': 'bearer',
   'user': {'id': 'user-1', 'email': 'moses@example.com'},
 };
+
+/// A Timer that never fires: for widget tests that don't exercise the session's refresh schedule
+/// (a real hour-long timer would outlive the test).
+class InertTimer implements Timer {
+  InertTimer(Duration delay, void Function() callback);
+
+  bool _cancelled = false;
+
+  @override
+  void cancel() => _cancelled = true;
+
+  @override
+  bool get isActive => !_cancelled;
+
+  @override
+  int get tick => 0;
+}

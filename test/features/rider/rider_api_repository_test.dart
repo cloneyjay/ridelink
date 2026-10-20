@@ -170,5 +170,8 @@ class _StaticTokens implements AccessTokenSource {
   bool get hasSession => true;
 
   @override
+  bool get accessTokenExpiresSoon => false;
+
+  @override
   Future<bool> refresh() async => false;
 }

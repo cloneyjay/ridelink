@@ -2690,5 +2690,41 @@
   "jobHandoverPhotoRequired": "Piga picha ya kukabidhi ili kuendelea.",
   "@jobHandoverPhotoRequired": {
     "x-review": "needs-review"
+  },
+  "currentLocationLabel": "Mahali ulipo sasa",
+  "@currentLocationLabel": {
+    "x-review": "needs-review"
+  },
+  "pinnedLocationLabel": "Mahali palipowekwa alama",
+  "@pinnedLocationLabel": {
+    "x-review": "needs-review"
+  },
+  "changeButton": "Badilisha",
+  "@changeButton": {
+    "x-review": "needs-review"
+  },
+  "confirmPickupButton": "Thibitisha mahali pa kuchukua",
+  "@confirmPickupButton": {
+    "x-review": "needs-review"
+  },
+  "searchInsteadButton": "Tafuta badala yake",
+  "@searchInsteadButton": {
+    "x-review": "needs-review"
+  },
+  "confirmPickupRideTitle": "Thibitisha mahali pa kukuchukua",
+  "@confirmPickupRideTitle": {
+    "x-review": "needs-review"
+  },
+  "confirmPickupDeliveryTitle": "Thibitisha mahali mwendesha boda atachukua mzigo",
+  "@confirmPickupDeliveryTitle": {
+    "x-review": "needs-review"
+  },
+  "confirmPickupHelper": "Sogeza ramani hadi mahali kamili",
+  "@confirmPickupHelper": {
+    "x-review": "needs-review"
+  },
+  "findingLocationLabel": "Inatafuta mahali ulipo",
+  "@findingLocationLabel": {
+    "x-review": "needs-review"
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -11,7 +13,9 @@ import '../../theme/app_dimensions.dart';
 import '../../theme/app_text_styles.dart';
 import 'booking_labels.dart';
 import 'booking_routes.dart';
+import 'confirm_pickup_screen.dart';
 import 'data/booking_models.dart';
+import 'default_pickup.dart';
 import 'order_form.dart';
 import 'place_search_screen.dart';
 import 'widgets/booking_widgets.dart';
@@ -38,8 +42,13 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
   final _receiver = TextEditingController();
   final _description = TextEditingController();
   final _weight = TextEditingController();
-  Place? _pickup;
+  PickupChoice? _pickup;
   Place? _dropoff;
+  bool _locating = false;
+  bool _confirming = false;
+
+  /// Bumped on every pickup change so a late GPS result never overwrites the sender's choice.
+  int _pickupVersion = 0;
   String? _categoryId;
   ValueBand? _band;
   bool _attempted = false;
@@ -47,6 +56,47 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
   String? _error;
 
   bool get _isDelivery => widget.service == ServiceType.delivery;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) unawaited(_defaultPickup());
+    });
+  }
+
+  /// Seeds the pickup from the current location when it is accurate enough; otherwise the
+  /// pickup stays empty for search.
+  Future<void> _defaultPickup() async {
+    final version = _pickupVersion;
+    final l = AppLocalizations.of(context);
+    setState(() => _locating = true);
+    try {
+      final fix = await pickupFix(
+        cached: ref.read(lastKnownLocationProvider),
+        service: ref.read(locationServiceProvider),
+        now: ref.read(clockProvider)(),
+        onFresh: (f) => ref.read(lastKnownLocationProvider.notifier).set(f),
+      );
+      if (fix == null || !mounted || version != _pickupVersion) return;
+      final place = await placeAt(
+        repo: ref.read(bookingRepositoryProvider),
+        point: fix.point,
+        language: l.localeName,
+        fallbackLabel: l.currentLocationLabel,
+      );
+      if (!mounted || version != _pickupVersion) return;
+      _setPickup(PickupChoice(place));
+    } finally {
+      if (mounted) setState(() => _locating = false);
+    }
+  }
+
+  void _setPickup(PickupChoice? choice) => setState(() {
+    _pickupVersion++;
+    _locating = false;
+    _pickup = choice;
+  });
 
   @override
   void dispose() {
@@ -63,7 +113,11 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
       title: pickup ? l.pickupLabel : l.dropoffLabel,
     );
     if (place == null || !mounted) return;
-    setState(() => pickup ? _pickup = place : _dropoff = place);
+    if (pickup) {
+      _setPickup(PickupChoice(place));
+    } else {
+      setState(() => _dropoff = place);
+    }
   }
 
   Future<void> _submit() async {
@@ -73,6 +127,22 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
     });
     final formOk = _formKey.currentState?.validate() ?? false;
     if (!formOk || _pickup == null || _dropoff == null) return;
+    if (!_pickup!.confirmed) {
+      if (_confirming) return;
+      _confirming = true;
+      final Place? confirmed;
+      try {
+        confirmed = await confirmPickup(
+          context,
+          service: widget.service,
+          pickup: _pickup!.place,
+        );
+      } finally {
+        _confirming = false;
+      }
+      if (confirmed == null || !mounted) return;
+      _setPickup(PickupChoice(confirmed, confirmed: true));
+    }
 
     setState(() => _submitting = true);
     try {
@@ -81,7 +151,7 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
           .createOrder(
             buildCreateOrderInput(
               service: widget.service,
-              pickup: _pickup!,
+              pickup: _pickup!.place,
               dropoff: _dropoff!,
               receiverName: _receiver.text,
               categoryId: _categoryId,
@@ -122,7 +192,8 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
             padding: const EdgeInsets.all(AppLayout.screenPadding),
             children: [
               RouteFields(
-                pickup: _pickup?.label,
+                pickup: _pickup?.place.label,
+                pickupLoading: _locating && _pickup == null,
                 dropoff: _dropoff?.label,
                 onPickup: () => _choose(pickup: true),
                 onDropoff: () => _choose(pickup: false),

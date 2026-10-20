@@ -2689,5 +2689,41 @@
   "jobHandoverPhotoRequired": "Take the handover photo to continue.",
   "@jobHandoverPhotoRequired": {
     "description": "Rider delivery job: shown above the disabled Hand over button until the handover photo is uploaded."
+  },
+  "currentLocationLabel": "Current location",
+  "@currentLocationLabel": {
+    "description": "Pickup label for the sender's GPS position when no address could be found. Shown on this device only; the order stores coordinates."
+  },
+  "pinnedLocationLabel": "Pinned location",
+  "@pinnedLocationLabel": {
+    "description": "Pickup label on Confirm pickup when the map pin's address could not be found."
+  },
+  "changeButton": "Change",
+  "@changeButton": {
+    "description": "Action on the pickup row: opens place search to change the pickup."
+  },
+  "confirmPickupButton": "Confirm pickup",
+  "@confirmPickupButton": {
+    "description": "Primary button on the Confirm pickup screen."
+  },
+  "searchInsteadButton": "Search instead",
+  "@searchInsteadButton": {
+    "description": "Secondary button on the Confirm pickup screen: opens place search."
+  },
+  "confirmPickupRideTitle": "Confirm your pickup spot",
+  "@confirmPickupRideTitle": {
+    "description": "Confirm pickup screen heading for rides."
+  },
+  "confirmPickupDeliveryTitle": "Confirm where the rider collects the item",
+  "@confirmPickupDeliveryTitle": {
+    "description": "Confirm pickup screen heading for deliveries."
+  },
+  "confirmPickupHelper": "Move the map to the exact spot",
+  "@confirmPickupHelper": {
+    "description": "Confirm pickup helper line; shown only when the map can be panned."
+  },
+  "findingLocationLabel": "Finding your location",
+  "@findingLocationLabel": {
+    "description": "Pickup row while the current location is being read for the default pickup."
   }
 }

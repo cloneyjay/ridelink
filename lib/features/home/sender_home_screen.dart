@@ -107,7 +107,15 @@ class _SenderHomeScreenState extends ConsumerState<SenderHomeScreen>
     if (!mounted) return;
     setState(() => _location = result);
     if (result is LocationFound) {
-      ref.read(lastKnownLocationProvider.notifier).set(result.point);
+      ref
+          .read(lastKnownLocationProvider.notifier)
+          .set(
+            LocationFix(
+              point: result.point,
+              accuracyM: result.accuracyM,
+              at: ref.read(clockProvider)(),
+            ),
+          );
     }
   }
 

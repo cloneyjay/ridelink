@@ -73,7 +73,7 @@ class _PlaceSearchScreenState extends ConsumerState<PlaceSearchScreen> {
     try {
       final results = await _session.search(
         value,
-        near: ref.read(lastKnownLocationProvider),
+        near: ref.read(lastKnownLocationProvider)?.point,
       );
       if (!mounted || seq != _seq) return;
       setState(() {

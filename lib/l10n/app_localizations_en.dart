@@ -2037,4 +2037,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get jobHandoverPhotoRequired => 'Take the handover photo to continue.';
+
+  @override
+  String get currentLocationLabel => 'Current location';
+
+  @override
+  String get pinnedLocationLabel => 'Pinned location';
+
+  @override
+  String get changeButton => 'Change';
+
+  @override
+  String get confirmPickupButton => 'Confirm pickup';
+
+  @override
+  String get searchInsteadButton => 'Search instead';
+
+  @override
+  String get confirmPickupRideTitle => 'Confirm your pickup spot';
+
+  @override
+  String get confirmPickupDeliveryTitle =>
+      'Confirm where the rider collects the item';
+
+  @override
+  String get confirmPickupHelper => 'Move the map to the exact spot';
+
+  @override
+  String get findingLocationLabel => 'Finding your location';
 }

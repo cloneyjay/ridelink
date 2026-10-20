@@ -14,7 +14,6 @@ import 'auth/session.dart';
 import 'auth/session_manager.dart';
 import 'auth/token_storage.dart';
 import 'config/app_config.dart';
-import 'location/geo_point.dart';
 import 'files/document_picker.dart';
 import 'files/evidence_camera.dart';
 import 'location/location_service.dart';
@@ -38,13 +37,17 @@ final tokenStorageProvider = Provider<TokenStorage>(
 );
 
 final authApiProvider = Provider<AuthApi>(
-  (ref) => AuthApi(ref.watch(appConfigProvider)),
+  (ref) => AuthApi(
+    ref.watch(appConfigProvider),
+    clock: ref.watch(serverClockProvider),
+  ),
 );
 
 final sessionManagerProvider = Provider<SessionManager>((ref) {
   final manager = SessionManager(
     storage: ref.watch(tokenStorageProvider),
     authApi: ref.watch(authApiProvider),
+    clock: ref.watch(serverClockProvider),
   );
   ref.onDispose(manager.dispose);
   return manager;
@@ -133,15 +136,15 @@ final isRiderProvider = FutureProvider<bool>((ref) {
   return ref.watch(accountRepositoryProvider).isRider();
 }, retry: (_, _) => null);
 
-/// The sender's last known position, used to bias place search.
+/// The sender's last known fix: biases place search and seeds the default pickup.
 final lastKnownLocationProvider =
-    NotifierProvider<LastKnownLocation, GeoPoint?>(LastKnownLocation.new);
+    NotifierProvider<LastKnownLocation, LocationFix?>(LastKnownLocation.new);
 
-class LastKnownLocation extends Notifier<GeoPoint?> {
+class LastKnownLocation extends Notifier<LocationFix?> {
   @override
-  GeoPoint? build() => null;
+  LocationFix? build() => null;
 
-  void set(GeoPoint? point) => state = point;
+  void set(LocationFix? fix) => state = fix;
 }
 
 final riderRepositoryProvider = Provider<RiderRepository>(

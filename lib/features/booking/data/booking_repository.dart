@@ -23,6 +23,13 @@ abstract class BookingRepository {
     required String sessionToken,
   });
 
+  /// GET /places/reverse: the address at [point] in [language] (`en` / `sw`), or null when
+  /// none is found (404). Throws [MapsUnavailableException] when maps are off or failing.
+  Future<Place?> reverseGeocode({
+    required GeoPoint point,
+    required String language,
+  });
+
   Future<List<ItemCategory>> itemCategories();
 
   Future<Order> createOrder(CreateOrderInput input);
@@ -107,6 +114,30 @@ class ApiBookingRepository implements BookingRepository {
       ),
     ),
   );
+
+  @override
+  Future<Place?> reverseGeocode({
+    required GeoPoint point,
+    required String language,
+  }) async {
+    try {
+      return Place.fromJson(
+        _map(
+          await _api.get(
+            'places/reverse',
+            query: {'lat': point.lat, 'lng': point.lng, 'language': language},
+          ),
+        ),
+      );
+    } on ApiException catch (e) {
+      if (e.statusCode == 404) return null;
+      if (e.statusCode == 503 ||
+          (e.statusCode == 502 && e.code == 'maps_unavailable')) {
+        throw const MapsUnavailableException();
+      }
+      rethrow;
+    }
+  }
 
   @override
   Future<List<ItemCategory>> itemCategories() async {

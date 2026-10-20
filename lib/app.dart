@@ -15,10 +15,21 @@ class RideLinkApp extends ConsumerStatefulWidget {
 }
 
 class _RideLinkAppState extends ConsumerState<RideLinkApp> {
+  late final AppLifecycleListener _lifecycle;
+
   @override
   void initState() {
     super.initState();
     ref.read(sessionManagerProvider).restore();
+    _lifecycle = AppLifecycleListener(
+      onResume: () => ref.read(sessionManagerProvider).ensureFresh(),
+    );
+  }
+
+  @override
+  void dispose() {
+    _lifecycle.dispose();
+    super.dispose();
   }
 
   @override

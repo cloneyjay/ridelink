@@ -91,6 +91,66 @@ void main() {
     });
   });
 
+  group('reverse geocode', () {
+    test('sends the point and language and parses the place', () async {
+      final repo = ApiBookingRepository(
+        client({
+          'places/reverse': (_) => jsonResponse(200, {
+            'place_id': 'r1',
+            'name': 'Waiyaki Way',
+            'address': 'Westlands, Nairobi',
+            'location': {'lat': -1.26, 'lng': 36.8},
+          }),
+        }),
+      );
+      final place = await repo.reverseGeocode(
+        point: const GeoPoint(-1.26, 36.8),
+        language: 'sw',
+      );
+      expect(place!.label, 'Waiyaki Way, Westlands, Nairobi');
+      expect(adapter.requests.single.uri.queryParameters, {
+        'lat': '-1.26',
+        'lng': '36.8',
+        'language': 'sw',
+      });
+    });
+
+    test('404 means no address', () async {
+      final repo = ApiBookingRepository(
+        client({
+          'places/reverse': (_) => jsonResponse(404, {'error': 'not found'}),
+        }),
+      );
+      expect(
+        await repo.reverseGeocode(
+          point: const GeoPoint(-1.26, 36.8),
+          language: 'en',
+        ),
+        isNull,
+      );
+    });
+
+    test('503 and 502 maps_unavailable become MapsUnavailable', () async {
+      for (final status in [503, 502]) {
+        final repo = ApiBookingRepository(
+          client({
+            'places/reverse': (_) => jsonResponse(status, {
+              'error': 'maps',
+              'code': 'maps_unavailable',
+            }),
+          }),
+        );
+        await expectLater(
+          repo.reverseGeocode(
+            point: const GeoPoint(-1.26, 36.8),
+            language: 'en',
+          ),
+          throwsA(isA<MapsUnavailableException>()),
+        );
+      }
+    });
+  });
+
   test('create order posts the contract body and parses distance', () async {
     final repo = ApiBookingRepository(
       client({
@@ -213,6 +273,9 @@ class _StaticTokens implements AccessTokenSource {
 
   @override
   bool get hasSession => true;
+
+  @override
+  bool get accessTokenExpiresSoon => false;
 
   @override
   Future<bool> refresh() async => false;

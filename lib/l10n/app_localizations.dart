@@ -3655,6 +3655,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Take the handover photo to continue.'**
   String get jobHandoverPhotoRequired;
+
+  /// Pickup label for the sender's GPS position when no address could be found. Shown on this device only; the order stores coordinates.
+  ///
+  /// In en, this message translates to:
+  /// **'Current location'**
+  String get currentLocationLabel;
+
+  /// Pickup label on Confirm pickup when the map pin's address could not be found.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinned location'**
+  String get pinnedLocationLabel;
+
+  /// Action on the pickup row: opens place search to change the pickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get changeButton;
+
+  /// Primary button on the Confirm pickup screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm pickup'**
+  String get confirmPickupButton;
+
+  /// Secondary button on the Confirm pickup screen: opens place search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search instead'**
+  String get searchInsteadButton;
+
+  /// Confirm pickup screen heading for rides.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your pickup spot'**
+  String get confirmPickupRideTitle;
+
+  /// Confirm pickup screen heading for deliveries.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm where the rider collects the item'**
+  String get confirmPickupDeliveryTitle;
+
+  /// Confirm pickup helper line; shown only when the map can be panned.
+  ///
+  /// In en, this message translates to:
+  /// **'Move the map to the exact spot'**
+  String get confirmPickupHelper;
+
+  /// Pickup row while the current location is being read for the default pickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding your location'**
+  String get findingLocationLabel;
 }
 
 class _AppLocalizationsDelegate

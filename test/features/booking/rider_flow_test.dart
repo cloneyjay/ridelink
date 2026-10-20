@@ -187,6 +187,8 @@ void main() {
       await tester.tap(byKey('placeSearch.result.p-cbd'));
       await tester.pumpAndSettle();
       await tapKeyAndSettle(tester, 'editRoute.save');
+      expect(byKey('screen.confirmPickup'), findsOneWidget);
+      await tapKeyAndSettle(tester, 'confirmPickup.confirm');
       expect(find.text('This route can no longer be changed.'), findsOneWidget);
     });
 

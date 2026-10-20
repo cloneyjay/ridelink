@@ -184,6 +184,8 @@ void main() {
       await tester.enterText(byKey('order.weight'), '0.5');
       await tapKeyAndSettle(tester, 'order.valueBand.2000_to_5000');
       await tapKeyAndSettle(tester, 'order.submit');
+      expect(h.repo.createCalls, isEmpty);
+      await tapKeyAndSettle(tester, 'confirmPickup.confirm');
 
       final input = h.repo.createCalls.single;
       expect(input.serviceType, ServiceType.delivery);
@@ -204,6 +206,7 @@ void main() {
       await pickPlace(tester, 'route.pickup', 'West', 'p-westlands');
       await pickPlace(tester, 'route.dropoff', 'Moi', 'p-cbd');
       await tapKeyAndSettle(tester, 'order.submit');
+      await tapKeyAndSettle(tester, 'confirmPickup.confirm');
       expect(byKey('order.error'), findsOneWidget);
       expect(byKey('screen.newOrder'), findsOneWidget);
     });
@@ -230,6 +233,7 @@ void main() {
       await pickPlace(tester, 'route.pickup', 'West', 'p-westlands');
       await pickPlace(tester, 'route.dropoff', 'Moi', 'p-cbd');
       await tapKeyAndSettle(tester, 'order.submit');
+      await tapKeyAndSettle(tester, 'confirmPickup.confirm');
       final input = h.repo.createCalls.single;
       expect(input.serviceType, ServiceType.ride);
       expect(input.receiverName, isNull);

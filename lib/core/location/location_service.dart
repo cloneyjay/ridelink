@@ -7,8 +7,20 @@ sealed class LocationResult {
 }
 
 class LocationFound extends LocationResult {
-  const LocationFound(this.point);
+  const LocationFound(this.point, {this.accuracyM});
   final GeoPoint point;
+
+  /// Horizontal accuracy radius in metres; null when the platform did not report it.
+  final double? accuracyM;
+}
+
+/// A position with when it was read, so callers can tell whether it is still fresh.
+class LocationFix {
+  const LocationFix({required this.point, required this.at, this.accuracyM});
+
+  final GeoPoint point;
+  final DateTime at;
+  final double? accuracyM;
 }
 
 /// Permission denied but can still be requested.
@@ -71,7 +83,10 @@ class GeolocatorLocationService implements LocationService {
               timeLimit: Duration(seconds: 15),
             ),
           );
-          return LocationFound(GeoPoint(p.latitude, p.longitude));
+          return LocationFound(
+            GeoPoint(p.latitude, p.longitude),
+            accuracyM: p.accuracy,
+          );
       }
     } catch (_) {
       return const LocationUnavailable();

@@ -2048,4 +2048,32 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get jobHandoverPhotoRequired =>
       'Piga picha ya kukabidhi ili kuendelea.';
+
+  @override
+  String get currentLocationLabel => 'Mahali ulipo sasa';
+
+  @override
+  String get pinnedLocationLabel => 'Mahali palipowekwa alama';
+
+  @override
+  String get changeButton => 'Badilisha';
+
+  @override
+  String get confirmPickupButton => 'Thibitisha mahali pa kuchukua';
+
+  @override
+  String get searchInsteadButton => 'Tafuta badala yake';
+
+  @override
+  String get confirmPickupRideTitle => 'Thibitisha mahali pa kukuchukua';
+
+  @override
+  String get confirmPickupDeliveryTitle =>
+      'Thibitisha mahali mwendesha boda atachukua mzigo';
+
+  @override
+  String get confirmPickupHelper => 'Sogeza ramani hadi mahali kamili';
+
+  @override
+  String get findingLocationLabel => 'Inatafuta mahali ulipo';
 }

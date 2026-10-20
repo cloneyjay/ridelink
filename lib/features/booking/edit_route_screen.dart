@@ -6,6 +6,7 @@ import '../../core/api/api_exception.dart';
 import '../../core/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_dimensions.dart';
+import 'confirm_pickup_screen.dart';
 import 'data/booking_models.dart';
 import 'place_search_screen.dart';
 import 'widgets/booking_widgets.dart';
@@ -22,6 +23,7 @@ class EditRouteScreen extends ConsumerStatefulWidget {
 
 class _EditRouteScreenState extends ConsumerState<EditRouteScreen> {
   Place? _pickup;
+  bool _pickupConfirmed = false;
   Place? _dropoff;
   bool _saving = false;
   String? _error;
@@ -44,11 +46,31 @@ class _EditRouteScreenState extends ConsumerState<EditRouteScreen> {
       title: pickup ? l.pickupLabel : l.dropoffLabel,
     );
     if (place == null || !mounted) return;
-    setState(() => pickup ? _pickup = place : _dropoff = place);
+    setState(() {
+      if (pickup) {
+        _pickup = place;
+        _pickupConfirmed = false;
+      } else {
+        _dropoff = place;
+      }
+    });
   }
 
   Future<void> _save() async {
     final l = AppLocalizations.of(context);
+    // A changed pickup is confirmed on the map first; the order's existing pickup already was.
+    if (_pickup != null && !_pickupConfirmed) {
+      final confirmed = await confirmPickup(
+        context,
+        service: widget.order.serviceType,
+        pickup: _pickup!,
+      );
+      if (confirmed == null || !mounted) return;
+      setState(() {
+        _pickup = confirmed;
+        _pickupConfirmed = true;
+      });
+    }
     final pickup = _effectivePickup;
     final dropoff = _effectiveDropoff;
     if (pickup == null || dropoff == null) return;

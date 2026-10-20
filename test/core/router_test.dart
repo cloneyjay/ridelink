@@ -103,6 +103,7 @@ void main() {
           config,
           adapter: FakeAdapter((o) => jsonResponse(204, const {})),
         ),
+        timer: InertTimer.new,
       );
 
       await tester.pumpWidget(appFor(session, RiderIntent(), config));
@@ -140,6 +141,7 @@ void main() {
             return jsonResponse(200, sessionJson());
           }),
         ),
+        timer: InertTimer.new,
       );
 
       await tester.pumpWidget(appFor(session, RiderIntent(), config));

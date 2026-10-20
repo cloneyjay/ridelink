@@ -51,6 +51,7 @@ class Place {
     required this.name,
     required this.address,
     required this.location,
+    this.localLabel,
   });
 
   factory Place.fromJson(Map<String, dynamic> json) => Place(
@@ -67,13 +68,26 @@ class Place {
   final String address;
   final GeoPoint location;
 
-  /// Text stored on the order: the place name, plus the address when it adds detail.
+  /// Shown only on this device when there is no real address (e.g. "Current location").
+  final String? localLabel;
+
+  bool get hasAddress => name.isNotEmpty || address.isNotEmpty;
+
+  /// Text shown to the sender: the place name, plus the address when it adds detail.
   String get label {
+    if (!hasAddress) return localLabel ?? coordinateText(location);
     if (address.isEmpty) return name;
     if (name.isEmpty || address.contains(name)) return address;
     return '$name, $address';
   }
+
+  /// Text stored on the order: the address, or language-neutral coordinates when there is none.
+  String get orderAddress => hasAddress ? label : coordinateText(location);
 }
+
+/// "-1.28636, 36.81720": 5 decimals (about 1 m), readable in any language.
+String coordinateText(GeoPoint p) =>
+    '${p.lat.toStringAsFixed(5)}, ${p.lng.toStringAsFixed(5)}';
 
 class ItemCategory {
   const ItemCategory({
@@ -105,8 +119,8 @@ class RouteInput {
   final Place dropoff;
 
   Map<String, dynamic> toJson() => {
-    'pickup_address': pickup.label,
-    'dropoff_address': dropoff.label,
+    'pickup_address': pickup.orderAddress,
+    'dropoff_address': dropoff.orderAddress,
     'pickup_location': pickup.location.toJson(),
     'dropoff_location': dropoff.location.toJson(),
   };

@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io' show WebSocketException;
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -65,7 +67,8 @@ class RealtimeClient {
     var attempt = 0;
     var refreshFirst = false;
     while (_isCurrent(generation)) {
-      if (refreshFirst) {
+      // Only a rejected or expiring token warrants a refresh; other failures retry as is.
+      if (refreshFirst || _tokens.accessTokenExpiresSoon) {
         refreshFirst = false;
         if (!await _tokens.refresh() && !_tokens.hasSession) break;
         if (!_isCurrent(generation)) return;
@@ -77,9 +80,13 @@ class RealtimeClient {
       _channel = channel;
       try {
         await channel.ready;
-      } catch (_) {
-        // Handshake rejected (likely an expired token) or unreachable: refresh, then back off.
-        refreshFirst = true;
+      } catch (e) {
+        final status = handshakeStatusCode(e);
+        _debugLog(
+          'handshake to $_uri failed: ${_describe(e)}'
+          '${status == null ? '' : ' (HTTP $status)'}',
+        );
+        refreshFirst = status == 401;
         if (!_isCurrent(generation)) return;
         await _delay(_backoff(attempt++));
         continue;
@@ -94,16 +101,40 @@ class RealtimeClient {
           if (!_events.isClosed) _events.add(event);
         },
         onDone: () => closed.isCompleted ? null : closed.complete(),
-        onError: (Object _) => closed.isCompleted ? null : closed.complete(),
+        onError: (Object e) {
+          _debugLog('stream error: ${_describe(e)}');
+          if (!closed.isCompleted) closed.complete();
+        },
         cancelOnError: true,
       );
       await closed.future;
       await sub.cancel();
+      _debugLog(
+        'connection closed (code ${channel.closeCode}, reason ${channel.closeReason})',
+      );
       if (identical(_channel, channel)) _channel = null;
       if (!_isCurrent(generation)) return;
       await _delay(_backoff(attempt++));
     }
     if (generation == _generation) _running = false;
+  }
+
+  /// The HTTP status of a rejected WebSocket upgrade, or null (unreachable, TLS, timeout...).
+  static int? handshakeStatusCode(Object error) {
+    final inner = error is WebSocketChannelException ? error.inner : error;
+    return inner is WebSocketException ? inner.httpStatusCode : null;
+  }
+
+  static String _describe(Object error) {
+    final inner = error is WebSocketChannelException ? error.inner : null;
+    return inner == null
+        ? '${error.runtimeType}: $error'
+        : '${error.runtimeType} > ${inner.runtimeType}: $inner';
+  }
+
+  // Never log headers: they carry the bearer token.
+  static void _debugLog(String message) {
+    if (kDebugMode) debugPrint('realtime: $message');
   }
 
   Duration _backoff(int attempt) {

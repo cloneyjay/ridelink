@@ -161,6 +161,12 @@ class FakeBookingRepository implements BookingRepository {
   final autocompleteCalls = <({String input, String token, GeoPoint? near})>[];
   final detailsCalls = <({String placeId, String token})>[];
 
+  /// GET /places/reverse: null answers 404; [reverseError] is thrown instead when set.
+  Place? Function(GeoPoint point)? onReverse;
+  Object? reverseError;
+  Completer<void>? reverseGate;
+  final reverseCalls = <({GeoPoint point, String language})>[];
+
   List<ItemCategory> categories = categoriesFixture;
   Object? categoriesError;
 
@@ -228,6 +234,17 @@ class FakeBookingRepository implements BookingRepository {
     detailsCalls.add((placeId: placeId, token: sessionToken));
     if (detailsError != null) throw detailsError!;
     return places[placeId]!;
+  }
+
+  @override
+  Future<Place?> reverseGeocode({
+    required GeoPoint point,
+    required String language,
+  }) async {
+    reverseCalls.add((point: point, language: language));
+    if (reverseGate != null) await reverseGate!.future;
+    if (reverseError != null) throw reverseError!;
+    return onReverse?.call(point);
   }
 
   @override
@@ -491,6 +508,7 @@ Future<BookingHarness> pumpBookingApp(
   final session = SessionManager(
     storage: FakeTokenStorage(),
     authApi: AuthApi(config, adapter: adapter),
+    timer: InertTimer.new,
   );
   await session.setSession(Session.fromJson(sessionJson()));
   final intent = RiderIntent();

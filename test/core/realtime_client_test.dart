@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ridelink/core/auth/access_token_source.dart';
 import 'package:ridelink/core/realtime/realtime_client.dart';
@@ -13,6 +15,8 @@ class FakeTokens implements AccessTokenSource {
   String? accessToken = 't1';
   @override
   bool hasSession = true;
+  @override
+  bool accessTokenExpiresSoon = false;
 
   bool refreshSucceeds = true;
   bool signOutOnFailedRefresh = true;
@@ -23,6 +27,7 @@ class FakeTokens implements AccessTokenSource {
     refreshes++;
     if (refreshSucceeds) {
       accessToken = 't${refreshes + 1}';
+      accessTokenExpiresSoon = false;
       return true;
     }
     if (signOutOnFailedRefresh) {
@@ -55,18 +60,30 @@ class FakeSink implements WebSocketSink {
   Future get done => _done.future;
 }
 
-class FakeChannel with StreamChannelMixin implements WebSocketChannel {
-  FakeChannel({this.failHandshake = false});
+/// What IOWebSocketChannel reports when the server answers the upgrade with [status].
+Object rejected(int status) => WebSocketChannelException.from(
+  WebSocketException(
+    "Connection to 'http://test.local:8080/v1/ws#' was not upgraded to websocket",
+    status,
+  ),
+);
 
-  final bool failHandshake;
+/// What IOWebSocketChannel reports when the server can't be reached.
+Object unreachable() =>
+    WebSocketChannelException.from(const SocketException('Connection refused'));
+
+class FakeChannel with StreamChannelMixin implements WebSocketChannel {
+  FakeChannel({bool failHandshake = false, Object? handshakeError})
+    : handshakeError = handshakeError ?? (failHandshake ? rejected(401) : null);
+
+  final Object? handshakeError;
   final incoming = StreamController<dynamic>();
   final sent = <dynamic>[];
   bool closed = false;
 
   @override
-  Future<void> get ready => failHandshake
-      ? Future.error(WebSocketChannelException('HTTP 401'))
-      : Future.value();
+  Future<void> get ready =>
+      handshakeError == null ? Future.value() : Future.error(handshakeError!);
   @override
   Stream get stream => incoming.stream;
   @override
@@ -216,7 +233,7 @@ void main() {
     });
 
     test(
-      'a failed handshake refreshes the token before reconnecting',
+      'a handshake rejected with 401 refreshes the token before reconnecting',
       () async {
         final tokens = FakeTokens();
         final usedHeaders = <String>[];
@@ -288,6 +305,129 @@ void main() {
         expect(connects, 3);
       },
     );
+
+    for (final (name, error) in [
+      ('HTTP 500', rejected(500)),
+      ('HTTP 502', rejected(502)),
+      ('HTTP 429', rejected(429)),
+      ('unreachable', unreachable()),
+      ('a timeout', TimeoutException('connect')),
+    ]) {
+      test(
+        'a handshake failing with $name retries with the same token',
+        () async {
+          final tokens = FakeTokens();
+          final usedHeaders = <String>[];
+          final delays = <Duration>[];
+          late RealtimeClient client;
+          client = RealtimeClient(
+            uri: uri,
+            tokens: tokens,
+            connect: (_, h) {
+              usedHeaders.add(h['Authorization'] as String);
+              return FakeChannel(handshakeError: error);
+            },
+            delay: (d) async {
+              delays.add(d);
+              if (delays.length == 3) await client.stop();
+            },
+          );
+
+          client.start();
+          await pumpEventQueue(times: 50);
+
+          expect(tokens.refreshes, 0);
+          expect(usedHeaders, ['Bearer t1', 'Bearer t1', 'Bearer t1']);
+          expect(delays.map((d) => d.inSeconds), [1, 2, 4]);
+        },
+      );
+    }
+
+    test(
+      'refreshes before connecting when the token is about to expire',
+      () async {
+        final tokens = FakeTokens()..accessTokenExpiresSoon = true;
+        final usedHeaders = <String>[];
+        final client = RealtimeClient(
+          uri: uri,
+          tokens: tokens,
+          connect: (_, h) {
+            usedHeaders.add(h['Authorization'] as String);
+            return FakeChannel();
+          },
+          delay: (_) async {},
+        );
+
+        client.start();
+        await pumpEventQueue();
+
+        expect(tokens.refreshes, 1);
+        expect(usedHeaders, ['Bearer t2']);
+        await client.stop();
+      },
+    );
+
+    test(
+      'after a non-401 failure, refreshes only once the token nears expiry',
+      () async {
+        final tokens = FakeTokens();
+        final usedHeaders = <String>[];
+        late RealtimeClient client;
+        client = RealtimeClient(
+          uri: uri,
+          tokens: tokens,
+          connect: (_, h) {
+            usedHeaders.add(h['Authorization'] as String);
+            return FakeChannel(
+              handshakeError: usedHeaders.length < 3 ? unreachable() : null,
+            );
+          },
+          delay: (_) async {
+            if (usedHeaders.length == 2) tokens.accessTokenExpiresSoon = true;
+          },
+        );
+
+        client.start();
+        await pumpEventQueue(times: 50);
+
+        expect(tokens.refreshes, 1);
+        expect(usedHeaders, ['Bearer t1', 'Bearer t1', 'Bearer t2']);
+        await client.stop();
+      },
+    );
+
+    test('logs the handshake failure and status without the token', () async {
+      final logs = <String>[];
+      final original = debugPrint;
+      debugPrint = (String? m, {int? wrapWidth}) => logs.add(m ?? '');
+      addTearDown(() => debugPrint = original);
+      final tokens = FakeTokens()..accessToken = 'secret-token';
+      late RealtimeClient client;
+      client = RealtimeClient(
+        uri: uri,
+        tokens: tokens,
+        connect: (_, _) => FakeChannel(handshakeError: rejected(403)),
+        delay: (_) async => client.stop(),
+      );
+
+      client.start();
+      await pumpEventQueue(times: 20);
+
+      final line = logs.singleWhere((l) => l.contains('handshake'));
+      expect(line, contains('WebSocketException'));
+      expect(line, contains('HTTP 403'));
+      expect(line, contains('ws://test.local:8080/v1/ws'));
+      expect(logs.join(' '), isNot(contains('secret-token')));
+    });
+
+    test('handshakeStatusCode reads the upgrade status only', () {
+      expect(RealtimeClient.handshakeStatusCode(rejected(401)), 401);
+      expect(RealtimeClient.handshakeStatusCode(unreachable()), isNull);
+      expect(
+        RealtimeClient.handshakeStatusCode(TimeoutException('connect')),
+        isNull,
+      );
+    });
 
     test('does not connect without an access token', () async {
       final tokens = FakeTokens()
