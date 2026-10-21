@@ -2725,5 +2725,195 @@
   "findingLocationLabel": "Finding your location",
   "@findingLocationLabel": {
     "description": "Pickup row while the current location is being read for the default pickup."
+  },
+  "pushChannelOffersName": "New offers",
+  "@pushChannelOffersName": {
+    "description": "Android notification channel name for rider offers (shown in system settings)."
+  },
+  "pushChannelOffersDescription": "Delivery and ride offers waiting for your answer",
+  "@pushChannelOffersDescription": {
+    "description": "Android notification channel description for rider offers."
+  },
+  "pushChannelUpdatesName": "Order updates",
+  "@pushChannelUpdatesName": {
+    "description": "Android notification channel name for all other pushes."
+  },
+  "pushChannelUpdatesDescription": "Changes to your orders and account",
+  "@pushChannelUpdatesDescription": {
+    "description": "Android notification channel description for other pushes."
+  },
+  "pushOfferTitle": "New offer",
+  "@pushOfferTitle": {
+    "description": "System notification title for a rider offer (push type offer.received)."
+  },
+  "pushOfferBody": "Open RideLink to see it before it expires.",
+  "@pushOfferBody": {
+    "description": "System notification body for a rider offer."
+  },
+  "pushDocumentTitle": "Check your documents",
+  "@pushDocumentTitle": {
+    "description": "System notification title for document expiring/expired pushes (no document details in the push)."
+  },
+  "pushDocumentBody": "One of your rider documents needs attention.",
+  "@pushDocumentBody": {
+    "description": "System notification body for document pushes."
+  },
+  "pushGenericTitle": "Order update",
+  "@pushGenericTitle": {
+    "description": "System notification title for a push type this build doesn't know."
+  },
+  "pushGenericBody": "Open RideLink to see what changed.",
+  "@pushGenericBody": {
+    "description": "System notification body for an unknown push type."
+  },
+  "notifPermissionTitle": "Get offers as notifications",
+  "@notifPermissionTitle": {
+    "description": "Dialog title before asking riders for the notification permission."
+  },
+  "notifPermissionBody": "New delivery and ride offers arrive as notifications, even when RideLink is closed. Each offer is open only for a short time.",
+  "@notifPermissionBody": {
+    "description": "Dialog body explaining why riders should allow notifications."
+  },
+  "notifPermissionContinue": "Continue",
+  "@notifPermissionContinue": {
+    "description": "Dialog button that shows the system notification permission prompt."
+  },
+  "notifPermissionNotNow": "Not now",
+  "@notifPermissionNotNow": {
+    "description": "Dialog button that skips the notification permission prompt."
+  },
+  "notifOffReminder": "Notifications are off. You won't hear new offers while RideLink is closed.",
+  "@notifOffReminder": {
+    "description": "Reminder under the rider's online toggle when notifications are not allowed."
+  },
+  "notifOffTurnOn": "Turn on",
+  "@notifOffTurnOn": {
+    "description": "Button in the notifications-off reminder."
+  },
+  "deleteAccountButton": "Delete account",
+  "@deleteAccountButton": {
+    "description": "Destructive button on the profile screen and in the delete confirmation dialog."
+  },
+  "deleteAccountTitle": "Delete your account",
+  "@deleteAccountTitle": {
+    "description": "Delete account explanation screen title."
+  },
+  "deleteAccountIntro": "Deleting your account is permanent and signs you out.",
+  "@deleteAccountIntro": {
+    "description": "Delete account explanation intro."
+  },
+  "deleteAccountDeletedHeading": "What is deleted",
+  "@deleteAccountDeletedHeading": {
+    "description": "Delete account explanation section heading."
+  },
+  "deleteAccountDeletedBody": "Your name, email address and rider documents.",
+  "@deleteAccountDeletedBody": {
+    "description": "What deleting the account removes."
+  },
+  "deleteAccountKeptHeading": "What is kept, without your name",
+  "@deleteAccountKeptHeading": {
+    "description": "Delete account explanation section heading."
+  },
+  "deleteAccountKeptBody": "Past orders and their evidence records, for disputes and tax.",
+  "@deleteAccountKeptBody": {
+    "description": "What is kept after deleting the account."
+  },
+  "deleteAccountContinue": "Continue",
+  "@deleteAccountContinue": {
+    "description": "Button on the explanation screen that opens the confirmation dialog."
+  },
+  "deleteAccountConfirmTitle": "Delete account?",
+  "@deleteAccountConfirmTitle": {
+    "description": "Confirmation dialog title."
+  },
+  "deleteAccountConfirmBody": "Type {word} to confirm.",
+  "@deleteAccountConfirmBody": {
+    "description": "Confirmation dialog body; {word} is deleteAccountConfirmWord.",
+    "placeholders": {
+      "word": {
+        "type": "String",
+        "example": "DELETE"
+      }
+    }
+  },
+  "deleteAccountConfirmWord": "DELETE",
+  "@deleteAccountConfirmWord": {
+    "description": "The word the user must type to confirm account deletion."
+  },
+  "deleteAccountKeep": "Keep my account",
+  "@deleteAccountKeep": {
+    "description": "Confirmation dialog cancel button."
+  },
+  "deleteAccountFailed": "Couldn't delete your account. Try again.",
+  "@deleteAccountFailed": {
+    "description": "Shown when account deletion fails for a network or server reason."
+  },
+  "accountDeletedNotice": "Account deleted",
+  "@accountDeletedNotice": {
+    "description": "Shown on the sign-in screen after the account was deleted."
+  },
+  "errCodeAccountHasActiveOrder": "Finish or cancel your active order first.",
+  "@errCodeAccountHasActiveOrder": {
+    "description": "Error code account_has_active_order (deleting the account while an order is active)."
+  },
+  "errCodeLegalAcceptanceRequired": "Agree to the Terms of Service and Privacy Policy to continue.",
+  "@errCodeLegalAcceptanceRequired": {
+    "description": "Error code legal_acceptance_required; also shown when the sign-up checkbox is not ticked."
+  },
+  "legalAgreeLabel": "I agree to the Terms of Service and Privacy Policy",
+  "@legalAgreeLabel": {
+    "description": "Required checkbox label at sign-up (and before Google sign-in)."
+  },
+  "legalTermsLink": "Terms of Service",
+  "@legalTermsLink": {
+    "description": "Link that opens the Terms of Service in the browser."
+  },
+  "legalPrivacyLink": "Privacy Policy",
+  "@legalPrivacyLink": {
+    "description": "Link that opens the Privacy Policy in the browser."
+  },
+  "legalLoadFailed": "Couldn't load the Terms of Service and Privacy Policy. Check your connection and try again.",
+  "@legalLoadFailed": {
+    "description": "Shown when GET /legal fails."
+  },
+  "linkOpenFailed": "Couldn't open the link.",
+  "@linkOpenFailed": {
+    "description": "Shown when no browser or store app could open a link."
+  },
+  "legalUpdateTitle": "We've updated our terms",
+  "@legalUpdateTitle": {
+    "description": "Blocking screen title when updated terms must be accepted."
+  },
+  "legalUpdateBody": "Read the updated Terms of Service and Privacy Policy. To keep using RideLink, accept them.",
+  "@legalUpdateBody": {
+    "description": "Blocking terms-update screen body."
+  },
+  "legalUpdateAccept": "Accept",
+  "@legalUpdateAccept": {
+    "description": "Button that accepts the updated terms."
+  },
+  "legalUpdateAcceptFailed": "Couldn't save your answer. Try again.",
+  "@legalUpdateAcceptFailed": {
+    "description": "Shown when POST /legal/accept fails for a network or server reason."
+  },
+  "documentsPrivacyNotice": "Your documents are used only to verify you, stored privately, and deleted if you delete your account.",
+  "@documentsPrivacyNotice": {
+    "description": "Data-protection notice above the rider document checklist."
+  },
+  "updateRequiredTitle": "Update required",
+  "@updateRequiredTitle": {
+    "description": "Blocking screen title when the installed version is below the minimum."
+  },
+  "updateRequiredBody": "This version of RideLink is no longer supported. Update the app to continue.",
+  "@updateRequiredBody": {
+    "description": "Blocking update-required screen body."
+  },
+  "updateRequiredButton": "Update",
+  "@updateRequiredButton": {
+    "description": "Button that opens the store page."
+  },
+  "errCodeAccountDeleted": "This account has been deleted.",
+  "@errCodeAccountDeleted": {
+    "description": "Error code account_deleted (401: the account was deleted; the app signs out locally)."
   }
 }

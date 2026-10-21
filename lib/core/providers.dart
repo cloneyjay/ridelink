@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../features/auth/google_auth.dart';
@@ -21,6 +23,7 @@ import 'location/location_tracker.dart';
 import 'maps/maps_config.dart';
 import 'mode/app_mode.dart';
 import 'navigation/navigation_launcher.dart';
+import 'push/push_preferences.dart';
 import 'realtime/realtime_client.dart';
 import 'realtime/realtime_event.dart';
 import 'routing/rider_intent.dart';
@@ -96,9 +99,33 @@ final realtimeLifecycleProvider = Provider<void>((ref) {
   apply(ref.read(sessionStateProvider));
 });
 
-final realtimeEventsProvider = StreamProvider<RealtimeEvent>(
-  (ref) => ref.watch(realtimeClientProvider).events,
-);
+/// Events raised inside the app, e.g. a catch-up after a foreground push.
+final localRealtimeEventsProvider = Provider<StreamController<RealtimeEvent>>((
+  ref,
+) {
+  final controller = StreamController<RealtimeEvent>.broadcast();
+  ref.onDispose(controller.close);
+  return controller;
+});
+
+/// Server events from GET /v1/ws merged with [localRealtimeEventsProvider].
+final realtimeEventsProvider = StreamProvider<RealtimeEvent>((ref) {
+  final server = ref.watch(realtimeClientProvider).events;
+  final local = ref.watch(localRealtimeEventsProvider).stream;
+  final out = StreamController<RealtimeEvent>();
+  final subs = <StreamSubscription<RealtimeEvent>>[];
+  out.onListen = () {
+    subs
+      ..add(server.listen(out.add, onError: out.addError))
+      ..add(local.listen(out.add, onError: out.addError));
+  };
+  out.onCancel = () async {
+    for (final s in subs) {
+      await s.cancel();
+    }
+  };
+  return out.stream;
+});
 
 final googleAuthProvider = Provider<GoogleAuth>(
   (ref) => GoogleSignInAuth(ref.watch(appConfigProvider).googleServerClientId),
@@ -197,6 +224,10 @@ final sessionFlagsProvider = Provider<SessionFlags>((ref) => SessionFlags());
 
 /// Overridden in main() with the SharedPreferences-backed store.
 final localStoreProvider = Provider<LocalStore>((ref) => MemoryLocalStore());
+
+final pushPreferencesProvider = Provider<PushPreferences>(
+  (ref) => PushPreferences(ref.watch(localStoreProvider)),
+);
 
 final ratingPromptStoreProvider = Provider<RatingPromptStore>(
   (ref) => RatingPromptStore(ref.watch(localStoreProvider)),

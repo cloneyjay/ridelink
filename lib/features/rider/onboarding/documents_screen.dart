@@ -116,6 +116,12 @@ class _DocumentsScreenState extends ConsumerState<DocumentsScreen> {
                       key: const Key('documents.progress'),
                       style: AppTextStyles.labelLg.copyWith(color: c.ink),
                     ),
+                    const SizedBox(height: AppSpacing.s3),
+                    NoteRow(
+                      l.documentsPrivacyNotice,
+                      key: const Key('documents.privacyNotice'),
+                      icon: Icons.lock_outline,
+                    ),
                     const SizedBox(height: AppSpacing.s4),
                     for (final t in DocType.values) ...[
                       DocumentRow(

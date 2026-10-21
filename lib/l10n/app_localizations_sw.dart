@@ -2076,4 +2076,162 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get findingLocationLabel => 'Inatafuta mahali ulipo';
+
+  @override
+  String get pushChannelOffersName => 'Ofa mpya';
+
+  @override
+  String get pushChannelOffersDescription =>
+      'Ofa za usafirishaji na safari zinazosubiri jibu lako';
+
+  @override
+  String get pushChannelUpdatesName => 'Taarifa za oda';
+
+  @override
+  String get pushChannelUpdatesDescription =>
+      'Mabadiliko kwenye oda na akaunti yako';
+
+  @override
+  String get pushOfferTitle => 'Ofa mpya';
+
+  @override
+  String get pushOfferBody =>
+      'Fungua RideLink uione kabla muda wake haujaisha.';
+
+  @override
+  String get pushDocumentTitle => 'Angalia hati zako';
+
+  @override
+  String get pushDocumentBody =>
+      'Moja ya hati zako za mwendesha inahitaji kushughulikiwa.';
+
+  @override
+  String get pushGenericTitle => 'Taarifa ya oda';
+
+  @override
+  String get pushGenericBody => 'Fungua RideLink uone kilichobadilika.';
+
+  @override
+  String get notifPermissionTitle => 'Pata ofa kama arifa';
+
+  @override
+  String get notifPermissionBody =>
+      'Ofa mpya za usafirishaji na safari zinakuja kama arifa, hata RideLink ikiwa imefungwa. Kila ofa iko wazi kwa muda mfupi tu.';
+
+  @override
+  String get notifPermissionContinue => 'Endelea';
+
+  @override
+  String get notifPermissionNotNow => 'Si sasa';
+
+  @override
+  String get notifOffReminder =>
+      'Arifa zimezimwa. Hutasikia ofa mpya RideLink ikiwa imefungwa.';
+
+  @override
+  String get notifOffTurnOn => 'Washa';
+
+  @override
+  String get deleteAccountButton => 'Futa akaunti';
+
+  @override
+  String get deleteAccountTitle => 'Futa akaunti yako';
+
+  @override
+  String get deleteAccountIntro =>
+      'Kufuta akaunti yako ni kwa kudumu na kunakutoa kwenye akaunti.';
+
+  @override
+  String get deleteAccountDeletedHeading => 'Kinachofutwa';
+
+  @override
+  String get deleteAccountDeletedBody =>
+      'Jina lako, barua pepe yako na hati zako za mwendesha.';
+
+  @override
+  String get deleteAccountKeptHeading => 'Kinachobaki, bila jina lako';
+
+  @override
+  String get deleteAccountKeptBody =>
+      'Oda za zamani na rekodi zake za ushahidi, kwa ajili ya mizozo na kodi.';
+
+  @override
+  String get deleteAccountContinue => 'Endelea';
+
+  @override
+  String get deleteAccountConfirmTitle => 'Futa akaunti?';
+
+  @override
+  String deleteAccountConfirmBody(String word) {
+    return 'Andika $word kuthibitisha.';
+  }
+
+  @override
+  String get deleteAccountConfirmWord => 'FUTA';
+
+  @override
+  String get deleteAccountKeep => 'Baki na akaunti yangu';
+
+  @override
+  String get deleteAccountFailed =>
+      'Imeshindwa kufuta akaunti yako. Jaribu tena.';
+
+  @override
+  String get accountDeletedNotice => 'Akaunti imefutwa';
+
+  @override
+  String get errCodeAccountHasActiveOrder =>
+      'Kamilisha au ghairi oda yako inayoendelea kwanza.';
+
+  @override
+  String get errCodeLegalAcceptanceRequired =>
+      'Kubali Masharti ya Huduma na Sera ya Faragha ili kuendelea.';
+
+  @override
+  String get legalAgreeLabel =>
+      'Nakubali Masharti ya Huduma na Sera ya Faragha';
+
+  @override
+  String get legalTermsLink => 'Masharti ya Huduma';
+
+  @override
+  String get legalPrivacyLink => 'Sera ya Faragha';
+
+  @override
+  String get legalLoadFailed =>
+      'Imeshindwa kupakia Masharti ya Huduma na Sera ya Faragha. Angalia muunganisho wako ujaribu tena.';
+
+  @override
+  String get linkOpenFailed => 'Imeshindwa kufungua kiungo.';
+
+  @override
+  String get legalUpdateTitle => 'Tumesasisha masharti yetu';
+
+  @override
+  String get legalUpdateBody =>
+      'Soma Masharti ya Huduma na Sera ya Faragha yaliyosasishwa. Ili kuendelea kutumia RideLink, yakubali.';
+
+  @override
+  String get legalUpdateAccept => 'Kubali';
+
+  @override
+  String get legalUpdateAcceptFailed =>
+      'Imeshindwa kuhifadhi jibu lako. Jaribu tena.';
+
+  @override
+  String get documentsPrivacyNotice =>
+      'Hati zako zinatumika tu kukuthibitisha, zinahifadhiwa kwa faragha, na zinafutwa ukifuta akaunti yako.';
+
+  @override
+  String get updateRequiredTitle => 'Sasisho linahitajika';
+
+  @override
+  String get updateRequiredBody =>
+      'Toleo hili la RideLink halitumiki tena. Sasisha programu ili kuendelea.';
+
+  @override
+  String get updateRequiredButton => 'Sasisha';
+
+  @override
+  String get errCodeAccountDeleted => 'Akaunti hii imefutwa.';
 }

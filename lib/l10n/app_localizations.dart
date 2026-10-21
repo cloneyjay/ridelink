@@ -3709,6 +3709,282 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Finding your location'**
   String get findingLocationLabel;
+
+  /// Android notification channel name for rider offers (shown in system settings).
+  ///
+  /// In en, this message translates to:
+  /// **'New offers'**
+  String get pushChannelOffersName;
+
+  /// Android notification channel description for rider offers.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery and ride offers waiting for your answer'**
+  String get pushChannelOffersDescription;
+
+  /// Android notification channel name for all other pushes.
+  ///
+  /// In en, this message translates to:
+  /// **'Order updates'**
+  String get pushChannelUpdatesName;
+
+  /// Android notification channel description for other pushes.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes to your orders and account'**
+  String get pushChannelUpdatesDescription;
+
+  /// System notification title for a rider offer (push type offer.received).
+  ///
+  /// In en, this message translates to:
+  /// **'New offer'**
+  String get pushOfferTitle;
+
+  /// System notification body for a rider offer.
+  ///
+  /// In en, this message translates to:
+  /// **'Open RideLink to see it before it expires.'**
+  String get pushOfferBody;
+
+  /// System notification title for document expiring/expired pushes (no document details in the push).
+  ///
+  /// In en, this message translates to:
+  /// **'Check your documents'**
+  String get pushDocumentTitle;
+
+  /// System notification body for document pushes.
+  ///
+  /// In en, this message translates to:
+  /// **'One of your rider documents needs attention.'**
+  String get pushDocumentBody;
+
+  /// System notification title for a push type this build doesn't know.
+  ///
+  /// In en, this message translates to:
+  /// **'Order update'**
+  String get pushGenericTitle;
+
+  /// System notification body for an unknown push type.
+  ///
+  /// In en, this message translates to:
+  /// **'Open RideLink to see what changed.'**
+  String get pushGenericBody;
+
+  /// Dialog title before asking riders for the notification permission.
+  ///
+  /// In en, this message translates to:
+  /// **'Get offers as notifications'**
+  String get notifPermissionTitle;
+
+  /// Dialog body explaining why riders should allow notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'New delivery and ride offers arrive as notifications, even when RideLink is closed. Each offer is open only for a short time.'**
+  String get notifPermissionBody;
+
+  /// Dialog button that shows the system notification permission prompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get notifPermissionContinue;
+
+  /// Dialog button that skips the notification permission prompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get notifPermissionNotNow;
+
+  /// Reminder under the rider's online toggle when notifications are not allowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are off. You won\'t hear new offers while RideLink is closed.'**
+  String get notifOffReminder;
+
+  /// Button in the notifications-off reminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on'**
+  String get notifOffTurnOn;
+
+  /// Destructive button on the profile screen and in the delete confirmation dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get deleteAccountButton;
+
+  /// Delete account explanation screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete your account'**
+  String get deleteAccountTitle;
+
+  /// Delete account explanation intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleting your account is permanent and signs you out.'**
+  String get deleteAccountIntro;
+
+  /// Delete account explanation section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'What is deleted'**
+  String get deleteAccountDeletedHeading;
+
+  /// What deleting the account removes.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name, email address and rider documents.'**
+  String get deleteAccountDeletedBody;
+
+  /// Delete account explanation section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'What is kept, without your name'**
+  String get deleteAccountKeptHeading;
+
+  /// What is kept after deleting the account.
+  ///
+  /// In en, this message translates to:
+  /// **'Past orders and their evidence records, for disputes and tax.'**
+  String get deleteAccountKeptBody;
+
+  /// Button on the explanation screen that opens the confirmation dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get deleteAccountContinue;
+
+  /// Confirmation dialog title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account?'**
+  String get deleteAccountConfirmTitle;
+
+  /// Confirmation dialog body; {word} is deleteAccountConfirmWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Type {word} to confirm.'**
+  String deleteAccountConfirmBody(String word);
+
+  /// The word the user must type to confirm account deletion.
+  ///
+  /// In en, this message translates to:
+  /// **'DELETE'**
+  String get deleteAccountConfirmWord;
+
+  /// Confirmation dialog cancel button.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep my account'**
+  String get deleteAccountKeep;
+
+  /// Shown when account deletion fails for a network or server reason.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t delete your account. Try again.'**
+  String get deleteAccountFailed;
+
+  /// Shown on the sign-in screen after the account was deleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Account deleted'**
+  String get accountDeletedNotice;
+
+  /// Error code account_has_active_order (deleting the account while an order is active).
+  ///
+  /// In en, this message translates to:
+  /// **'Finish or cancel your active order first.'**
+  String get errCodeAccountHasActiveOrder;
+
+  /// Error code legal_acceptance_required; also shown when the sign-up checkbox is not ticked.
+  ///
+  /// In en, this message translates to:
+  /// **'Agree to the Terms of Service and Privacy Policy to continue.'**
+  String get errCodeLegalAcceptanceRequired;
+
+  /// Required checkbox label at sign-up (and before Google sign-in).
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the Terms of Service and Privacy Policy'**
+  String get legalAgreeLabel;
+
+  /// Link that opens the Terms of Service in the browser.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Service'**
+  String get legalTermsLink;
+
+  /// Link that opens the Privacy Policy in the browser.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get legalPrivacyLink;
+
+  /// Shown when GET /legal fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the Terms of Service and Privacy Policy. Check your connection and try again.'**
+  String get legalLoadFailed;
+
+  /// Shown when no browser or store app could open a link.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open the link.'**
+  String get linkOpenFailed;
+
+  /// Blocking screen title when updated terms must be accepted.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ve updated our terms'**
+  String get legalUpdateTitle;
+
+  /// Blocking terms-update screen body.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the updated Terms of Service and Privacy Policy. To keep using RideLink, accept them.'**
+  String get legalUpdateBody;
+
+  /// Button that accepts the updated terms.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get legalUpdateAccept;
+
+  /// Shown when POST /legal/accept fails for a network or server reason.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save your answer. Try again.'**
+  String get legalUpdateAcceptFailed;
+
+  /// Data-protection notice above the rider document checklist.
+  ///
+  /// In en, this message translates to:
+  /// **'Your documents are used only to verify you, stored privately, and deleted if you delete your account.'**
+  String get documentsPrivacyNotice;
+
+  /// Blocking screen title when the installed version is below the minimum.
+  ///
+  /// In en, this message translates to:
+  /// **'Update required'**
+  String get updateRequiredTitle;
+
+  /// Blocking update-required screen body.
+  ///
+  /// In en, this message translates to:
+  /// **'This version of RideLink is no longer supported. Update the app to continue.'**
+  String get updateRequiredBody;
+
+  /// Button that opens the store page.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get updateRequiredButton;
+
+  /// Error code account_deleted (401: the account was deleted; the app signs out locally).
+  ///
+  /// In en, this message translates to:
+  /// **'This account has been deleted.'**
+  String get errCodeAccountDeleted;
 }
 
 class _AppLocalizationsDelegate

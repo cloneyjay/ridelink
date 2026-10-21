@@ -2065,4 +2065,159 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get findingLocationLabel => 'Finding your location';
+
+  @override
+  String get pushChannelOffersName => 'New offers';
+
+  @override
+  String get pushChannelOffersDescription =>
+      'Delivery and ride offers waiting for your answer';
+
+  @override
+  String get pushChannelUpdatesName => 'Order updates';
+
+  @override
+  String get pushChannelUpdatesDescription =>
+      'Changes to your orders and account';
+
+  @override
+  String get pushOfferTitle => 'New offer';
+
+  @override
+  String get pushOfferBody => 'Open RideLink to see it before it expires.';
+
+  @override
+  String get pushDocumentTitle => 'Check your documents';
+
+  @override
+  String get pushDocumentBody => 'One of your rider documents needs attention.';
+
+  @override
+  String get pushGenericTitle => 'Order update';
+
+  @override
+  String get pushGenericBody => 'Open RideLink to see what changed.';
+
+  @override
+  String get notifPermissionTitle => 'Get offers as notifications';
+
+  @override
+  String get notifPermissionBody =>
+      'New delivery and ride offers arrive as notifications, even when RideLink is closed. Each offer is open only for a short time.';
+
+  @override
+  String get notifPermissionContinue => 'Continue';
+
+  @override
+  String get notifPermissionNotNow => 'Not now';
+
+  @override
+  String get notifOffReminder =>
+      'Notifications are off. You won\'t hear new offers while RideLink is closed.';
+
+  @override
+  String get notifOffTurnOn => 'Turn on';
+
+  @override
+  String get deleteAccountButton => 'Delete account';
+
+  @override
+  String get deleteAccountTitle => 'Delete your account';
+
+  @override
+  String get deleteAccountIntro =>
+      'Deleting your account is permanent and signs you out.';
+
+  @override
+  String get deleteAccountDeletedHeading => 'What is deleted';
+
+  @override
+  String get deleteAccountDeletedBody =>
+      'Your name, email address and rider documents.';
+
+  @override
+  String get deleteAccountKeptHeading => 'What is kept, without your name';
+
+  @override
+  String get deleteAccountKeptBody =>
+      'Past orders and their evidence records, for disputes and tax.';
+
+  @override
+  String get deleteAccountContinue => 'Continue';
+
+  @override
+  String get deleteAccountConfirmTitle => 'Delete account?';
+
+  @override
+  String deleteAccountConfirmBody(String word) {
+    return 'Type $word to confirm.';
+  }
+
+  @override
+  String get deleteAccountConfirmWord => 'DELETE';
+
+  @override
+  String get deleteAccountKeep => 'Keep my account';
+
+  @override
+  String get deleteAccountFailed => 'Couldn\'t delete your account. Try again.';
+
+  @override
+  String get accountDeletedNotice => 'Account deleted';
+
+  @override
+  String get errCodeAccountHasActiveOrder =>
+      'Finish or cancel your active order first.';
+
+  @override
+  String get errCodeLegalAcceptanceRequired =>
+      'Agree to the Terms of Service and Privacy Policy to continue.';
+
+  @override
+  String get legalAgreeLabel =>
+      'I agree to the Terms of Service and Privacy Policy';
+
+  @override
+  String get legalTermsLink => 'Terms of Service';
+
+  @override
+  String get legalPrivacyLink => 'Privacy Policy';
+
+  @override
+  String get legalLoadFailed =>
+      'Couldn\'t load the Terms of Service and Privacy Policy. Check your connection and try again.';
+
+  @override
+  String get linkOpenFailed => 'Couldn\'t open the link.';
+
+  @override
+  String get legalUpdateTitle => 'We\'ve updated our terms';
+
+  @override
+  String get legalUpdateBody =>
+      'Read the updated Terms of Service and Privacy Policy. To keep using RideLink, accept them.';
+
+  @override
+  String get legalUpdateAccept => 'Accept';
+
+  @override
+  String get legalUpdateAcceptFailed =>
+      'Couldn\'t save your answer. Try again.';
+
+  @override
+  String get documentsPrivacyNotice =>
+      'Your documents are used only to verify you, stored privately, and deleted if you delete your account.';
+
+  @override
+  String get updateRequiredTitle => 'Update required';
+
+  @override
+  String get updateRequiredBody =>
+      'This version of RideLink is no longer supported. Update the app to continue.';
+
+  @override
+  String get updateRequiredButton => 'Update';
+
+  @override
+  String get errCodeAccountDeleted => 'This account has been deleted.';
 }

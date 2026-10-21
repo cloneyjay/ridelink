@@ -6,6 +6,7 @@ import '../../core/providers.dart';
 import '../../core/routing/app_router.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_dimensions.dart';
+import '../legal/legal_widgets.dart';
 import 'auth_form_state.dart';
 import 'auth_validators.dart';
 import 'widgets/auth_widgets.dart';
@@ -23,6 +24,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen>
   final _lastName = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
+  bool _agreed = false;
+  String? _consentError;
 
   @override
   void dispose() {
@@ -33,9 +36,17 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen>
     super.dispose();
   }
 
-  Future<void> _signUp() {
+  Future<void> _signUp() async {
+    if (busy) return;
+    final l = AppLocalizations.of(context);
+    final formOk = formKey.currentState?.validate() ?? false;
+    setState(
+      () => _consentError = _agreed ? null : l.errCodeLegalAcceptanceRequired,
+    );
+    if (!formOk || !_agreed) return;
     final email = _email.text.trim();
-    return submit(() async {
+    await submit(() async {
+      final docs = await loadLegalDocs(ref);
       await ref
           .read(authApiProvider)
           .signUp(
@@ -43,11 +54,13 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen>
             firstName: _firstName.text.trim(),
             lastName: _lastName.text.trim(),
             password: _password.text,
+            acceptedTermsVersion: docs.terms.version,
+            acceptedPrivacyVersion: docs.privacy.version,
           );
       if (mounted) {
         context.push(AppRoutes.verifyEmailFor(email, codeSent: true));
       }
-    });
+    }, validate: false);
   }
 
   void _toSignIn() {
@@ -112,7 +125,17 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen>
             ),
           ),
         ),
-        const SizedBox(height: AppSpacing.s6),
+        const SizedBox(height: AppSpacing.s4),
+        LegalConsent(
+          keyPrefix: 'signUp.legal',
+          value: _agreed,
+          errorText: _consentError,
+          onChanged: (v) => setState(() {
+            _agreed = v;
+            if (v) _consentError = null;
+          }),
+        ),
+        const SizedBox(height: AppSpacing.s4),
         if (error != null) ...[
           ErrorBanner(error!),
           const SizedBox(height: AppSpacing.s3),

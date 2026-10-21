@@ -2726,5 +2726,189 @@
   "findingLocationLabel": "Inatafuta mahali ulipo",
   "@findingLocationLabel": {
     "x-review": "needs-review"
+  },
+  "pushChannelOffersName": "Ofa mpya",
+  "@pushChannelOffersName": {
+    "x-review": "needs-review"
+  },
+  "pushChannelOffersDescription": "Ofa za usafirishaji na safari zinazosubiri jibu lako",
+  "@pushChannelOffersDescription": {
+    "x-review": "needs-review"
+  },
+  "pushChannelUpdatesName": "Taarifa za oda",
+  "@pushChannelUpdatesName": {
+    "x-review": "needs-review"
+  },
+  "pushChannelUpdatesDescription": "Mabadiliko kwenye oda na akaunti yako",
+  "@pushChannelUpdatesDescription": {
+    "x-review": "needs-review"
+  },
+  "pushOfferTitle": "Ofa mpya",
+  "@pushOfferTitle": {
+    "x-review": "needs-review"
+  },
+  "pushOfferBody": "Fungua RideLink uione kabla muda wake haujaisha.",
+  "@pushOfferBody": {
+    "x-review": "needs-review"
+  },
+  "pushDocumentTitle": "Angalia hati zako",
+  "@pushDocumentTitle": {
+    "x-review": "needs-review"
+  },
+  "pushDocumentBody": "Moja ya hati zako za mwendesha inahitaji kushughulikiwa.",
+  "@pushDocumentBody": {
+    "x-review": "needs-review"
+  },
+  "pushGenericTitle": "Taarifa ya oda",
+  "@pushGenericTitle": {
+    "x-review": "needs-review"
+  },
+  "pushGenericBody": "Fungua RideLink uone kilichobadilika.",
+  "@pushGenericBody": {
+    "x-review": "needs-review"
+  },
+  "notifPermissionTitle": "Pata ofa kama arifa",
+  "@notifPermissionTitle": {
+    "x-review": "needs-review"
+  },
+  "notifPermissionBody": "Ofa mpya za usafirishaji na safari zinakuja kama arifa, hata RideLink ikiwa imefungwa. Kila ofa iko wazi kwa muda mfupi tu.",
+  "@notifPermissionBody": {
+    "x-review": "needs-review"
+  },
+  "notifPermissionContinue": "Endelea",
+  "@notifPermissionContinue": {
+    "x-review": "needs-review"
+  },
+  "notifPermissionNotNow": "Si sasa",
+  "@notifPermissionNotNow": {
+    "x-review": "needs-review"
+  },
+  "notifOffReminder": "Arifa zimezimwa. Hutasikia ofa mpya RideLink ikiwa imefungwa.",
+  "@notifOffReminder": {
+    "x-review": "needs-review"
+  },
+  "notifOffTurnOn": "Washa",
+  "@notifOffTurnOn": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountButton": "Futa akaunti",
+  "@deleteAccountButton": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountTitle": "Futa akaunti yako",
+  "@deleteAccountTitle": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountIntro": "Kufuta akaunti yako ni kwa kudumu na kunakutoa kwenye akaunti.",
+  "@deleteAccountIntro": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountDeletedHeading": "Kinachofutwa",
+  "@deleteAccountDeletedHeading": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountDeletedBody": "Jina lako, barua pepe yako na hati zako za mwendesha.",
+  "@deleteAccountDeletedBody": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountKeptHeading": "Kinachobaki, bila jina lako",
+  "@deleteAccountKeptHeading": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountKeptBody": "Oda za zamani na rekodi zake za ushahidi, kwa ajili ya mizozo na kodi.",
+  "@deleteAccountKeptBody": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountContinue": "Endelea",
+  "@deleteAccountContinue": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountConfirmTitle": "Futa akaunti?",
+  "@deleteAccountConfirmTitle": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountConfirmBody": "Andika {word} kuthibitisha.",
+  "@deleteAccountConfirmBody": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountConfirmWord": "FUTA",
+  "@deleteAccountConfirmWord": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountKeep": "Baki na akaunti yangu",
+  "@deleteAccountKeep": {
+    "x-review": "needs-review"
+  },
+  "deleteAccountFailed": "Imeshindwa kufuta akaunti yako. Jaribu tena.",
+  "@deleteAccountFailed": {
+    "x-review": "needs-review"
+  },
+  "accountDeletedNotice": "Akaunti imefutwa",
+  "@accountDeletedNotice": {
+    "x-review": "needs-review"
+  },
+  "errCodeAccountHasActiveOrder": "Kamilisha au ghairi oda yako inayoendelea kwanza.",
+  "@errCodeAccountHasActiveOrder": {
+    "x-review": "needs-review"
+  },
+  "errCodeLegalAcceptanceRequired": "Kubali Masharti ya Huduma na Sera ya Faragha ili kuendelea.",
+  "@errCodeLegalAcceptanceRequired": {
+    "x-review": "needs-review"
+  },
+  "legalAgreeLabel": "Nakubali Masharti ya Huduma na Sera ya Faragha",
+  "@legalAgreeLabel": {
+    "x-review": "needs-review"
+  },
+  "legalTermsLink": "Masharti ya Huduma",
+  "@legalTermsLink": {
+    "x-review": "needs-review"
+  },
+  "legalPrivacyLink": "Sera ya Faragha",
+  "@legalPrivacyLink": {
+    "x-review": "needs-review"
+  },
+  "legalLoadFailed": "Imeshindwa kupakia Masharti ya Huduma na Sera ya Faragha. Angalia muunganisho wako ujaribu tena.",
+  "@legalLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "linkOpenFailed": "Imeshindwa kufungua kiungo.",
+  "@linkOpenFailed": {
+    "x-review": "needs-review"
+  },
+  "legalUpdateTitle": "Tumesasisha masharti yetu",
+  "@legalUpdateTitle": {
+    "x-review": "needs-review"
+  },
+  "legalUpdateBody": "Soma Masharti ya Huduma na Sera ya Faragha yaliyosasishwa. Ili kuendelea kutumia RideLink, yakubali.",
+  "@legalUpdateBody": {
+    "x-review": "needs-review"
+  },
+  "legalUpdateAccept": "Kubali",
+  "@legalUpdateAccept": {
+    "x-review": "needs-review"
+  },
+  "legalUpdateAcceptFailed": "Imeshindwa kuhifadhi jibu lako. Jaribu tena.",
+  "@legalUpdateAcceptFailed": {
+    "x-review": "needs-review"
+  },
+  "documentsPrivacyNotice": "Hati zako zinatumika tu kukuthibitisha, zinahifadhiwa kwa faragha, na zinafutwa ukifuta akaunti yako.",
+  "@documentsPrivacyNotice": {
+    "x-review": "needs-review"
+  },
+  "updateRequiredTitle": "Sasisho linahitajika",
+  "@updateRequiredTitle": {
+    "x-review": "needs-review"
+  },
+  "updateRequiredBody": "Toleo hili la RideLink halitumiki tena. Sasisha programu ili kuendelea.",
+  "@updateRequiredBody": {
+    "x-review": "needs-review"
+  },
+  "updateRequiredButton": "Sasisha",
+  "@updateRequiredButton": {
+    "x-review": "needs-review"
+  },
+  "errCodeAccountDeleted": "Akaunti hii imefutwa.",
+  "@errCodeAccountDeleted": {
+    "x-review": "needs-review"
   }
 }

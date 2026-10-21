@@ -13,6 +13,9 @@ abstract class AccountRepository {
     required String firstName,
     required String lastName,
   });
+
+  /// DELETE /profile; 409 `account_has_active_order` while an order is active or unresolved.
+  Future<void> deleteAccount();
 }
 
 class ApiAccountRepository implements AccountRepository {
@@ -45,4 +48,7 @@ class ApiAccountRepository implements AccountRepository {
       data: {'first_name': firstName, 'last_name': lastName},
     ) as Map).cast(),
   );
+
+  @override
+  Future<void> deleteAccount() => _api.delete('profile');
 }

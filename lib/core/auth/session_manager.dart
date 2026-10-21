@@ -149,7 +149,16 @@ class SessionManager extends ChangeNotifier implements AccessTokenSource {
     }
   }
 
+  /// Runs before a user-initiated sign-out clears the session (e.g. unregistering this
+  /// device for push while the access token is still valid). Must not throw.
+  Future<void> Function()? beforeSignOut;
+
   Future<void> signOut() async {
+    if (_state is SignedIn) {
+      try {
+        await beforeSignOut?.call();
+      } catch (_) {}
+    }
     final token = accessToken;
     if (token != null) {
       try {
@@ -160,6 +169,9 @@ class SessionManager extends ChangeNotifier implements AccessTokenSource {
     }
     await _signOutLocally();
   }
+
+  /// Clears the session without calling the server (e.g. after the account was deleted).
+  Future<void> endSessionLocally() => _signOutLocally();
 
   /// Only the server saying the refresh token is invalid ends the session.
   static bool _isDefinitiveRejection(ApiException e) =>

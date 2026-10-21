@@ -24,11 +24,21 @@ Future<void> fillSignIn(
 Future<void> fillSignUp(
   WidgetTester tester, {
   String password = 'correcthorsebattery',
+  bool agree = true,
 }) async {
   await tester.enterText(byKey('auth.firstName'), 'Moses');
   await tester.enterText(byKey('auth.lastName'), 'Otieno');
   await tester.enterText(byKey('auth.email'), 'moses@example.com');
   await tester.enterText(byKey('auth.password'), password);
+  if (agree) await tickTerms(tester);
+}
+
+Future<void> tickTerms(WidgetTester tester) async {
+  FocusManager.instance.primaryFocus?.unfocus();
+  await tester.pumpAndSettle();
+  await tester.ensureVisible(byKey('signUp.legal.checkbox'));
+  await tester.tap(byKey('signUp.legal.checkbox'));
+  await tester.pump();
 }
 
 void main() {
@@ -253,6 +263,7 @@ void main() {
         await tester.enterText(byKey('auth.lastName'), 'Otieno');
         await tester.enterText(byKey('auth.email'), 'moses@example.com');
         await tester.enterText(byKey('auth.password'), 'correcthorsebattery');
+        await tickTerms(tester);
         await tester.ensureVisible(byKey('auth.submit'));
         await tester.tap(byKey('auth.submit'));
         await settleIo(tester);
@@ -262,6 +273,8 @@ void main() {
           'first_name': 'Moses',
           'last_name': 'Otieno',
           'password': 'correcthorsebattery',
+          'accepted_terms_version': '2026-10-01',
+          'accepted_privacy_version': '2026-10-02',
         });
         expect(byKey('screen.verifyEmail'), findsOneWidget);
         expect(find.text(l.verifySentTo('moses@example.com')), findsOneWidget);

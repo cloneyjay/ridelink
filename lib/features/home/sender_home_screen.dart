@@ -18,6 +18,7 @@ import '../../theme/app_shadows.dart';
 import '../../theme/app_text_styles.dart';
 import '../booking/booking_labels.dart';
 import '../booking/resume.dart';
+import '../push/notification_prompt.dart';
 import '../booking/data/booking_models.dart';
 import '../notifications/notifications_screen.dart';
 import '../rider/rider_controller.dart';
@@ -42,7 +43,8 @@ class _SenderHomeScreenState extends ConsumerState<SenderHomeScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    unawaited(_load(prompt: true));
+    // One system prompt at a time: location first, then notifications.
+    unawaited(_load(prompt: true).then((_) => _askNotifications()));
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       ref.read(appModeProvider).set(AppMode.sender);
@@ -74,6 +76,15 @@ class _SenderHomeScreenState extends ConsumerState<SenderHomeScreen>
     } finally {
       _resuming = false;
     }
+  }
+
+  Future<void> _askNotifications() async {
+    var rider = false;
+    try {
+      rider = await ref.read(isRiderProvider.future);
+    } catch (_) {}
+    if (!mounted) return;
+    await maybeAskNotificationPermission(context, ref, explain: rider);
   }
 
   /// A rider who is online server-side keeps sharing location while in sender mode (e.g. the

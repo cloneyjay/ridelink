@@ -9,7 +9,10 @@ import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_dimensions.dart';
 import '../../theme/app_text_styles.dart';
+import '../legal/legal_repository.dart';
+import '../legal/legal_widgets.dart';
 import 'auth_errors.dart';
+import 'auth_notice.dart';
 import 'auth_form_state.dart';
 import 'auth_validators.dart';
 import 'google_auth.dart';
@@ -27,6 +30,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen>
   final _email = TextEditingController();
   final _password = TextEditingController();
   bool _googleBusy = false;
+  bool _agreed = false;
 
   @override
   void dispose() {
@@ -36,6 +40,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen>
   }
 
   Future<void> _signIn() {
+    ref.read(authNoticeProvider.notifier).clear();
     final email = _email.text.trim();
     return submit(
       () async {
@@ -57,6 +62,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen>
   Future<void> _signInWithGoogle() async {
     if (_googleBusy || busy) return;
     final l = AppLocalizations.of(context);
+    ref.read(authNoticeProvider.notifier).clear();
     setState(() {
       _googleBusy = true;
       error = null;
@@ -66,11 +72,14 @@ class _SignInScreenState extends ConsumerState<SignInScreen>
       if (credential == null) return;
       await submit(
         () async {
+          final docs = _agreed ? await _legalDocsOrNull() : null;
           final session = await ref
               .read(authApiProvider)
               .signInWithGoogle(
                 idToken: credential.idToken,
                 rawNonce: credential.rawNonce,
+                acceptedTermsVersion: docs?.terms.version,
+                acceptedPrivacyVersion: docs?.privacy.version,
               );
           await ref.read(sessionManagerProvider).setSession(session);
         },
@@ -84,6 +93,16 @@ class _SignInScreenState extends ConsumerState<SignInScreen>
     }
   }
 
+  /// Without the versions a returning Google user still signs in; a new one gets
+  /// `legal_acceptance_required`.
+  Future<LegalDocs?> _legalDocsOrNull() async {
+    try {
+      return await loadLegalDocs(ref);
+    } catch (_) {
+      return null;
+    }
+  }
+
   void _joinAsRider() {
     ref.read(riderIntentProvider).set();
     context.push(AppRoutes.signUp);
@@ -94,6 +113,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen>
     final l = AppLocalizations.of(context);
     final c = context.colors;
     final googleConfigured = ref.watch(googleAuthProvider).isConfigured;
+    final notice = ref.watch(authNoticeProvider);
 
     return AuthScaffold(
       key: const Key('screen.auth'),
@@ -101,6 +121,13 @@ class _SignInScreenState extends ConsumerState<SignInScreen>
         const SizedBox(height: AppSpacing.s4),
         const BrandHeader(),
         const SizedBox(height: AppSpacing.s10),
+        if (notice == AuthNotice.accountDeleted) ...[
+          InfoBanner(
+            l.accountDeletedNotice,
+            key: const Key('auth.accountDeleted'),
+          ),
+          const SizedBox(height: AppSpacing.s4),
+        ],
         Form(
           key: formKey,
           child: AutofillGroup(
@@ -153,6 +180,12 @@ class _SignInScreenState extends ConsumerState<SignInScreen>
             ],
           ),
           const SizedBox(height: AppSpacing.s4),
+          LegalConsent(
+            keyPrefix: 'signIn.legal',
+            value: _agreed,
+            onChanged: (v) => setState(() => _agreed = v),
+          ),
+          const SizedBox(height: AppSpacing.s2),
           OutlinedButton.icon(
             key: const Key('auth.google'),
             onPressed: _googleBusy ? null : _signInWithGoogle,

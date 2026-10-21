@@ -20,6 +20,7 @@ import '../../features/home/sender_home_screen.dart';
 import '../../features/notifications/notifications_screen.dart';
 import '../../features/orders/order_detail_screen.dart';
 import '../../features/orders/order_history_screen.dart';
+import '../../features/profile/delete_account_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/rider/home/rider_home_screen.dart';
 import '../../features/rider/onboarding/documents_screen.dart';
@@ -51,6 +52,7 @@ abstract final class AppRoutes {
   static const history = '/history';
   static const notifications = '/notifications';
   static const profile = '/profile';
+  static const deleteAccount = '/profile/delete';
 
   /// Order history for one side (sender: GET /orders, rider: GET /riders/me/orders).
   static String historyFor(AppMode side) => side == AppMode.rider
@@ -253,6 +255,12 @@ GoRouter buildRouter(
     GoRoute(
       path: AppRoutes.profile,
       builder: (context, state) => const ProfileScreen(),
+      routes: [
+        GoRoute(
+          path: 'delete',
+          builder: (context, state) => const DeleteAccountScreen(),
+        ),
+      ],
     ),
     GoRoute(
       path: AppRoutes.riderHome,

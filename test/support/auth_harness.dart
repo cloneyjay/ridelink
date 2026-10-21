@@ -6,13 +6,16 @@ import 'package:go_router/go_router.dart';
 import 'package:ridelink/core/auth/auth_api.dart';
 import 'package:ridelink/core/auth/session_manager.dart';
 import 'package:ridelink/core/config/app_config.dart';
+import 'package:ridelink/core/navigation/url_opener.dart';
 import 'package:ridelink/core/providers.dart';
 import 'package:ridelink/core/routing/app_router.dart';
 import 'package:ridelink/core/routing/rider_intent.dart';
 import 'package:ridelink/features/auth/google_auth.dart';
+import 'package:ridelink/features/legal/legal_repository.dart';
 import 'package:ridelink/l10n/app_localizations.dart';
 import 'package:ridelink/theme/app_theme.dart';
 
+import 'beta_fakes.dart';
 import 'fakes.dart';
 
 class FakeGoogleAuth implements GoogleAuth {
@@ -40,6 +43,8 @@ class AuthHarness {
     required this.intent,
     required this.router,
     required this.google,
+    required this.legal,
+    required this.urls,
   });
 
   final FakeAdapter adapter;
@@ -48,6 +53,8 @@ class AuthHarness {
   final RiderIntent intent;
   final GoRouter router;
   final FakeGoogleAuth google;
+  final FakeLegalRepository legal;
+  final FakeUrlOpener urls;
 
   int count(String path) =>
       adapter.requests.where((r) => r.uri.path == '/v1/$path').length;
@@ -63,6 +70,7 @@ Future<AuthHarness> pumpAuthApp(
   required FakeHandler handler,
   String initialLocation = AppRoutes.auth,
   FakeGoogleAuth? google,
+  FakeLegalRepository? legal,
 }) async {
   final config = AppConfig(apiBaseUrl: Uri.parse('http://test.local'));
   final adapter = FakeAdapter(handler);
@@ -77,6 +85,8 @@ Future<AuthHarness> pumpAuthApp(
   final intent = RiderIntent();
   final router = buildRouter(session, intent, initialLocation: initialLocation);
   final googleAuth = google ?? FakeGoogleAuth(isConfigured: false);
+  final legalRepo = legal ?? FakeLegalRepository();
+  final urls = FakeUrlOpener();
   addTearDown(router.dispose);
 
   await tester.pumpWidget(
@@ -87,6 +97,8 @@ Future<AuthHarness> pumpAuthApp(
         sessionManagerProvider.overrideWithValue(session),
         googleAuthProvider.overrideWithValue(googleAuth),
         riderIntentProvider.overrideWithValue(intent),
+        legalRepositoryProvider.overrideWithValue(legalRepo),
+        urlOpenerProvider.overrideWithValue(urls),
       ],
       child: MaterialApp.router(
         theme: AppTheme.light,
@@ -109,6 +121,8 @@ Future<AuthHarness> pumpAuthApp(
     intent: intent,
     router: router,
     google: googleAuth,
+    legal: legalRepo,
+    urls: urls,
   );
 }
 

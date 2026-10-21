@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ridelink/core/auth/auth_api.dart';
@@ -13,6 +14,7 @@ import 'package:ridelink/core/config/app_config.dart';
 import 'package:ridelink/core/location/geo_point.dart';
 import 'package:ridelink/core/location/location_service.dart';
 import 'package:ridelink/core/maps/maps_config.dart';
+import 'package:ridelink/core/navigation/url_opener.dart';
 import 'package:ridelink/core/mode/app_mode.dart';
 import 'package:ridelink/core/providers.dart';
 import 'package:ridelink/core/realtime/realtime_event.dart';
@@ -23,15 +25,18 @@ import 'package:ridelink/core/storage/local_store.dart';
 import 'package:ridelink/core/time/server_clock.dart';
 import 'package:ridelink/features/booking/data/booking_repository.dart';
 import 'package:ridelink/features/orders/data/order_models.dart';
+import 'package:ridelink/features/legal/legal_repository.dart';
 import 'package:ridelink/features/shell/account_repository.dart';
 import 'package:ridelink/l10n/app_localizations.dart';
 import 'package:ridelink/theme/app_theme.dart';
 
 import 'auth_harness.dart';
+import 'beta_fakes.dart';
 import 'fakes.dart';
 import 'phase3_fakes.dart';
 import 'rider_fakes.dart';
 
+export 'beta_fakes.dart';
 export 'phase3_fakes.dart';
 export 'rider_fakes.dart';
 
@@ -355,6 +360,14 @@ class FakeAccountRepository implements AccountRepository {
   Object? profileError;
   final nameCalls = <({String first, String last})>[];
   Object? nameError;
+  int deleteCalls = 0;
+  Object? deleteError;
+
+  @override
+  Future<void> deleteAccount() async {
+    deleteCalls++;
+    if (deleteError != null) throw deleteError!;
+  }
 
   @override
   Future<bool> isRider() async {
@@ -500,6 +513,7 @@ Future<BookingHarness> pumpBookingApp(
   String? goTo,
   Object? extra,
   bool settle = true,
+  List<Override> extraOverrides = const [],
 }) async {
   final config = AppConfig(apiBaseUrl: Uri.parse('http://test.local'));
   final adapter = FakeAdapter(
@@ -571,9 +585,12 @@ Future<BookingHarness> pumpBookingApp(
         navigationLauncherProvider.overrideWithValue(harness.navigation),
         shareServiceProvider.overrideWithValue(harness.share),
         localStoreProvider.overrideWithValue(harness.store),
+        legalRepositoryProvider.overrideWithValue(FakeLegalRepository()),
+        urlOpenerProvider.overrideWithValue(FakeUrlOpener()),
         if (clock != null) clockProvider.overrideWithValue(clock),
         if (serverClock != null)
           serverClockProvider.overrideWithValue(serverClock),
+        ...extraOverrides,
       ],
       child: MaterialApp.router(
         theme: AppTheme.light,

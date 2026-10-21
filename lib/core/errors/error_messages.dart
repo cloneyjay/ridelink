@@ -55,6 +55,9 @@ const knownErrorCodes = <String>[
   'invalid_hash',
   'hash_mismatch',
   'evidence_photo_required',
+  'account_deleted',
+  'account_has_active_order',
+  'legal_acceptance_required',
 ];
 
 /// The localized message for a server error code, or null for a code this build doesn't know.
@@ -120,6 +123,9 @@ String? errorCodeMessage(
     'handover_photo' => l.errCodeEvidenceHandoverPhotoRequired,
     _ => l.errCodeEvidencePhotoRequired,
   },
+  'account_deleted' => l.errCodeAccountDeleted,
+  'account_has_active_order' => l.errCodeAccountHasActiveOrder,
+  'legal_acceptance_required' => l.errCodeLegalAcceptanceRequired,
   _ => null,
 };
 

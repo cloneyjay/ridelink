@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/api/api_exception.dart';
 import '../../core/errors/error_messages.dart';
 import '../../core/providers.dart';
+import '../../core/routing/app_router.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_dimensions.dart';
@@ -31,7 +33,7 @@ final nameLockedProvider = FutureProvider.autoDispose<bool>((ref) async {
 }, retry: (_, _) => null);
 
 /// Profile & account: names (editable unless a verified rider), email (read-only), language
-/// note (follows the device), sign out.
+/// note (follows the device), sign out, delete account.
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
@@ -203,6 +205,14 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
             l.menuSignOut,
             style: AppTextStyles.labelLg.copyWith(color: c.statusError),
           ),
+        ),
+        const SizedBox(height: AppSpacing.s6),
+        TextButton.icon(
+          key: const Key('profile.deleteAccount'),
+          style: TextButton.styleFrom(foregroundColor: c.statusError),
+          onPressed: () => context.push(AppRoutes.deleteAccount),
+          icon: const Icon(Icons.delete_outline),
+          label: Text(l.deleteAccountButton),
         ),
       ],
     );

@@ -43,11 +43,15 @@ class AuthApi {
     required String firstName,
     required String lastName,
     required String password,
+    required String acceptedTermsVersion,
+    required String acceptedPrivacyVersion,
   }) => _post('auth/signup', {
     'email': email,
     'first_name': firstName,
     'last_name': lastName,
     'password': password,
+    'accepted_terms_version': acceptedTermsVersion,
+    'accepted_privacy_version': acceptedPrivacyVersion,
   });
 
   Future<Session> verifySignup({required String email, required String code}) =>
@@ -60,10 +64,19 @@ class AuthApi {
   Future<Session> signIn({required String email, required String password}) =>
       _session('auth/signin', {'email': email, 'password': password});
 
+  /// The accepted versions are sent only when the user ticked the Terms checkbox; a new
+  /// account without them gets 400 `legal_acceptance_required`.
   Future<Session> signInWithGoogle({
     required String idToken,
     required String rawNonce,
-  }) => _session('auth/google', {'id_token': idToken, 'nonce': rawNonce});
+    String? acceptedTermsVersion,
+    String? acceptedPrivacyVersion,
+  }) => _session('auth/google', {
+    'id_token': idToken,
+    'nonce': rawNonce,
+    'accepted_terms_version': ?acceptedTermsVersion,
+    'accepted_privacy_version': ?acceptedPrivacyVersion,
+  });
 
   /// Always 202, whether or not the account exists.
   Future<void> forgotPassword(String email) =>

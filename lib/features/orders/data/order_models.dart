@@ -184,6 +184,7 @@ class Profile {
     required this.firstName,
     required this.lastName,
     required this.displayName,
+    this.legalUpdateRequired = false,
   });
 
   factory Profile.fromJson(Map<String, dynamic> json) => Profile(
@@ -192,6 +193,7 @@ class Profile {
     firstName: json['first_name'] as String? ?? '',
     lastName: json['last_name'] as String? ?? '',
     displayName: json['display_name'] as String? ?? '',
+    legalUpdateRequired: json['legal_update_required'] == true,
   );
 
   final String id;
@@ -199,4 +201,7 @@ class Profile {
   final String firstName;
   final String lastName;
   final String displayName;
+
+  /// The current Terms/Privacy versions haven't been accepted yet.
+  final bool legalUpdateRequired;
 }

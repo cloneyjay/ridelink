@@ -17,6 +17,7 @@ import '../../../theme/app_text_styles.dart';
 import '../../booking/widgets/booking_widgets.dart';
 import '../../common/confirm_dialog.dart';
 import '../../notifications/notifications_screen.dart';
+import '../../push/notification_prompt.dart';
 import '../../shell/app_menu.dart';
 import '../job/rider_job_view.dart';
 import '../offer/rider_offer_view.dart';
@@ -37,7 +38,9 @@ class _RiderHomeScreenState extends ConsumerState<RiderHomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) ref.read(appModeProvider).set(AppMode.rider);
+      if (!mounted) return;
+      ref.read(appModeProvider).set(AppMode.rider);
+      maybeAskNotificationPermission(context, ref, explain: true);
     });
   }
 
@@ -185,6 +188,7 @@ class _IdleHome extends ConsumerWidget {
               ],
             ),
           ),
+          const NotificationsOffNote(),
           if (block != null) ...[
             const SizedBox(height: AppSpacing.s3),
             _BlockCard(block: block),
