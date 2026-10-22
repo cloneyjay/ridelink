@@ -26,6 +26,7 @@ class _RideLinkAppState extends ConsumerState<RideLinkApp> {
   @override
   void initState() {
     super.initState();
+    ref.read(userDataLifecycleProvider);
     ref.read(sessionManagerProvider).restore();
     unawaited(ref.read(versionGateProvider.notifier).check());
     _lifecycle = AppLifecycleListener(
@@ -46,6 +47,7 @@ class _RideLinkAppState extends ConsumerState<RideLinkApp> {
   Widget build(BuildContext context) {
     ref.watch(realtimeLifecycleProvider);
     ref.watch(pushLifecycleProvider);
+    ref.watch(userDataLifecycleProvider);
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context).appName,
       theme: AppTheme.light,

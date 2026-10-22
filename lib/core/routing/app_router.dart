@@ -20,6 +20,7 @@ import '../../features/home/sender_home_screen.dart';
 import '../../features/notifications/notifications_screen.dart';
 import '../../features/orders/order_detail_screen.dart';
 import '../../features/orders/order_history_screen.dart';
+import '../../features/payments/payment_methods_screen.dart';
 import '../../features/profile/delete_account_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/rider/home/rider_home_screen.dart';
@@ -48,6 +49,7 @@ abstract final class AppRoutes {
   static const riderDocuments = '/rider/documents';
   static const riderVerification = '/rider/verification';
   static const riderSettings = '/rider/settings';
+  static const riderPaymentMethods = '/rider/payment-methods';
   static const newOrder = '/home/new';
   static const history = '/history';
   static const notifications = '/notifications';
@@ -281,6 +283,10 @@ GoRouter buildRouter(
         GoRoute(
           path: 'settings',
           builder: (context, state) => const RiderSettingsScreen(),
+        ),
+        GoRoute(
+          path: 'payment-methods',
+          builder: (context, state) => const PaymentMethodsScreen(),
         ),
       ],
     ),

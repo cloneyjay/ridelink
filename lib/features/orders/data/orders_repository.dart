@@ -1,5 +1,6 @@
 import '../../../core/api/api_client.dart';
 import '../../booking/data/booking_models.dart';
+import '../../payments/data/payment_models.dart';
 import 'order_models.dart';
 
 /// Order calls shared by both sides: details, history, ratings, receiver link.
@@ -22,6 +23,10 @@ abstract class OrdersRepository {
   });
 
   Future<ReceiverLink> createReceiverLink(String orderId);
+
+  /// GET /orders/{id}/payment. The sender gets it only while `payment_requested`
+  /// (422 `payment_details_hidden` otherwise); the assigned rider at any active status.
+  Future<OrderPayment> payment(String orderId);
 }
 
 class ApiOrdersRepository implements OrdersRepository {
@@ -76,4 +81,8 @@ class ApiOrdersRepository implements OrdersRepository {
       ReceiverLink.fromJson(
         _map(await _api.post('orders/$orderId/receiver-link')),
       );
+
+  @override
+  Future<OrderPayment> payment(String orderId) async =>
+      OrderPayment.fromJson(_map(await _api.get('orders/$orderId/payment')));
 }

@@ -28,6 +28,7 @@ import 'data/notification_repository.dart';
             ? l.notifPaymentRequestedBodyNoAmount
             : l.notifPaymentRequestedBody(amount),
       );
+    // Legacy: the retired "I've paid" step.
     case 'payment_sent':
       return (
         title: l.notifPaymentSentTitle,
@@ -38,15 +39,20 @@ import 'data/notification_repository.dart';
     case 'payment_confirmed':
       return (
         title: l.notifPaymentConfirmedTitle,
-        body: amount == null
-            ? l.notifPaymentConfirmedBodyNoAmount
-            : l.notifPaymentConfirmedBody(amount),
+        body: l.notifPaymentConfirmedBody,
       );
     case 'payment_unresolved':
       return (
         title: l.notifPaymentUnresolvedTitle,
         body: l.notifPaymentUnresolvedBody,
       );
+    case 'payment_not_paid':
+      return (
+        title: l.notifPaymentNotPaidTitle,
+        body: l.notifPaymentNotPaidBody,
+      );
+    case 'payer_payment_response':
+      return (title: l.notifPayerResponseTitle, body: l.notifPayerResponseBody);
     case 'pickup_arrived':
       return (title: l.notifPickupArrivedTitle, body: l.notifPickupArrivedBody);
     case 'pickup_timeout':

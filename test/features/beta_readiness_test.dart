@@ -15,6 +15,7 @@ import 'package:ridelink/core/push/push_navigator.dart';
 import 'package:ridelink/core/push/push_payload.dart';
 import 'package:ridelink/core/push/push_providers.dart';
 import 'package:ridelink/core/routing/app_router.dart';
+import 'package:ridelink/core/storage/local_store.dart';
 import 'package:ridelink/core/version/version_gate.dart';
 import 'package:ridelink/features/auth/google_auth.dart';
 import 'package:ridelink/features/booking/data/booking_models.dart';
@@ -104,10 +105,22 @@ void main() {
       expect(h.session.state, isA<SignedIn>());
     });
 
-    testWidgets('success signs out and says so on the sign-in screen', (
+    testWidgets('success wipes user data, signs out and says so', (
       tester,
     ) async {
-      final h = await openDelete(tester);
+      final store = MemoryLocalStore()
+        ..values['ridelink.rating_prompted'] = ['order-1']
+        ..values['ridelink.notifications_asked'] = '1'
+        ..values['ridelink.locale'] = 'sw';
+      final modeStore = MemoryModeStore(AppMode.rider);
+      final h = await pumpBookingApp(
+        tester,
+        store: store,
+        modeStore: modeStore,
+        riderRepo: FakeRiderRepository(registered: false),
+        goTo: AppRoutes.profile,
+      );
+      await tapKeyAndSettle(tester, 'profile.deleteAccount');
       await typeAndConfirm(tester, 'DELETE');
       await tapKeyAndSettle(tester, 'deleteAccount.confirm');
       expect(h.account.deleteCalls, 1);
@@ -115,6 +128,9 @@ void main() {
       expect(byKey('screen.auth'), findsOneWidget);
       expect(byKey('auth.accountDeleted'), findsOneWidget);
       expect(find.text(l10nOf(tester).accountDeletedNotice), findsOneWidget);
+      expect(store.values, {'ridelink.locale': 'sw'});
+      expect(modeStore.mode, isNull);
+      expect(h.mode.mode, AppMode.sender);
     });
   });
 

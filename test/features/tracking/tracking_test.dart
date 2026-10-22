@@ -66,50 +66,52 @@ void main() {
       },
     );
 
-    testWidgets('cash step: pay, wait for the rider, paid, delivered', (
-      tester,
-    ) async {
+    testWidgets(
+      'payment step: the rider confirms; completion shows delivered',
+      (tester) async {
+        final h = await openTracking(
+          tester,
+          jobFixture(status: 'payment_requested'),
+        );
+        final l = l10nOf(tester);
+        expect(byKey('tracking.payNow'), findsOneWidget);
+        expect(byKey('tracking.step.payment.current'), findsOneWidget);
+        expect(byKey('tracking.ivePaid'), findsNothing);
+
+        h.emit('order.updated', {'order_id': 'order-9', 'status': 'completed'});
+        await tester.pumpAndSettle();
+        expect(tester.widget<Text>(byKey('tracking.done')).data, l.delivered);
+        expect(byKey('tracking.payNow'), findsNothing);
+        // Completion asks the sender to rate the rider once; skippable.
+        expect(byKey('rating.sheet'), findsOneWidget);
+        await tapKeyAndSettle(tester, 'rating.skip');
+        await tapKeyAndSettle(tester, 'tracking.home');
+        expect(byKey('screen.home'), findsOneWidget);
+      },
+    );
+
+    testWidgets('not paid asks the sender "Did you pay?"', (tester) async {
       final h = await openTracking(
         tester,
         jobFixture(status: 'payment_requested'),
       );
-      final l = l10nOf(tester);
-      expect(find.text(l.payInCash('KES 214')), findsOneWidget);
-      expect(byKey('tracking.step.payment.current'), findsOneWidget);
-
-      await tapKeyAndSettle(tester, 'tracking.ivePaid');
-      expect(byKey('tracking.paidDialog'), findsOneWidget);
-      await tapKeyAndSettle(tester, 'tracking.paidDialog.no');
-      expect(h.repo.paymentSentCalls, 0);
-
-      await tapKeyAndSettle(tester, 'tracking.ivePaid');
-      await tapKeyAndSettle(tester, 'tracking.paidDialog.yes');
-      expect(h.repo.paymentSentCalls, 1);
-      expect(byKey('tracking.waitingRider'), findsOneWidget);
-
-      h.emit('order.updated', {'order_id': 'order-9', 'status': 'paid'});
-      await tester.pumpAndSettle();
-      expect(byKey('tracking.paid'), findsOneWidget);
-
-      h.emit('order.updated', {'order_id': 'order-9', 'status': 'completed'});
-      await tester.pumpAndSettle();
-      expect(tester.widget<Text>(byKey('tracking.done')).data, l.delivered);
-      // Completion asks the sender to rate the rider once; skippable.
-      expect(byKey('rating.sheet'), findsOneWidget);
-      await tapKeyAndSettle(tester, 'rating.skip');
-      await tapKeyAndSettle(tester, 'tracking.home');
-      expect(byKey('screen.home'), findsOneWidget);
-    });
-
-    testWidgets('unresolved payment shows the review state', (tester) async {
-      final h = await openTracking(tester, jobFixture(status: 'cash_pending'));
+      // The server now reports the order unresolved with the answer pending.
+      h.repo.order = jobFixture(status: 'unresolved');
       h.emit('order.updated', {'order_id': 'order-9', 'status': 'unresolved'});
       await tester.pumpAndSettle();
+      expect(h.orders.paymentCalls, greaterThanOrEqualTo(2));
       expect(byKey('tracking.unresolved'), findsOneWidget);
-      expect(
-        find.text(l10nOf(tester).paymentUnderReviewSenderBody),
-        findsOneWidget,
-      );
+      expect(byKey('payer.prompt'), findsOneWidget);
+      expect(byKey('tracking.payNow'), findsNothing);
+      expect(find.text(l10nOf(tester).payerPromptTitle), findsOneWidget);
+    });
+
+    testWidgets('legacy cash_pending still shows the waiting state', (
+      tester,
+    ) async {
+      await openTracking(tester, jobFixture(status: 'cash_pending'));
+      expect(byKey('tracking.waitingRider'), findsOneWidget);
+      expect(byKey('tracking.payNow'), findsNothing);
     });
 
     testWidgets('pickup timeout cancellation is explained', (tester) async {

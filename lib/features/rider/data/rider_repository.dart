@@ -4,6 +4,7 @@ import '../../../core/api/api_client.dart';
 import '../../../core/api/api_exception.dart';
 import '../../../core/location/geo_point.dart';
 import '../../booking/data/booking_models.dart';
+import '../../payments/data/payment_models.dart';
 import 'rider_models.dart';
 
 /// Every call the rider side makes to the Go server.
@@ -41,16 +42,34 @@ abstract class RiderRepository {
 
   Future<Order> markArrived(String orderId);
 
-  /// PATCH /orders/{id}/status for started, in_transit, arrived, handed_over, completed.
+  /// PATCH /orders/{id}/status for started, in_transit, handed_over, completed.
   Future<Order> updateStatus(String orderId, String status);
 
   Future<Order> cancel(String orderId);
 
+  /// Arrived at the drop-off and request payment in one step (in_transit -> payment_requested).
   Future<Order> requestPayment(String orderId);
 
-  Future<Order> paymentReceived(String orderId);
+  /// Records the payment and completes the order (payment_requested -> completed).
+  Future<Order> paymentReceived(
+    String orderId, {
+    required PayMethod method,
+    String? mpesaCode,
+  });
 
   Future<Order> paymentNotReceived(String orderId);
+
+  /// The rider's own M-Pesa methods with full numbers (cash is implicit).
+  Future<List<PaymentMethod>> paymentMethods();
+
+  /// Adds or replaces the method of [type]; [number] is already normalized.
+  Future<PaymentMethod> savePaymentMethod(
+    PayMethod type, {
+    required String number,
+    required String accountName,
+  });
+
+  Future<void> deletePaymentMethod(PayMethod type);
 }
 
 final _date = DateFormat('yyyy-MM-dd');
@@ -171,10 +190,42 @@ class ApiRiderRepository implements RiderRepository {
       _order(_api.post('orders/$orderId/payment/request'));
 
   @override
-  Future<Order> paymentReceived(String orderId) =>
-      _order(_api.post('orders/$orderId/payment/received'));
+  Future<Order> paymentReceived(
+    String orderId, {
+    required PayMethod method,
+    String? mpesaCode,
+  }) => _order(
+    _api.post(
+      'orders/$orderId/payment/received',
+      data: {'method': method.wire, 'mpesa_code': ?mpesaCode},
+    ),
+  );
 
   @override
   Future<Order> paymentNotReceived(String orderId) =>
       _order(_api.post('orders/$orderId/payment/not-received'));
+
+  @override
+  Future<List<PaymentMethod>> paymentMethods() async => parsePaymentMethods(
+    _map(await _api.get('riders/me/payment-methods'))['methods'],
+  );
+
+  @override
+  Future<PaymentMethod> savePaymentMethod(
+    PayMethod type, {
+    required String number,
+    required String accountName,
+  }) async {
+    final data = await _api.put(
+      'riders/me/payment-methods/${type.wire}',
+      data: {'number': number, 'account_name': accountName},
+    );
+    return PaymentMethod.tryParse(data) ??
+        PaymentMethod(type: type, number: number, accountName: accountName);
+  }
+
+  @override
+  Future<void> deletePaymentMethod(PayMethod type) async {
+    await _api.delete('riders/me/payment-methods/${type.wire}');
+  }
 }

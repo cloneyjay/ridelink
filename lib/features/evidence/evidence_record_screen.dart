@@ -28,6 +28,14 @@ String evidenceEventName(
   'cash_payment_sent' => l.evidenceEventCashSent,
   'cash_payment_received' => l.evidenceEventCashReceived,
   'cash_payment_disputed' => l.evidenceEventCashDisputed,
+  'arrived' => l.statusArrived,
+  'handed_over' =>
+    s == ServiceType.ride ? l.statusDroppedOff : l.statusHandedOver,
+  'completed' => l.statusCompleted,
+  'payment_details_viewed' => l.evidenceEventPaymentDetailsViewed,
+  'payment_received' => l.evidenceEventPaymentReceived,
+  'payment_not_received' => l.evidenceEventPaymentNotReceived,
+  'payer_payment_response' => l.evidenceEventPayerResponse,
   _ =>
     type.isEmpty
         ? type

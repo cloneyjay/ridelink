@@ -58,6 +58,7 @@ const knownErrorCodes = <String>[
   'account_deleted',
   'account_has_active_order',
   'legal_acceptance_required',
+  'payment_details_hidden',
 ];
 
 /// The localized message for a server error code, or null for a code this build doesn't know.
@@ -126,6 +127,7 @@ String? errorCodeMessage(
   'account_deleted' => l.errCodeAccountDeleted,
   'account_has_active_order' => l.errCodeAccountHasActiveOrder,
   'legal_acceptance_required' => l.errCodeLegalAcceptanceRequired,
+  'payment_details_hidden' => l.errCodePaymentDetailsHidden,
   _ => null,
 };
 

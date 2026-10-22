@@ -20,6 +20,7 @@ enum AppMode {
 abstract class ModeStore {
   AppMode? read();
   Future<void> write(AppMode mode);
+  Future<void> clear();
 }
 
 class SharedPrefsModeStore implements ModeStore {
@@ -33,6 +34,9 @@ class SharedPrefsModeStore implements ModeStore {
 
   @override
   Future<void> write(AppMode mode) => _prefs.setString(_key, mode.wire);
+
+  @override
+  Future<void> clear() => _prefs.remove(_key);
 }
 
 class MemoryModeStore implements ModeStore {
@@ -45,6 +49,9 @@ class MemoryModeStore implements ModeStore {
 
   @override
   Future<void> write(AppMode mode) async => this.mode = mode;
+
+  @override
+  Future<void> clear() async => mode = null;
 }
 
 /// The current mode; persisted on every change so the next launch opens the same side.
@@ -60,6 +67,14 @@ class AppModeController extends ChangeNotifier {
     if (_mode == mode) return;
     _mode = mode;
     _store.write(mode);
+    notifyListeners();
+  }
+
+  /// Back to the default side with nothing remembered (the next user starts fresh).
+  Future<void> forget() async {
+    await _store.clear();
+    if (_mode == AppMode.sender) return;
+    _mode = AppMode.sender;
     notifyListeners();
   }
 }

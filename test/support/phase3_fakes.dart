@@ -11,6 +11,7 @@ import 'package:ridelink/features/evidence/data/evidence_repository.dart';
 import 'package:ridelink/features/notifications/data/notification_repository.dart';
 import 'package:ridelink/features/orders/data/order_models.dart';
 import 'package:ridelink/features/orders/data/orders_repository.dart';
+import 'package:ridelink/features/payments/data/payment_models.dart';
 
 /// The signed-in user in every harness (see sessionJson in fakes.dart).
 const testUserId = 'user-1';
@@ -44,6 +45,12 @@ class FakeOrdersRepository implements OrdersRepository {
   int receiverLinkCalls = 0;
   Object? receiverLinkError;
   String receiverUrl = 'https://ridelink.test/r/abc123';
+
+  /// GET /orders/{id}/payment; defaults to cash only for the source order's price, with the
+  /// "Did you pay?" answer pending when the source order is `unresolved`.
+  OrderPayment? paymentResult;
+  Object? paymentError;
+  int paymentCalls = 0;
 
   @override
   Future<OrderDetails> details(String orderId) async {
@@ -103,6 +110,23 @@ class FakeOrdersRepository implements OrdersRepository {
     receiverLinkCalls++;
     if (receiverLinkError != null) throw receiverLinkError!;
     return ReceiverLink(url: receiverUrl);
+  }
+
+  @override
+  Future<OrderPayment> payment(String orderId) async {
+    paymentCalls++;
+    if (paymentError != null) throw paymentError!;
+    final order = orderSource?.call();
+    return paymentResult ??
+        OrderPayment(
+          amount: order?.agreedPrice ?? 0,
+          currency: 'KES',
+          cash: true,
+          methods: const [],
+          payerResponse: order?.status == 'unresolved'
+              ? PayerResponseState.pending
+              : null,
+        );
   }
 }
 

@@ -24,10 +24,12 @@ import 'maps/maps_config.dart';
 import 'mode/app_mode.dart';
 import 'navigation/navigation_launcher.dart';
 import 'push/push_preferences.dart';
+import 'push/push_taps.dart';
 import 'realtime/realtime_client.dart';
 import 'realtime/realtime_event.dart';
 import 'routing/rider_intent.dart';
 import 'share/share_service.dart';
+import 'storage/local_data.dart';
 import 'storage/local_store.dart';
 import 'time/server_clock.dart';
 
@@ -257,4 +259,29 @@ final shareServiceProvider = Provider<ShareService>(
 final currentUserIdProvider = Provider<String?>((ref) {
   final session = ref.watch(sessionStateProvider);
   return session is SignedIn ? session.session.user.id : null;
+});
+
+/// Wipes the user's device data; see [LocalData.clearUserData].
+final localDataProvider = Provider<LocalData>(
+  (ref) => LocalData(
+    store: ref.watch(localStoreProvider),
+    mode: ref.watch(appModeProvider),
+    resetMemory: [
+      () => ref.read(lastKnownLocationProvider.notifier).set(null),
+      () => ref.read(sessionFlagsProvider).openedLiveScreens.clear(),
+      () => ref.read(pushTapsProvider).take(),
+    ],
+  ),
+);
+
+/// A definitive session rejection (401 on refresh) wipes the user's device data. Read it once
+/// from the app root before restoring the session.
+final userDataLifecycleProvider = Provider<void>((ref) {
+  final session = ref.watch(sessionManagerProvider);
+  final data = ref.watch(localDataProvider);
+  Future<void> clear() => data.clearUserData();
+  session.onSessionRejected = clear;
+  ref.onDispose(() {
+    if (session.onSessionRejected == clear) session.onSessionRejected = null;
+  });
 });

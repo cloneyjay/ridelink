@@ -207,6 +207,14 @@ class _IdleHome extends ConsumerWidget {
           ),
           const SizedBox(height: AppSpacing.s3),
           _NavTile(
+            key: const Key('riderHome.paymentMethods'),
+            icon: Icons.account_balance_wallet_outlined,
+            title: l.paymentMethodsTitle,
+            subtitle: l.paymentMethodsNavSubtitle,
+            onTap: () => context.push(AppRoutes.riderPaymentMethods),
+          ),
+          const SizedBox(height: AppSpacing.s3),
+          _NavTile(
             key: const Key('riderHome.documents'),
             icon: Icons.badge_outlined,
             title: l.documentsTitle,

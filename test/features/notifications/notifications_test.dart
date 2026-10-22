@@ -137,7 +137,7 @@ void main() {
       await tapKeyAndSettle(tester, 'notifications.bell');
       final l = l10nOf(tester);
       expect(byKey('screen.notifications'), findsOneWidget);
-      expect(find.text(l.notifPaymentConfirmedBody('KES 214')), findsOneWidget);
+      expect(find.text(l.notifPaymentConfirmedBody), findsOneWidget);
       expect(find.text(l.notifPaymentRequestedBody('KES 214')), findsOneWidget);
       expect(find.text('Fresh server title'), findsOneWidget);
       expect(byKey('notification.n-3.unread'), findsNothing);

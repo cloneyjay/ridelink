@@ -1811,18 +1811,6 @@ abstract class AppLocalizations {
   /// Phase 2 rider side / tracking.
   ///
   /// In en, this message translates to:
-  /// **'Waiting for the sender to pay {amount} in cash.'**
-  String jobWaitingForSender(String amount);
-
-  /// Phase 2 rider side / tracking.
-  ///
-  /// In en, this message translates to:
-  /// **'The sender says they paid {amount} in cash. Confirm once you have it.'**
-  String jobSenderPaid(String amount);
-
-  /// Phase 2 rider side / tracking.
-  ///
-  /// In en, this message translates to:
   /// **'Payment received'**
   String get jobPaid;
 
@@ -1976,28 +1964,16 @@ abstract class AppLocalizations {
   /// **'Payment received'**
   String get paymentReceivedButton;
 
-  /// Phase 2 rider side / tracking.
+  /// Rider job: secondary action when the payer did not pay.
   ///
   /// In en, this message translates to:
-  /// **'Received {amount} in cash?'**
-  String paymentReceivedConfirmTitle(String amount);
-
-  /// Phase 2 rider side / tracking.
-  ///
-  /// In en, this message translates to:
-  /// **'Only confirm once the cash is in your hand. This is recorded and cannot be undone.'**
-  String get paymentReceivedConfirmBody;
-
-  /// Phase 2 rider side / tracking.
-  ///
-  /// In en, this message translates to:
-  /// **'Not received'**
+  /// **'Not paid'**
   String get paymentNotReceivedButton;
 
-  /// Phase 2 rider side / tracking.
+  /// Rider job: confirm dialog title for Not paid.
   ///
   /// In en, this message translates to:
-  /// **'Report payment not received?'**
+  /// **'Report this order as not paid?'**
   String get paymentNotReceivedConfirmTitle;
 
   /// Phase 2 rider side / tracking.
@@ -2060,17 +2036,11 @@ abstract class AppLocalizations {
   /// **'We\'re reviewing this payment'**
   String get paymentUnderReview;
 
-  /// Phase 2 rider side / tracking.
+  /// Rider job, unresolved.
   ///
   /// In en, this message translates to:
-  /// **'You reported that the cash was not received. RideLink will review this order.'**
+  /// **'You reported this order as not paid. RideLink will review this order.'**
   String get paymentUnderReviewRiderBody;
-
-  /// Phase 2 rider side / tracking.
-  ///
-  /// In en, this message translates to:
-  /// **'Your rider reported that the cash was not received. RideLink will review this order.'**
-  String get paymentUnderReviewSenderBody;
 
   /// Phase 2 rider side / tracking.
   ///
@@ -2179,36 +2149,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dropped off'**
   String get stepDroppedOff;
-
-  /// Phase 2 rider side / tracking.
-  ///
-  /// In en, this message translates to:
-  /// **'Pay {amount} in cash to your rider'**
-  String payInCash(String amount);
-
-  /// Phase 2 rider side / tracking.
-  ///
-  /// In en, this message translates to:
-  /// **'Then tap \"I\'ve paid\". Your rider confirms when they have the cash.'**
-  String get payInCashBody;
-
-  /// Phase 2 rider side / tracking.
-  ///
-  /// In en, this message translates to:
-  /// **'I\'ve paid'**
-  String get ivePaidButton;
-
-  /// Phase 2 rider side / tracking.
-  ///
-  /// In en, this message translates to:
-  /// **'Have you paid {amount}?'**
-  String ivePaidConfirmTitle(String amount);
-
-  /// Phase 2 rider side / tracking.
-  ///
-  /// In en, this message translates to:
-  /// **'Only confirm after handing the cash to your rider. This is recorded.'**
-  String get ivePaidConfirmBody;
 
   /// Phase 2 rider side / tracking.
   ///
@@ -3077,13 +3017,13 @@ abstract class AppLocalizations {
   /// Notification payment_requested body.
   ///
   /// In en, this message translates to:
-  /// **'Your rider has requested payment. Pay {amount} in cash.'**
+  /// **'Your rider has arrived. Pay {amount} by cash or M-Pesa.'**
   String notifPaymentRequestedBody(String amount);
 
   /// Notification payment_requested body without an amount.
   ///
   /// In en, this message translates to:
-  /// **'Your rider has requested payment. Pay the agreed amount in cash.'**
+  /// **'Your rider has arrived. Pay the agreed amount by cash or M-Pesa.'**
   String get notifPaymentRequestedBodyNoAmount;
 
   /// Notification payment_sent (to the rider).
@@ -3110,28 +3050,22 @@ abstract class AppLocalizations {
   /// **'Payment confirmed'**
   String get notifPaymentConfirmedTitle;
 
-  /// Notification payment_confirmed body.
+  /// Notification payment_confirmed body (to the sender; the order is complete).
   ///
   /// In en, this message translates to:
-  /// **'Your rider confirmed receiving {amount} in cash.'**
-  String notifPaymentConfirmedBody(String amount);
+  /// **'Payment confirmed. Your order is complete.'**
+  String get notifPaymentConfirmedBody;
 
-  /// Notification payment_confirmed body without an amount.
-  ///
-  /// In en, this message translates to:
-  /// **'Your rider confirmed receiving your cash payment.'**
-  String get notifPaymentConfirmedBodyNoAmount;
-
-  /// Notification payment_unresolved (both parties).
+  /// Notification payment_unresolved (to the rider only).
   ///
   /// In en, this message translates to:
   /// **'Payment unresolved'**
   String get notifPaymentUnresolvedTitle;
 
-  /// Notification payment_unresolved body.
+  /// Notification payment_unresolved body (to the rider).
   ///
   /// In en, this message translates to:
-  /// **'The rider reported the cash as not received. RideLink will review this order.'**
+  /// **'You reported this order as not paid. RideLink will review this order.'**
   String get notifPaymentUnresolvedBody;
 
   /// Notification pickup_arrived (to the sender).
@@ -3578,18 +3512,6 @@ abstract class AppLocalizations {
   /// **'Request payment from your passenger before they get off.'**
   String get jobAtDropoffBodyRide;
 
-  /// Rider job, ride payment requested.
-  ///
-  /// In en, this message translates to:
-  /// **'Waiting for the passenger to pay {amount} in cash.'**
-  String jobWaitingForPassenger(String amount);
-
-  /// Rider job, ride cash pending.
-  ///
-  /// In en, this message translates to:
-  /// **'The passenger says they paid {amount} in cash. Confirm once you have it.'**
-  String jobPassengerPaid(String amount);
-
   /// Rider job, ride paid.
   ///
   /// In en, this message translates to:
@@ -3985,6 +3907,324 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This account has been deleted.'**
   String get errCodeAccountDeleted;
+
+  /// Payment method: cash.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash'**
+  String get payMethodCash;
+
+  /// Payment method: M-Pesa Buy Goods till.
+  ///
+  /// In en, this message translates to:
+  /// **'M-Pesa Till'**
+  String get payMethodMpesaTill;
+
+  /// Payment method: M-Pesa Pochi la Biashara (product name).
+  ///
+  /// In en, this message translates to:
+  /// **'Pochi la Biashara'**
+  String get payMethodMpesaPochi;
+
+  /// Payment method: M-Pesa Send Money.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Money'**
+  String get payMethodMpesaSendMoney;
+
+  /// Optional M-Pesa transaction code field label.
+  ///
+  /// In en, this message translates to:
+  /// **'M-Pesa code (optional)'**
+  String get mpesaCodeLabel;
+
+  /// Helper under the M-Pesa code field.
+  ///
+  /// In en, this message translates to:
+  /// **'The 10-character code from the M-Pesa message.'**
+  String get mpesaCodeHelp;
+
+  /// M-Pesa code validation error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 10-character M-Pesa code, or leave it empty.'**
+  String get mpesaCodeInvalid;
+
+  /// Rider job payment step: label above the dominant amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount to collect'**
+  String get collectPaymentLabel;
+
+  /// Rider job payment step: method picker heading.
+  ///
+  /// In en, this message translates to:
+  /// **'How were you paid?'**
+  String get paymentHowPaidLabel;
+
+  /// Rider job payment step: GET /orders/{id}/payment failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the M-Pesa details for this order. Cash is still available.'**
+  String get paymentMethodsLoadFailed;
+
+  /// Sender tracking: payment card title while payment_requested.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay your rider'**
+  String get payYourRiderTitle;
+
+  /// The account name the payer should see in M-Pesa.
+  ///
+  /// In en, this message translates to:
+  /// **'Name in M-Pesa: {name}'**
+  String nameInMpesa(String name);
+
+  /// Tooltip on the copy button next to an M-Pesa number.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy number'**
+  String get copyNumber;
+
+  /// Snack after copying an M-Pesa number.
+  ///
+  /// In en, this message translates to:
+  /// **'Number copied'**
+  String get numberCopied;
+
+  /// Sender tracking: payment details failed to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your rider\'s payment details.'**
+  String get paymentDetailsLoadFailed;
+
+  /// Sender: prompt after the rider reported not paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider says this order wasn\'t paid. Did you pay?'**
+  String get payerPromptTitle;
+
+  /// Sender payer response: yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, I paid'**
+  String get payerYes;
+
+  /// Sender payer response: no.
+  ///
+  /// In en, this message translates to:
+  /// **'No, I didn\'t pay'**
+  String get payerNo;
+
+  /// Sender payer response: method heading.
+  ///
+  /// In en, this message translates to:
+  /// **'How did you pay?'**
+  String get payerHowPaidLabel;
+
+  /// Sender payer response: submit button.
+  ///
+  /// In en, this message translates to:
+  /// **'Send answer'**
+  String get payerSubmit;
+
+  /// Sender payer response: shown after answering.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks, RideLink will review this order.'**
+  String get payerThanks;
+
+  /// Sender payer response: request failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t send your answer. Try again.'**
+  String get payerResponseFailed;
+
+  /// Error code payment_details_hidden (422).
+  ///
+  /// In en, this message translates to:
+  /// **'Payment details are shown only while your rider is requesting payment.'**
+  String get errCodePaymentDetailsHidden;
+
+  /// Evidence event payment_details_viewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment details viewed'**
+  String get evidenceEventPaymentDetailsViewed;
+
+  /// Evidence event payment_received.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment received'**
+  String get evidenceEventPaymentReceived;
+
+  /// Evidence event payment_not_received.
+  ///
+  /// In en, this message translates to:
+  /// **'Reported not paid'**
+  String get evidenceEventPaymentNotReceived;
+
+  /// Evidence event payer_payment_response.
+  ///
+  /// In en, this message translates to:
+  /// **'Payer answered about payment'**
+  String get evidenceEventPayerResponse;
+
+  /// Rider payment methods screen title and home tile.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment methods'**
+  String get paymentMethodsTitle;
+
+  /// Rider home tile subtitle for payment methods.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash, and M-Pesa if you add it'**
+  String get paymentMethodsNavSubtitle;
+
+  /// Rider payment methods intro note.
+  ///
+  /// In en, this message translates to:
+  /// **'Customers see your M-Pesa details only when you request payment, and only for that order.'**
+  String get paymentMethodsIntro;
+
+  /// Rider payment methods: snapshot-at-acceptance note.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes apply to new orders. An accepted order keeps the details it was accepted with.'**
+  String get paymentMethodsFootnote;
+
+  /// Cash row badge: cash cannot be removed.
+  ///
+  /// In en, this message translates to:
+  /// **'Always accepted'**
+  String get cashAlwaysAccepted;
+
+  /// M-Pesa method row with no details yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not added'**
+  String get paymentMethodNotAdded;
+
+  /// Add an M-Pesa method.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get paymentMethodAdd;
+
+  /// Edit an M-Pesa method.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get paymentMethodEdit;
+
+  /// Remove an M-Pesa method.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get paymentMethodRemove;
+
+  /// Confirm removing an M-Pesa method.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {method}?'**
+  String paymentMethodRemoveTitle(String method);
+
+  /// Confirm removing an M-Pesa method: body.
+  ///
+  /// In en, this message translates to:
+  /// **'Customers won\'t see it on new orders.'**
+  String get paymentMethodRemoveBody;
+
+  /// Snack after saving an M-Pesa method.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment method saved'**
+  String get paymentMethodSaved;
+
+  /// Snack after removing an M-Pesa method.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment method removed'**
+  String get paymentMethodRemoved;
+
+  /// Removing an M-Pesa method failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t remove. Try again.'**
+  String get paymentMethodRemoveFailed;
+
+  /// Rider payment methods failed to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your payment methods.'**
+  String get paymentMethodsLoadError;
+
+  /// M-Pesa Till number field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Till number'**
+  String get tillNumberLabel;
+
+  /// Pochi / Send Money phone field label.
+  ///
+  /// In en, this message translates to:
+  /// **'M-Pesa phone number'**
+  String get mpesaPhoneLabel;
+
+  /// M-Pesa account name field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Name shown in M-Pesa'**
+  String get mpesaNameLabel;
+
+  /// Helper under the M-Pesa name field.
+  ///
+  /// In en, this message translates to:
+  /// **'The name customers see when they pay you.'**
+  String get mpesaNameHelp;
+
+  /// Till number validation error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a till number of 5 to 8 digits.'**
+  String get tillNumberInvalid;
+
+  /// Pochi / Send Money number validation error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a Kenyan mobile number, e.g. 0712345678.'**
+  String get mpesaPhoneInvalid;
+
+  /// M-Pesa name validation error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 2 to 60 characters.'**
+  String get mpesaNameInvalid;
+
+  /// Notification payer_payment_response (to the rider).
+  ///
+  /// In en, this message translates to:
+  /// **'Payment answer received'**
+  String get notifPayerResponseTitle;
+
+  /// Notification payer_payment_response body.
+  ///
+  /// In en, this message translates to:
+  /// **'The customer answered whether they paid. RideLink will review this order.'**
+  String get notifPayerResponseBody;
+
+  /// Notification payment_not_paid (to the sender).
+  ///
+  /// In en, this message translates to:
+  /// **'Payment not received'**
+  String get notifPaymentNotPaidTitle;
+
+  /// Notification payment_not_paid body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider says this order was not paid. Tell us if you paid.'**
+  String get notifPaymentNotPaidBody;
 }
 
 class _AppLocalizationsDelegate

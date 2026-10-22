@@ -958,16 +958,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get jobPayment => 'Malipo';
 
   @override
-  String jobWaitingForSender(String amount) {
-    return 'Unasubiri mteja alipe $amount taslimu.';
-  }
-
-  @override
-  String jobSenderPaid(String amount) {
-    return 'Mteja anasema amelipa $amount taslimu. Thibitisha ukishapokea.';
-  }
-
-  @override
   String get jobPaid => 'Malipo yamepokelewa';
 
   @override
@@ -1055,20 +1045,11 @@ class AppLocalizationsSw extends AppLocalizations {
   String get paymentReceivedButton => 'Nimepokea malipo';
 
   @override
-  String paymentReceivedConfirmTitle(String amount) {
-    return 'Umepokea $amount taslimu?';
-  }
-
-  @override
-  String get paymentReceivedConfirmBody =>
-      'Thibitisha tu pesa zikiwa mkononi mwako. Hii inarekodiwa na haiwezi kubadilishwa.';
-
-  @override
-  String get paymentNotReceivedButton => 'Sijapokea';
+  String get paymentNotReceivedButton => 'Hajalipa';
 
   @override
   String get paymentNotReceivedConfirmTitle =>
-      'Ripoti kwamba hujapokea malipo?';
+      'Ripoti kwamba oda hii haijalipwa?';
 
   @override
   String get paymentNotReceivedConfirmBody =>
@@ -1106,11 +1087,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get paymentUnderReviewRiderBody =>
-      'Umeripoti kwamba hukupokea pesa. RideLink itakagua oda hii.';
-
-  @override
-  String get paymentUnderReviewSenderBody =>
-      'Mwendesha boda wako ameripoti kwamba hakupokea pesa. RideLink itakagua oda hii.';
+      'Umeripoti kwamba oda hii haijalipwa. RideLink itakagua oda hii.';
 
   @override
   String get trackingScreenTitle => 'Oda yako';
@@ -1168,27 +1145,6 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get stepDroppedOff => 'Umefikishwa';
-
-  @override
-  String payInCash(String amount) {
-    return 'Lipa $amount taslimu kwa mwendesha boda wako';
-  }
-
-  @override
-  String get payInCashBody =>
-      'Kisha bonyeza \"Nimelipa\". Mwendesha boda atathibitisha akipokea pesa.';
-
-  @override
-  String get ivePaidButton => 'Nimelipa';
-
-  @override
-  String ivePaidConfirmTitle(String amount) {
-    return 'Umelipa $amount?';
-  }
-
-  @override
-  String get ivePaidConfirmBody =>
-      'Thibitisha tu baada ya kumpa mwendesha boda pesa. Hii inarekodiwa.';
 
   @override
   String get waitingForRiderConfirm =>
@@ -1702,12 +1658,12 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String notifPaymentRequestedBody(String amount) {
-    return 'Mwendesha boda wako ameomba malipo. Lipa $amount taslimu.';
+    return 'Mwendesha boda wako amefika. Lipa $amount kwa pesa taslimu au M-Pesa.';
   }
 
   @override
   String get notifPaymentRequestedBodyNoAmount =>
-      'Mwendesha boda wako ameomba malipo. Lipa kiasi kilichokubaliwa taslimu.';
+      'Mwendesha boda wako amefika. Lipa kiasi kilichokubaliwa kwa pesa taslimu au M-Pesa.';
 
   @override
   String get notifPaymentSentTitle => 'Malipo ya taslimu yametumwa';
@@ -1725,20 +1681,15 @@ class AppLocalizationsSw extends AppLocalizations {
   String get notifPaymentConfirmedTitle => 'Malipo yamethibitishwa';
 
   @override
-  String notifPaymentConfirmedBody(String amount) {
-    return 'Mwendesha boda wako amethibitisha kupokea $amount taslimu.';
-  }
-
-  @override
-  String get notifPaymentConfirmedBodyNoAmount =>
-      'Mwendesha boda wako amethibitisha kupokea malipo yako ya taslimu.';
+  String get notifPaymentConfirmedBody =>
+      'Malipo yamethibitishwa. Oda yako imekamilika.';
 
   @override
   String get notifPaymentUnresolvedTitle => 'Malipo hayajatatuliwa';
 
   @override
   String get notifPaymentUnresolvedBody =>
-      'Mwendesha boda ameripoti kuwa pesa taslimu haijapokelewa. RideLink itakagua oda hii.';
+      'Umeripoti kwamba oda hii haijalipwa. RideLink itakagua oda hii.';
 
   @override
   String get notifPickupArrivedTitle => 'Mwendesha boda wako amefika';
@@ -2003,16 +1954,6 @@ class AppLocalizationsSw extends AppLocalizations {
       'Omba malipo kutoka kwa abiria kabla hajashuka.';
 
   @override
-  String jobWaitingForPassenger(String amount) {
-    return 'Unasubiri abiria alipe $amount taslimu.';
-  }
-
-  @override
-  String jobPassengerPaid(String amount) {
-    return 'Abiria anasema amelipa $amount taslimu. Thibitisha ukishapokea.';
-  }
-
-  @override
   String get jobPaidBodyRide =>
       'Malipo yamethibitishwa. Weka alama abiria amefikishwa hapa chini.';
 
@@ -2234,4 +2175,181 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get errCodeAccountDeleted => 'Akaunti hii imefutwa.';
+
+  @override
+  String get payMethodCash => 'Pesa taslimu';
+
+  @override
+  String get payMethodMpesaTill => 'Till ya M-Pesa';
+
+  @override
+  String get payMethodMpesaPochi => 'Pochi la Biashara';
+
+  @override
+  String get payMethodMpesaSendMoney => 'Tuma Pesa';
+
+  @override
+  String get mpesaCodeLabel => 'Nambari ya muamala ya M-Pesa (si lazima)';
+
+  @override
+  String get mpesaCodeHelp =>
+      'Nambari yenye herufi 10 kutoka kwenye ujumbe wa M-Pesa.';
+
+  @override
+  String get mpesaCodeInvalid =>
+      'Weka nambari ya M-Pesa yenye herufi 10, au iache wazi.';
+
+  @override
+  String get collectPaymentLabel => 'Kiasi cha kupokea';
+
+  @override
+  String get paymentHowPaidLabel => 'Umelipwa kwa njia gani?';
+
+  @override
+  String get paymentMethodsLoadFailed =>
+      'Hatukuweza kupakia maelezo ya M-Pesa ya oda hii. Pesa taslimu bado inapatikana.';
+
+  @override
+  String get payYourRiderTitle => 'Mlipe mwendesha boda wako';
+
+  @override
+  String nameInMpesa(String name) {
+    return 'Jina kwenye M-Pesa: $name';
+  }
+
+  @override
+  String get copyNumber => 'Nakili nambari';
+
+  @override
+  String get numberCopied => 'Nambari imenakiliwa';
+
+  @override
+  String get paymentDetailsLoadFailed =>
+      'Hatukuweza kupakia maelezo ya malipo ya mwendesha boda wako.';
+
+  @override
+  String get payerPromptTitle =>
+      'Mwendesha boda wako anasema oda hii haikulipwa. Je, ulilipa?';
+
+  @override
+  String get payerYes => 'Ndiyo, nililipa';
+
+  @override
+  String get payerNo => 'Hapana, sikulipa';
+
+  @override
+  String get payerHowPaidLabel => 'Ulilipa kwa njia gani?';
+
+  @override
+  String get payerSubmit => 'Tuma jibu';
+
+  @override
+  String get payerThanks => 'Asante, RideLink itakagua oda hii.';
+
+  @override
+  String get payerResponseFailed => 'Hatukuweza kutuma jibu lako. Jaribu tena.';
+
+  @override
+  String get errCodePaymentDetailsHidden =>
+      'Maelezo ya malipo huonyeshwa tu mwendesha boda anapoomba malipo.';
+
+  @override
+  String get evidenceEventPaymentDetailsViewed =>
+      'Maelezo ya malipo yametazamwa';
+
+  @override
+  String get evidenceEventPaymentReceived => 'Malipo yamepokelewa';
+
+  @override
+  String get evidenceEventPaymentNotReceived => 'Imeripotiwa haijalipwa';
+
+  @override
+  String get evidenceEventPayerResponse => 'Mlipaji amejibu kuhusu malipo';
+
+  @override
+  String get paymentMethodsTitle => 'Njia za malipo';
+
+  @override
+  String get paymentMethodsNavSubtitle => 'Pesa taslimu, na M-Pesa ukiiongeza';
+
+  @override
+  String get paymentMethodsIntro =>
+      'Wateja huona maelezo yako ya M-Pesa tu unapoomba malipo, na kwa oda hiyo tu.';
+
+  @override
+  String get paymentMethodsFootnote =>
+      'Mabadiliko yanahusu oda mpya. Oda iliyokubaliwa inabaki na maelezo iliyokubaliwa nayo.';
+
+  @override
+  String get cashAlwaysAccepted => 'Inakubaliwa kila wakati';
+
+  @override
+  String get paymentMethodNotAdded => 'Haijaongezwa';
+
+  @override
+  String get paymentMethodAdd => 'Ongeza';
+
+  @override
+  String get paymentMethodEdit => 'Hariri';
+
+  @override
+  String get paymentMethodRemove => 'Ondoa';
+
+  @override
+  String paymentMethodRemoveTitle(String method) {
+    return 'Ondoa $method?';
+  }
+
+  @override
+  String get paymentMethodRemoveBody => 'Wateja hawataiona kwenye oda mpya.';
+
+  @override
+  String get paymentMethodSaved => 'Njia ya malipo imehifadhiwa';
+
+  @override
+  String get paymentMethodRemoved => 'Njia ya malipo imeondolewa';
+
+  @override
+  String get paymentMethodRemoveFailed => 'Hatukuweza kuondoa. Jaribu tena.';
+
+  @override
+  String get paymentMethodsLoadError =>
+      'Hatukuweza kupakia njia zako za malipo.';
+
+  @override
+  String get tillNumberLabel => 'Nambari ya Till';
+
+  @override
+  String get mpesaPhoneLabel => 'Nambari ya simu ya M-Pesa';
+
+  @override
+  String get mpesaNameLabel => 'Jina linaloonekana kwenye M-Pesa';
+
+  @override
+  String get mpesaNameHelp => 'Jina ambalo wateja huona wanapokulipa.';
+
+  @override
+  String get tillNumberInvalid =>
+      'Weka nambari ya Till yenye tarakimu 5 hadi 8.';
+
+  @override
+  String get mpesaPhoneInvalid =>
+      'Weka nambari ya simu ya Kenya, k.m. 0712345678.';
+
+  @override
+  String get mpesaNameInvalid => 'Weka herufi 2 hadi 60.';
+
+  @override
+  String get notifPayerResponseTitle => 'Jibu kuhusu malipo limepokelewa';
+
+  @override
+  String get notifPayerResponseBody =>
+      'Mteja amejibu kama alilipa. RideLink itakagua oda hii.';
+
+  @override
+  String get notifPaymentNotPaidTitle => 'Malipo hayajapokelewa';
+
+  @override
+  String get notifPaymentNotPaidBody =>
+      'Mwendesha boda wako anasema oda hii haikulipwa. Tuambie kama ulilipa.';
 }

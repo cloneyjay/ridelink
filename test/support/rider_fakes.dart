@@ -5,6 +5,7 @@ import 'package:ridelink/core/files/evidence_camera.dart';
 import 'package:ridelink/core/location/geo_point.dart';
 import 'package:ridelink/core/location/location_tracker.dart';
 import 'package:ridelink/features/booking/data/booking_models.dart';
+import 'package:ridelink/features/payments/data/payment_models.dart';
 import 'package:ridelink/features/rider/data/rider_models.dart';
 import 'package:ridelink/features/rider/data/rider_repository.dart';
 
@@ -150,6 +151,18 @@ class FakeRiderRepository implements RiderRepository {
   Object? jobError;
   Order? job;
 
+  /// POST /payment/received bodies, in order.
+  final receivedCalls = <({PayMethod method, String? mpesaCode})>[];
+
+  /// The rider's M-Pesa methods (GET/PUT/DELETE /riders/me/payment-methods).
+  final methods = <PayMethod, PaymentMethod>{};
+  Object? methodsError;
+  Object? saveMethodError;
+  Object? deleteMethodError;
+  final saveMethodCalls =
+      <({PayMethod type, String number, String accountName})>[];
+  final deleteMethodCalls = <PayMethod>[];
+
   @override
   Future<RiderProfile?> me() async {
     meCalls++;
@@ -267,12 +280,46 @@ class FakeRiderRepository implements RiderRepository {
       _job('payment/request', (o) => o.copyWith(status: 'payment_requested'));
 
   @override
-  Future<Order> paymentReceived(String orderId) =>
-      _job('payment/received', (o) => o.copyWith(status: 'paid'));
+  Future<Order> paymentReceived(
+    String orderId, {
+    required PayMethod method,
+    String? mpesaCode,
+  }) {
+    receivedCalls.add((method: method, mpesaCode: mpesaCode));
+    return _job('payment/received', (o) => o.copyWith(status: 'completed'));
+  }
 
   @override
   Future<Order> paymentNotReceived(String orderId) =>
       _job('payment/not-received', (o) => o.copyWith(status: 'unresolved'));
+
+  @override
+  Future<List<PaymentMethod>> paymentMethods() async {
+    if (methodsError != null) throw methodsError!;
+    return methods.values.toList();
+  }
+
+  @override
+  Future<PaymentMethod> savePaymentMethod(
+    PayMethod type, {
+    required String number,
+    required String accountName,
+  }) async {
+    saveMethodCalls.add((type: type, number: number, accountName: accountName));
+    if (saveMethodError != null) throw saveMethodError!;
+    return methods[type] = PaymentMethod(
+      type: type,
+      number: number,
+      accountName: accountName,
+    );
+  }
+
+  @override
+  Future<void> deletePaymentMethod(PayMethod type) async {
+    deleteMethodCalls.add(type);
+    if (deleteMethodError != null) throw deleteMethodError!;
+    methods.remove(type);
+  }
 }
 
 class FakeLocationTracker implements LocationTracker {

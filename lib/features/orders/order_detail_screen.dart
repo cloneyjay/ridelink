@@ -12,6 +12,7 @@ import '../../theme/app_text_styles.dart';
 import '../booking/booking_labels.dart';
 import '../booking/data/booking_models.dart';
 import '../booking/widgets/booking_widgets.dart';
+import '../payments/payer_response_card.dart';
 import '../ratings/rating_sheet.dart';
 import '../rider/rider_labels.dart';
 import '../tracking/terms_sheet.dart';
@@ -165,6 +166,13 @@ class _DetailBody extends ConsumerWidget {
                 ? null
                 : InfoChip(l.tripDistance(formatKm(o.distanceKm!))),
           ),
+          if (o.status == 'unresolved' && role == OrderRole.sender) ...[
+            const SizedBox(height: AppSpacing.s4),
+            PayerResponseCard(
+              key: const Key('orderDetail.payerResponse'),
+              orderId: o.id,
+            ),
+          ],
           if (o.isActiveJob) ...[
             const SizedBox(height: AppSpacing.s4),
             PrimaryButton(

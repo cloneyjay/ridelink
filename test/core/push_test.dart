@@ -95,7 +95,7 @@ void main() {
         ),
         'payment_confirmed': (
           title: en.notifPaymentConfirmedTitle,
-          body: en.notifPaymentConfirmedBodyNoAmount,
+          body: en.notifPaymentConfirmedBody,
         ),
         'payment_unresolved': (
           title: en.notifPaymentUnresolvedTitle,

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import '../../../core/api/api_client.dart';
 import '../../../core/api/api_exception.dart';
 import '../../../core/location/geo_point.dart';
+import '../../payments/data/payment_models.dart';
 import 'booking_models.dart';
 
 /// Place search is switched off on the server (503 "maps not configured").
@@ -56,8 +57,9 @@ abstract class BookingRepository {
   /// The sender's orders (GET /orders).
   Future<List<Order>> myOrders();
 
-  /// Sender confirms the cash was paid (payment_requested -> cash_pending).
-  Future<Order> confirmPaymentSent(String orderId);
+  /// The sender's one answer after the rider reported the order as not paid.
+  /// Throws ApiException 409 when already answered (or not asked).
+  Future<void> payerResponse(String orderId, PayerResponse response);
 }
 
 class ApiBookingRepository implements BookingRepository {
@@ -214,6 +216,10 @@ class ApiBookingRepository implements BookingRepository {
   }
 
   @override
-  Future<Order> confirmPaymentSent(String orderId) async =>
-      Order.fromJson(_map(await _api.post('orders/$orderId/payment/sent')));
+  Future<void> payerResponse(String orderId, PayerResponse response) async {
+    await _api.post(
+      'orders/$orderId/payment/payer-response',
+      data: response.toJson(),
+    );
+  }
 }

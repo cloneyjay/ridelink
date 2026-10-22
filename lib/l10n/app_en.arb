@@ -1282,24 +1282,6 @@
   "@jobPayment": {
     "description": "Phase 2 rider side / tracking."
   },
-  "jobWaitingForSender": "Waiting for the sender to pay {amount} in cash.",
-  "@jobWaitingForSender": {
-    "description": "Phase 2 rider side / tracking.",
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    }
-  },
-  "jobSenderPaid": "The sender says they paid {amount} in cash. Confirm once you have it.",
-  "@jobSenderPaid": {
-    "description": "Phase 2 rider side / tracking.",
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    }
-  },
   "jobPaid": "Payment received",
   "@jobPaid": {
     "description": "Phase 2 rider side / tracking."
@@ -1419,26 +1401,13 @@
   "@paymentReceivedButton": {
     "description": "Phase 2 rider side / tracking."
   },
-  "paymentReceivedConfirmTitle": "Received {amount} in cash?",
-  "@paymentReceivedConfirmTitle": {
-    "description": "Phase 2 rider side / tracking.",
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    }
-  },
-  "paymentReceivedConfirmBody": "Only confirm once the cash is in your hand. This is recorded and cannot be undone.",
-  "@paymentReceivedConfirmBody": {
-    "description": "Phase 2 rider side / tracking."
-  },
-  "paymentNotReceivedButton": "Not received",
+  "paymentNotReceivedButton": "Not paid",
   "@paymentNotReceivedButton": {
-    "description": "Phase 2 rider side / tracking."
+    "description": "Rider job: secondary action when the payer did not pay."
   },
-  "paymentNotReceivedConfirmTitle": "Report payment not received?",
+  "paymentNotReceivedConfirmTitle": "Report this order as not paid?",
   "@paymentNotReceivedConfirmTitle": {
-    "description": "Phase 2 rider side / tracking."
+    "description": "Rider job: confirm dialog title for Not paid."
   },
   "paymentNotReceivedConfirmBody": "The order goes to RideLink for review.",
   "@paymentNotReceivedConfirmBody": {
@@ -1485,13 +1454,9 @@
   "@paymentUnderReview": {
     "description": "Phase 2 rider side / tracking."
   },
-  "paymentUnderReviewRiderBody": "You reported that the cash was not received. RideLink will review this order.",
+  "paymentUnderReviewRiderBody": "You reported this order as not paid. RideLink will review this order.",
   "@paymentUnderReviewRiderBody": {
-    "description": "Phase 2 rider side / tracking."
-  },
-  "paymentUnderReviewSenderBody": "Your rider reported that the cash was not received. RideLink will review this order.",
-  "@paymentUnderReviewSenderBody": {
-    "description": "Phase 2 rider side / tracking."
+    "description": "Rider job, unresolved."
   },
   "trackingScreenTitle": "Your order",
   "@trackingScreenTitle": {
@@ -1568,36 +1533,6 @@
   },
   "stepDroppedOff": "Dropped off",
   "@stepDroppedOff": {
-    "description": "Phase 2 rider side / tracking."
-  },
-  "payInCash": "Pay {amount} in cash to your rider",
-  "@payInCash": {
-    "description": "Phase 2 rider side / tracking.",
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    }
-  },
-  "payInCashBody": "Then tap \"I've paid\". Your rider confirms when they have the cash.",
-  "@payInCashBody": {
-    "description": "Phase 2 rider side / tracking."
-  },
-  "ivePaidButton": "I've paid",
-  "@ivePaidButton": {
-    "description": "Phase 2 rider side / tracking."
-  },
-  "ivePaidConfirmTitle": "Have you paid {amount}?",
-  "@ivePaidConfirmTitle": {
-    "description": "Phase 2 rider side / tracking.",
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    }
-  },
-  "ivePaidConfirmBody": "Only confirm after handing the cash to your rider. This is recorded.",
-  "@ivePaidConfirmBody": {
     "description": "Phase 2 rider side / tracking."
   },
   "waitingForRiderConfirm": "Waiting for your rider to confirm the payment",
@@ -2234,7 +2169,7 @@
   "@notifPaymentRequestedTitle": {
     "description": "Notification payment_requested (to the sender)."
   },
-  "notifPaymentRequestedBody": "Your rider has requested payment. Pay {amount} in cash.",
+  "notifPaymentRequestedBody": "Your rider has arrived. Pay {amount} by cash or M-Pesa.",
   "@notifPaymentRequestedBody": {
     "description": "Notification payment_requested body.",
     "placeholders": {
@@ -2243,7 +2178,7 @@
       }
     }
   },
-  "notifPaymentRequestedBodyNoAmount": "Your rider has requested payment. Pay the agreed amount in cash.",
+  "notifPaymentRequestedBodyNoAmount": "Your rider has arrived. Pay the agreed amount by cash or M-Pesa.",
   "@notifPaymentRequestedBodyNoAmount": {
     "description": "Notification payment_requested body without an amount."
   },
@@ -2268,26 +2203,17 @@
   "@notifPaymentConfirmedTitle": {
     "description": "Notification payment_confirmed (to the sender)."
   },
-  "notifPaymentConfirmedBody": "Your rider confirmed receiving {amount} in cash.",
+  "notifPaymentConfirmedBody": "Payment confirmed. Your order is complete.",
   "@notifPaymentConfirmedBody": {
-    "description": "Notification payment_confirmed body.",
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    }
-  },
-  "notifPaymentConfirmedBodyNoAmount": "Your rider confirmed receiving your cash payment.",
-  "@notifPaymentConfirmedBodyNoAmount": {
-    "description": "Notification payment_confirmed body without an amount."
+    "description": "Notification payment_confirmed body (to the sender; the order is complete)."
   },
   "notifPaymentUnresolvedTitle": "Payment unresolved",
   "@notifPaymentUnresolvedTitle": {
-    "description": "Notification payment_unresolved (both parties)."
+    "description": "Notification payment_unresolved (to the rider only)."
   },
-  "notifPaymentUnresolvedBody": "The rider reported the cash as not received. RideLink will review this order.",
+  "notifPaymentUnresolvedBody": "You reported this order as not paid. RideLink will review this order.",
   "@notifPaymentUnresolvedBody": {
-    "description": "Notification payment_unresolved body."
+    "description": "Notification payment_unresolved body (to the rider)."
   },
   "notifPickupArrivedTitle": "Your rider has arrived",
   "@notifPickupArrivedTitle": {
@@ -2628,24 +2554,6 @@
   "@jobAtDropoffBodyRide": {
     "description": "Rider job at drop-off on a ride."
   },
-  "jobWaitingForPassenger": "Waiting for the passenger to pay {amount} in cash.",
-  "@jobWaitingForPassenger": {
-    "description": "Rider job, ride payment requested.",
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    }
-  },
-  "jobPassengerPaid": "The passenger says they paid {amount} in cash. Confirm once you have it.",
-  "@jobPassengerPaid": {
-    "description": "Rider job, ride cash pending.",
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    }
-  },
   "jobPaidBodyRide": "Payment confirmed. Mark the passenger dropped off below.",
   "@jobPaidBodyRide": {
     "description": "Rider job, ride paid."
@@ -2915,5 +2823,227 @@
   "errCodeAccountDeleted": "This account has been deleted.",
   "@errCodeAccountDeleted": {
     "description": "Error code account_deleted (401: the account was deleted; the app signs out locally)."
+  },
+  "payMethodCash": "Cash",
+  "@payMethodCash": {
+    "description": "Payment method: cash."
+  },
+  "payMethodMpesaTill": "M-Pesa Till",
+  "@payMethodMpesaTill": {
+    "description": "Payment method: M-Pesa Buy Goods till."
+  },
+  "payMethodMpesaPochi": "Pochi la Biashara",
+  "@payMethodMpesaPochi": {
+    "description": "Payment method: M-Pesa Pochi la Biashara (product name)."
+  },
+  "payMethodMpesaSendMoney": "Send Money",
+  "@payMethodMpesaSendMoney": {
+    "description": "Payment method: M-Pesa Send Money."
+  },
+  "mpesaCodeLabel": "M-Pesa code (optional)",
+  "@mpesaCodeLabel": {
+    "description": "Optional M-Pesa transaction code field label."
+  },
+  "mpesaCodeHelp": "The 10-character code from the M-Pesa message.",
+  "@mpesaCodeHelp": {
+    "description": "Helper under the M-Pesa code field."
+  },
+  "mpesaCodeInvalid": "Enter the 10-character M-Pesa code, or leave it empty.",
+  "@mpesaCodeInvalid": {
+    "description": "M-Pesa code validation error."
+  },
+  "collectPaymentLabel": "Amount to collect",
+  "@collectPaymentLabel": {
+    "description": "Rider job payment step: label above the dominant amount."
+  },
+  "paymentHowPaidLabel": "How were you paid?",
+  "@paymentHowPaidLabel": {
+    "description": "Rider job payment step: method picker heading."
+  },
+  "paymentMethodsLoadFailed": "Couldn't load the M-Pesa details for this order. Cash is still available.",
+  "@paymentMethodsLoadFailed": {
+    "description": "Rider job payment step: GET /orders/{id}/payment failed."
+  },
+  "payYourRiderTitle": "Pay your rider",
+  "@payYourRiderTitle": {
+    "description": "Sender tracking: payment card title while payment_requested."
+  },
+  "nameInMpesa": "Name in M-Pesa: {name}",
+  "@nameInMpesa": {
+    "description": "The account name the payer should see in M-Pesa.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "copyNumber": "Copy number",
+  "@copyNumber": {
+    "description": "Tooltip on the copy button next to an M-Pesa number."
+  },
+  "numberCopied": "Number copied",
+  "@numberCopied": {
+    "description": "Snack after copying an M-Pesa number."
+  },
+  "paymentDetailsLoadFailed": "Couldn't load your rider's payment details.",
+  "@paymentDetailsLoadFailed": {
+    "description": "Sender tracking: payment details failed to load."
+  },
+  "payerPromptTitle": "Your rider says this order wasn't paid. Did you pay?",
+  "@payerPromptTitle": {
+    "description": "Sender: prompt after the rider reported not paid."
+  },
+  "payerYes": "Yes, I paid",
+  "@payerYes": {
+    "description": "Sender payer response: yes."
+  },
+  "payerNo": "No, I didn't pay",
+  "@payerNo": {
+    "description": "Sender payer response: no."
+  },
+  "payerHowPaidLabel": "How did you pay?",
+  "@payerHowPaidLabel": {
+    "description": "Sender payer response: method heading."
+  },
+  "payerSubmit": "Send answer",
+  "@payerSubmit": {
+    "description": "Sender payer response: submit button."
+  },
+  "payerThanks": "Thanks, RideLink will review this order.",
+  "@payerThanks": {
+    "description": "Sender payer response: shown after answering."
+  },
+  "payerResponseFailed": "Couldn't send your answer. Try again.",
+  "@payerResponseFailed": {
+    "description": "Sender payer response: request failed."
+  },
+  "errCodePaymentDetailsHidden": "Payment details are shown only while your rider is requesting payment.",
+  "@errCodePaymentDetailsHidden": {
+    "description": "Error code payment_details_hidden (422)."
+  },
+  "evidenceEventPaymentDetailsViewed": "Payment details viewed",
+  "@evidenceEventPaymentDetailsViewed": {
+    "description": "Evidence event payment_details_viewed."
+  },
+  "evidenceEventPaymentReceived": "Payment received",
+  "@evidenceEventPaymentReceived": {
+    "description": "Evidence event payment_received."
+  },
+  "evidenceEventPaymentNotReceived": "Reported not paid",
+  "@evidenceEventPaymentNotReceived": {
+    "description": "Evidence event payment_not_received."
+  },
+  "evidenceEventPayerResponse": "Payer answered about payment",
+  "@evidenceEventPayerResponse": {
+    "description": "Evidence event payer_payment_response."
+  },
+  "paymentMethodsTitle": "Payment methods",
+  "@paymentMethodsTitle": {
+    "description": "Rider payment methods screen title and home tile."
+  },
+  "paymentMethodsNavSubtitle": "Cash, and M-Pesa if you add it",
+  "@paymentMethodsNavSubtitle": {
+    "description": "Rider home tile subtitle for payment methods."
+  },
+  "paymentMethodsIntro": "Customers see your M-Pesa details only when you request payment, and only for that order.",
+  "@paymentMethodsIntro": {
+    "description": "Rider payment methods intro note."
+  },
+  "paymentMethodsFootnote": "Changes apply to new orders. An accepted order keeps the details it was accepted with.",
+  "@paymentMethodsFootnote": {
+    "description": "Rider payment methods: snapshot-at-acceptance note."
+  },
+  "cashAlwaysAccepted": "Always accepted",
+  "@cashAlwaysAccepted": {
+    "description": "Cash row badge: cash cannot be removed."
+  },
+  "paymentMethodNotAdded": "Not added",
+  "@paymentMethodNotAdded": {
+    "description": "M-Pesa method row with no details yet."
+  },
+  "paymentMethodAdd": "Add",
+  "@paymentMethodAdd": {
+    "description": "Add an M-Pesa method."
+  },
+  "paymentMethodEdit": "Edit",
+  "@paymentMethodEdit": {
+    "description": "Edit an M-Pesa method."
+  },
+  "paymentMethodRemove": "Remove",
+  "@paymentMethodRemove": {
+    "description": "Remove an M-Pesa method."
+  },
+  "paymentMethodRemoveTitle": "Remove {method}?",
+  "@paymentMethodRemoveTitle": {
+    "description": "Confirm removing an M-Pesa method.",
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentMethodRemoveBody": "Customers won't see it on new orders.",
+  "@paymentMethodRemoveBody": {
+    "description": "Confirm removing an M-Pesa method: body."
+  },
+  "paymentMethodSaved": "Payment method saved",
+  "@paymentMethodSaved": {
+    "description": "Snack after saving an M-Pesa method."
+  },
+  "paymentMethodRemoved": "Payment method removed",
+  "@paymentMethodRemoved": {
+    "description": "Snack after removing an M-Pesa method."
+  },
+  "paymentMethodRemoveFailed": "Couldn't remove. Try again.",
+  "@paymentMethodRemoveFailed": {
+    "description": "Removing an M-Pesa method failed."
+  },
+  "paymentMethodsLoadError": "Couldn't load your payment methods.",
+  "@paymentMethodsLoadError": {
+    "description": "Rider payment methods failed to load."
+  },
+  "tillNumberLabel": "Till number",
+  "@tillNumberLabel": {
+    "description": "M-Pesa Till number field label."
+  },
+  "mpesaPhoneLabel": "M-Pesa phone number",
+  "@mpesaPhoneLabel": {
+    "description": "Pochi / Send Money phone field label."
+  },
+  "mpesaNameLabel": "Name shown in M-Pesa",
+  "@mpesaNameLabel": {
+    "description": "M-Pesa account name field label."
+  },
+  "mpesaNameHelp": "The name customers see when they pay you.",
+  "@mpesaNameHelp": {
+    "description": "Helper under the M-Pesa name field."
+  },
+  "tillNumberInvalid": "Enter a till number of 5 to 8 digits.",
+  "@tillNumberInvalid": {
+    "description": "Till number validation error."
+  },
+  "mpesaPhoneInvalid": "Enter a Kenyan mobile number, e.g. 0712345678.",
+  "@mpesaPhoneInvalid": {
+    "description": "Pochi / Send Money number validation error."
+  },
+  "mpesaNameInvalid": "Enter 2 to 60 characters.",
+  "@mpesaNameInvalid": {
+    "description": "M-Pesa name validation error."
+  },
+  "notifPayerResponseTitle": "Payment answer received",
+  "@notifPayerResponseTitle": {
+    "description": "Notification payer_payment_response (to the rider)."
+  },
+  "notifPayerResponseBody": "The customer answered whether they paid. RideLink will review this order.",
+  "@notifPayerResponseBody": {
+    "description": "Notification payer_payment_response body."
+  },
+  "notifPaymentNotPaidTitle": "Payment not received",
+  "@notifPaymentNotPaidTitle": {
+    "description": "Notification payment_not_paid (to the sender)."
+  },
+  "notifPaymentNotPaidBody": "Your rider says this order was not paid. Tell us if you paid.",
+  "@notifPaymentNotPaidBody": {
+    "description": "Notification payment_not_paid body."
   }
 }

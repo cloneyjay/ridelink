@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/providers.dart';
 import '../../core/routing/app_router.dart';
 import '../evidence/data/evidence_models.dart';
+import '../payments/data/payment_models.dart';
 import 'data/order_models.dart';
 
 final orderDetailsProvider = FutureProvider.autoDispose
@@ -16,6 +17,13 @@ final orderDetailsProvider = FutureProvider.autoDispose
 final orderRatingsProvider = FutureProvider.autoDispose
     .family<List<Rating>, String>(
       (ref, orderId) => ref.watch(ordersRepositoryProvider).ratings(orderId),
+      retry: (_, _) => null,
+    );
+
+/// GET /orders/{id}/payment; invalidate it when the order enters `payment_requested`.
+final orderPaymentProvider = FutureProvider.autoDispose
+    .family<OrderPayment, String>(
+      (ref, orderId) => ref.watch(ordersRepositoryProvider).payment(orderId),
       retry: (_, _) => null,
     );
 

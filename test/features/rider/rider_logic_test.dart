@@ -18,14 +18,14 @@ import '../../support/rider_fakes.dart';
 
 void main() {
   group('job state machine', () {
-    test('next action follows the cash-confirmation flow', () {
+    test('next action follows the rider-led payment flow', () {
       final steps = {
         jobFixture(): JobAction.arrivedAtPickup,
         jobFixture(arrivedAt: testNow): JobAction.pickedUp,
         jobFixture(status: 'started'): JobAction.startTrip,
         jobFixture(status: 'in_transit'): JobAction.arrivedAtDropoff,
         jobFixture(status: 'arrived'): JobAction.requestPayment,
-        jobFixture(status: 'payment_requested'): JobAction.waitForSender,
+        jobFixture(status: 'payment_requested'): JobAction.confirmPayment,
         jobFixture(status: 'cash_pending'): JobAction.confirmPayment,
         jobFixture(status: 'paid'): JobAction.handOver,
         jobFixture(status: 'handed_over'): JobAction.complete,
@@ -38,7 +38,9 @@ void main() {
     test('plain status actions map to PATCH targets', () {
       expect(statusFor(JobAction.pickedUp), 'started');
       expect(statusFor(JobAction.startTrip), 'in_transit');
-      expect(statusFor(JobAction.arrivedAtDropoff), 'arrived');
+      // Arrived at the drop-off goes through POST /payment/request, never PATCH.
+      expect(statusFor(JobAction.arrivedAtDropoff), isNull);
+      expect(statusFor(JobAction.confirmPayment), isNull);
       expect(statusFor(JobAction.handOver), 'handed_over');
       expect(statusFor(JobAction.complete), 'completed');
       expect(statusFor(JobAction.requestPayment), isNull);

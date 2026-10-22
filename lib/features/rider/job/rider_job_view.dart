@@ -24,6 +24,9 @@ import '../../evidence/photo_evidence_card.dart';
 import '../../notifications/notifications_screen.dart';
 import '../../orders/data/order_models.dart';
 import '../../orders/order_providers.dart';
+import '../../payments/data/payment_models.dart';
+import '../../payments/payment_validation.dart';
+import '../../payments/payment_widgets.dart';
 import '../../ratings/rating_sheet.dart';
 import '../../tracking/terms_sheet.dart';
 import '../rider_controller.dart';
@@ -31,7 +34,8 @@ import '../rider_labels.dart';
 import 'job_logic.dart';
 
 /// The rider's active job: to pickup (deadline countdown, arrival fallback), status steps,
-/// two-sided cash confirmation (pricing decision 18), hand over and complete.
+/// and the rider-led payment step: Arrived requests payment, then Payment received (method,
+/// optional M-Pesa code) completes the order, or Not paid sends it to review.
 class RiderJobView extends ConsumerStatefulWidget {
   const RiderJobView({super.key, required this.order});
 
@@ -50,6 +54,10 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
   /// Photos uploaded from this screen, before the evidence chain reloads.
   final _uploaded = <MediaKind>{};
 
+  PayMethod _method = PayMethod.cash;
+  final _code = TextEditingController();
+  String? _codeError;
+
   @override
   void initState() {
     super.initState();
@@ -63,6 +71,12 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
   void didUpdateWidget(RiderJobView old) {
     super.didUpdateWidget(old);
     if (old.order.id != widget.order.id) _uploaded.clear();
+    if (old.order.id != widget.order.id ||
+        old.order.status != widget.order.status) {
+      _method = PayMethod.cash;
+      _code.clear();
+      _codeError = null;
+    }
     if (old.order.status != widget.order.status ||
         old.order.pickupArrivedAt != widget.order.pickupArrivedAt) {
       _error = null;
@@ -100,6 +114,7 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
   @override
   void dispose() {
     _ticker?.cancel();
+    _code.dispose();
     super.dispose();
   }
 
@@ -141,34 +156,47 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
   }
 
   Future<void> _onAction(JobAction action) async {
-    final l = AppLocalizations.of(context);
     final repo = ref.read(riderRepositoryProvider);
-    final amount = formatKes(widget.order.agreedPrice ?? 0);
     switch (action) {
       case JobAction.arrivedAtPickup:
         await _run(repo.markArrived);
-      case JobAction.requestPayment:
+      case JobAction.arrivedAtDropoff || JobAction.requestPayment:
         await _run(repo.requestPayment);
       case JobAction.confirmPayment:
-        final ok = await confirmDialog(
-          context,
-          keyPrefix: 'job.receivedDialog',
-          title: l.paymentReceivedConfirmTitle(amount),
-          body: l.paymentReceivedConfirmBody,
-          confirmLabel: l.paymentReceivedButton,
-          cancelLabel: l.goBackButton,
-        );
-        if (ok && mounted) await _run(repo.paymentReceived);
+        await _received();
       case JobAction.pickedUp ||
           JobAction.startTrip ||
-          JobAction.arrivedAtDropoff ||
           JobAction.handOver ||
           JobAction.complete:
         final status = statusFor(action)!;
         await _run((id) => repo.updateStatus(id, status));
-      case JobAction.waitForSender || JobAction.none:
+      case JobAction.none:
         return;
     }
+  }
+
+  /// The selected method if this order still offers it, otherwise cash.
+  PayMethod _selectedMethod(OrderPayment? payment) {
+    final choices = payment?.choices ?? const [PayMethod.cash];
+    return choices.contains(_method) ? _method : PayMethod.cash;
+  }
+
+  Future<void> _received() async {
+    final l = AppLocalizations.of(context);
+    final method = _selectedMethod(
+      ref.read(orderPaymentProvider(widget.order.id)).value,
+    );
+    final check = mpesaCodeFor(method, _code.text);
+    if (!check.valid) {
+      setState(() => _codeError = l.mpesaCodeInvalid);
+      return;
+    }
+    setState(() => _codeError = null);
+    await _run(
+      (id) => ref
+          .read(riderRepositoryProvider)
+          .paymentReceived(id, method: method, mpesaCode: check.code),
+    );
   }
 
   Future<void> _notReceived() async {
@@ -231,7 +259,7 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
       JobAction.handOver =>
         ride ? l.actionPassengerDroppedOff : l.actionHandOver,
       JobAction.complete => ride ? l.actionCompleteRide : l.actionComplete,
-      JobAction.waitForSender || JobAction.none => '',
+      JobAction.none => '',
     };
   }
 
@@ -266,8 +294,10 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
     };
     final receiver = ride ? null : details?.receiverLocation;
 
+    final collecting = action == JobAction.confirmPayment;
+
     final children = <Widget>[
-      if (amount != null)
+      if (amount != null && !collecting)
         SurfaceCard(
           child: Row(
             children: [
@@ -375,6 +405,7 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
           onNavigate: () => _navigate(receiver.point),
         ),
       ],
+      if (collecting) ..._collectPanel(l, c, o),
       ..._photoCards(l, o),
       ..._statusBody(l, c, o, amount),
       if (_error != null) ...[
@@ -382,12 +413,20 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
         InlineError(_error!, key: const Key('job.error')),
       ],
       const SizedBox(height: AppSpacing.s6),
-      if (action == JobAction.confirmPayment) ...[
+      if (collecting) ...[
+        if (photoMissing) ...[
+          NoteRow(
+            l.jobHandoverPhotoRequired,
+            key: const Key('job.photoRequired'),
+            icon: Icons.photo_camera_outlined,
+          ),
+          const SizedBox(height: AppSpacing.s3),
+        ],
         PrimaryButton(
           key: const Key('job.paymentReceived'),
           label: l.paymentReceivedButton,
           loading: _busy,
-          onPressed: () => _onAction(action),
+          onPressed: photoMissing ? null : _received,
         ),
         const SizedBox(height: AppSpacing.s3),
         OutlinedButton(
@@ -395,8 +434,7 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
           onPressed: _busy ? null : _notReceived,
           child: Text(l.paymentNotReceivedButton),
         ),
-      ] else if (action != JobAction.none &&
-          action != JobAction.waitForSender) ...[
+      ] else if (action != JobAction.none) ...[
         if (photoMissing) ...[
           NoteRow(
             photoNeeded == MediaKind.pickupPhoto
@@ -497,6 +535,90 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
     ];
   }
 
+  /// Amount to collect, how the payer paid (cash plus the order's M-Pesa snapshot) and the
+  /// optional M-Pesa code.
+  List<Widget> _collectPanel(AppLocalizations l, AppColors c, Order o) {
+    final payment = ref.watch(orderPaymentProvider(o.id));
+    final data = payment.value;
+    final choices = data?.choices ?? const [PayMethod.cash];
+    final selected = _selectedMethod(data);
+    final numbers = {
+      for (final m in data?.methods ?? const <PaymentMethod>[]) m.type: m,
+    };
+    final amount = o.agreedPrice ?? data?.amount;
+    return [
+      SurfaceCard(
+        key: const Key('job.collect'),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              l.collectPaymentLabel,
+              style: AppTextStyles.bodySm.copyWith(color: c.inkMuted),
+            ),
+            if (amount != null)
+              Text(
+                formatKes(amount),
+                key: const Key('job.collectAmount'),
+                style: AppTextStyles.displayLg.copyWith(color: c.ink),
+              ),
+            const SizedBox(height: AppSpacing.s4),
+            Text(
+              l.paymentHowPaidLabel,
+              style: AppTextStyles.labelLg.copyWith(color: c.ink),
+            ),
+            const SizedBox(height: AppSpacing.s2),
+            for (final m in choices) ...[
+              ChoiceRow(
+                key: Key('job.method.${m.wire}'),
+                selected: m == selected,
+                title: payMethodName(l, m),
+                subtitle: numbers[m]?.number,
+                icon: payMethodIcon(m),
+                onTap: _busy
+                    ? null
+                    : () => setState(() {
+                        _method = m;
+                        _codeError = null;
+                      }),
+              ),
+              const SizedBox(height: AppSpacing.s2),
+            ],
+            if (payment.isLoading)
+              LinearProgressIndicator(
+                key: const Key('job.methodsLoading'),
+                color: c.brand500,
+                backgroundColor: c.surfaceSunken,
+              ),
+            if (payment.hasError && !payment.isLoading) ...[
+              InlineError(
+                l.paymentMethodsLoadFailed,
+                key: const Key('job.methodsError'),
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TextButton(
+                  key: const Key('job.methodsRetry'),
+                  onPressed: () => ref.invalidate(orderPaymentProvider(o.id)),
+                  child: Text(l.retryButton),
+                ),
+              ),
+            ],
+            if (selected.isMpesa) ...[
+              const SizedBox(height: AppSpacing.s2),
+              MpesaCodeField(
+                key: const Key('job.mpesaCode'),
+                controller: _code,
+                errorText: _codeError,
+                enabled: !_busy,
+              ),
+            ],
+          ],
+        ),
+      ),
+    ];
+  }
+
   List<Widget> _statusBody(
     AppLocalizations l,
     AppColors c,
@@ -506,12 +628,6 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
     final ride = o.serviceType == ServiceType.ride;
     String? text = switch (o.status) {
       'arrived' => ride ? l.jobAtDropoffBodyRide : l.jobAtDropoffBody,
-      'payment_requested' =>
-        ride
-            ? l.jobWaitingForPassenger(amount ?? '')
-            : l.jobWaitingForSender(amount ?? ''),
-      'cash_pending' =>
-        ride ? l.jobPassengerPaid(amount ?? '') : l.jobSenderPaid(amount ?? ''),
       'paid' => ride ? l.jobPaidBodyRide : l.jobPaidBody,
       'completed' => amount == null ? null : l.jobCompletedBody(amount),
       'unresolved' => l.paymentUnderReviewRiderBody,
@@ -535,27 +651,7 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
               : c.surfaceSunken,
           borderRadius: BorderRadius.circular(AppRadius.md),
         ),
-        child: Row(
-          children: [
-            if (o.status == 'payment_requested')
-              Padding(
-                padding: const EdgeInsets.only(right: AppSpacing.s3),
-                child: SizedBox.square(
-                  dimension: AppSpacing.s5,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    color: c.brand500,
-                  ),
-                ),
-              ),
-            Expanded(
-              child: Text(
-                text,
-                style: AppTextStyles.body.copyWith(color: c.ink),
-              ),
-            ),
-          ],
-        ),
+        child: Text(text, style: AppTextStyles.body.copyWith(color: c.ink)),
       ),
     ];
   }

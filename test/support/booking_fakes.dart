@@ -25,6 +25,7 @@ import 'package:ridelink/core/storage/local_store.dart';
 import 'package:ridelink/core/time/server_clock.dart';
 import 'package:ridelink/features/booking/data/booking_repository.dart';
 import 'package:ridelink/features/orders/data/order_models.dart';
+import 'package:ridelink/features/payments/data/payment_models.dart';
 import 'package:ridelink/features/legal/legal_repository.dart';
 import 'package:ridelink/features/shell/account_repository.dart';
 import 'package:ridelink/l10n/app_localizations.dart';
@@ -213,9 +214,9 @@ class FakeBookingRepository implements BookingRepository {
   SenderOrder? senderOrderResult;
   Object? senderOrderError;
 
-  int paymentSentCalls = 0;
-  Object? paymentSentError;
-  Order Function(String orderId)? onPaymentSent;
+  /// POST /payment/payer-response bodies, in order.
+  final payerResponses = <PayerResponse>[];
+  Object? payerResponseError;
 
   @override
   Future<List<PlacePrediction>> autocomplete({
@@ -335,11 +336,9 @@ class FakeBookingRepository implements BookingRepository {
   Future<List<Order>> myOrders() async => myOrdersList;
 
   @override
-  Future<Order> confirmPaymentSent(String orderId) async {
-    paymentSentCalls++;
-    if (paymentSentError != null) throw paymentSentError!;
-    return onPaymentSent?.call(orderId) ??
-        order.copyWith(status: 'cash_pending');
+  Future<void> payerResponse(String orderId, PayerResponse response) async {
+    payerResponses.add(response);
+    if (payerResponseError != null) throw payerResponseError!;
   }
 }
 

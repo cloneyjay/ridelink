@@ -7,14 +7,17 @@ enum JobAction {
   arrivedAtPickup,
   pickedUp,
   startTrip,
+
+  /// Arrived at the drop-off; also requests payment (one step, POST /payment/request).
   arrivedAtDropoff,
+
+  /// Legacy `arrived` rows: request payment.
   requestPayment,
 
-  /// Waiting for the sender to tap "I've paid".
-  waitForSender,
-
-  /// Sender says they paid: confirm received or not received.
+  /// Rider-led settlement: payment received (completes the order) or not paid.
   confirmPayment,
+
+  /// Legacy `paid` / `handed_over` rows.
   handOver,
   complete,
 
@@ -28,8 +31,7 @@ JobAction nextAction(Order o) => switch (o.status) {
   'started' => JobAction.startTrip,
   'in_transit' => JobAction.arrivedAtDropoff,
   'arrived' => JobAction.requestPayment,
-  'payment_requested' => JobAction.waitForSender,
-  'cash_pending' => JobAction.confirmPayment,
+  'payment_requested' || 'cash_pending' => JobAction.confirmPayment,
   'paid' => JobAction.handOver,
   'handed_over' => JobAction.complete,
   _ => JobAction.none,
@@ -39,7 +41,6 @@ JobAction nextAction(Order o) => switch (o.status) {
 String? statusFor(JobAction action) => switch (action) {
   JobAction.pickedUp => 'started',
   JobAction.startTrip => 'in_transit',
-  JobAction.arrivedAtDropoff => 'arrived',
   JobAction.handOver => 'handed_over',
   JobAction.complete => 'completed',
   _ => null,
@@ -51,7 +52,7 @@ MediaKind? requiredPhoto(Order o, JobAction action) {
   if (o.serviceType != ServiceType.delivery) return null;
   return switch (action) {
     JobAction.pickedUp => MediaKind.pickupPhoto,
-    JobAction.handOver => MediaKind.handoverPhoto,
+    JobAction.confirmPayment || JobAction.handOver => MediaKind.handoverPhoto,
     _ => null,
   };
 }
@@ -62,7 +63,10 @@ MediaKind? photoStepFor(Order o) {
   return switch (o.status) {
     'accepted' when o.arrivedAtPickup => MediaKind.pickupPhoto,
     'started' => MediaKind.pickupPhoto,
-    'paid' || 'handed_over' => MediaKind.handoverPhoto,
+    'payment_requested' ||
+    'cash_pending' ||
+    'paid' ||
+    'handed_over' => MediaKind.handoverPhoto,
     _ => null,
   };
 }

@@ -37,11 +37,19 @@ PushChannel pushChannelFor(PushPayload p) =>
       ),
       'payment_confirmed' => (
         title: l.notifPaymentConfirmedTitle,
-        body: l.notifPaymentConfirmedBodyNoAmount,
+        body: l.notifPaymentConfirmedBody,
       ),
       'payment_unresolved' => (
         title: l.notifPaymentUnresolvedTitle,
         body: l.notifPaymentUnresolvedBody,
+      ),
+      'payment_not_paid' => (
+        title: l.notifPaymentNotPaidTitle,
+        body: l.notifPaymentNotPaidBody,
+      ),
+      'payer_payment_response' => (
+        title: l.notifPayerResponseTitle,
+        body: l.notifPayerResponseBody,
       ),
       'pickup_arrived' => (
         title: l.notifPickupArrivedTitle,

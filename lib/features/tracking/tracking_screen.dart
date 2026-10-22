@@ -28,6 +28,8 @@ import '../home/sender_home_screen.dart' show MapPlaceholder;
 import '../notifications/notifications_screen.dart';
 import '../orders/data/order_models.dart';
 import '../orders/order_providers.dart';
+import '../payments/pay_rider_card.dart';
+import '../payments/payer_response_card.dart';
 import '../ratings/rating_sheet.dart';
 import '../rider/job/job_logic.dart';
 import 'terms_sheet.dart';
@@ -50,7 +52,8 @@ class TrackingArgs {
 }
 
 /// Screen 7 (sender): live rider position, one pickup countdown (decision 7), step progress,
-/// and the cash payment step (pricing decision 18).
+/// and the payment step: how to pay the rider directly while `payment_requested` (the rider
+/// confirms), and the one-time "Did you pay?" answer after the rider reports not paid.
 class TrackingScreen extends ConsumerStatefulWidget {
   const TrackingScreen({super.key, required this.orderId, this.args});
 
@@ -72,11 +75,16 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen>
   String? _error;
   Timer? _ticker;
 
+  /// Last status seen: every status change refetches GET /payment (details while
+  /// `payment_requested`, the "Did you pay?" state once `unresolved`).
+  String? _seenStatus;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _order = widget.args?.order;
+    _seenStatus = _order?.status;
     ref
         .read(sessionFlagsProvider)
         .openedLiveScreens
@@ -128,10 +136,16 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen>
     _afterChange();
   }
 
-  /// Completion asks the sender to rate the rider, once.
+  /// A status change refetches the payment view; completion asks the sender to rate the
+  /// rider, once.
   void _afterChange() {
     final order = _order;
-    if (order == null || order.status != 'completed') return;
+    if (order == null) return;
+    if (order.status != _seenStatus) {
+      _seenStatus = order.status;
+      ref.invalidate(orderPaymentProvider(order.id));
+    }
+    if (order.status != 'completed') return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         maybePromptRating(context, ref, order: order, role: OrderRole.sender);
@@ -218,25 +232,6 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen>
         _error = l.trackingActionFailed;
       });
     }
-  }
-
-  Future<void> _paid() async {
-    final l = AppLocalizations.of(context);
-    final amount = formatKes(_order?.agreedPrice ?? 0);
-    final ok = await confirmDialog(
-      context,
-      keyPrefix: 'tracking.paidDialog',
-      title: l.ivePaidConfirmTitle(amount),
-      body: l.ivePaidConfirmBody,
-      confirmLabel: l.ivePaidButton,
-      cancelLabel: l.goBackButton,
-    );
-    if (!ok || !mounted) return;
-    await _run(
-      () => ref
-          .read(bookingRepositoryProvider)
-          .confirmPaymentSent(widget.orderId),
-    );
   }
 
   Future<void> _cancel() async {
@@ -519,18 +514,11 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen>
     Order o,
     String amount,
   ) {
-    Widget card(
-      String key,
-      String title,
-      String? body, {
-      Widget? action,
-    }) => Container(
+    Widget card(String key, String title, String? body) => Container(
       key: Key(key),
       padding: const EdgeInsets.all(AppSpacing.s4),
       decoration: BoxDecoration(
-        color: key == 'tracking.unresolved'
-            ? c.statusErrorTint
-            : c.surfaceSunken,
+        color: c.surfaceSunken,
         borderRadius: BorderRadius.circular(AppRadius.md),
       ),
       child: Column(
@@ -541,37 +529,26 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen>
             const SizedBox(height: AppSpacing.s1),
             Text(body, style: AppTextStyles.body.copyWith(color: c.inkMuted)),
           ],
-          if (action != null) ...[
-            const SizedBox(height: AppSpacing.s4),
-            action,
-          ],
         ],
       ),
     );
     return switch (o.status) {
       'payment_requested' => [
-        card(
-          'tracking.payNow',
-          l.payInCash(amount),
-          l.payInCashBody,
-          action: PrimaryButton(
-            key: const Key('tracking.ivePaid'),
-            label: l.ivePaidButton,
-            loading: _busy,
-            onPressed: _paid,
-          ),
+        PayRiderCard(
+          orderId: o.id,
+          amount: o.agreedPrice ?? _details?.terms?.total,
+          onHidden: _load,
         ),
+        const SizedBox(height: AppSpacing.s3),
       ],
+      // Legacy rows from the retired "I've paid" step.
       'cash_pending' => [
         card('tracking.waitingRider', l.waitingForRiderConfirm, null),
       ],
       'paid' => [card('tracking.paid', l.paymentConfirmed(amount), null)],
       'unresolved' => [
-        card(
-          'tracking.unresolved',
-          l.paymentUnderReview,
-          l.paymentUnderReviewSenderBody,
-        ),
+        PayerResponseCard(key: const Key('tracking.unresolved'), orderId: o.id),
+        const SizedBox(height: AppSpacing.s3),
       ],
       _ => const [],
     };

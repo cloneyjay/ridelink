@@ -412,28 +412,25 @@ void main() {
       expect(byKey('tracking.inTransit'), findsOneWidget);
     });
 
-    testWidgets('payment step: "I\'ve paid" lost race re-renders the state', (
-      tester,
-    ) async {
+    testWidgets('payment details hidden (the order moved on) reloads the '
+        'order and drops the pay card', (tester) async {
       final repo = FakeBookingRepository()
-        ..order = jobFixture(status: 'payment_requested')
-        ..paymentSentError = conflict('cancelled');
+        ..order = jobFixture(status: 'payment_requested');
+      final orders = FakeOrdersRepository()
+        ..paymentError = apiError(422, 'payment_details_hidden');
+      // The server already completed the order.
+      orders.orderSource = () => jobFixture(status: 'completed');
       final h = await pumpBookingApp(
         tester,
         repo: repo,
+        orders: orders,
         clock: () => testNow,
         goTo: AppRoutes.trackingFor('order-9'),
+        extra: TrackingArgs(order: jobFixture(status: 'payment_requested')),
       );
-      final loads = h.orders.detailsCalls;
-      repo.order = jobFixture(status: 'cancelled', cancelReason: 'rider');
-      await tapKeyAndSettle(tester, 'tracking.ivePaid');
-      await tapKeyAndSettle(tester, 'tracking.paidDialog.yes');
-
-      expect(repo.paymentSentCalls, 1);
-      expect(h.orders.detailsCalls, loads + 1);
-      expect(byKey('tracking.conflict'), findsOneWidget);
-      expect(byKey('tracking.cancelled'), findsOneWidget);
-      expect(byKey('tracking.ivePaid'), findsNothing);
+      expect(h.orders.paymentCalls, greaterThan(0));
+      expect(byKey('tracking.payNow'), findsNothing);
+      expect(byKey('tracking.done'), findsOneWidget);
     });
 
     testWidgets('send offer 409 follows the server (order cancelled -> home)', (

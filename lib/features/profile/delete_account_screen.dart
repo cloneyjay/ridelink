@@ -33,6 +33,7 @@ class _DeleteAccountScreenState extends ConsumerState<DeleteAccountScreen> {
     });
     try {
       await ref.read(accountRepositoryProvider).deleteAccount();
+      await ref.read(localDataProvider).clearUserData();
       ref.read(authNoticeProvider.notifier).show(AuthNotice.accountDeleted);
       await ref.read(sessionManagerProvider).endSessionLocally();
     } catch (e) {

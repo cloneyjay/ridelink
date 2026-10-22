@@ -4,6 +4,7 @@ import 'package:ridelink/core/api/api_client.dart';
 import 'package:ridelink/core/auth/access_token_source.dart';
 import 'package:ridelink/core/config/app_config.dart';
 import 'package:ridelink/features/booking/data/booking_repository.dart';
+import 'package:ridelink/features/payments/data/payment_models.dart';
 import 'package:ridelink/features/rider/data/rider_models.dart';
 import 'package:ridelink/features/rider/data/rider_repository.dart';
 
@@ -104,7 +105,7 @@ void main() {
     expect((adapter.requests[1].data as Map)['max_distance_km'], 12);
   });
 
-  test('job and cash endpoints hit the contract paths', () async {
+  test('job and payment endpoints hit the contract paths', () async {
     final repo = ApiRiderRepository(
       client({
         'orders/o1/offer/accept': (_) => jsonResponse(200, _order('accepted')),
@@ -113,7 +114,8 @@ void main() {
         'orders/o1/status': (_) => jsonResponse(200, _order('started')),
         'orders/o1/payment/request': (_) =>
             jsonResponse(200, _order('payment_requested')),
-        'orders/o1/payment/received': (_) => jsonResponse(200, _order('paid')),
+        'orders/o1/payment/received': (_) =>
+            jsonResponse(200, _order('completed')),
         'orders/o1/payment/not-received': (_) =>
             jsonResponse(200, _order('unresolved')),
       }),
@@ -122,9 +124,22 @@ void main() {
     await repo.markArrived('o1');
     await repo.updateStatus('o1', 'started');
     expect((await repo.requestPayment('o1')).status, 'payment_requested');
-    expect((await repo.paymentReceived('o1')).status, 'paid');
+    expect(
+      (await repo.paymentReceived(
+        'o1',
+        method: PayMethod.mpesaTill,
+        mpesaCode: 'QAB1CD2EF3',
+      )).status,
+      'completed',
+    );
     expect((await repo.paymentNotReceived('o1')).status, 'unresolved');
     expect(adapter.requests[2].data, {'status': 'started'});
+    expect(adapter.requests[4].data, {
+      'method': 'mpesa_till',
+      'mpesa_code': 'QAB1CD2EF3',
+    });
+    await repo.paymentReceived('o1', method: PayMethod.cash);
+    expect(adapter.requests.last.data, {'method': 'cash'});
   });
 
   test('active parses offer and order; limits parse', () async {
@@ -147,17 +162,30 @@ void main() {
     expect((await repo.limits()).maxPickupRadiusKm, 3);
   });
 
-  test('sender cash confirmation posts payment/sent', () async {
+  test('sender payer response posts payment/payer-response', () async {
     final repo = ApiBookingRepository(
       client({
-        'orders/o1/payment/sent': (_) =>
-            jsonResponse(200, _order('cash_pending')),
+        'orders/o1/payment/payer-response': (_) => emptyResponse(204),
         'orders': (_) => jsonResponse(200, {
           'orders': [_order('accepted')],
         }),
       }),
     );
-    expect((await repo.confirmPaymentSent('o1')).status, 'cash_pending');
+    await repo.payerResponse(
+      'o1',
+      const PayerResponse.paid(
+        method: PayMethod.mpesaPochi,
+        mpesaCode: 'QAB1CD2EF3',
+      ),
+    );
+    expect(adapter.requests.last.method, 'POST');
+    expect(adapter.requests.last.data, {
+      'paid': true,
+      'method': 'mpesa_pochi',
+      'mpesa_code': 'QAB1CD2EF3',
+    });
+    await repo.payerResponse('o1', const PayerResponse.notPaid());
+    expect(adapter.requests.last.data, {'paid': false});
     expect((await repo.myOrders()).single.isActiveJob, isTrue);
   });
 }

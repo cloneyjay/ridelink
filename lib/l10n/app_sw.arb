@@ -1283,24 +1283,6 @@
   "@jobPayment": {
     "x-review": "needs-review"
   },
-  "jobWaitingForSender": "Unasubiri mteja alipe {amount} taslimu.",
-  "@jobWaitingForSender": {
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    },
-    "x-review": "needs-review"
-  },
-  "jobSenderPaid": "Mteja anasema amelipa {amount} taslimu. Thibitisha ukishapokea.",
-  "@jobSenderPaid": {
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    },
-    "x-review": "needs-review"
-  },
   "jobPaid": "Malipo yamepokelewa",
   "@jobPaid": {
     "x-review": "needs-review"
@@ -1420,24 +1402,11 @@
   "@paymentReceivedButton": {
     "x-review": "needs-review"
   },
-  "paymentReceivedConfirmTitle": "Umepokea {amount} taslimu?",
-  "@paymentReceivedConfirmTitle": {
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    },
-    "x-review": "needs-review"
-  },
-  "paymentReceivedConfirmBody": "Thibitisha tu pesa zikiwa mkononi mwako. Hii inarekodiwa na haiwezi kubadilishwa.",
-  "@paymentReceivedConfirmBody": {
-    "x-review": "needs-review"
-  },
-  "paymentNotReceivedButton": "Sijapokea",
+  "paymentNotReceivedButton": "Hajalipa",
   "@paymentNotReceivedButton": {
     "x-review": "needs-review"
   },
-  "paymentNotReceivedConfirmTitle": "Ripoti kwamba hujapokea malipo?",
+  "paymentNotReceivedConfirmTitle": "Ripoti kwamba oda hii haijalipwa?",
   "@paymentNotReceivedConfirmTitle": {
     "x-review": "needs-review"
   },
@@ -1486,12 +1455,8 @@
   "@paymentUnderReview": {
     "x-review": "needs-review"
   },
-  "paymentUnderReviewRiderBody": "Umeripoti kwamba hukupokea pesa. RideLink itakagua oda hii.",
+  "paymentUnderReviewRiderBody": "Umeripoti kwamba oda hii haijalipwa. RideLink itakagua oda hii.",
   "@paymentUnderReviewRiderBody": {
-    "x-review": "needs-review"
-  },
-  "paymentUnderReviewSenderBody": "Mwendesha boda wako ameripoti kwamba hakupokea pesa. RideLink itakagua oda hii.",
-  "@paymentUnderReviewSenderBody": {
     "x-review": "needs-review"
   },
   "trackingScreenTitle": "Oda yako",
@@ -1569,36 +1534,6 @@
   },
   "stepDroppedOff": "Umefikishwa",
   "@stepDroppedOff": {
-    "x-review": "needs-review"
-  },
-  "payInCash": "Lipa {amount} taslimu kwa mwendesha boda wako",
-  "@payInCash": {
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    },
-    "x-review": "needs-review"
-  },
-  "payInCashBody": "Kisha bonyeza \"Nimelipa\". Mwendesha boda atathibitisha akipokea pesa.",
-  "@payInCashBody": {
-    "x-review": "needs-review"
-  },
-  "ivePaidButton": "Nimelipa",
-  "@ivePaidButton": {
-    "x-review": "needs-review"
-  },
-  "ivePaidConfirmTitle": "Umelipa {amount}?",
-  "@ivePaidConfirmTitle": {
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    },
-    "x-review": "needs-review"
-  },
-  "ivePaidConfirmBody": "Thibitisha tu baada ya kumpa mwendesha boda pesa. Hii inarekodiwa.",
-  "@ivePaidConfirmBody": {
     "x-review": "needs-review"
   },
   "waitingForRiderConfirm": "Unasubiri mwendesha boda athibitishe malipo",
@@ -2235,7 +2170,7 @@
   "@notifPaymentRequestedTitle": {
     "x-review": "needs-review"
   },
-  "notifPaymentRequestedBody": "Mwendesha boda wako ameomba malipo. Lipa {amount} taslimu.",
+  "notifPaymentRequestedBody": "Mwendesha boda wako amefika. Lipa {amount} kwa pesa taslimu au M-Pesa.",
   "@notifPaymentRequestedBody": {
     "placeholders": {
       "amount": {
@@ -2244,7 +2179,7 @@
     },
     "x-review": "needs-review"
   },
-  "notifPaymentRequestedBodyNoAmount": "Mwendesha boda wako ameomba malipo. Lipa kiasi kilichokubaliwa taslimu.",
+  "notifPaymentRequestedBodyNoAmount": "Mwendesha boda wako amefika. Lipa kiasi kilichokubaliwa kwa pesa taslimu au M-Pesa.",
   "@notifPaymentRequestedBodyNoAmount": {
     "x-review": "needs-review"
   },
@@ -2269,24 +2204,15 @@
   "@notifPaymentConfirmedTitle": {
     "x-review": "needs-review"
   },
-  "notifPaymentConfirmedBody": "Mwendesha boda wako amethibitisha kupokea {amount} taslimu.",
+  "notifPaymentConfirmedBody": "Malipo yamethibitishwa. Oda yako imekamilika.",
   "@notifPaymentConfirmedBody": {
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    },
-    "x-review": "needs-review"
-  },
-  "notifPaymentConfirmedBodyNoAmount": "Mwendesha boda wako amethibitisha kupokea malipo yako ya taslimu.",
-  "@notifPaymentConfirmedBodyNoAmount": {
     "x-review": "needs-review"
   },
   "notifPaymentUnresolvedTitle": "Malipo hayajatatuliwa",
   "@notifPaymentUnresolvedTitle": {
     "x-review": "needs-review"
   },
-  "notifPaymentUnresolvedBody": "Mwendesha boda ameripoti kuwa pesa taslimu haijapokelewa. RideLink itakagua oda hii.",
+  "notifPaymentUnresolvedBody": "Umeripoti kwamba oda hii haijalipwa. RideLink itakagua oda hii.",
   "@notifPaymentUnresolvedBody": {
     "x-review": "needs-review"
   },
@@ -2629,24 +2555,6 @@
   "@jobAtDropoffBodyRide": {
     "x-review": "needs-review"
   },
-  "jobWaitingForPassenger": "Unasubiri abiria alipe {amount} taslimu.",
-  "@jobWaitingForPassenger": {
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    },
-    "x-review": "needs-review"
-  },
-  "jobPassengerPaid": "Abiria anasema amelipa {amount} taslimu. Thibitisha ukishapokea.",
-  "@jobPassengerPaid": {
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    },
-    "x-review": "needs-review"
-  },
   "jobPaidBodyRide": "Malipo yamethibitishwa. Weka alama abiria amefikishwa hapa chini.",
   "@jobPaidBodyRide": {
     "x-review": "needs-review"
@@ -2909,6 +2817,228 @@
   },
   "errCodeAccountDeleted": "Akaunti hii imefutwa.",
   "@errCodeAccountDeleted": {
+    "x-review": "needs-review"
+  },
+  "payMethodCash": "Pesa taslimu",
+  "@payMethodCash": {
+    "x-review": "needs-review"
+  },
+  "payMethodMpesaTill": "Till ya M-Pesa",
+  "@payMethodMpesaTill": {
+    "x-review": "needs-review"
+  },
+  "payMethodMpesaPochi": "Pochi la Biashara",
+  "@payMethodMpesaPochi": {
+    "x-review": "needs-review"
+  },
+  "payMethodMpesaSendMoney": "Tuma Pesa",
+  "@payMethodMpesaSendMoney": {
+    "x-review": "needs-review"
+  },
+  "mpesaCodeLabel": "Nambari ya muamala ya M-Pesa (si lazima)",
+  "@mpesaCodeLabel": {
+    "x-review": "needs-review"
+  },
+  "mpesaCodeHelp": "Nambari yenye herufi 10 kutoka kwenye ujumbe wa M-Pesa.",
+  "@mpesaCodeHelp": {
+    "x-review": "needs-review"
+  },
+  "mpesaCodeInvalid": "Weka nambari ya M-Pesa yenye herufi 10, au iache wazi.",
+  "@mpesaCodeInvalid": {
+    "x-review": "needs-review"
+  },
+  "collectPaymentLabel": "Kiasi cha kupokea",
+  "@collectPaymentLabel": {
+    "x-review": "needs-review"
+  },
+  "paymentHowPaidLabel": "Umelipwa kwa njia gani?",
+  "@paymentHowPaidLabel": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodsLoadFailed": "Hatukuweza kupakia maelezo ya M-Pesa ya oda hii. Pesa taslimu bado inapatikana.",
+  "@paymentMethodsLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "payYourRiderTitle": "Mlipe mwendesha boda wako",
+  "@payYourRiderTitle": {
+    "x-review": "needs-review"
+  },
+  "nameInMpesa": "Jina kwenye M-Pesa: {name}",
+  "@nameInMpesa": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "copyNumber": "Nakili nambari",
+  "@copyNumber": {
+    "x-review": "needs-review"
+  },
+  "numberCopied": "Nambari imenakiliwa",
+  "@numberCopied": {
+    "x-review": "needs-review"
+  },
+  "paymentDetailsLoadFailed": "Hatukuweza kupakia maelezo ya malipo ya mwendesha boda wako.",
+  "@paymentDetailsLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "payerPromptTitle": "Mwendesha boda wako anasema oda hii haikulipwa. Je, ulilipa?",
+  "@payerPromptTitle": {
+    "x-review": "needs-review"
+  },
+  "payerYes": "Ndiyo, nililipa",
+  "@payerYes": {
+    "x-review": "needs-review"
+  },
+  "payerNo": "Hapana, sikulipa",
+  "@payerNo": {
+    "x-review": "needs-review"
+  },
+  "payerHowPaidLabel": "Ulilipa kwa njia gani?",
+  "@payerHowPaidLabel": {
+    "x-review": "needs-review"
+  },
+  "payerSubmit": "Tuma jibu",
+  "@payerSubmit": {
+    "x-review": "needs-review"
+  },
+  "payerThanks": "Asante, RideLink itakagua oda hii.",
+  "@payerThanks": {
+    "x-review": "needs-review"
+  },
+  "payerResponseFailed": "Hatukuweza kutuma jibu lako. Jaribu tena.",
+  "@payerResponseFailed": {
+    "x-review": "needs-review"
+  },
+  "errCodePaymentDetailsHidden": "Maelezo ya malipo huonyeshwa tu mwendesha boda anapoomba malipo.",
+  "@errCodePaymentDetailsHidden": {
+    "x-review": "needs-review"
+  },
+  "evidenceEventPaymentDetailsViewed": "Maelezo ya malipo yametazamwa",
+  "@evidenceEventPaymentDetailsViewed": {
+    "x-review": "needs-review"
+  },
+  "evidenceEventPaymentReceived": "Malipo yamepokelewa",
+  "@evidenceEventPaymentReceived": {
+    "x-review": "needs-review"
+  },
+  "evidenceEventPaymentNotReceived": "Imeripotiwa haijalipwa",
+  "@evidenceEventPaymentNotReceived": {
+    "x-review": "needs-review"
+  },
+  "evidenceEventPayerResponse": "Mlipaji amejibu kuhusu malipo",
+  "@evidenceEventPayerResponse": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodsTitle": "Njia za malipo",
+  "@paymentMethodsTitle": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodsNavSubtitle": "Pesa taslimu, na M-Pesa ukiiongeza",
+  "@paymentMethodsNavSubtitle": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodsIntro": "Wateja huona maelezo yako ya M-Pesa tu unapoomba malipo, na kwa oda hiyo tu.",
+  "@paymentMethodsIntro": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodsFootnote": "Mabadiliko yanahusu oda mpya. Oda iliyokubaliwa inabaki na maelezo iliyokubaliwa nayo.",
+  "@paymentMethodsFootnote": {
+    "x-review": "needs-review"
+  },
+  "cashAlwaysAccepted": "Inakubaliwa kila wakati",
+  "@cashAlwaysAccepted": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodNotAdded": "Haijaongezwa",
+  "@paymentMethodNotAdded": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodAdd": "Ongeza",
+  "@paymentMethodAdd": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodEdit": "Hariri",
+  "@paymentMethodEdit": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodRemove": "Ondoa",
+  "@paymentMethodRemove": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodRemoveTitle": "Ondoa {method}?",
+  "@paymentMethodRemoveTitle": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "paymentMethodRemoveBody": "Wateja hawataiona kwenye oda mpya.",
+  "@paymentMethodRemoveBody": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodSaved": "Njia ya malipo imehifadhiwa",
+  "@paymentMethodSaved": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodRemoved": "Njia ya malipo imeondolewa",
+  "@paymentMethodRemoved": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodRemoveFailed": "Hatukuweza kuondoa. Jaribu tena.",
+  "@paymentMethodRemoveFailed": {
+    "x-review": "needs-review"
+  },
+  "paymentMethodsLoadError": "Hatukuweza kupakia njia zako za malipo.",
+  "@paymentMethodsLoadError": {
+    "x-review": "needs-review"
+  },
+  "tillNumberLabel": "Nambari ya Till",
+  "@tillNumberLabel": {
+    "x-review": "needs-review"
+  },
+  "mpesaPhoneLabel": "Nambari ya simu ya M-Pesa",
+  "@mpesaPhoneLabel": {
+    "x-review": "needs-review"
+  },
+  "mpesaNameLabel": "Jina linaloonekana kwenye M-Pesa",
+  "@mpesaNameLabel": {
+    "x-review": "needs-review"
+  },
+  "mpesaNameHelp": "Jina ambalo wateja huona wanapokulipa.",
+  "@mpesaNameHelp": {
+    "x-review": "needs-review"
+  },
+  "tillNumberInvalid": "Weka nambari ya Till yenye tarakimu 5 hadi 8.",
+  "@tillNumberInvalid": {
+    "x-review": "needs-review"
+  },
+  "mpesaPhoneInvalid": "Weka nambari ya simu ya Kenya, k.m. 0712345678.",
+  "@mpesaPhoneInvalid": {
+    "x-review": "needs-review"
+  },
+  "mpesaNameInvalid": "Weka herufi 2 hadi 60.",
+  "@mpesaNameInvalid": {
+    "x-review": "needs-review"
+  },
+  "notifPayerResponseTitle": "Jibu kuhusu malipo limepokelewa",
+  "@notifPayerResponseTitle": {
+    "x-review": "needs-review"
+  },
+  "notifPayerResponseBody": "Mteja amejibu kama alilipa. RideLink itakagua oda hii.",
+  "@notifPayerResponseBody": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentNotPaidTitle": "Malipo hayajapokelewa",
+  "@notifPaymentNotPaidTitle": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentNotPaidBody": "Mwendesha boda wako anasema oda hii haikulipwa. Tuambie kama ulilipa.",
+  "@notifPaymentNotPaidBody": {
     "x-review": "needs-review"
   }
 }

@@ -79,6 +79,21 @@ void main() {
         requiredPhoto(delivery, JobAction.handOver),
         MediaKind.handoverPhoto,
       );
+      expect(
+        requiredPhoto(delivery, JobAction.confirmPayment),
+        MediaKind.handoverPhoto,
+      );
+      expect(
+        photoStepFor(jobFixture(status: 'payment_requested')),
+        MediaKind.handoverPhoto,
+      );
+      expect(requiredPhoto(ride, JobAction.confirmPayment), isNull);
+      expect(
+        photoStepFor(
+          jobFixture(status: 'payment_requested', service: ServiceType.ride),
+        ),
+        isNull,
+      );
       expect(requiredPhoto(delivery, JobAction.startTrip), isNull);
       expect(requiredPhoto(ride, JobAction.pickedUp), isNull);
       expect(requiredPhoto(ride, JobAction.handOver), isNull);
@@ -205,7 +220,13 @@ void main() {
       expect(enabled(tester, 'job.action.pickedUp'), isTrue);
     });
 
-    for (final status in ['accepted', 'started', 'paid', 'handed_over']) {
+    for (final status in [
+      'accepted',
+      'started',
+      'payment_requested',
+      'paid',
+      'handed_over',
+    ]) {
       testWidgets('rides show no photo step ($status)', (tester) async {
         await pumpBookingApp(
           tester,
@@ -224,7 +245,9 @@ void main() {
             service: ServiceType.ride,
           ),
         );
-        final key = 'job.action.${action.name}';
+        final key = action == JobAction.confirmPayment
+            ? 'job.paymentReceived'
+            : 'job.action.${action.name}';
         await reveal(tester, key);
         expect(enabled(tester, key), isTrue);
       });

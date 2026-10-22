@@ -96,7 +96,7 @@ class SessionManager extends ChangeNotifier implements AccessTokenSource {
       await _apply(await _authApi.refresh(stored));
     } on ApiException catch (e) {
       if (_isDefinitiveRejection(e)) {
-        await _signOutLocally();
+        await _rejected();
         return;
       }
       _logTransient('restore', e);
@@ -140,7 +140,7 @@ class SessionManager extends ChangeNotifier implements AccessTokenSource {
       return true;
     } on ApiException catch (e) {
       if (_isDefinitiveRejection(e)) {
-        await _signOutLocally();
+        await _rejected();
         return false;
       }
       _logTransient('refresh', e);
@@ -148,6 +148,10 @@ class SessionManager extends ChangeNotifier implements AccessTokenSource {
       return false;
     }
   }
+
+  /// Runs when the server definitively rejected the session (not on a user sign-out), before
+  /// it is cleared, e.g. to wipe the user's device data. Must not throw.
+  Future<void> Function()? onSessionRejected;
 
   /// Runs before a user-initiated sign-out clears the session (e.g. unregistering this
   /// device for push while the access token is still valid). Must not throw.
@@ -167,6 +171,13 @@ class SessionManager extends ChangeNotifier implements AccessTokenSource {
         // Best effort: the local session is cleared regardless.
       }
     }
+    await _signOutLocally();
+  }
+
+  Future<void> _rejected() async {
+    try {
+      await onSessionRejected?.call();
+    } catch (_) {}
     await _signOutLocally();
   }
 

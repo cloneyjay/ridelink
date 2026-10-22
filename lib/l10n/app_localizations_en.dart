@@ -955,16 +955,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get jobPayment => 'Payment';
 
   @override
-  String jobWaitingForSender(String amount) {
-    return 'Waiting for the sender to pay $amount in cash.';
-  }
-
-  @override
-  String jobSenderPaid(String amount) {
-    return 'The sender says they paid $amount in cash. Confirm once you have it.';
-  }
-
-  @override
   String get jobPaid => 'Payment received';
 
   @override
@@ -1051,19 +1041,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paymentReceivedButton => 'Payment received';
 
   @override
-  String paymentReceivedConfirmTitle(String amount) {
-    return 'Received $amount in cash?';
-  }
+  String get paymentNotReceivedButton => 'Not paid';
 
   @override
-  String get paymentReceivedConfirmBody =>
-      'Only confirm once the cash is in your hand. This is recorded and cannot be undone.';
-
-  @override
-  String get paymentNotReceivedButton => 'Not received';
-
-  @override
-  String get paymentNotReceivedConfirmTitle => 'Report payment not received?';
+  String get paymentNotReceivedConfirmTitle => 'Report this order as not paid?';
 
   @override
   String get paymentNotReceivedConfirmBody =>
@@ -1101,11 +1082,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get paymentUnderReviewRiderBody =>
-      'You reported that the cash was not received. RideLink will review this order.';
-
-  @override
-  String get paymentUnderReviewSenderBody =>
-      'Your rider reported that the cash was not received. RideLink will review this order.';
+      'You reported this order as not paid. RideLink will review this order.';
 
   @override
   String get trackingScreenTitle => 'Your order';
@@ -1163,27 +1140,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get stepDroppedOff => 'Dropped off';
-
-  @override
-  String payInCash(String amount) {
-    return 'Pay $amount in cash to your rider';
-  }
-
-  @override
-  String get payInCashBody =>
-      'Then tap \"I\'ve paid\". Your rider confirms when they have the cash.';
-
-  @override
-  String get ivePaidButton => 'I\'ve paid';
-
-  @override
-  String ivePaidConfirmTitle(String amount) {
-    return 'Have you paid $amount?';
-  }
-
-  @override
-  String get ivePaidConfirmBody =>
-      'Only confirm after handing the cash to your rider. This is recorded.';
 
   @override
   String get waitingForRiderConfirm =>
@@ -1695,12 +1651,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String notifPaymentRequestedBody(String amount) {
-    return 'Your rider has requested payment. Pay $amount in cash.';
+    return 'Your rider has arrived. Pay $amount by cash or M-Pesa.';
   }
 
   @override
   String get notifPaymentRequestedBodyNoAmount =>
-      'Your rider has requested payment. Pay the agreed amount in cash.';
+      'Your rider has arrived. Pay the agreed amount by cash or M-Pesa.';
 
   @override
   String get notifPaymentSentTitle => 'Cash payment sent';
@@ -1718,20 +1674,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notifPaymentConfirmedTitle => 'Payment confirmed';
 
   @override
-  String notifPaymentConfirmedBody(String amount) {
-    return 'Your rider confirmed receiving $amount in cash.';
-  }
-
-  @override
-  String get notifPaymentConfirmedBodyNoAmount =>
-      'Your rider confirmed receiving your cash payment.';
+  String get notifPaymentConfirmedBody =>
+      'Payment confirmed. Your order is complete.';
 
   @override
   String get notifPaymentUnresolvedTitle => 'Payment unresolved';
 
   @override
   String get notifPaymentUnresolvedBody =>
-      'The rider reported the cash as not received. RideLink will review this order.';
+      'You reported this order as not paid. RideLink will review this order.';
 
   @override
   String get notifPickupArrivedTitle => 'Your rider has arrived';
@@ -1993,16 +1944,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Request payment from your passenger before they get off.';
 
   @override
-  String jobWaitingForPassenger(String amount) {
-    return 'Waiting for the passenger to pay $amount in cash.';
-  }
-
-  @override
-  String jobPassengerPaid(String amount) {
-    return 'The passenger says they paid $amount in cash. Confirm once you have it.';
-  }
-
-  @override
   String get jobPaidBodyRide =>
       'Payment confirmed. Mark the passenger dropped off below.';
 
@@ -2220,4 +2161,178 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errCodeAccountDeleted => 'This account has been deleted.';
+
+  @override
+  String get payMethodCash => 'Cash';
+
+  @override
+  String get payMethodMpesaTill => 'M-Pesa Till';
+
+  @override
+  String get payMethodMpesaPochi => 'Pochi la Biashara';
+
+  @override
+  String get payMethodMpesaSendMoney => 'Send Money';
+
+  @override
+  String get mpesaCodeLabel => 'M-Pesa code (optional)';
+
+  @override
+  String get mpesaCodeHelp => 'The 10-character code from the M-Pesa message.';
+
+  @override
+  String get mpesaCodeInvalid =>
+      'Enter the 10-character M-Pesa code, or leave it empty.';
+
+  @override
+  String get collectPaymentLabel => 'Amount to collect';
+
+  @override
+  String get paymentHowPaidLabel => 'How were you paid?';
+
+  @override
+  String get paymentMethodsLoadFailed =>
+      'Couldn\'t load the M-Pesa details for this order. Cash is still available.';
+
+  @override
+  String get payYourRiderTitle => 'Pay your rider';
+
+  @override
+  String nameInMpesa(String name) {
+    return 'Name in M-Pesa: $name';
+  }
+
+  @override
+  String get copyNumber => 'Copy number';
+
+  @override
+  String get numberCopied => 'Number copied';
+
+  @override
+  String get paymentDetailsLoadFailed =>
+      'Couldn\'t load your rider\'s payment details.';
+
+  @override
+  String get payerPromptTitle =>
+      'Your rider says this order wasn\'t paid. Did you pay?';
+
+  @override
+  String get payerYes => 'Yes, I paid';
+
+  @override
+  String get payerNo => 'No, I didn\'t pay';
+
+  @override
+  String get payerHowPaidLabel => 'How did you pay?';
+
+  @override
+  String get payerSubmit => 'Send answer';
+
+  @override
+  String get payerThanks => 'Thanks, RideLink will review this order.';
+
+  @override
+  String get payerResponseFailed => 'Couldn\'t send your answer. Try again.';
+
+  @override
+  String get errCodePaymentDetailsHidden =>
+      'Payment details are shown only while your rider is requesting payment.';
+
+  @override
+  String get evidenceEventPaymentDetailsViewed => 'Payment details viewed';
+
+  @override
+  String get evidenceEventPaymentReceived => 'Payment received';
+
+  @override
+  String get evidenceEventPaymentNotReceived => 'Reported not paid';
+
+  @override
+  String get evidenceEventPayerResponse => 'Payer answered about payment';
+
+  @override
+  String get paymentMethodsTitle => 'Payment methods';
+
+  @override
+  String get paymentMethodsNavSubtitle => 'Cash, and M-Pesa if you add it';
+
+  @override
+  String get paymentMethodsIntro =>
+      'Customers see your M-Pesa details only when you request payment, and only for that order.';
+
+  @override
+  String get paymentMethodsFootnote =>
+      'Changes apply to new orders. An accepted order keeps the details it was accepted with.';
+
+  @override
+  String get cashAlwaysAccepted => 'Always accepted';
+
+  @override
+  String get paymentMethodNotAdded => 'Not added';
+
+  @override
+  String get paymentMethodAdd => 'Add';
+
+  @override
+  String get paymentMethodEdit => 'Edit';
+
+  @override
+  String get paymentMethodRemove => 'Remove';
+
+  @override
+  String paymentMethodRemoveTitle(String method) {
+    return 'Remove $method?';
+  }
+
+  @override
+  String get paymentMethodRemoveBody =>
+      'Customers won\'t see it on new orders.';
+
+  @override
+  String get paymentMethodSaved => 'Payment method saved';
+
+  @override
+  String get paymentMethodRemoved => 'Payment method removed';
+
+  @override
+  String get paymentMethodRemoveFailed => 'Couldn\'t remove. Try again.';
+
+  @override
+  String get paymentMethodsLoadError => 'Couldn\'t load your payment methods.';
+
+  @override
+  String get tillNumberLabel => 'Till number';
+
+  @override
+  String get mpesaPhoneLabel => 'M-Pesa phone number';
+
+  @override
+  String get mpesaNameLabel => 'Name shown in M-Pesa';
+
+  @override
+  String get mpesaNameHelp => 'The name customers see when they pay you.';
+
+  @override
+  String get tillNumberInvalid => 'Enter a till number of 5 to 8 digits.';
+
+  @override
+  String get mpesaPhoneInvalid =>
+      'Enter a Kenyan mobile number, e.g. 0712345678.';
+
+  @override
+  String get mpesaNameInvalid => 'Enter 2 to 60 characters.';
+
+  @override
+  String get notifPayerResponseTitle => 'Payment answer received';
+
+  @override
+  String get notifPayerResponseBody =>
+      'The customer answered whether they paid. RideLink will review this order.';
+
+  @override
+  String get notifPaymentNotPaidTitle => 'Payment not received';
+
+  @override
+  String get notifPaymentNotPaidBody =>
+      'Your rider says this order was not paid. Tell us if you paid.';
 }

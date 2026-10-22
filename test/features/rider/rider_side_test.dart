@@ -5,6 +5,7 @@ import 'package:ridelink/core/api/api_exception.dart';
 import 'package:ridelink/core/location/geo_point.dart';
 import 'package:ridelink/core/location/location_service.dart';
 import 'package:ridelink/core/routing/app_router.dart';
+import 'package:ridelink/features/payments/data/payment_models.dart';
 import 'package:ridelink/features/rider/data/rider_models.dart';
 
 import '../../support/booking_fakes.dart';
@@ -336,7 +337,8 @@ void main() {
     }
 
     testWidgets(
-      'full job: pickup countdown -> arrival -> trip -> cash -> complete',
+      'full job: pickup countdown -> arrival -> trip -> arrived requests '
+      'payment -> handover photo -> payment received completes',
       (tester) async {
         var now = testNow;
         final repo = withJob();
@@ -358,23 +360,14 @@ void main() {
         await tap(tester, 'evidence.pickup_photo.capture');
         await tap(tester, 'job.action.pickedUp');
         await tap(tester, 'job.action.startTrip');
+        // One tap: arrived + payment requested.
         await tap(tester, 'job.action.arrivedAtDropoff');
-        await tap(tester, 'job.action.requestPayment');
-        expect(byKey('job.status.payment_requested'), findsOneWidget);
-
-        // The sender taps "I've paid".
-        h.emit('order.updated', {
-          'order_id': 'order-9',
-          'status': 'cash_pending',
-        });
-        await pumpFor(tester);
-        expect(byKey('job.status.cash_pending'), findsOneWidget);
-        await tap(tester, 'job.paymentReceived');
-        expect(byKey('job.receivedDialog'), findsOneWidget);
-        await tap(tester, 'job.receivedDialog.yes');
+        expect(byKey('job.collect'), findsOneWidget);
+        expect(tester.widget<Text>(byKey('job.collectAmount')).data, 'KES 214');
+        expect(byKey('job.method.cash'), findsOneWidget);
+        // Deliveries: the handover photo comes first.
         await tap(tester, 'evidence.handover_photo.capture');
-        await tap(tester, 'job.action.handOver');
-        await tap(tester, 'job.action.complete');
+        await tap(tester, 'job.paymentReceived');
         expect(byKey('job.status.completed'), findsOneWidget);
         // Completion asks the rider to rate the sender once; skippable.
         expect(byKey('rating.sheet'), findsOneWidget);
@@ -385,12 +378,11 @@ void main() {
           'arrived',
           'status:started',
           'status:in_transit',
-          'status:arrived',
           'payment/request',
           'payment/received',
-          'status:handed_over',
-          'status:completed',
         ]);
+        expect(repo.receivedCalls.single.method, PayMethod.cash);
+        expect(repo.receivedCalls.single.mpesaCode, isNull);
         // Still online, so tracking continues after the job.
         await tap(tester, 'job.done');
         expect(byKey('riderHome.status'), findsOneWidget);
@@ -441,10 +433,8 @@ void main() {
       expect(byKey('job.action.pickedUp'), findsOneWidget);
     });
 
-    testWidgets('cash not received goes to review after confirming', (
-      tester,
-    ) async {
-      final repo = withJob('cash_pending');
+    testWidgets('not paid goes to review after confirming', (tester) async {
+      final repo = withJob('payment_requested');
       await pumpBookingApp(
         tester,
         clock: () => testNow,
