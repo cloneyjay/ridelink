@@ -7,6 +7,7 @@ import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../auth/access_token_source.dart';
+import '../version/client_info.dart';
 import 'realtime_event.dart';
 
 typedef WebSocketConnector = WebSocketChannel Function(
@@ -19,6 +20,7 @@ class RealtimeClient {
   RealtimeClient({
     required this._uri,
     required this._tokens,
+    this._clientInfo,
     WebSocketConnector? connect,
     Future<void> Function(Duration)? delay,
     this.minBackoff = const Duration(seconds: 1),
@@ -29,6 +31,7 @@ class RealtimeClient {
 
   final Uri _uri;
   final AccessTokenSource _tokens;
+  final ClientInfo? _clientInfo;
   final WebSocketConnector _connect;
   final Future<void> Function(Duration) _delay;
   final Duration minBackoff;
@@ -76,7 +79,10 @@ class RealtimeClient {
       final token = _tokens.accessToken;
       if (token == null) break;
 
-      final channel = _connect(_uri, {'Authorization': 'Bearer $token'});
+      final channel = _connect(_uri, {
+        ...?_clientInfo?.headers,
+        'Authorization': 'Bearer $token',
+      });
       _channel = channel;
       try {
         await channel.ready;

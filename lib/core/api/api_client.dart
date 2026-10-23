@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import '../auth/access_token_source.dart';
 import '../config/app_config.dart';
 import '../time/server_clock.dart';
+import '../version/client_info.dart';
 import 'api_exception.dart';
 
 /// REST client for the Go server. Paths are relative to /v1 (e.g. 'orders/123').
@@ -13,11 +14,13 @@ class ApiClient {
     AppConfig config, {
     required this._tokens,
     this._serverClock,
+    ClientInfo? clientInfo,
     HttpClientAdapter? adapter,
   }) : _dio = Dio(
          BaseOptions(
            baseUrl: config.apiV1,
            contentType: Headers.jsonContentType,
+           headers: {...?clientInfo?.headers},
          ),
        ) {
     if (adapter != null) _dio.httpClientAdapter = adapter;

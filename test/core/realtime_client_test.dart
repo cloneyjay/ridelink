@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ridelink/core/auth/access_token_source.dart';
 import 'package:ridelink/core/realtime/realtime_client.dart';
 import 'package:ridelink/core/realtime/realtime_event.dart';
+import 'package:ridelink/core/version/client_info.dart';
 import 'package:stream_channel/stream_channel.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -449,6 +450,34 @@ void main() {
 
       expect(connects, 0);
       expect(client.isRunning, isFalse);
+    });
+
+    test('sends the app version and platform with the handshake', () async {
+      final channel = FakeChannel();
+      Map<String, dynamic>? headers;
+      final client = RealtimeClient(
+        uri: uri,
+        tokens: FakeTokens(),
+        clientInfo: const ClientInfo(
+          appVersion: '1.0.0+12',
+          platform: 'android',
+        ),
+        connect: (_, h) {
+          headers = h;
+          return channel;
+        },
+        delay: (_) async {},
+      );
+
+      client.start();
+      await pumpEventQueue();
+
+      expect(headers, {
+        'X-App-Version': '1.0.0+12',
+        'X-App-Platform': 'android',
+        'Authorization': 'Bearer t1',
+      });
+      await client.stop();
     });
   });
 }

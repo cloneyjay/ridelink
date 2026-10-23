@@ -3,17 +3,23 @@ import 'package:dio/dio.dart';
 import '../api/api_exception.dart';
 import '../config/app_config.dart';
 import '../time/server_clock.dart';
+import '../version/client_info.dart';
 import 'session.dart';
 
 /// Session endpoints. Uses its own Dio without the refresh interceptor.
 class AuthApi {
-  AuthApi(AppConfig config, {HttpClientAdapter? adapter, ServerClock? clock})
-    : _dio = Dio(
-        BaseOptions(
-          baseUrl: config.apiV1,
-          contentType: Headers.jsonContentType,
-        ),
-      ) {
+  AuthApi(
+    AppConfig config, {
+    HttpClientAdapter? adapter,
+    ServerClock? clock,
+    ClientInfo? clientInfo,
+  }) : _dio = Dio(
+         BaseOptions(
+           baseUrl: config.apiV1,
+           contentType: Headers.jsonContentType,
+           headers: {...?clientInfo?.headers},
+         ),
+       ) {
     if (adapter != null) _dio.httpClientAdapter = adapter;
     // Session expiry is compared on the server clock, so learn it from auth responses too.
     if (clock != null) {

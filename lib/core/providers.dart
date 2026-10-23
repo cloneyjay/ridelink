@@ -32,6 +32,7 @@ import 'share/share_service.dart';
 import 'storage/local_data.dart';
 import 'storage/local_store.dart';
 import 'time/server_clock.dart';
+import 'version/client_info.dart';
 
 final appConfigProvider = Provider<AppConfig>(
   (ref) => AppConfig.fromEnvironment(),
@@ -45,6 +46,7 @@ final authApiProvider = Provider<AuthApi>(
   (ref) => AuthApi(
     ref.watch(appConfigProvider),
     clock: ref.watch(serverClockProvider),
+    clientInfo: ref.watch(clientInfoProvider),
   ),
 );
 
@@ -80,6 +82,7 @@ final apiClientProvider = Provider<ApiClient>(
     ref.watch(appConfigProvider),
     tokens: ref.watch(sessionManagerProvider),
     serverClock: ref.watch(serverClockProvider),
+    clientInfo: ref.watch(clientInfoProvider),
   ),
 );
 
@@ -87,6 +90,7 @@ final realtimeClientProvider = Provider<RealtimeClient>((ref) {
   final client = RealtimeClient(
     uri: ref.watch(appConfigProvider).webSocketUri,
     tokens: ref.watch(sessionManagerProvider),
+    clientInfo: ref.watch(clientInfoProvider),
   );
   ref.onDispose(client.dispose);
   return client;

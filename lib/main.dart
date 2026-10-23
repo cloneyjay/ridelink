@@ -29,12 +29,14 @@ Future<void> main() async {
   final firebaseReady = await initFirebase();
   final taps = PushTaps();
   await _initLocalNotifications(localStore, taps);
+  final installed = await _installedVersion();
   runApp(
     ProviderScope(
       overrides: [
         modeStoreProvider.overrideWithValue(SharedPrefsModeStore(prefs)),
         localStoreProvider.overrideWithValue(localStore),
-        appVersionProvider.overrideWithValue(await _installedVersion()),
+        appVersionProvider.overrideWithValue(installed.version),
+        appBuildNumberProvider.overrideWithValue(installed.buildNumber),
         pushTapsProvider.overrideWithValue(taps),
         if (firebaseReady)
           pushMessagingProvider.overrideWithValue(FirebasePushMessaging()),
@@ -44,11 +46,12 @@ Future<void> main() async {
   );
 }
 
-Future<String> _installedVersion() async {
+Future<({String version, String buildNumber})> _installedVersion() async {
   try {
-    return (await PackageInfo.fromPlatform()).version;
+    final info = await PackageInfo.fromPlatform();
+    return (version: info.version, buildNumber: info.buildNumber);
   } catch (_) {
-    return '0.0.0';
+    return (version: '0.0.0', buildNumber: '');
   }
 }
 

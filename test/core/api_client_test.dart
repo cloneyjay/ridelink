@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ridelink/core/api/api_client.dart';
 import 'package:ridelink/core/api/api_exception.dart';
@@ -8,6 +9,7 @@ import 'package:ridelink/core/auth/auth_api.dart';
 import 'package:ridelink/core/auth/session.dart';
 import 'package:ridelink/core/auth/session_manager.dart';
 import 'package:ridelink/core/config/app_config.dart';
+import 'package:ridelink/core/version/client_info.dart';
 
 import '../support/fakes.dart';
 
@@ -186,5 +188,131 @@ void main() {
       DioException(requestOptions: RequestOptions(path: '/x')),
     );
     expect(e.isNetworkError, isTrue);
+  });
+
+  group('client info headers', () {
+    const info = ClientInfo(appVersion: '1.0.0+12', platform: 'android');
+
+    test('every API request carries the app version and platform', () async {
+      final adapter = FakeAdapter((o) => jsonResponse(200, {}));
+      final session = SessionManager(
+        storage: FakeTokenStorage(),
+        authApi: AuthApi(config, adapter: adapter),
+      );
+      final api = ApiClient(
+        config,
+        tokens: session,
+        clientInfo: info,
+        adapter: adapter,
+      );
+      await signIn(session, access: 'tok');
+
+      await api.get('profile');
+      await api.post('orders', data: const {});
+      await api.postMultipart(
+        'orders/o1/evidence',
+        fields: const {'kind': 'photo'},
+        fileBytes: const [1, 2, 3],
+        fileName: 'a.jpg',
+      );
+
+      expect(adapter.requests, hasLength(3));
+      for (final r in adapter.requests) {
+        expect(r.headers['X-App-Version'], '1.0.0+12');
+        expect(r.headers['X-App-Platform'], 'android');
+        expect(r.headers['Authorization'], 'Bearer tok');
+      }
+    });
+
+    test('a request retried after a token refresh keeps the headers', () async {
+      final adapter = FakeAdapter((o) {
+        if (o.uri.path.endsWith('/v1/auth/refresh')) {
+          return jsonResponse(200, sessionJson(access: 'new', refresh: 'r2'));
+        }
+        if (o.headers['Authorization'] == 'Bearer new') {
+          return jsonResponse(200, {});
+        }
+        return jsonResponse(401, {'error': 'invalid or expired token'});
+      });
+      final session = SessionManager(
+        storage: FakeTokenStorage(),
+        authApi: AuthApi(config, adapter: adapter, clientInfo: info),
+      );
+      final api = ApiClient(
+        config,
+        tokens: session,
+        clientInfo: info,
+        adapter: adapter,
+      );
+      await signIn(session);
+
+      await api.get('orders');
+
+      expect(adapter.requests, hasLength(3));
+      for (final r in adapter.requests) {
+        expect(r.headers['X-App-Version'], '1.0.0+12');
+        expect(r.headers['X-App-Platform'], 'android');
+      }
+    });
+
+    test('auth endpoints carry the headers too', () async {
+      final adapter = FakeAdapter(
+        (o) => jsonResponse(200, sessionJson(access: 'a', refresh: 'r')),
+      );
+      final auth = AuthApi(config, adapter: adapter, clientInfo: info);
+
+      await auth.signIn(email: 'a@b.c', password: 'x');
+      await auth.logout('a');
+
+      for (final r in adapter.requests) {
+        expect(r.headers['X-App-Version'], '1.0.0+12');
+        expect(r.headers['X-App-Platform'], 'android');
+      }
+      expect(adapter.requests.last.headers['Authorization'], 'Bearer a');
+    });
+
+    test('without client info no telemetry headers are sent', () async {
+      final t = build((o) => jsonResponse(200, {}));
+      await signIn(t.session);
+
+      await t.api.get('profile');
+
+      final headers = t.adapter.requests.single.headers;
+      expect(headers.containsKey('X-App-Version'), isFalse);
+      expect(headers.containsKey('X-App-Platform'), isFalse);
+    });
+  });
+
+  group('ClientInfo', () {
+    test('joins version and build number', () {
+      final info = ClientInfo.from(
+        version: '1.0.0',
+        buildNumber: '12',
+        platform: 'android',
+      );
+      expect(info.headers, {
+        'X-App-Version': '1.0.0+12',
+        'X-App-Platform': 'android',
+      });
+    });
+
+    test('omits an empty build number', () {
+      expect(
+        ClientInfo.from(version: '1.0.0', buildNumber: ' ').appVersion,
+        '1.0.0',
+      );
+    });
+
+    test('platform name is lower case', () {
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+      addTearDown(() => debugDefaultTargetPlatformOverride = null);
+      expect(currentPlatformName(), 'ios');
+      expect(
+        ClientInfo.from(version: '1.0.0', buildNumber: '1').platform,
+        'ios',
+      );
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      expect(currentPlatformName(), 'android');
+    });
   });
 }
