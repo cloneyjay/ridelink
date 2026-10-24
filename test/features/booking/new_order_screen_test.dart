@@ -194,7 +194,35 @@ void main() {
       expect(input.declaration!.weightKg, 0.5);
       expect(input.declaration!.valueBand, ValueBand.from2000To5000);
       expect(input.route.pickup.placeId, 'p-westlands');
+      expect(input.payer, Payer.sender, reason: '"I pay" is the default');
+      expect(input.toJson()['payer'], 'sender');
       expect(byKey('screen.riderList'), findsOneWidget);
+    });
+
+    testWidgets('"Receiver pays" is sent as payer', (tester) async {
+      final h = await openNewOrder(tester, ServiceType.delivery);
+      await pickPlace(tester, 'route.pickup', 'West', 'p-westlands');
+      await pickPlace(tester, 'route.dropoff', 'Moi', 'p-cbd');
+      await tester.enterText(byKey('order.receiver'), 'Grace');
+      await tapKeyAndSettle(tester, 'order.category');
+      await tester.tap(find.text('Documents').last);
+      await tester.pumpAndSettle();
+      await tester.enterText(byKey('order.description'), 'Keys');
+      await tapKeyAndSettle(tester, 'order.valueBand.under_500');
+      await tapKeyAndSettle(tester, 'order.payer.sender');
+      expect(find.text('Who pays?'), findsOneWidget);
+      expect(find.text('I pay'), findsOneWidget);
+      await tapKeyAndSettle(tester, 'order.payer.receiver');
+      expect(
+        tester.getSize(byKey('order.payer.receiver')).height,
+        greaterThanOrEqualTo(44),
+      );
+      await tapKeyAndSettle(tester, 'order.submit');
+      await tapKeyAndSettle(tester, 'confirmPickup.confirm');
+
+      final input = h.repo.createCalls.single;
+      expect(input.payer, Payer.receiver);
+      expect(input.toJson()['payer'], 'receiver');
     });
 
     testWidgets('server failure shows an error and stays on the form', (
@@ -229,6 +257,7 @@ void main() {
     ) async {
       final h = await openNewOrder(tester, ServiceType.ride);
       expect(byKey('order.receiver'), findsNothing);
+      expect(byKey('order.payer.sender'), findsNothing);
       expect(byKey('order.category'), findsNothing);
       await pickPlace(tester, 'route.pickup', 'West', 'p-westlands');
       await pickPlace(tester, 'route.dropoff', 'Moi', 'p-cbd');
@@ -238,6 +267,7 @@ void main() {
       expect(input.serviceType, ServiceType.ride);
       expect(input.receiverName, isNull);
       expect(input.declaration, isNull);
+      expect(input.payer, isNull);
       expect(byKey('screen.riderList'), findsOneWidget);
     });
   });

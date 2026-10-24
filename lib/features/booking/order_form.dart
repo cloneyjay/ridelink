@@ -26,7 +26,7 @@ String? validateValueBand(ValueBand? band, AppLocalizations l) =>
 String? validateCategory(String? categoryId, AppLocalizations l) =>
     categoryId == null ? l.errorCategoryRequired : null;
 
-/// Rides carry only the route; deliveries add the receiver and the declaration.
+/// Rides carry only the route; deliveries add the receiver, the declaration and who pays.
 CreateOrderInput buildCreateOrderInput({
   required ServiceType service,
   required Place pickup,
@@ -36,6 +36,7 @@ CreateOrderInput buildCreateOrderInput({
   String? description,
   String? weightText,
   ValueBand? valueBand,
+  Payer payer = Payer.sender,
 }) {
   final route = RouteInput(pickup: pickup, dropoff: dropoff);
   if (service == ServiceType.ride) {
@@ -45,6 +46,7 @@ CreateOrderInput buildCreateOrderInput({
     serviceType: service,
     route: route,
     receiverName: receiverName!.trim(),
+    payer: payer,
     declaration: DeclarationInput(
       categoryId: categoryId!,
       description: description!.trim(),

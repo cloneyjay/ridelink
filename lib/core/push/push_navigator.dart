@@ -27,7 +27,9 @@ class PushNavigator {
   Future<void> open(PushPayload p) async {
     final orderId = p.orderId;
     if (orderId == null) return;
-    if (p.isOffer || mode.mode == AppMode.rider) {
+    if (p.isOffer ||
+        riderPushTypes.contains(p.type) ||
+        mode.mode == AppMode.rider) {
       await _openAsRider(orderId, offer: p.isOffer);
     } else {
       await _openAsSender(orderId);

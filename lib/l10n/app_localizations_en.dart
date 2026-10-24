@@ -2335,4 +2335,60 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get notifPaymentNotPaidBody =>
       'Your rider says this order was not paid. Tell us if you paid.';
+
+  @override
+  String get whoPaysTitle => 'Who pays?';
+
+  @override
+  String get payerSenderOption => 'I pay';
+
+  @override
+  String get payerReceiverOption => 'Receiver pays';
+
+  @override
+  String get riderSenderPays => 'Sender pays';
+
+  @override
+  String receiverIsPaying(String amount) {
+    return 'Your receiver is paying $amount.';
+  }
+
+  @override
+  String get receiverCantPayNote => 'If they can\'t pay, you can pay here.';
+
+  @override
+  String get statusCompletedUnconfirmed => 'Completed, payment not confirmed';
+
+  @override
+  String lateReportBody(String deadline) {
+    return 'This order was closed because payment wasn\'t confirmed. If you weren\'t paid, tap Not paid by $deadline.';
+  }
+
+  @override
+  String get notifPaymentReminderTitle => 'Confirm payment';
+
+  @override
+  String get notifPaymentReminderBody =>
+      'Did you get paid for this order? Tap to confirm.';
+
+  @override
+  String get notifOrderCompleteTitle => 'Order complete';
+
+  @override
+  String get notifOrderCompleteBody => 'Your order is complete.';
+
+  @override
+  String get notifPaymentNotPaidReceiverBody =>
+      'Your rider says the receiver didn\'t pay. Tell us if it was paid.';
+
+  @override
+  String get lateReportBodyNoDeadline =>
+      'This order was closed because payment wasn\'t confirmed. If you weren\'t paid, tap Not paid.';
+
+  @override
+  String get notifOrderClosedTitle => 'Order closed';
+
+  @override
+  String get payerPromptTitleReceiver =>
+      'Your rider says the receiver didn\'t pay. Was it paid?';
 }

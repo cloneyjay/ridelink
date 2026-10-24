@@ -2352,4 +2352,61 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get notifPaymentNotPaidBody =>
       'Mwendesha boda wako anasema oda hii haikulipwa. Tuambie kama ulilipa.';
+
+  @override
+  String get whoPaysTitle => 'Nani analipa?';
+
+  @override
+  String get payerSenderOption => 'Ninalipa mimi';
+
+  @override
+  String get payerReceiverOption => 'Mpokeaji analipa';
+
+  @override
+  String get riderSenderPays => 'Mteja analipa';
+
+  @override
+  String receiverIsPaying(String amount) {
+    return 'Mpokeaji wako analipa $amount.';
+  }
+
+  @override
+  String get receiverCantPayNote => 'Kama hawezi kulipa, unaweza kulipa hapa.';
+
+  @override
+  String get statusCompletedUnconfirmed =>
+      'Imekamilika, malipo hayajathibitishwa';
+
+  @override
+  String lateReportBody(String deadline) {
+    return 'Oda hii imefungwa kwa sababu malipo hayakuthibitishwa. Kama hukulipwa, gusa Hajalipa kabla ya $deadline.';
+  }
+
+  @override
+  String get notifPaymentReminderTitle => 'Thibitisha malipo';
+
+  @override
+  String get notifPaymentReminderBody =>
+      'Je, umelipwa kwa oda hii? Gusa kuthibitisha.';
+
+  @override
+  String get notifOrderCompleteTitle => 'Oda imekamilika';
+
+  @override
+  String get notifOrderCompleteBody => 'Oda yako imekamilika.';
+
+  @override
+  String get notifPaymentNotPaidReceiverBody =>
+      'Mwendesha boda wako anasema mpokeaji hakulipa. Tuambie kama ililipwa.';
+
+  @override
+  String get lateReportBodyNoDeadline =>
+      'Oda hii imefungwa kwa sababu malipo hayakuthibitishwa. Kama hukulipwa, gusa Hajalipa.';
+
+  @override
+  String get notifOrderClosedTitle => 'Oda imefungwa';
+
+  @override
+  String get payerPromptTitleReceiver =>
+      'Mwendesha boda wako anasema mpokeaji hakulipa. Je, ililipwa?';
 }

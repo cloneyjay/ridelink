@@ -225,7 +225,7 @@ class _MethodTile extends StatelessWidget {
               )
             else ...[
               Text(
-                d.number,
+                payNumberFor(d).shown,
                 key: Key('$key.number'),
                 style: AppTextStyles.bodyLg.copyWith(color: c.ink),
               ),

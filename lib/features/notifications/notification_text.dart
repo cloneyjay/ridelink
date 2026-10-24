@@ -1,8 +1,13 @@
 import '../../core/format/money.dart';
+import '../../core/push/push_payload.dart';
 import '../../l10n/app_localizations.dart';
 import '../rider/data/rider_models.dart';
 import '../rider/rider_labels.dart';
 import 'data/notification_repository.dart';
+
+/// The server's English body for `payment_not_paid` when the receiver was the payer.
+const _notPaidReceiverServerBody =
+    "Your rider says the receiver didn't pay. Tell us if it was paid.";
 
 /// Localized title and body by notification type; unknown types (or missing data) fall back to
 /// the server's English text.
@@ -47,10 +52,30 @@ import 'data/notification_repository.dart';
         body: l.notifPaymentUnresolvedBody,
       );
     case 'payment_not_paid':
+      final receiverPaid =
+          data['payer'] == 'receiver' ||
+          n.body.trim() == _notPaidReceiverServerBody;
       return (
         title: l.notifPaymentNotPaidTitle,
-        body: l.notifPaymentNotPaidBody,
+        body: receiverPaid
+            ? l.notifPaymentNotPaidReceiverBody
+            : l.notifPaymentNotPaidBody,
       );
+    case paymentReminderType:
+      return (
+        title: l.notifPaymentReminderTitle,
+        body: l.notifPaymentReminderBody,
+      );
+    case paymentTimeoutRiderType:
+      final until = date('late_report_until');
+      return (
+        title: l.notifOrderClosedTitle,
+        body: until == null
+            ? l.lateReportBodyNoDeadline
+            : l.lateReportBody(formatDateTime(l, until)),
+      );
+    case paymentTimeoutSenderType:
+      return (title: l.notifOrderCompleteTitle, body: l.notifOrderCompleteBody);
     case 'payer_payment_response':
       return (title: l.notifPayerResponseTitle, body: l.notifPayerResponseBody);
     case 'pickup_arrived':

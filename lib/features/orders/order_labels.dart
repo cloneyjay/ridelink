@@ -16,6 +16,7 @@ String orderStatusLabel(AppLocalizations l, Order o) => switch (o.status) {
   'paid' => l.statusPaid,
   'handed_over' =>
     o.serviceType == ServiceType.ride ? l.statusDroppedOff : l.statusHandedOver,
+  'completed' when o.closedByTimeout => l.statusCompletedUnconfirmed,
   'completed' => l.statusCompleted,
   'cancelled' => l.statusCancelled,
   'expired' => l.statusExpired,
@@ -24,9 +25,10 @@ String orderStatusLabel(AppLocalizations l, Order o) => switch (o.status) {
   _ => o.status,
 };
 
-enum _Tone { success, danger, live, neutral }
+enum _Tone { success, warning, danger, live, neutral }
 
-_Tone _toneOf(String status) => switch (status) {
+_Tone _toneOf(Order o) => switch (o.status) {
+  'completed' when o.closedByTimeout => _Tone.warning,
   'completed' => _Tone.success,
   'cancelled' || 'expired' || 'payment_failed' || 'unresolved' => _Tone.danger,
   'created' || 'offered' || 'awaiting_match' => _Tone.neutral,
@@ -42,8 +44,9 @@ class StatusChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final dot = switch (_toneOf(order.status)) {
+    final dot = switch (_toneOf(order)) {
       _Tone.success => c.statusSuccess,
+      _Tone.warning => c.statusWarning,
       _Tone.danger => c.statusError,
       _Tone.live => c.statusInfo,
       _Tone.neutral => c.statusNeutral,

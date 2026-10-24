@@ -9,6 +9,7 @@ import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_dimensions.dart';
 import '../../theme/app_text_styles.dart';
+import '../booking/data/booking_models.dart' show Payer;
 import '../booking/widgets/booking_widgets.dart';
 import 'data/payment_models.dart';
 import 'payment_validation.dart';
@@ -19,9 +20,16 @@ import 'payment_widgets.dart';
 /// `payer_response: pending`; "answered" shows the thanks state; 422 (not a not-paid order)
 /// shows nothing. A 409 on submit means it was already answered.
 class PayerResponseCard extends ConsumerStatefulWidget {
-  const PayerResponseCard({super.key, required this.orderId});
+  const PayerResponseCard({
+    super.key,
+    required this.orderId,
+    this.payer = Payer.sender,
+  });
 
   final String orderId;
+
+  /// Receiver-paid deliveries ask whether it was paid, not whether the sender paid.
+  final Payer payer;
 
   @override
   ConsumerState<PayerResponseCard> createState() => _PayerResponseCardState();
@@ -178,7 +186,9 @@ class _PayerResponseCardState extends ConsumerState<PayerResponseCard> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            l.payerPromptTitle,
+            widget.payer == Payer.receiver
+                ? l.payerPromptTitleReceiver
+                : l.payerPromptTitle,
             style: AppTextStyles.displaySm.copyWith(color: c.ink),
           ),
           const SizedBox(height: AppSpacing.s3),

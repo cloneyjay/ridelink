@@ -25,6 +25,7 @@ import '../../notifications/notifications_screen.dart';
 import '../../orders/data/order_models.dart';
 import '../../orders/order_providers.dart';
 import '../../payments/data/payment_models.dart';
+import '../../payments/late_report_card.dart';
 import '../../payments/payment_validation.dart';
 import '../../payments/payment_widgets.dart';
 import '../../ratings/rating_sheet.dart';
@@ -82,6 +83,30 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
       _error = null;
       _promptRatingIfDone();
     }
+    // A realtime update may not say how payment ended (confirmed or timeout).
+    if (old.order.status != widget.order.status &&
+        widget.order.status == 'completed' &&
+        widget.order.paymentConfirmation == null) {
+      final id = widget.order.id;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) ref.invalidate(orderDetailsProvider(id));
+      });
+    }
+  }
+
+  /// The job, with how payment ended taken from GET /orders/{id} when realtime didn't say.
+  Order _withPaymentOutcome(Order o, OrderDetails? details) {
+    final fetched = details?.order;
+    if (o.paymentConfirmation != null ||
+        fetched == null ||
+        fetched.id != o.id ||
+        fetched.status != o.status) {
+      return o;
+    }
+    return o.copyWith(
+      paymentConfirmation: (fetched.paymentConfirmation,),
+      lateReportUntil: (fetched.lateReportUntil,),
+    );
   }
 
   /// Completion asks the rider to rate the sender, once.
@@ -200,14 +225,9 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
   }
 
   Future<void> _notReceived() async {
-    final l = AppLocalizations.of(context);
-    final ok = await confirmDialog(
+    final ok = await confirmNotPaid(
       context,
       keyPrefix: 'job.notReceivedDialog',
-      title: l.paymentNotReceivedConfirmTitle,
-      body: l.paymentNotReceivedConfirmBody,
-      confirmLabel: l.paymentNotReceivedButton,
-      cancelLabel: l.goBackButton,
     );
     if (ok && mounted) {
       await _run(ref.read(riderRepositoryProvider).paymentNotReceived);
@@ -277,9 +297,10 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
     });
     final l = AppLocalizations.of(context);
     final c = context.colors;
-    final o = widget.order;
+    final details = ref.watch(orderDetailsProvider(widget.order.id)).value;
+    final o = _withPaymentOutcome(widget.order, details);
     final ride = o.serviceType == ServiceType.ride;
-    final details = ref.watch(orderDetailsProvider(o.id)).value;
+    final canReportLate = o.canReportLate(_now);
     final action = nextAction(o);
     final photoNeeded = requiredPhoto(o, action);
     final photoMissing = photoNeeded != null && !_photoRecorded(o, photoNeeded);
@@ -452,6 +473,16 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
           onPressed: photoMissing ? null : () => _onAction(action),
         ),
       ],
+      if (canReportLate) ...[
+        LateReportCard(
+          keyPrefix: 'job.late',
+          deadline: o.lateReportUntil!,
+          busy: _busy,
+          onReport: () =>
+              _run(ref.read(riderRepositoryProvider).paymentNotReceived),
+        ),
+        const SizedBox(height: AppSpacing.s3),
+      ],
       if (o.isTerminal)
         PrimaryButton(
           key: const Key('job.done'),
@@ -562,6 +593,19 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
                 key: const Key('job.collectAmount'),
                 style: AppTextStyles.displayLg.copyWith(color: c.ink),
               ),
+            if (o.serviceType == ServiceType.delivery) ...[
+              const SizedBox(height: AppSpacing.s2),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: InfoChip(
+                  o.payer == Payer.receiver
+                      ? l.payerReceiverOption
+                      : l.riderSenderPays,
+                  key: Key('job.payer.${o.payer.wire}'),
+                  icon: Icons.person_outline,
+                ),
+              ),
+            ],
             const SizedBox(height: AppSpacing.s4),
             Text(
               l.paymentHowPaidLabel,
@@ -573,7 +617,9 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
                 key: Key('job.method.${m.wire}'),
                 selected: m == selected,
                 title: payMethodName(l, m),
-                subtitle: numbers[m]?.number,
+                subtitle: numbers[m] == null
+                    ? null
+                    : payNumberFor(numbers[m]!).shown,
                 icon: payMethodIcon(m),
                 onTap: _busy
                     ? null
@@ -629,6 +675,8 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
     String? text = switch (o.status) {
       'arrived' => ride ? l.jobAtDropoffBodyRide : l.jobAtDropoffBody,
       'paid' => ride ? l.jobPaidBodyRide : l.jobPaidBody,
+      'completed' when o.canReportLate(_now) => null,
+      'completed' when o.closedByTimeout => l.statusCompletedUnconfirmed,
       'completed' => amount == null ? null : l.jobCompletedBody(amount),
       'unresolved' => l.paymentUnderReviewRiderBody,
       'cancelled' => switch (o.cancelReason) {

@@ -144,6 +144,10 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen>
     if (order.status != _seenStatus) {
       _seenStatus = order.status;
       ref.invalidate(orderPaymentProvider(order.id));
+      // A realtime update may not say how payment ended (confirmed or timeout).
+      if (order.status == 'completed' && order.paymentConfirmation == null) {
+        unawaited(_load());
+      }
     }
     if (order.status != 'completed') return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -358,6 +362,13 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen>
       ],
       ?banner,
       if (banner != null) const SizedBox(height: AppSpacing.s4),
+      if (o.closedByTimeout) ...[
+        NoteRow(
+          l.statusCompletedUnconfirmed,
+          key: const Key('tracking.unconfirmed'),
+        ),
+        const SizedBox(height: AppSpacing.s4),
+      ],
       if (o.status != 'cancelled') ...[
         StepProgress(current: trackingStep(o), order: o),
         const SizedBox(height: AppSpacing.s4),
@@ -537,6 +548,7 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen>
         PayRiderCard(
           orderId: o.id,
           amount: o.agreedPrice ?? _details?.terms?.total,
+          payer: o.payer,
           onHidden: _load,
         ),
         const SizedBox(height: AppSpacing.s3),
@@ -547,7 +559,11 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen>
       ],
       'paid' => [card('tracking.paid', l.paymentConfirmed(amount), null)],
       'unresolved' => [
-        PayerResponseCard(key: const Key('tracking.unresolved'), orderId: o.id),
+        PayerResponseCard(
+          key: const Key('tracking.unresolved'),
+          orderId: o.id,
+          payer: o.payer,
+        ),
         const SizedBox(height: AppSpacing.s3),
       ],
       _ => const [],

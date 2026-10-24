@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/errors/error_messages.dart';
 import '../../core/format/money.dart';
 import '../../core/providers.dart';
 import '../../core/routing/app_router.dart';
@@ -12,6 +13,8 @@ import '../../theme/app_text_styles.dart';
 import '../booking/booking_labels.dart';
 import '../booking/data/booking_models.dart';
 import '../booking/widgets/booking_widgets.dart';
+import '../common/confirm_dialog.dart';
+import '../payments/late_report_card.dart';
 import '../payments/payer_response_card.dart';
 import '../ratings/rating_sheet.dart';
 import '../rider/rider_labels.dart';
@@ -171,6 +174,19 @@ class _DetailBody extends ConsumerWidget {
             PayerResponseCard(
               key: const Key('orderDetail.payerResponse'),
               orderId: o.id,
+              payer: o.payer,
+            ),
+          ],
+          if (role == OrderRole.rider &&
+              o.canReportLate(ref.read(serverNowProvider)())) ...[
+            const SizedBox(height: AppSpacing.s4),
+            _LateReport(orderId: o.id, deadline: o.lateReportUntil!),
+          ],
+          if (o.status == 'unresolved' && role == OrderRole.rider) ...[
+            const SizedBox(height: AppSpacing.s4),
+            NoteRow(
+              l.paymentUnderReviewRiderBody,
+              key: const Key('orderDetail.unresolvedRider'),
             ),
           ],
           if (o.isActiveJob) ...[
@@ -209,6 +225,50 @@ class _DetailBody extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// Rider "Not paid" on a timeout-closed order; the reloaded order then shows `unresolved`.
+class _LateReport extends ConsumerStatefulWidget {
+  const _LateReport({required this.orderId, required this.deadline});
+
+  final String orderId;
+  final DateTime deadline;
+
+  @override
+  ConsumerState<_LateReport> createState() => _LateReportState();
+}
+
+class _LateReportState extends ConsumerState<_LateReport> {
+  bool _busy = false;
+
+  Future<void> _report() async {
+    final l = AppLocalizations.of(context);
+    setState(() => _busy = true);
+    try {
+      await ref
+          .read(riderRepositoryProvider)
+          .paymentNotReceived(widget.orderId);
+    } catch (e) {
+      if (mounted) {
+        showSnack(
+          context,
+          apiErrorText(e, l, fallback: l.jobActionFailed),
+          key: const Key('orderDetail.lateReportError'),
+        );
+      }
+    }
+    if (!mounted) return;
+    setState(() => _busy = false);
+    ref.invalidate(orderDetailsProvider(widget.orderId));
+  }
+
+  @override
+  Widget build(BuildContext context) => LateReportCard(
+    keyPrefix: 'orderDetail.late',
+    deadline: widget.deadline,
+    busy: _busy,
+    onReport: _report,
+  );
 }
 
 class _RatingSection extends ConsumerWidget {

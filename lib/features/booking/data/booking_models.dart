@@ -15,6 +15,35 @@ enum ServiceType {
   }
 }
 
+/// Who pays the rider. Only deliveries may use [receiver] (delivery fee only, P6).
+enum Payer {
+  sender('sender'),
+  receiver('receiver');
+
+  const Payer(this.wire);
+  final String wire;
+
+  static Payer fromWire(Object? value) =>
+      value == receiver.wire ? receiver : sender;
+}
+
+/// How a completed order's payment ended: the rider confirmed it, or the payment timeout
+/// closed the order (P5). Null while not yet paid or closed.
+enum PaymentConfirmation {
+  confirmed('confirmed'),
+  timeout('timeout');
+
+  const PaymentConfirmation(this.wire);
+  final String wire;
+
+  static PaymentConfirmation? fromWire(Object? value) {
+    for (final c in values) {
+      if (c.wire == value) return c;
+    }
+    return null;
+  }
+}
+
 /// Declared item value (schema-mismatch decisions 5–7). KES 10,000 is the cap.
 enum ValueBand {
   under500('under_500'),
@@ -153,6 +182,7 @@ class CreateOrderInput {
     required this.route,
     this.receiverName,
     this.declaration,
+    this.payer,
   });
 
   final ServiceType serviceType;
@@ -160,11 +190,15 @@ class CreateOrderInput {
   final String? receiverName;
   final DeclarationInput? declaration;
 
+  /// Deliveries only; rides leave it to the server default (sender).
+  final Payer? payer;
+
   Map<String, dynamic> toJson() => {
     'service_type': serviceType.wire,
     ...route.toJson(),
     'receiver_name': ?receiverName,
     if (declaration != null) 'declaration': declaration!.toJson(),
+    'payer': ?payer?.wire,
   };
 }
 
@@ -211,6 +245,9 @@ class Order {
     this.cancelReason,
     this.quoteBreakdown,
     this.createdAt,
+    this.payer = Payer.sender,
+    this.paymentConfirmation,
+    this.lateReportUntil,
   });
 
   factory Order.fromJson(Map<String, dynamic> json) {
@@ -243,6 +280,11 @@ class Order {
           ? QuoteBreakdown.fromJson(breakdown.cast<String, dynamic>())
           : null,
       createdAt: parseTime(json['created_at']),
+      payer: Payer.fromWire(json['payer']),
+      paymentConfirmation: PaymentConfirmation.fromWire(
+        json['payment_confirmation'],
+      ),
+      lateReportUntil: parseTime(json['late_report_until']),
     );
   }
 
@@ -273,11 +315,27 @@ class Order {
   /// Present only if the server includes the agreed breakdown on the order.
   final QuoteBreakdown? quoteBreakdown;
   final DateTime? createdAt;
+  final Payer payer;
+  final PaymentConfirmation? paymentConfirmation;
+
+  /// Set only on timeout-closed orders while the rider may still report "Not paid".
+  final DateTime? lateReportUntil;
 
   bool get routeEditable => status == 'created';
   bool get isActiveJob => activeJobStatuses.contains(status);
   bool get isTerminal => terminalStatuses.contains(status);
   bool get arrivedAtPickup => pickupArrivedAt != null;
+
+  /// Completed by the payment timeout, without the rider confirming payment.
+  bool get closedByTimeout =>
+      status == 'completed' &&
+      paymentConfirmation == PaymentConfirmation.timeout;
+
+  /// The rider may still report a timeout-closed order as not paid.
+  bool canReportLate(DateTime now) {
+    final until = lateReportUntil;
+    return closedByTimeout && until != null && until.isAfter(now);
+  }
 
   /// Applies an `order.updated` realtime payload (only the keys it carries).
   Order applyUpdate(Map<String, dynamic> data) {
@@ -302,6 +360,13 @@ class Order {
         cancelReason,
         (v) => v as String?,
       ),
+      payer: data.containsKey('payer') ? Payer.fromWire(data['payer']) : null,
+      paymentConfirmation: data.containsKey('payment_confirmation')
+          ? (PaymentConfirmation.fromWire(data['payment_confirmation']),)
+          : null,
+      lateReportUntil: data.containsKey('late_report_until')
+          ? (parseTime(data['late_report_until']),)
+          : null,
     );
   }
 
@@ -312,6 +377,10 @@ class Order {
     DateTime? pickupDeadline,
     DateTime? pickupArrivedAt,
     String? cancelReason,
+    Payer? payer,
+    // Records so a present-but-null value can clear the field.
+    (PaymentConfirmation?,)? paymentConfirmation,
+    (DateTime?,)? lateReportUntil,
   }) => Order(
     id: id,
     serviceType: serviceType,
@@ -334,6 +403,13 @@ class Order {
     cancelReason: cancelReason ?? this.cancelReason,
     quoteBreakdown: quoteBreakdown,
     createdAt: createdAt,
+    payer: payer ?? this.payer,
+    paymentConfirmation: paymentConfirmation == null
+        ? this.paymentConfirmation
+        : paymentConfirmation.$1,
+    lateReportUntil: lateReportUntil == null
+        ? this.lateReportUntil
+        : lateReportUntil.$1,
   );
 }
 

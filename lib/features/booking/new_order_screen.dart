@@ -11,6 +11,7 @@ import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_dimensions.dart';
 import '../../theme/app_text_styles.dart';
+import '../payments/payment_widgets.dart' show ChoiceRow;
 import 'booking_labels.dart';
 import 'booking_routes.dart';
 import 'confirm_pickup_screen.dart';
@@ -51,6 +52,7 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
   int _pickupVersion = 0;
   String? _categoryId;
   ValueBand? _band;
+  Payer _payer = Payer.sender;
   bool _attempted = false;
   bool _submitting = false;
   String? _error;
@@ -158,6 +160,7 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
               description: _description.text,
               weightText: _weight.text,
               valueBand: _band,
+              payer: _payer,
             ),
           );
       if (!mounted) return;
@@ -250,6 +253,26 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
                   selected: _band,
                   onChanged: (b) => setState(() => _band = b),
                 ),
+                const SizedBox(height: AppSpacing.s6),
+                _SectionTitle(l.whoPaysTitle),
+                const SizedBox(height: AppSpacing.s3),
+                for (final p in Payer.values) ...[
+                  ChoiceRow(
+                    key: Key('order.payer.${p.wire}'),
+                    selected: p == _payer,
+                    title: p == Payer.sender
+                        ? l.payerSenderOption
+                        : l.payerReceiverOption,
+                    icon: p == Payer.sender
+                        ? Icons.person_outline
+                        : Icons.person_pin_circle_outlined,
+                    onTap: _submitting
+                        ? null
+                        : () => setState(() => _payer = p),
+                  ),
+                  if (p != Payer.values.last)
+                    const SizedBox(height: AppSpacing.s2),
+                ],
               ],
               if (_error != null) ...[
                 const SizedBox(height: AppSpacing.s4),

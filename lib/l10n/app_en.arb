@@ -3045,5 +3045,79 @@
   "notifPaymentNotPaidBody": "Your rider says this order was not paid. Tell us if you paid.",
   "@notifPaymentNotPaidBody": {
     "description": "Notification payment_not_paid body."
+  },
+  "whoPaysTitle": "Who pays?",
+  "@whoPaysTitle": {
+    "description": "Delivery order form: section title for choosing who pays the rider."
+  },
+  "payerSenderOption": "I pay",
+  "@payerSenderOption": {
+    "description": "Who pays option: the sender pays (default)."
+  },
+  "payerReceiverOption": "Receiver pays",
+  "@payerReceiverOption": {
+    "description": "Who pays option: the receiver pays the delivery fee. Also shown to the rider at arrival."
+  },
+  "riderSenderPays": "Sender pays",
+  "@riderSenderPays": {
+    "description": "Rider job view at arrival: the sender pays this delivery."
+  },
+  "receiverIsPaying": "Your receiver is paying {amount}.",
+  "@receiverIsPaying": {
+    "description": "Sender pay card when the receiver pays. amount is like KES 350.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "receiverCantPayNote": "If they can't pay, you can pay here.",
+  "@receiverCantPayNote": {
+    "description": "Sender pay card when the receiver pays: heading above the rider's payment details."
+  },
+  "statusCompletedUnconfirmed": "Completed, payment not confirmed",
+  "@statusCompletedUnconfirmed": {
+    "description": "Status label for an order closed by the payment timeout."
+  },
+  "lateReportBody": "This order was closed because payment wasn't confirmed. If you weren't paid, tap Not paid by {deadline}.",
+  "@lateReportBody": {
+    "description": "Rider: timeout-closed order while Not paid can still be reported. deadline is local date and time like 14 Oct, 15:30.",
+    "placeholders": {
+      "deadline": {
+        "type": "String"
+      }
+    }
+  },
+  "notifPaymentReminderTitle": "Confirm payment",
+  "@notifPaymentReminderTitle": {
+    "description": "Notification payment_reminder (to the rider)."
+  },
+  "notifPaymentReminderBody": "Did you get paid for this order? Tap to confirm.",
+  "@notifPaymentReminderBody": {
+    "description": "Notification payment_reminder body."
+  },
+  "notifOrderCompleteTitle": "Order complete",
+  "@notifOrderCompleteTitle": {
+    "description": "Notification title to the sender when the payment timeout closes the order."
+  },
+  "notifOrderCompleteBody": "Your order is complete.",
+  "@notifOrderCompleteBody": {
+    "description": "Notification body to the sender when the payment timeout closes the order."
+  },
+  "notifPaymentNotPaidReceiverBody": "Your rider says the receiver didn't pay. Tell us if it was paid.",
+  "@notifPaymentNotPaidReceiverBody": {
+    "description": "Notification payment_not_paid body when the receiver was the payer."
+  },
+  "lateReportBodyNoDeadline": "This order was closed because payment wasn't confirmed. If you weren't paid, tap Not paid.",
+  "@lateReportBodyNoDeadline": {
+    "description": "Rider timeout-close notification body when the deadline is unknown (pushes carry no data)."
+  },
+  "notifOrderClosedTitle": "Order closed",
+  "@notifOrderClosedTitle": {
+    "description": "Notification payment_timeout_closed title (to the rider)."
+  },
+  "payerPromptTitleReceiver": "Your rider says the receiver didn't pay. Was it paid?",
+  "@payerPromptTitleReceiver": {
+    "description": "Sender's Did you pay? prompt when the receiver was the payer."
   }
 }

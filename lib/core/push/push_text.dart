@@ -47,6 +47,18 @@ PushChannel pushChannelFor(PushPayload p) =>
         title: l.notifPaymentNotPaidTitle,
         body: l.notifPaymentNotPaidBody,
       ),
+      paymentReminderType => (
+        title: l.notifPaymentReminderTitle,
+        body: l.notifPaymentReminderBody,
+      ),
+      paymentTimeoutRiderType => (
+        title: l.notifOrderClosedTitle,
+        body: l.lateReportBodyNoDeadline,
+      ),
+      paymentTimeoutSenderType => (
+        title: l.notifOrderCompleteTitle,
+        body: l.notifOrderCompleteBody,
+      ),
       'payer_payment_response' => (
         title: l.notifPayerResponseTitle,
         body: l.notifPayerResponseBody,

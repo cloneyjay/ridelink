@@ -12,6 +12,9 @@ enum PayMethod {
 
   bool get isMpesa => this != cash;
 
+  /// Pochi and Send Money pay to a mobile number; a till has its own number.
+  bool get isMobile => this == mpesaPochi || this == mpesaSendMoney;
+
   /// The methods a rider can add (cash needs no setup).
   static const mpesa = [mpesaTill, mpesaPochi, mpesaSendMoney];
 

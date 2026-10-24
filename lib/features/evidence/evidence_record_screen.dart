@@ -36,6 +36,7 @@ String evidenceEventName(
   'payment_received' => l.evidenceEventPaymentReceived,
   'payment_not_received' => l.evidenceEventPaymentNotReceived,
   'payer_payment_response' => l.evidenceEventPayerResponse,
+  'payment_timeout_closed' => l.statusCompletedUnconfirmed,
   _ =>
     type.isEmpty
         ? type

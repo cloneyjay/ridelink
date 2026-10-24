@@ -3040,5 +3040,79 @@
   "notifPaymentNotPaidBody": "Mwendesha boda wako anasema oda hii haikulipwa. Tuambie kama ulilipa.",
   "@notifPaymentNotPaidBody": {
     "x-review": "needs-review"
+  },
+  "whoPaysTitle": "Nani analipa?",
+  "@whoPaysTitle": {
+    "x-review": "needs-review"
+  },
+  "payerSenderOption": "Ninalipa mimi",
+  "@payerSenderOption": {
+    "x-review": "needs-review"
+  },
+  "payerReceiverOption": "Mpokeaji analipa",
+  "@payerReceiverOption": {
+    "x-review": "needs-review"
+  },
+  "riderSenderPays": "Mteja analipa",
+  "@riderSenderPays": {
+    "x-review": "needs-review"
+  },
+  "receiverIsPaying": "Mpokeaji wako analipa {amount}.",
+  "@receiverIsPaying": {
+    "x-review": "needs-review",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "receiverCantPayNote": "Kama hawezi kulipa, unaweza kulipa hapa.",
+  "@receiverCantPayNote": {
+    "x-review": "needs-review"
+  },
+  "statusCompletedUnconfirmed": "Imekamilika, malipo hayajathibitishwa",
+  "@statusCompletedUnconfirmed": {
+    "x-review": "needs-review"
+  },
+  "lateReportBody": "Oda hii imefungwa kwa sababu malipo hayakuthibitishwa. Kama hukulipwa, gusa Hajalipa kabla ya {deadline}.",
+  "@lateReportBody": {
+    "x-review": "needs-review",
+    "placeholders": {
+      "deadline": {
+        "type": "String"
+      }
+    }
+  },
+  "notifPaymentReminderTitle": "Thibitisha malipo",
+  "@notifPaymentReminderTitle": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentReminderBody": "Je, umelipwa kwa oda hii? Gusa kuthibitisha.",
+  "@notifPaymentReminderBody": {
+    "x-review": "needs-review"
+  },
+  "notifOrderCompleteTitle": "Oda imekamilika",
+  "@notifOrderCompleteTitle": {
+    "x-review": "needs-review"
+  },
+  "notifOrderCompleteBody": "Oda yako imekamilika.",
+  "@notifOrderCompleteBody": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentNotPaidReceiverBody": "Mwendesha boda wako anasema mpokeaji hakulipa. Tuambie kama ililipwa.",
+  "@notifPaymentNotPaidReceiverBody": {
+    "x-review": "needs-review"
+  },
+  "lateReportBodyNoDeadline": "Oda hii imefungwa kwa sababu malipo hayakuthibitishwa. Kama hukulipwa, gusa Hajalipa.",
+  "@lateReportBodyNoDeadline": {
+    "x-review": "needs-review"
+  },
+  "notifOrderClosedTitle": "Oda imefungwa",
+  "@notifOrderClosedTitle": {
+    "x-review": "needs-review"
+  },
+  "payerPromptTitleReceiver": "Mwendesha boda wako anasema mpokeaji hakulipa. Je, ililipwa?",
+  "@payerPromptTitleReceiver": {
+    "x-review": "needs-review"
   }
 }

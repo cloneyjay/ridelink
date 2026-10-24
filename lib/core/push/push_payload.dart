@@ -3,6 +3,18 @@ import 'dart:convert';
 /// Push types that wake a rider for a time-limited offer (high-importance channel).
 const offerReceivedType = 'offer.received';
 
+/// Rider: confirm payment on an order still waiting for it (P5 reminders; `data.reminder` 1 or 2).
+const paymentReminderType = 'payment_reminder';
+
+/// The payment timeout closed the order. Rider: late report open until `data.late_report_until`.
+const paymentTimeoutRiderType = 'payment_timeout_closed';
+
+/// Sender: the payment timeout completed the order.
+const paymentTimeoutSenderType = 'order_completed';
+
+/// Push types meant for the rider side, opened there whatever mode the app is in.
+const riderPushTypes = {paymentReminderType, paymentTimeoutRiderType};
+
 /// A data-only push: `{"type","order_id","notification_id"}`. It never carries RideLink data;
 /// the app fetches everything from the Go server after it opens.
 class PushPayload {

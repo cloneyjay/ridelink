@@ -29,6 +29,25 @@ String? normalizeKenyanMobile(String raw) {
   return _subscriber.hasMatch(rest) ? '+254$rest' : null;
 }
 
+/// Local form for copying: "0712345678". Unparseable input is returned unchanged.
+String localMobileDigits(String raw) {
+  final e164 = normalizeKenyanMobile(raw);
+  return e164 == null ? raw : '0${e164.substring(4)}';
+}
+
+/// Local form for display: "0712 345 678". Unparseable input is returned unchanged.
+String formatLocalMobile(String raw) {
+  final d = localMobileDigits(raw);
+  if (d == raw && normalizeKenyanMobile(raw) == null) return raw;
+  return '${d.substring(0, 4)} ${d.substring(4, 7)} ${d.substring(7)}';
+}
+
+/// What the payer sees and copies for [m]: Pochi / Send Money in the local mobile form;
+/// till numbers as they are.
+({String shown, String copied}) payNumberFor(PaymentMethod m) => m.type.isMobile
+    ? (shown: formatLocalMobile(m.number), copied: localMobileDigits(m.number))
+    : (shown: m.number, copied: m.number);
+
 /// Trimmed, 2 to 60 characters.
 String? normalizeAccountName(String raw) {
   final s = raw.trim();

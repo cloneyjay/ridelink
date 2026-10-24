@@ -4225,6 +4225,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your rider says this order was not paid. Tell us if you paid.'**
   String get notifPaymentNotPaidBody;
+
+  /// Delivery order form: section title for choosing who pays the rider.
+  ///
+  /// In en, this message translates to:
+  /// **'Who pays?'**
+  String get whoPaysTitle;
+
+  /// Who pays option: the sender pays (default).
+  ///
+  /// In en, this message translates to:
+  /// **'I pay'**
+  String get payerSenderOption;
+
+  /// Who pays option: the receiver pays the delivery fee. Also shown to the rider at arrival.
+  ///
+  /// In en, this message translates to:
+  /// **'Receiver pays'**
+  String get payerReceiverOption;
+
+  /// Rider job view at arrival: the sender pays this delivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Sender pays'**
+  String get riderSenderPays;
+
+  /// Sender pay card when the receiver pays. amount is like KES 350.
+  ///
+  /// In en, this message translates to:
+  /// **'Your receiver is paying {amount}.'**
+  String receiverIsPaying(String amount);
+
+  /// Sender pay card when the receiver pays: heading above the rider's payment details.
+  ///
+  /// In en, this message translates to:
+  /// **'If they can\'t pay, you can pay here.'**
+  String get receiverCantPayNote;
+
+  /// Status label for an order closed by the payment timeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed, payment not confirmed'**
+  String get statusCompletedUnconfirmed;
+
+  /// Rider: timeout-closed order while Not paid can still be reported. deadline is local date and time like 14 Oct, 15:30.
+  ///
+  /// In en, this message translates to:
+  /// **'This order was closed because payment wasn\'t confirmed. If you weren\'t paid, tap Not paid by {deadline}.'**
+  String lateReportBody(String deadline);
+
+  /// Notification payment_reminder (to the rider).
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm payment'**
+  String get notifPaymentReminderTitle;
+
+  /// Notification payment_reminder body.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you get paid for this order? Tap to confirm.'**
+  String get notifPaymentReminderBody;
+
+  /// Notification title to the sender when the payment timeout closes the order.
+  ///
+  /// In en, this message translates to:
+  /// **'Order complete'**
+  String get notifOrderCompleteTitle;
+
+  /// Notification body to the sender when the payment timeout closes the order.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order is complete.'**
+  String get notifOrderCompleteBody;
+
+  /// Notification payment_not_paid body when the receiver was the payer.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider says the receiver didn\'t pay. Tell us if it was paid.'**
+  String get notifPaymentNotPaidReceiverBody;
+
+  /// Rider timeout-close notification body when the deadline is unknown (pushes carry no data).
+  ///
+  /// In en, this message translates to:
+  /// **'This order was closed because payment wasn\'t confirmed. If you weren\'t paid, tap Not paid.'**
+  String get lateReportBodyNoDeadline;
+
+  /// Notification payment_timeout_closed title (to the rider).
+  ///
+  /// In en, this message translates to:
+  /// **'Order closed'**
+  String get notifOrderClosedTitle;
+
+  /// Sender's Did you pay? prompt when the receiver was the payer.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rider says the receiver didn\'t pay. Was it paid?'**
+  String get payerPromptTitleReceiver;
 }
 
 class _AppLocalizationsDelegate

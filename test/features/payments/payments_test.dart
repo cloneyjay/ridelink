@@ -491,7 +491,9 @@ void main() {
         expect(byKey('tracking.ivePaid'), findsNothing);
 
         await tapKeyAndSettle(tester, 'tracking.copy.mpesa_send_money');
-        expect(copied, '+254712345678');
+        // Send Money shows "0712 345 678" and copies digits only.
+        expect(find.text('0712 345 678'), findsOneWidget);
+        expect(copied, '0712345678');
         expect(byKey('tracking.copied'), findsOneWidget);
       },
     );
@@ -734,7 +736,7 @@ void main() {
       expect(byKey('payMethods.saved'), findsOneWidget);
       expect(
         tester.widget<Text>(byKey('payMethods.mpesa_pochi.number')).data,
-        '+254712345678',
+        '0712 345 678',
       );
       expect(byKey('payMethods.mpesa_pochi.edit'), findsOneWidget);
     });

@@ -9,24 +9,28 @@ import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_dimensions.dart';
 import '../../theme/app_text_styles.dart';
+import '../booking/data/booking_models.dart' show Payer;
 import '../booking/widgets/booking_widgets.dart';
 import '../common/confirm_dialog.dart';
 import '../orders/order_providers.dart';
 import 'data/payment_models.dart';
+import 'payment_validation.dart';
 import 'payment_widgets.dart';
 
 /// Sender, while `payment_requested`: the amount and every way to pay the rider directly
 /// (cash, plus the rider's M-Pesa methods snapshotted at acceptance). No "I've paid" button:
-/// the rider confirms.
+/// the rider confirms. When the receiver pays, the same details are the sender's fallback.
 class PayRiderCard extends ConsumerWidget {
   const PayRiderCard({
     super.key,
     required this.orderId,
     this.amount,
+    this.payer = Payer.sender,
     required this.onHidden,
   });
 
   final String orderId;
+  final Payer payer;
 
   /// The agreed price, shown until the payment view loads.
   final int? amount;
@@ -58,16 +62,31 @@ class PayRiderCard extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            l.payYourRiderTitle,
-            style: AppTextStyles.displaySm.copyWith(color: c.ink),
-          ),
-          if (shown != null)
+          if (payer == Payer.receiver) ...[
+            if (shown != null)
+              Text(
+                l.receiverIsPaying(formatKes(shown)),
+                key: const Key('tracking.receiverPaying'),
+                style: AppTextStyles.displaySm.copyWith(color: c.ink),
+              ),
+            const SizedBox(height: AppSpacing.s3),
             Text(
-              formatKes(shown),
-              key: const Key('tracking.payAmount'),
-              style: AppTextStyles.displayLg.copyWith(color: c.ink),
+              l.receiverCantPayNote,
+              key: const Key('tracking.receiverFallback'),
+              style: AppTextStyles.labelLg.copyWith(color: c.ink),
             ),
+          ] else ...[
+            Text(
+              l.payYourRiderTitle,
+              style: AppTextStyles.displaySm.copyWith(color: c.ink),
+            ),
+            if (shown != null)
+              Text(
+                formatKes(shown),
+                key: const Key('tracking.payAmount'),
+                style: AppTextStyles.displayLg.copyWith(color: c.ink),
+              ),
+          ],
           const SizedBox(height: AppSpacing.s3),
           if (data == null || data.cash)
             const _PayOption(method: PayMethod.cash),
@@ -119,6 +138,7 @@ class _PayOption extends StatelessWidget {
     final l = AppLocalizations.of(context);
     final c = context.colors;
     final d = details;
+    final number = d == null ? null : payNumberFor(d);
     return Container(
       key: Key('tracking.pay.${method.wire}'),
       constraints: const BoxConstraints(minHeight: AppLayout.minTapTarget),
@@ -145,7 +165,7 @@ class _PayOption extends StatelessWidget {
                 ),
                 if (d != null) ...[
                   Text(
-                    d.number,
+                    number!.shown,
                     key: Key('tracking.pay.${method.wire}.number'),
                     style: AppTextStyles.bodyLg.copyWith(color: c.ink),
                   ),
@@ -167,7 +187,7 @@ class _PayOption extends StatelessWidget {
               ),
               icon: Icon(Icons.copy_outlined, color: c.brand700),
               onPressed: () async {
-                await Clipboard.setData(ClipboardData(text: d.number));
+                await Clipboard.setData(ClipboardData(text: number!.copied));
                 if (context.mounted) {
                   showSnack(
                     context,

@@ -78,6 +78,9 @@ void main() {
         expect(byKey('tracking.step.payment.current'), findsOneWidget);
         expect(byKey('tracking.ivePaid'), findsNothing);
 
+        // Completion without the payment outcome re-reads the order from the server.
+        h.repo.order = jobFixture(status: 'completed')
+            .copyWith(paymentConfirmation: (PaymentConfirmation.confirmed,));
         h.emit('order.updated', {'order_id': 'order-9', 'status': 'completed'});
         await tester.pumpAndSettle();
         expect(tester.widget<Text>(byKey('tracking.done')).data, l.delivered);
