@@ -556,11 +556,35 @@ void main() {
       expect(location(h), AppRoutes.ridersFor('order-1'));
     });
 
+    testWidgets('document pushes open the documents screen', (tester) async {
+      for (final type in [
+        'document_approved',
+        'document_rejected',
+        'document_expiring',
+        'document_expired',
+      ]) {
+        final h = await pumpBookingApp(tester);
+        await navigatorFor(h).open(PushPayload(type: type));
+        await tester.pumpAndSettle();
+        expect(location(h), AppRoutes.riderDocuments, reason: type);
+        expect(byKey('screen.riderDocuments'), findsOneWidget, reason: type);
+      }
+    });
+
+    testWidgets('rider verified push opens the verification status', (
+      tester,
+    ) async {
+      final h = await pumpBookingApp(tester);
+      await navigatorFor(h).open(const PushPayload(type: 'rider_verified'));
+      await tester.pumpAndSettle();
+      expect(location(h), AppRoutes.riderVerification);
+    });
+
     testWidgets('no order id: nothing beyond the normal resume', (
       tester,
     ) async {
       final h = await pumpBookingApp(tester);
-      await navigatorFor(h).open(const PushPayload(type: 'document_expiring'));
+      await navigatorFor(h).open(const PushPayload(type: 'something.new'));
       await tester.pumpAndSettle();
       expect(location(h), AppRoutes.home);
     });

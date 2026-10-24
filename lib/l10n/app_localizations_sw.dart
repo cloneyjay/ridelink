@@ -2409,4 +2409,59 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get payerPromptTitleReceiver =>
       'Mwendesha boda wako anasema mpokeaji hakulipa. Je, ililipwa?';
+
+  @override
+  String get notifDocumentApprovedTitle => 'Hati imeidhinishwa';
+
+  @override
+  String notifDocumentApprovedBody(String doc) {
+    return '$doc yako imeidhinishwa.';
+  }
+
+  @override
+  String get notifDocumentRejectedTitle => 'Hati haijaidhinishwa';
+
+  @override
+  String notifDocumentRejectedBody(String doc, String reason) {
+    return '$doc yako haijaidhinishwa: $reason. Tafadhali pakia nyingine mpya.';
+  }
+
+  @override
+  String get notifRiderVerifiedTitle => 'Umethibitishwa';
+
+  @override
+  String get notifRiderVerifiedBody =>
+      'Sasa unaweza kuingia mtandaoni na kukubali oda za mizigo na abiria.';
+
+  @override
+  String get docRejectionBlurry => 'Picha haiko wazi au ni ngumu kusoma';
+
+  @override
+  String get docRejectionWrongDocument => 'Hii si hati iliyoombwa';
+
+  @override
+  String get docRejectionExpired => 'Hati hii imeisha muda';
+
+  @override
+  String get docRejectionNameMismatch =>
+      'Jina halilingani na kitambulisho chako';
+
+  @override
+  String get docRejectionDetailsMismatch =>
+      'Maelezo hayalingani na usajili wako (kwa mfano nambari ya usajili)';
+
+  @override
+  String get docRejectionBikePhoto =>
+      'Picha ya pikipiki lazima ionyeshe nambari ya usajili waziwazi na pikipiki ikiwa katika hali nzuri';
+
+  @override
+  String get docRejectionSuspectedFake => 'Hatukuweza kuthibitisha hati hii';
+
+  @override
+  String get docRejectionOther => 'Angalia ujumbe kutoka RideLink';
+
+  @override
+  String docRejectionMessage(String message) {
+    return 'Ujumbe kutoka RideLink: $message';
+  }
 }

@@ -4321,6 +4321,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your rider says the receiver didn\'t pay. Was it paid?'**
   String get payerPromptTitleReceiver;
+
+  /// Notification document_approved title.
+  ///
+  /// In en, this message translates to:
+  /// **'Document approved'**
+  String get notifDocumentApprovedTitle;
+
+  /// Notification document_approved body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your {doc} was approved.'**
+  String notifDocumentApprovedBody(String doc);
+
+  /// Notification document_rejected title.
+  ///
+  /// In en, this message translates to:
+  /// **'Document not approved'**
+  String get notifDocumentRejectedTitle;
+
+  /// Notification document_rejected body; reason is a docRejection* text.
+  ///
+  /// In en, this message translates to:
+  /// **'Your {doc} was not approved: {reason}. Please upload a new one.'**
+  String notifDocumentRejectedBody(String doc, String reason);
+
+  /// Notification rider_verified title.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re verified'**
+  String get notifRiderVerifiedTitle;
+
+  /// Notification rider_verified body.
+  ///
+  /// In en, this message translates to:
+  /// **'You can now go online and accept Delivery and Ride orders.'**
+  String get notifRiderVerifiedBody;
+
+  /// Document rejection reason code blurry.
+  ///
+  /// In en, this message translates to:
+  /// **'The photo is blurry or hard to read'**
+  String get docRejectionBlurry;
+
+  /// Document rejection reason code wrong_document.
+  ///
+  /// In en, this message translates to:
+  /// **'This is not the requested document'**
+  String get docRejectionWrongDocument;
+
+  /// Document rejection reason code expired.
+  ///
+  /// In en, this message translates to:
+  /// **'This document has expired'**
+  String get docRejectionExpired;
+
+  /// Document rejection reason code name_mismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The name doesn\'t match your ID'**
+  String get docRejectionNameMismatch;
+
+  /// Document rejection reason code details_mismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The details don\'t match your registration (for example the plate)'**
+  String get docRejectionDetailsMismatch;
+
+  /// Document rejection reason code bike_photo.
+  ///
+  /// In en, this message translates to:
+  /// **'The bike photo must show the plate clearly and the bike in good condition'**
+  String get docRejectionBikePhoto;
+
+  /// Document rejection reason code suspected_fake (deliberately neutral).
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t verify this document'**
+  String get docRejectionSuspectedFake;
+
+  /// Document rejection reason code other.
+  ///
+  /// In en, this message translates to:
+  /// **'See the message from RideLink'**
+  String get docRejectionOther;
+
+  /// Documents screen: the reviewer's message to the rider on a rejected document.
+  ///
+  /// In en, this message translates to:
+  /// **'Message from RideLink: {message}'**
+  String docRejectionMessage(String message);
 }
 
 class _AppLocalizationsDelegate

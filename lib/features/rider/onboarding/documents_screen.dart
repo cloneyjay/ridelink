@@ -166,9 +166,12 @@ class DocumentRow extends StatelessWidget {
       DocStatus.approved => (c.statusSuccess, c.forest100, Icons.check_circle),
       DocStatus.rejected => (c.statusError, c.statusErrorTint, Icons.error),
     };
+    final rejected = doc.status == DocStatus.rejected;
+    final reason = rejected ? docRejectionReason(l, doc) : null;
     final details = <String>[
-      if (doc.status == DocStatus.rejected && doc.rejectionReason != null)
-        l.docRejectedReason(doc.rejectionReason!),
+      if (reason != null) l.docRejectedReason(reason),
+      if (rejected && doc.rejectionMessage != null)
+        l.docRejectionMessage(doc.rejectionMessage!),
       if (doc.expiresOn != null) l.docExpiresOn(formatDate(l, doc.expiresOn!)),
       if (doc.status == DocStatus.pending && doc.current)
         l.docPendingStillValid,

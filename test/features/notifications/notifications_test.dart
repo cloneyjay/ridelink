@@ -41,6 +41,9 @@ void main() {
         'doc_type': 'police_clearance',
         'expired_on': '2026-10-01',
       },
+      'document_approved': {'doc_type': 'national_id'},
+      'document_rejected': {'doc_type': 'national_id', 'reason_code': 'blurry'},
+      'rider_verified': <String, Object>{},
     };
 
     test('every known type renders its own EN and SW text', () {
@@ -72,6 +75,99 @@ void main() {
         en,
       );
       expect(doc.title, en.notifDocumentExpiringTitle(en.docPsvInsurance, 1));
+    });
+
+    test('document review results name the document and reason', () {
+      for (final l in [en, sw]) {
+        final approved = notificationText(
+          notificationFixture(
+            type: 'document_approved',
+            data: const {'doc_type': 'driving_licence'},
+          ),
+          l,
+        );
+        expect(approved, (
+          title: l.notifDocumentApprovedTitle,
+          body: l.notifDocumentApprovedBody(l.docDrivingLicence),
+        ));
+        final rejected = notificationText(
+          notificationFixture(
+            type: 'document_rejected',
+            data: const {
+              'doc_type': 'bike_rear_photo',
+              'reason_code': 'unverifiable',
+            },
+          ),
+          l,
+        );
+        expect(rejected, (
+          title: l.notifDocumentRejectedTitle,
+          body: l.notifDocumentRejectedBody(
+            l.docBikeRearPhoto,
+            l.docRejectionSuspectedFake.replaceRange(
+              0,
+              1,
+              l.docRejectionSuspectedFake[0].toLowerCase(),
+            ),
+          ),
+        ));
+        final verified = notificationText(
+          notificationFixture(type: 'rider_verified', data: const {}),
+          l,
+        );
+        expect(verified, (
+          title: l.notifRiderVerifiedTitle,
+          body: l.notifRiderVerifiedBody,
+        ));
+      }
+      final blurry = notificationText(
+        notificationFixture(
+          type: 'document_rejected',
+          data: const {'doc_type': 'national_id', 'reason_code': 'blurry'},
+        ),
+        en,
+      );
+      expect(
+        blurry.body,
+        'Your ${en.docNationalId} was not approved: the photo is blurry or '
+        'hard to read. Please upload a new one.',
+      );
+      final blurrySw = notificationText(
+        notificationFixture(
+          type: 'document_rejected',
+          data: const {'doc_type': 'national_id', 'reason_code': 'blurry'},
+        ),
+        sw,
+      );
+      expect(blurrySw.body, contains(': picha haiko wazi'));
+    });
+
+    test('suspected_fake reads the same as unverifiable', () {
+      for (final l in [en, sw]) {
+        String body(String code) => notificationText(
+          notificationFixture(
+            type: 'document_rejected',
+            data: {'doc_type': 'national_id', 'reason_code': code},
+          ),
+          l,
+        ).body;
+        expect(body('suspected_fake'), body('unverifiable'));
+        expect(
+          body('unverifiable'),
+          contains(l.docRejectionSuspectedFake.substring(1)),
+        );
+      }
+    });
+
+    test('unknown rejection codes fall back to the server text', () {
+      final n = notificationText(
+        notificationFixture(
+          type: 'document_rejected',
+          data: const {'doc_type': 'national_id', 'reason_code': 'brand_new'},
+        ),
+        sw,
+      );
+      expect(n, (title: 'Server title', body: 'Server body'));
     });
 
     test('unknown types and missing data fall back to the server text', () {
@@ -223,6 +319,29 @@ void main() {
       await tapKeyAndSettle(tester, 'notification.d-1');
       expect(repo.readCalls, ['d-1']);
       expect(byKey('screen.riderDocuments'), findsOneWidget);
+    });
+
+    testWidgets('rider verified opens the verification status screen', (
+      tester,
+    ) async {
+      final repo = FakeNotificationRepository()
+        ..items = [
+          notificationFixture(
+            id: 'v-1',
+            type: 'rider_verified',
+            orderId: null,
+            data: const {},
+          ),
+        ];
+      await pumpBookingApp(
+        tester,
+        notifications: repo,
+        goTo: AppRoutes.notifications,
+      );
+      expect(find.text(l10nOf(tester).notifRiderVerifiedTitle), findsOneWidget);
+      await tapKeyAndSettle(tester, 'notification.v-1');
+      expect(repo.readCalls, ['v-1']);
+      expect(byKey('screen.riderVerification'), findsOneWidget);
     });
 
     testWidgets('empty and failed states', (tester) async {

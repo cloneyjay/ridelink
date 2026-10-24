@@ -121,6 +121,18 @@ void main() {
           title: en.pushDocumentTitle,
           body: en.pushDocumentBody,
         ),
+        'document_approved': (
+          title: en.notifDocumentApprovedTitle,
+          body: en.pushGenericBody,
+        ),
+        'document_rejected': (
+          title: en.notifDocumentRejectedTitle,
+          body: en.pushDocumentBody,
+        ),
+        'rider_verified': (
+          title: en.notifRiderVerifiedTitle,
+          body: en.notifRiderVerifiedBody,
+        ),
         'order.updated': (title: en.pushGenericTitle, body: en.pushGenericBody),
         'something.new': (title: en.pushGenericTitle, body: en.pushGenericBody),
       };

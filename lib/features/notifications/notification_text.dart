@@ -9,6 +9,10 @@ import 'data/notification_repository.dart';
 const _notPaidReceiverServerBody =
     "Your rider says the receiver didn't pay. Tell us if it was paid.";
 
+/// A reason text placed after a colon (none start with a proper noun).
+String _midSentence(String s) =>
+    s.isEmpty ? s : s[0].toLowerCase() + s.substring(1);
+
 /// Localized title and body by notification type; unknown types (or missing data) fall back to
 /// the server's English text.
 ({String title, String body}) notificationText(
@@ -106,6 +110,24 @@ const _notPaidReceiverServerBody =
         title: l.notifDocumentExpiredTitle(docLabel),
         body: l.notifDocumentExpiredBody,
       );
+    case documentApprovedType:
+      if (docLabel == null) return fallback;
+      return (
+        title: l.notifDocumentApprovedTitle,
+        body: l.notifDocumentApprovedBody(docLabel),
+      );
+    case documentRejectedType:
+      final code = RejectionCode.fromWire(data['reason_code'] as String?);
+      if (docLabel == null || code == null) return fallback;
+      return (
+        title: l.notifDocumentRejectedTitle,
+        body: l.notifDocumentRejectedBody(
+          docLabel,
+          _midSentence(rejectionReasonText(l, code)),
+        ),
+      );
+    case riderVerifiedType:
+      return (title: l.notifRiderVerifiedTitle, body: l.notifRiderVerifiedBody);
     default:
       return fallback;
   }

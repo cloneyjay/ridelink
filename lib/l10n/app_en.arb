@@ -3119,5 +3119,83 @@
   "payerPromptTitleReceiver": "Your rider says the receiver didn't pay. Was it paid?",
   "@payerPromptTitleReceiver": {
     "description": "Sender's Did you pay? prompt when the receiver was the payer."
+  },
+  "notifDocumentApprovedTitle": "Document approved",
+  "@notifDocumentApprovedTitle": {
+    "description": "Notification document_approved title."
+  },
+  "notifDocumentApprovedBody": "Your {doc} was approved.",
+  "@notifDocumentApprovedBody": {
+    "description": "Notification document_approved body.",
+    "placeholders": {
+      "doc": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDocumentRejectedTitle": "Document not approved",
+  "@notifDocumentRejectedTitle": {
+    "description": "Notification document_rejected title."
+  },
+  "notifDocumentRejectedBody": "Your {doc} was not approved: {reason}. Please upload a new one.",
+  "@notifDocumentRejectedBody": {
+    "description": "Notification document_rejected body; reason is a docRejection* text.",
+    "placeholders": {
+      "doc": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "notifRiderVerifiedTitle": "You're verified",
+  "@notifRiderVerifiedTitle": {
+    "description": "Notification rider_verified title."
+  },
+  "notifRiderVerifiedBody": "You can now go online and accept Delivery and Ride orders.",
+  "@notifRiderVerifiedBody": {
+    "description": "Notification rider_verified body."
+  },
+  "docRejectionBlurry": "The photo is blurry or hard to read",
+  "@docRejectionBlurry": {
+    "description": "Document rejection reason code blurry."
+  },
+  "docRejectionWrongDocument": "This is not the requested document",
+  "@docRejectionWrongDocument": {
+    "description": "Document rejection reason code wrong_document."
+  },
+  "docRejectionExpired": "This document has expired",
+  "@docRejectionExpired": {
+    "description": "Document rejection reason code expired."
+  },
+  "docRejectionNameMismatch": "The name doesn't match your ID",
+  "@docRejectionNameMismatch": {
+    "description": "Document rejection reason code name_mismatch."
+  },
+  "docRejectionDetailsMismatch": "The details don't match your registration (for example the plate)",
+  "@docRejectionDetailsMismatch": {
+    "description": "Document rejection reason code details_mismatch."
+  },
+  "docRejectionBikePhoto": "The bike photo must show the plate clearly and the bike in good condition",
+  "@docRejectionBikePhoto": {
+    "description": "Document rejection reason code bike_photo."
+  },
+  "docRejectionSuspectedFake": "We couldn't verify this document",
+  "@docRejectionSuspectedFake": {
+    "description": "Document rejection reason code suspected_fake (deliberately neutral)."
+  },
+  "docRejectionOther": "See the message from RideLink",
+  "@docRejectionOther": {
+    "description": "Document rejection reason code other."
+  },
+  "docRejectionMessage": "Message from RideLink: {message}",
+  "@docRejectionMessage": {
+    "description": "Documents screen: the reviewer's message to the rider on a rejected document.",
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
   }
 }

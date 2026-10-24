@@ -25,6 +25,12 @@ class PushNavigator {
   final SessionFlags flags;
 
   Future<void> open(PushPayload p) async {
+    final riderScreen = riderScreenFor(p.type);
+    if (riderScreen != null) {
+      // Nested under rider home, so back returns there.
+      router.go(riderScreen);
+      return;
+    }
     final orderId = p.orderId;
     if (orderId == null) return;
     if (p.isOffer ||

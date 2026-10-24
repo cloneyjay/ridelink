@@ -3114,5 +3114,83 @@
   "payerPromptTitleReceiver": "Mwendesha boda wako anasema mpokeaji hakulipa. Je, ililipwa?",
   "@payerPromptTitleReceiver": {
     "x-review": "needs-review"
+  },
+  "notifDocumentApprovedTitle": "Hati imeidhinishwa",
+  "@notifDocumentApprovedTitle": {
+    "x-review": "needs-review"
+  },
+  "notifDocumentApprovedBody": "{doc} yako imeidhinishwa.",
+  "@notifDocumentApprovedBody": {
+    "placeholders": {
+      "doc": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "notifDocumentRejectedTitle": "Hati haijaidhinishwa",
+  "@notifDocumentRejectedTitle": {
+    "x-review": "needs-review"
+  },
+  "notifDocumentRejectedBody": "{doc} yako haijaidhinishwa: {reason}. Tafadhali pakia nyingine mpya.",
+  "@notifDocumentRejectedBody": {
+    "placeholders": {
+      "doc": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "notifRiderVerifiedTitle": "Umethibitishwa",
+  "@notifRiderVerifiedTitle": {
+    "x-review": "needs-review"
+  },
+  "notifRiderVerifiedBody": "Sasa unaweza kuingia mtandaoni na kukubali oda za mizigo na abiria.",
+  "@notifRiderVerifiedBody": {
+    "x-review": "needs-review"
+  },
+  "docRejectionBlurry": "Picha haiko wazi au ni ngumu kusoma",
+  "@docRejectionBlurry": {
+    "x-review": "needs-review"
+  },
+  "docRejectionWrongDocument": "Hii si hati iliyoombwa",
+  "@docRejectionWrongDocument": {
+    "x-review": "needs-review"
+  },
+  "docRejectionExpired": "Hati hii imeisha muda",
+  "@docRejectionExpired": {
+    "x-review": "needs-review"
+  },
+  "docRejectionNameMismatch": "Jina halilingani na kitambulisho chako",
+  "@docRejectionNameMismatch": {
+    "x-review": "needs-review"
+  },
+  "docRejectionDetailsMismatch": "Maelezo hayalingani na usajili wako (kwa mfano nambari ya usajili)",
+  "@docRejectionDetailsMismatch": {
+    "x-review": "needs-review"
+  },
+  "docRejectionBikePhoto": "Picha ya pikipiki lazima ionyeshe nambari ya usajili waziwazi na pikipiki ikiwa katika hali nzuri",
+  "@docRejectionBikePhoto": {
+    "x-review": "needs-review"
+  },
+  "docRejectionSuspectedFake": "Hatukuweza kuthibitisha hati hii",
+  "@docRejectionSuspectedFake": {
+    "x-review": "needs-review"
+  },
+  "docRejectionOther": "Angalia ujumbe kutoka RideLink",
+  "@docRejectionOther": {
+    "x-review": "needs-review"
+  },
+  "docRejectionMessage": "Ujumbe kutoka RideLink: {message}",
+  "@docRejectionMessage": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
   }
 }

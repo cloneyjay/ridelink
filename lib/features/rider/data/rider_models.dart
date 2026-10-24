@@ -45,11 +45,40 @@ enum DocStatus {
   );
 }
 
+/// Fixed reason codes an admin picks when rejecting a document.
+enum RejectionCode {
+  blurry('blurry'),
+  wrongDocument('wrong_document'),
+  expired('expired'),
+  nameMismatch('name_mismatch'),
+  detailsMismatch('details_mismatch'),
+  bikePhoto('bike_photo'),
+
+  /// What riders receive in place of `suspected_fake`.
+  unverifiable('unverifiable'),
+
+  /// Admin-only; mapped to the same neutral text if it ever reaches the app.
+  suspectedFake('suspected_fake'),
+  other('other');
+
+  const RejectionCode(this.wire);
+  final String wire;
+
+  static RejectionCode? fromWire(String? value) {
+    for (final c in values) {
+      if (c.wire == value) return c;
+    }
+    return null;
+  }
+}
+
 class DocumentState {
   const DocumentState({
     required this.type,
     required this.status,
     this.rejectionReason,
+    this.rejectionCode,
+    this.rejectionMessage,
     this.expiresOn,
     this.current = false,
   });
@@ -58,6 +87,11 @@ class DocumentState {
     type: DocType.fromWire(json['doc_type'] as String?) ?? DocType.riderPhoto,
     status: DocStatus.fromWire(json['status'] as String?),
     rejectionReason: json['rejection_reason'] as String?,
+    rejectionCode: RejectionCode.fromWire(json['rejection_code'] as String?),
+    rejectionMessage: switch (json['rejection_message']) {
+      final String m when m.trim().isNotEmpty => m.trim(),
+      _ => null,
+    },
     expiresOn: json['expires_on'] is String
         ? DateTime.tryParse(json['expires_on'] as String)
         : null,
@@ -67,6 +101,12 @@ class DocumentState {
   final DocType type;
   final DocStatus status;
   final String? rejectionReason;
+
+  /// Null when absent or a code this build doesn't know.
+  final RejectionCode? rejectionCode;
+
+  /// RideLink's own note to the rider, if any.
+  final String? rejectionMessage;
 
   /// Calendar date (no time).
   final DateTime? expiresOn;

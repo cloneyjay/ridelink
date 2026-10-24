@@ -127,6 +127,67 @@ void main() {
       expect(cont.onPressed, isNull);
     });
 
+    testWidgets('rejection codes show localized reasons and the message', (
+      tester,
+    ) async {
+      tester.view.physicalSize = const Size(1200, 4000);
+      tester.view.devicePixelRatio = 1.5;
+      addTearDown(tester.view.reset);
+      final coded = verificationFixture(
+        status: VerificationStatus.pending,
+        overrides: {
+          DocType.nationalId: const DocumentState(
+            type: DocType.nationalId,
+            status: DocStatus.rejected,
+            rejectionReason: 'Suspected forgery',
+            rejectionCode: RejectionCode.unverifiable,
+          ),
+          DocType.bikeRearPhoto: const DocumentState(
+            type: DocType.bikeRearPhoto,
+            status: DocStatus.rejected,
+            rejectionReason: 'Other',
+            rejectionCode: RejectionCode.other,
+            rejectionMessage: 'Please show the whole plate.',
+          ),
+          DocType.psvInsurance: const DocumentState(
+            type: DocType.psvInsurance,
+            status: DocStatus.rejected,
+            rejectionReason: 'Certificate is blurry',
+          ),
+        },
+      );
+      await pumpBookingApp(
+        tester,
+        riderRepo: FakeRiderRepository(verification: coded),
+        goTo: AppRoutes.riderDocuments,
+      );
+      final l = l10nOf(tester);
+      expect(
+        find.text(l.docRejectedReason(l.docRejectionSuspectedFake)),
+        findsOneWidget,
+      );
+      expect(find.textContaining('forgery'), findsNothing);
+      expect(
+        find.text(l.docRejectedReason(l.docRejectionOther)),
+        findsOneWidget,
+      );
+      expect(
+        find.text(l.docRejectionMessage('Please show the whole plate.')),
+        findsOneWidget,
+      );
+      expect(
+        find.text(l.docRejectedReason('Certificate is blurry')),
+        findsOneWidget,
+      );
+      expect(
+        find.descendant(
+          of: byKey('documents.row.national_id'),
+          matching: find.text(l.docReplaceAction),
+        ),
+        findsOneWidget,
+      );
+    });
+
     testWidgets('uploads a document from the gallery and refreshes', (
       tester,
     ) async {

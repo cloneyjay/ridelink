@@ -152,6 +152,35 @@ void main() {
       expect(a.offer!.distanceKm, 4.8);
     });
 
+    test('documents parse rejection code and message', () {
+      DocumentState doc(Map<String, dynamic> extra) => DocumentState.fromJson({
+        'doc_type': 'bike_rear_photo',
+        'status': 'rejected',
+        'rejection_reason': 'Server text',
+        ...extra,
+      });
+      final known = doc({
+        'rejection_code': 'suspected_fake',
+        'rejection_message': '  Please retake in daylight. ',
+      });
+      expect(known.rejectionCode, RejectionCode.suspectedFake);
+      expect(
+        doc({'rejection_code': 'unverifiable'}).rejectionCode,
+        RejectionCode.unverifiable,
+      );
+      expect(known.rejectionMessage, 'Please retake in daylight.');
+      final unknown = doc({
+        'rejection_code': 'brand_new',
+        'rejection_message': ' ',
+      });
+      expect(unknown.rejectionCode, isNull);
+      expect(unknown.rejectionMessage, isNull);
+      expect(unknown.rejectionReason, 'Server text');
+      for (final c in RejectionCode.values) {
+        expect(RejectionCode.fromWire(c.wire), c);
+      }
+    });
+
     test('verification tracks submission and documents not in force', () {
       final v = verificationFixture(
         overrides: {

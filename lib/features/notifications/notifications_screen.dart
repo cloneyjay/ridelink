@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/providers.dart';
+import '../../core/push/push_payload.dart';
 import '../../core/routing/app_router.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
@@ -71,12 +72,13 @@ class NotificationsScreen extends ConsumerStatefulWidget {
 class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
   String? _opening;
 
-  /// Marks read, then deep-links: documents for document notices, else the order.
+  /// Marks read, then deep-links: the rider screen for document/verification notices, else the order.
   Future<void> _open(AppNotification n) async {
     if (_opening != null) return;
     ref.read(notificationsProvider.notifier).markRead(n.id);
-    if (n.type.startsWith('document_')) {
-      context.push(AppRoutes.riderDocuments);
+    final riderScreen = riderScreenFor(n.type);
+    if (riderScreen != null) {
+      context.push(riderScreen);
       return;
     }
     final orderId = n.orderId;
@@ -223,7 +225,7 @@ class _NotificationTile extends StatelessWidget {
                     color: c.brand500,
                   ),
                 )
-              else if (n.orderId != null || n.type.startsWith('document_'))
+              else if (n.orderId != null || riderScreenFor(n.type) != null)
                 Icon(Icons.chevron_right, color: c.inkFaint),
             ],
           ),

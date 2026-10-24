@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '../routing/app_router.dart';
+
 /// Push types that wake a rider for a time-limited offer (high-importance channel).
 const offerReceivedType = 'offer.received';
 
@@ -12,8 +14,22 @@ const paymentTimeoutRiderType = 'payment_timeout_closed';
 /// Sender: the payment timeout completed the order.
 const paymentTimeoutSenderType = 'order_completed';
 
+/// Rider document review results (no order); data: doc_type, and reason_code when rejected.
+const documentApprovedType = 'document_approved';
+const documentRejectedType = 'document_rejected';
+
+/// Rider: every required document is approved.
+const riderVerifiedType = 'rider_verified';
+
 /// Push types meant for the rider side, opened there whatever mode the app is in.
 const riderPushTypes = {paymentReminderType, paymentTimeoutRiderType};
+
+/// Rider notifications without an order and the rider screen they open (nested under rider home).
+String? riderScreenFor(String type) {
+  if (type == riderVerifiedType) return AppRoutes.riderVerification;
+  if (type.startsWith('document_')) return AppRoutes.riderDocuments;
+  return null;
+}
 
 /// A data-only push: `{"type","order_id","notification_id"}`. It never carries RideLink data;
 /// the app fetches everything from the Go server after it opens.

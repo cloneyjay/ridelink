@@ -83,5 +83,18 @@ PushChannel pushChannelFor(PushPayload p) =>
         title: l.pushDocumentTitle,
         body: l.pushDocumentBody,
       ),
+      // Pushes carry no doc_type, so the document can't be named here.
+      documentApprovedType => (
+        title: l.notifDocumentApprovedTitle,
+        body: l.pushGenericBody,
+      ),
+      documentRejectedType => (
+        title: l.notifDocumentRejectedTitle,
+        body: l.pushDocumentBody,
+      ),
+      riderVerifiedType => (
+        title: l.notifRiderVerifiedTitle,
+        body: l.notifRiderVerifiedBody,
+      ),
       _ => (title: l.pushGenericTitle, body: l.pushGenericBody),
     };

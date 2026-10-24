@@ -2391,4 +2391,58 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get payerPromptTitleReceiver =>
       'Your rider says the receiver didn\'t pay. Was it paid?';
+
+  @override
+  String get notifDocumentApprovedTitle => 'Document approved';
+
+  @override
+  String notifDocumentApprovedBody(String doc) {
+    return 'Your $doc was approved.';
+  }
+
+  @override
+  String get notifDocumentRejectedTitle => 'Document not approved';
+
+  @override
+  String notifDocumentRejectedBody(String doc, String reason) {
+    return 'Your $doc was not approved: $reason. Please upload a new one.';
+  }
+
+  @override
+  String get notifRiderVerifiedTitle => 'You\'re verified';
+
+  @override
+  String get notifRiderVerifiedBody =>
+      'You can now go online and accept Delivery and Ride orders.';
+
+  @override
+  String get docRejectionBlurry => 'The photo is blurry or hard to read';
+
+  @override
+  String get docRejectionWrongDocument => 'This is not the requested document';
+
+  @override
+  String get docRejectionExpired => 'This document has expired';
+
+  @override
+  String get docRejectionNameMismatch => 'The name doesn\'t match your ID';
+
+  @override
+  String get docRejectionDetailsMismatch =>
+      'The details don\'t match your registration (for example the plate)';
+
+  @override
+  String get docRejectionBikePhoto =>
+      'The bike photo must show the plate clearly and the bike in good condition';
+
+  @override
+  String get docRejectionSuspectedFake => 'We couldn\'t verify this document';
+
+  @override
+  String get docRejectionOther => 'See the message from RideLink';
+
+  @override
+  String docRejectionMessage(String message) {
+    return 'Message from RideLink: $message';
+  }
 }

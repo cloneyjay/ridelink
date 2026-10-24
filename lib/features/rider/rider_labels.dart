@@ -30,6 +30,24 @@ String docStatusLabel(AppLocalizations l, DocStatus s) => switch (s) {
   DocStatus.rejected => l.docStatusRejected,
 };
 
+String rejectionReasonText(AppLocalizations l, RejectionCode c) => switch (c) {
+  RejectionCode.blurry => l.docRejectionBlurry,
+  RejectionCode.wrongDocument => l.docRejectionWrongDocument,
+  RejectionCode.expired => l.docRejectionExpired,
+  RejectionCode.nameMismatch => l.docRejectionNameMismatch,
+  RejectionCode.detailsMismatch => l.docRejectionDetailsMismatch,
+  RejectionCode.bikePhoto => l.docRejectionBikePhoto,
+  RejectionCode.unverifiable ||
+  RejectionCode.suspectedFake => l.docRejectionSuspectedFake,
+  RejectionCode.other => l.docRejectionOther,
+};
+
+/// Localized reason for the code; unknown codes fall back to the server's English text.
+String? docRejectionReason(AppLocalizations l, DocumentState d) {
+  final code = d.rejectionCode;
+  return code == null ? d.rejectionReason : rejectionReasonText(l, code);
+}
+
 /// "14 Oct 2026" in the app's locale.
 String formatDate(AppLocalizations l, DateTime d) =>
     DateFormat.yMMMd(l.localeName).format(d);
