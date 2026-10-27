@@ -13,7 +13,7 @@ import 'package:ridelink/core/auth/session_manager.dart';
 import 'package:ridelink/core/config/app_config.dart';
 import 'package:ridelink/core/location/geo_point.dart';
 import 'package:ridelink/core/location/location_service.dart';
-import 'package:ridelink/core/maps/maps_config.dart';
+import 'package:ridelink/core/map/ridelink_map.dart';
 import 'package:ridelink/core/navigation/url_opener.dart';
 import 'package:ridelink/core/mode/app_mode.dart';
 import 'package:ridelink/core/providers.dart';
@@ -433,15 +433,6 @@ class FakeLocationService implements LocationService {
   Future<void> openLocationSettings() async => locationSettingsOpened++;
 }
 
-class FakeMapsConfig implements MapsConfig {
-  FakeMapsConfig({this.hasKey = false});
-
-  final bool hasKey;
-
-  @override
-  Future<bool> hasMapsKey() async => hasKey;
-}
-
 class BookingHarness {
   BookingHarness({
     required this.router,
@@ -518,6 +509,7 @@ Future<BookingHarness> pumpBookingApp(
   Object? extra,
   bool settle = true,
   List<Override> extraOverrides = const [],
+  MapEngine? mapEngine,
 }) async {
   final config = AppConfig(apiBaseUrl: Uri.parse('http://test.local'));
   final adapter = FakeAdapter(
@@ -577,7 +569,7 @@ Future<BookingHarness> pumpBookingApp(
         bookingRepositoryProvider.overrideWithValue(harness.repo),
         accountRepositoryProvider.overrideWithValue(harness.account),
         locationServiceProvider.overrideWithValue(harness.location),
-        mapsConfigProvider.overrideWithValue(FakeMapsConfig()),
+        mapEngineProvider.overrideWithValue(mapEngine),
         realtimeEventsProvider.overrideWith((ref) => events.stream),
         riderRepositoryProvider.overrideWithValue(harness.riderRepo),
         locationTrackerProvider.overrideWithValue(harness.tracker),

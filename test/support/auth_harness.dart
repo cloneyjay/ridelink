@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:ridelink/core/auth/auth_api.dart';
 import 'package:ridelink/core/auth/session_manager.dart';
 import 'package:ridelink/core/config/app_config.dart';
+import 'package:ridelink/core/map/ridelink_map.dart';
 import 'package:ridelink/core/navigation/url_opener.dart';
 import 'package:ridelink/core/providers.dart';
 import 'package:ridelink/core/routing/app_router.dart';
@@ -94,6 +95,7 @@ Future<AuthHarness> pumpAuthApp(
       overrides: [
         appConfigProvider.overrideWithValue(config),
         authApiProvider.overrideWithValue(authApi),
+        mapEngineProvider.overrideWithValue(null),
         sessionManagerProvider.overrideWithValue(session),
         googleAuthProvider.overrideWithValue(googleAuth),
         riderIntentProvider.overrideWithValue(intent),

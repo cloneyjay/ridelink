@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart' as gmaps;
 
 import '../../core/location/geo_point.dart';
+import '../../core/map/map_config.dart';
+import '../../core/map/ridelink_map.dart';
 import '../../core/mode/app_mode.dart';
 import '../../core/location/location_service.dart';
 import '../../core/providers.dart';
@@ -180,73 +181,43 @@ class _SenderHomeScreenState extends ConsumerState<SenderHomeScreen>
   }
 }
 
-class _MapArea extends ConsumerStatefulWidget {
+class _MapArea extends StatefulWidget {
   const _MapArea({required this.point});
 
   final GeoPoint? point;
 
   @override
-  ConsumerState<_MapArea> createState() => _MapAreaState();
+  State<_MapArea> createState() => _MapAreaState();
 }
 
-class _MapAreaState extends ConsumerState<_MapArea> {
-  // Nairobi CBD until the sender's own position is known.
-  static const _fallback = gmaps.LatLng(-1.2864, 36.8172);
-  gmaps.GoogleMapController? _controller;
+class _MapAreaState extends State<_MapArea> {
+  RideLinkMapController? _controller;
 
   @override
   void didUpdateWidget(_MapArea old) {
     super.didUpdateWidget(old);
     final p = widget.point;
     if (p != null && p != old.point) {
-      _controller?.animateCamera(
-        gmaps.CameraUpdate.newLatLngZoom(gmaps.LatLng(p.lat, p.lng), 15),
-      );
+      unawaited(_controller?.moveTo(p, zoom: 15));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final hasKey = ref.watch(hasMapsKeyProvider).value ?? false;
-    if (!hasKey) return const MapPlaceholder();
     final p = widget.point;
-    return gmaps.GoogleMap(
-      initialCameraPosition: gmaps.CameraPosition(
-        target: p == null ? _fallback : gmaps.LatLng(p.lat, p.lng),
-        zoom: p == null ? 12 : 15,
-      ),
-      myLocationEnabled: p != null,
-      myLocationButtonEnabled: false,
-      zoomControlsEnabled: false,
-      mapToolbarEnabled: false,
-      onMapCreated: (c) => _controller = c,
-    );
-  }
-}
-
-/// Shown instead of the map when the build has no Maps key.
-class MapPlaceholder extends StatelessWidget {
-  const MapPlaceholder({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return ColoredBox(
-      key: const Key('home.mapPlaceholder'),
-      color: c.surfaceSunken,
-      child: Align(
-        alignment: const Alignment(0, -0.4),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.map_outlined, size: AppSpacing.s12, color: c.inkFaint),
-            const SizedBox(height: AppSpacing.s2),
-            Text(
-              AppLocalizations.of(context).mapUnavailable,
-              style: AppTextStyles.bodySm.copyWith(color: c.inkMuted),
-            ),
-          ],
-        ),
+    final top = MediaQuery.paddingOf(context).top;
+    return RideLinkMap(
+      key: const Key('home.map'),
+      initialCenter: p ?? MapConfig.fallbackCenter,
+      initialZoom: p == null ? 12 : 15,
+      showMyLocation: p != null,
+      onCreated: (c) => _controller = c,
+      // Below the menu and bell row; the bottom sheet covers the map's lower edge.
+      attributionAlignment: AlignmentDirectional.topEnd,
+      attributionPadding: EdgeInsets.only(
+        top: top + AppLayout.screenPadding + AppLayout.minTapTarget,
+        right: AppLayout.screenPadding - AppSpacing.s1,
+        left: AppLayout.screenPadding - AppSpacing.s1,
       ),
     );
   }

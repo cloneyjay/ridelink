@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/map/ridelink_map.dart' show PoweredByGeoapify;
 import '../../core/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
@@ -176,31 +177,39 @@ class _PlaceSearchScreenState extends ConsumerState<PlaceSearchScreen> {
           onAction: () => _onChanged(_controller.text),
         );
       case _Phase.results:
-        return ListView.separated(
-          itemCount: _results.length,
-          separatorBuilder: (_, _) => const Divider(),
-          itemBuilder: (context, i) {
-            final p = _results[i];
-            return ListTile(
-              key: Key('placeSearch.result.${p.placeId}'),
-              minTileHeight: AppLayout.minTapTarget,
-              leading: Icon(Icons.location_on_outlined, color: c.inkMuted),
-              title: Text(
-                p.primaryText,
-                style: AppTextStyles.body.copyWith(color: c.ink),
-              ),
-              subtitle: p.secondaryText.isEmpty
-                  ? null
-                  : Text(
-                      p.secondaryText,
-                      style: AppTextStyles.bodySm.copyWith(color: c.inkMuted),
-                    ),
-              onTap: _selecting ? null : () => _select(p),
-            );
-          },
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(child: _resultList(c)),
+            const PoweredByGeoapify(),
+          ],
         );
     }
   }
+
+  Widget _resultList(AppColors c) => ListView.separated(
+    itemCount: _results.length,
+    separatorBuilder: (_, _) => const Divider(),
+    itemBuilder: (context, i) {
+      final p = _results[i];
+      return ListTile(
+        key: Key('placeSearch.result.${p.placeId}'),
+        minTileHeight: AppLayout.minTapTarget,
+        leading: Icon(Icons.location_on_outlined, color: c.inkMuted),
+        title: Text(
+          p.primaryText,
+          style: AppTextStyles.body.copyWith(color: c.ink),
+        ),
+        subtitle: p.secondaryText.isEmpty
+            ? null
+            : Text(
+                p.secondaryText,
+                style: AppTextStyles.bodySm.copyWith(color: c.inkMuted),
+              ),
+        onTap: _selecting ? null : () => _select(p),
+      );
+    },
+  );
 
   Widget _hint(String text, IconData icon) => Padding(
     key: const Key('placeSearch.hint'),

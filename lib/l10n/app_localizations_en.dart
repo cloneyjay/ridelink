@@ -2792,4 +2792,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get idNumberReceived => 'ID number received';
+
+  @override
+  String get mapAttribution =>
+      '© OpenFreeMap © OpenMapTiles © OpenStreetMap contributors';
+
+  @override
+  String get placeSearchPoweredBy => 'Powered by Geoapify';
 }

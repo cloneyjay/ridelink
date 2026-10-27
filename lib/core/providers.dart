@@ -21,7 +21,6 @@ import 'files/document_picker.dart';
 import 'files/evidence_camera.dart';
 import 'location/location_service.dart';
 import 'location/location_tracker.dart';
-import 'maps/maps_config.dart';
 import 'mode/app_mode.dart';
 import 'navigation/navigation_launcher.dart';
 import 'push/push_preferences.dart';
@@ -154,13 +153,6 @@ final accountRepositoryProvider = Provider<AccountRepository>(
 
 final locationServiceProvider = Provider<LocationService>(
   (ref) => GeolocatorLocationService(),
-);
-
-final mapsConfigProvider = Provider<MapsConfig>((ref) => PlatformMapsConfig());
-
-final hasMapsKeyProvider = FutureProvider<bool>(
-  (ref) => ref.watch(mapsConfigProvider).hasMapsKey(),
-  retry: (_, _) => null,
 );
 
 /// Whether the signed-in user has a rider profile; re-checked whenever the session changes.

@@ -4,12 +4,13 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart' as gmaps;
 
 import '../../core/api/api_exception.dart';
 import '../../core/errors/error_messages.dart';
 import '../../core/format/money.dart';
 import '../../core/location/geo_point.dart';
+import '../../core/map/map_config.dart';
+import '../../core/map/ridelink_map.dart';
 import '../../core/providers.dart';
 import '../../core/realtime/realtime_event.dart';
 import '../../core/routing/app_router.dart';
@@ -24,7 +25,6 @@ import '../booking/widgets/booking_widgets.dart';
 import '../common/confirm_dialog.dart';
 import '../evidence/data/evidence_models.dart';
 import '../evidence/photo_evidence_card.dart';
-import '../home/sender_home_screen.dart' show MapPlaceholder;
 import '../notifications/notifications_screen.dart';
 import '../orders/data/order_models.dart';
 import '../orders/order_providers.dart';
@@ -638,51 +638,29 @@ class StepProgress extends StatelessWidget {
   }
 }
 
-class _TrackingMap extends ConsumerWidget {
+class _TrackingMap extends StatelessWidget {
   const _TrackingMap({required this.order, required this.rider});
 
   final Order order;
   final GeoPoint? rider;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final hasKey = ref.watch(hasMapsKeyProvider).value ?? false;
-    if (!hasKey) return const MapPlaceholder();
-    gmaps.LatLng ll(GeoPoint p) => gmaps.LatLng(p.lat, p.lng);
+  Widget build(BuildContext context) {
     final pickup = order.pickupLocation;
     final dropoff = order.dropoffLocation;
     final center = rider ?? pickup ?? dropoff;
-    return gmaps.GoogleMap(
+    return RideLinkMap(
       key: const Key('tracking.map'),
-      initialCameraPosition: gmaps.CameraPosition(
-        target: center == null
-            ? const gmaps.LatLng(-1.2864, 36.8172)
-            : ll(center),
-        zoom: 14,
-      ),
-      myLocationButtonEnabled: false,
-      zoomControlsEnabled: false,
-      mapToolbarEnabled: false,
-      markers: {
+      initialCenter: center ?? MapConfig.fallbackCenter,
+      initialZoom: 14,
+      markers: [
         if (pickup != null)
-          gmaps.Marker(
-            markerId: const gmaps.MarkerId('pickup'),
-            position: ll(pickup),
-          ),
+          MapMarker(id: 'pickup', point: pickup, kind: MapMarkerKind.pickup),
         if (dropoff != null)
-          gmaps.Marker(
-            markerId: const gmaps.MarkerId('dropoff'),
-            position: ll(dropoff),
-          ),
+          MapMarker(id: 'dropoff', point: dropoff, kind: MapMarkerKind.dropoff),
         if (rider != null)
-          gmaps.Marker(
-            markerId: const gmaps.MarkerId('rider'),
-            position: ll(rider!),
-            icon: gmaps.BitmapDescriptor.defaultMarkerWithHue(
-              gmaps.BitmapDescriptor.hueAzure,
-            ),
-          ),
-      },
+          MapMarker(id: 'rider', point: rider!, kind: MapMarkerKind.rider),
+      ],
     );
   }
 }

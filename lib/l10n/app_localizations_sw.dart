@@ -2811,4 +2811,11 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get idNumberReceived => 'Nambari ya kitambulisho imepokelewa';
+
+  @override
+  String get mapAttribution =>
+      '© OpenFreeMap © OpenMapTiles © OpenStreetMap contributors';
+
+  @override
+  String get placeSearchPoweredBy => 'Powered by Geoapify';
 }

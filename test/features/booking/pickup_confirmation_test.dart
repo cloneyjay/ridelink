@@ -281,7 +281,7 @@ void main() {
       expect(pickup.location, westlands.location);
     });
 
-    testWidgets('ride copy; no map key shows the placeholder, no helper', (
+    testWidgets('ride copy; no map engine shows the placeholder, no helper', (
       tester,
     ) async {
       await open(tester, ServiceType.ride);

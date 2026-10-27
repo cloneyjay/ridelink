@@ -2,16 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart' as gmaps;
 
 import '../../core/location/geo_point.dart';
+import '../../core/map/ridelink_map.dart';
 import '../../core/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_dimensions.dart';
 import '../../theme/app_shadows.dart';
 import '../../theme/app_text_styles.dart';
-import '../home/sender_home_screen.dart' show MapPlaceholder;
 import 'booking_labels.dart';
 import 'data/booking_models.dart';
 import 'default_pickup.dart';
@@ -49,8 +48,7 @@ class ConfirmPickupScreen extends ConsumerStatefulWidget {
 
 class ConfirmPickupScreenState extends ConsumerState<ConfirmPickupScreen> {
   late Place _place = widget.initial;
-  gmaps.GoogleMapController? _map;
-  GeoPoint? _center;
+  RideLinkMapController? _map;
   Timer? _debounce;
   int _seq = 0;
   bool _resolving = false;
@@ -112,19 +110,13 @@ class ConfirmPickupScreenState extends ConsumerState<ConfirmPickupScreen> {
       _place = place;
       _resolving = false;
     });
-    unawaited(
-      _map?.animateCamera(
-        gmaps.CameraUpdate.newLatLng(
-          gmaps.LatLng(place.location.lat, place.location.lng),
-        ),
-      ),
-    );
+    unawaited(_map?.moveTo(place.location));
   }
 
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final hasMap = ref.watch(hasMapsKeyProvider).value ?? false;
+    final hasMap = ref.watch(mapAvailableProvider);
     final accent = serviceAccent(c, widget.service);
     return Scaffold(
       key: const Key('screen.confirmPickup'),
@@ -170,24 +162,12 @@ class ConfirmPickupScreenState extends ConsumerState<ConfirmPickupScreen> {
   }
 
   Widget _mapView() {
-    final p = widget.initial.location;
-    return gmaps.GoogleMap(
-      initialCameraPosition: gmaps.CameraPosition(
-        target: gmaps.LatLng(p.lat, p.lng),
-        zoom: 17,
-      ),
-      myLocationButtonEnabled: false,
-      zoomControlsEnabled: false,
-      mapToolbarEnabled: false,
-      onMapCreated: (controller) => _map = controller,
-      onCameraMove: (position) => _center = GeoPoint(
-        position.target.latitude,
-        position.target.longitude,
-      ),
-      onCameraIdle: () {
-        final center = _center;
-        if (center != null) handleCameraIdle(center);
-      },
+    return RideLinkMap(
+      key: const Key('confirmPickup.map'),
+      initialCenter: widget.initial.location,
+      initialZoom: 17,
+      onCreated: (controller) => _map = controller,
+      onCameraIdle: handleCameraIdle,
     );
   }
 }

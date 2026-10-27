@@ -3649,5 +3649,13 @@
   "idNumberReceived": "Nambari ya kitambulisho imepokelewa",
   "@idNumberReceived": {
     "x-review": "needs-review"
+  },
+  "mapAttribution": "© OpenFreeMap © OpenMapTiles © OpenStreetMap contributors",
+  "@mapAttribution": {
+    "x-review": "needs-review"
+  },
+  "placeSearchPoweredBy": "Powered by Geoapify",
+  "@placeSearchPoweredBy": {
+    "x-review": "needs-review"
   }
 }

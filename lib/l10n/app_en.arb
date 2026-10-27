@@ -302,7 +302,7 @@
   },
   "mapUnavailable": "Map preview unavailable",
   "@mapUnavailable": {
-    "description": "Placeholder when the app has no Maps key."
+    "description": "Placeholder where the map cannot be shown on this device."
   },
   "locationDeniedTitle": "Location is off",
   "@locationDeniedTitle": {
@@ -3654,5 +3654,13 @@
   "idNumberReceived": "ID number received",
   "@idNumberReceived": {
     "description": "Documents screen: the national ID number is on file (not a verification)."
+  },
+  "mapAttribution": "© OpenFreeMap © OpenMapTiles © OpenStreetMap contributors",
+  "@mapAttribution": {
+    "description": "Required map tile credit, always visible on every map. Legal attribution text: keep names as written."
+  },
+  "placeSearchPoweredBy": "Powered by Geoapify",
+  "@placeSearchPoweredBy": {
+    "description": "Required credit for the place search provider, shown under search results."
   }
 }

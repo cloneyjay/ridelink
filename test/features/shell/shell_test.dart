@@ -90,7 +90,7 @@ void main() {
   });
 
   group('sender home (screen 2)', () {
-    testWidgets('no Maps key renders the placeholder; services offered', (
+    testWidgets('no map engine renders the placeholder; services offered', (
       tester,
     ) async {
       final h = await pumpBookingApp(tester);

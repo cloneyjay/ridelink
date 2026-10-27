@@ -518,7 +518,7 @@ abstract class AppLocalizations {
   /// **'Get a boda ride'**
   String get serviceRideSubtitle;
 
-  /// Placeholder when the app has no Maps key.
+  /// Placeholder where the map cannot be shown on this device.
   ///
   /// In en, this message translates to:
   /// **'Map preview unavailable'**
@@ -5029,6 +5029,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'ID number received'**
   String get idNumberReceived;
+
+  /// Required map tile credit, always visible on every map. Legal attribution text: keep names as written.
+  ///
+  /// In en, this message translates to:
+  /// **'© OpenFreeMap © OpenMapTiles © OpenStreetMap contributors'**
+  String get mapAttribution;
+
+  /// Required credit for the place search provider, shown under search results.
+  ///
+  /// In en, this message translates to:
+  /// **'Powered by Geoapify'**
+  String get placeSearchPoweredBy;
 }
 
 class _AppLocalizationsDelegate

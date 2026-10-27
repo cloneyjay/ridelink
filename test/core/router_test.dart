@@ -9,6 +9,7 @@ import 'package:ridelink/core/auth/auth_api.dart';
 import 'package:ridelink/core/auth/session.dart';
 import 'package:ridelink/core/auth/session_manager.dart';
 import 'package:ridelink/core/config/app_config.dart';
+import 'package:ridelink/core/map/ridelink_map.dart';
 import 'package:ridelink/core/providers.dart';
 import 'package:ridelink/core/routing/app_router.dart';
 import 'package:ridelink/core/routing/rider_intent.dart';
@@ -76,6 +77,7 @@ void main() {
         appConfigProvider.overrideWithValue(config),
         sessionManagerProvider.overrideWithValue(session),
         riderIntentProvider.overrideWithValue(intent),
+        mapEngineProvider.overrideWithValue(null),
         googleAuthProvider.overrideWithValue(
           FakeGoogleAuth(isConfigured: false),
         ),

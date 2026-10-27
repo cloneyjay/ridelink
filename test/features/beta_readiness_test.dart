@@ -7,6 +7,7 @@ import 'package:ridelink/core/auth/auth_api.dart';
 import 'package:ridelink/core/auth/session.dart';
 import 'package:ridelink/core/auth/session_manager.dart';
 import 'package:ridelink/core/config/app_config.dart';
+import 'package:ridelink/core/map/ridelink_map.dart';
 import 'package:ridelink/core/mode/app_mode.dart';
 import 'package:ridelink/core/navigation/url_opener.dart';
 import 'package:ridelink/core/providers.dart';
@@ -285,6 +286,7 @@ void main() {
           overrides: [
             appConfigProvider.overrideWithValue(appConfig),
             sessionManagerProvider.overrideWithValue(session),
+            mapEngineProvider.overrideWithValue(null),
             accountRepositoryProvider.overrideWithValue(account),
             legalRepositoryProvider.overrideWithValue(legal),
             urlOpenerProvider.overrideWithValue(urls),
