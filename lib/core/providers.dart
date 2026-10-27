@@ -8,6 +8,7 @@ import '../features/evidence/data/evidence_repository.dart';
 import '../features/notifications/data/notification_repository.dart';
 import '../features/orders/data/orders_repository.dart';
 import '../features/ratings/rating_prompt_store.dart';
+import '../features/restrictions/data/restrictions_repository.dart';
 import '../features/rider/data/rider_repository.dart';
 import '../features/shell/account_repository.dart';
 import 'api/api_client.dart';
@@ -249,6 +250,10 @@ final evidenceRepositoryProvider = Provider<EvidenceRepository>(
 
 final notificationRepositoryProvider = Provider<NotificationRepository>(
   (ref) => ApiNotificationRepository(ref.watch(apiClientProvider)),
+);
+
+final restrictionsRepositoryProvider = Provider<RestrictionsRepository>(
+  (ref) => ApiRestrictionsRepository(ref.watch(apiClientProvider)),
 );
 
 final navigationLauncherProvider = Provider<NavigationLauncher>(

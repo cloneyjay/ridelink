@@ -1,6 +1,8 @@
 import '../../core/format/money.dart';
 import '../../core/push/push_payload.dart';
 import '../../l10n/app_localizations.dart';
+import '../restrictions/data/restriction_models.dart';
+import '../restrictions/restriction_labels.dart';
 import '../rider/data/rider_models.dart';
 import '../rider/rider_labels.dart';
 import 'data/notification_repository.dart';
@@ -128,6 +130,53 @@ String _midSentence(String s) =>
       );
     case riderVerifiedType:
       return (title: l.notifRiderVerifiedTitle, body: l.notifRiderVerifiedBody);
+    case paymentRuledType:
+      return (title: l.notifPaymentRuledTitle, body: l.notifPaymentRuledBody);
+    case balanceCreatedType:
+      return (
+        title: l.homeBalanceBannerTitle,
+        body: amount == null
+            ? l.notifBalanceCreatedBodyNoAmount
+            : l.notifBalanceCreatedBody(amount),
+      );
+    case balanceSettledType:
+      return (title: l.balanceSettledTitle, body: l.notifBalanceSettledBody);
+    case balanceClaimReceivedType:
+      return (title: l.notifBalanceClaimTitle, body: l.notifBalanceClaimBody);
+    case strikeIssuedType:
+      return (title: l.notifStrikeIssuedTitle, body: l.notifStrikeIssuedBody);
+    case strikeDisputeDecidedType:
+      return (
+        title: l.notifDisputeDecidedTitle,
+        body: switch (disputeDecisionFromNotification(data)) {
+          DisputeStatus.upheld => l.disputeUpheld,
+          DisputeStatus.rejected => l.disputeRejected,
+          _ => l.notifDisputeDecidedBody,
+        },
+      );
+    case accountSuspendedType:
+      final s = suspensionFromNotification(data);
+      final known = data.containsKey('until') || s.reason != null;
+      return (
+        title: s.onHold ? l.accountOnHoldTitle : l.accountSuspendedTitle,
+        body: known ? suspensionSummary(l, s) : l.notifAccountSuspendedBody,
+      );
+    case suspensionIntendedType:
+      return (title: l.suspensionIntendedTitle, body: l.suspensionIntendedLead);
+    case suspensionLiftedType:
+      return (
+        title: l.notifSuspensionLiftedTitle,
+        body: l.notifSuspensionLiftedBody,
+      );
+    case appealDecidedType:
+      return (
+        title: l.notifAppealDecidedTitle,
+        body: switch (appealDecisionFromNotification(data)) {
+          AppealStatus.upheld => l.appealUpheld,
+          AppealStatus.lifted => l.appealLifted,
+          _ => l.notifAppealDecidedBody,
+        },
+      );
     default:
       return fallback;
   }

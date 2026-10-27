@@ -1,5 +1,6 @@
 import '../../../core/location/geo_point.dart';
 import '../../booking/data/booking_models.dart';
+import '../../restrictions/data/restriction_models.dart' show parseBalanceOpen;
 
 /// The assigned rider as the order's parties see them (GET /orders/{id} "rider").
 class OrderRider {
@@ -104,6 +105,7 @@ class OrderDetails {
     this.senderName,
     this.receiverLocation,
     this.terms,
+    this.balanceOpen = false,
   });
 
   factory OrderDetails.fromJson(Map<String, dynamic> json) {
@@ -121,6 +123,7 @@ class OrderDetails {
           ? null
           : ReceiverLocation.fromJson(receiver),
       terms: terms == null ? null : OrderTerms.fromJson(terms),
+      balanceOpen: parseBalanceOpen(json),
     );
   }
 
@@ -132,12 +135,16 @@ class OrderDetails {
   final ReceiverLocation? receiverLocation;
   final OrderTerms? terms;
 
+  /// An outstanding balance on this order is still open (sender owes the rider).
+  final bool balanceOpen;
+
   OrderDetails withOrder(Order next) => OrderDetails(
     order: next,
     rider: rider,
     senderName: senderName,
     receiverLocation: receiverLocation,
     terms: terms,
+    balanceOpen: balanceOpen,
   );
 }
 

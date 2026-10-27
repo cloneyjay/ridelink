@@ -26,6 +26,7 @@ import '../../orders/data/order_models.dart';
 import '../../orders/order_providers.dart';
 import '../../payments/data/payment_models.dart';
 import '../../payments/late_report_card.dart';
+import '../../payments/rider_settle_card.dart';
 import '../../payments/payment_validation.dart';
 import '../../payments/payment_widgets.dart';
 import '../../ratings/rating_sheet.dart';
@@ -262,6 +263,7 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
       'handed_over' => ride ? l.jobPassengerDroppedOff : l.jobHandedOver,
       'completed' => ride ? l.jobRideComplete : l.jobCompleted,
       'unresolved' => l.paymentUnderReview,
+      'closed_unpaid' => l.statusClosedUnpaid,
       'cancelled' => l.jobCancelled,
       _ => l.jobTitle,
     };
@@ -429,6 +431,34 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
       if (collecting) ..._collectPanel(l, c, o),
       ..._photoCards(l, o),
       ..._statusBody(l, c, o, amount),
+      if (o.status == 'unresolved' ||
+          (o.status == 'closed_unpaid' && (details?.balanceOpen ?? false))) ...[
+        const SizedBox(height: AppSpacing.s4),
+        RiderSettleCard(
+          keyPrefix: 'job.settle',
+          orderId: o.id,
+          body: o.status == 'unresolved' || amount == null
+              ? l.riderSettleBodyUnresolved
+              : l.riderSettleBodyBalance(amount),
+          onConfirm: (method, code) async {
+            await ref
+                .read(riderControllerProvider.notifier)
+                .runJob(
+                  (id) => ref
+                      .read(riderRepositoryProvider)
+                      .paymentReceived(id, method: method, mpesaCode: code),
+                );
+          },
+          onForgive: (details?.balanceOpen ?? false)
+              ? () async {
+                  await ref
+                      .read(restrictionsRepositoryProvider)
+                      .forgiveBalance(o.id);
+                  ref.invalidate(orderDetailsProvider(o.id));
+                }
+              : null,
+        ),
+      ],
       if (_error != null) ...[
         const SizedBox(height: AppSpacing.s3),
         InlineError(_error!, key: const Key('job.error')),

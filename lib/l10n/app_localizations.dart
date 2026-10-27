@@ -4411,6 +4411,624 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Message from RideLink: {message}'**
   String docRejectionMessage(String message);
+
+  /// Status label for closed_unpaid: an admin closed the order without payment.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed, unpaid'**
+  String get statusClosedUnpaid;
+
+  /// Suspension reason safety_incident.
+  ///
+  /// In en, this message translates to:
+  /// **'Safety incident'**
+  String get suspensionReasonSafetyIncident;
+
+  /// Suspension reason fraud_or_fake_documents.
+  ///
+  /// In en, this message translates to:
+  /// **'Fraud or fake documents'**
+  String get suspensionReasonFraud;
+
+  /// Suspension reason harassment_or_abuse.
+  ///
+  /// In en, this message translates to:
+  /// **'Harassment or abuse'**
+  String get suspensionReasonHarassment;
+
+  /// Suspension reason repeated_non_payment.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeated non-payment'**
+  String get suspensionReasonNonPayment;
+
+  /// Suspension reason repeated_no_shows.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeated no-shows or cancellations'**
+  String get suspensionReasonNoShows;
+
+  /// Suspension reason strikes (automatic after 3 warnings).
+  ///
+  /// In en, this message translates to:
+  /// **'Repeated warnings'**
+  String get suspensionReasonStrikes;
+
+  /// Suspension reason other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get suspensionReasonOther;
+
+  /// Title of the suspended screen, banners and the account_suspended notification.
+  ///
+  /// In en, this message translates to:
+  /// **'Account suspended'**
+  String get accountSuspendedTitle;
+
+  /// Suspension end. date is local date and time like 14 Oct, 15:30.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is suspended until {date}.'**
+  String accountSuspendedUntil(String date);
+
+  /// Permanent suspension (no end date).
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is suspended permanently.'**
+  String get accountSuspendedPermanent;
+
+  /// Suspension decided but waiting for the current order to end (no end date yet).
+  ///
+  /// In en, this message translates to:
+  /// **'Your account will be suspended when your current order ends.'**
+  String get accountSuspendedAfterOrder;
+
+  /// Suspension reason line; reason is the category name.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason: {reason}.'**
+  String accountSuspendedReason(String reason);
+
+  /// Shown while an appeal can still be sent.
+  ///
+  /// In en, this message translates to:
+  /// **'You can appeal.'**
+  String get accountSuspendedCanAppeal;
+
+  /// App bar title of the suspension and appeal screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Account status'**
+  String get accountStatusTitle;
+
+  /// Account status screen when the account is not suspended.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is active.'**
+  String get accountNotSuspended;
+
+  /// Account status load error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your account status.'**
+  String get accountStatusLoadFailed;
+
+  /// Button on suspension banners opening the account status screen.
+  ///
+  /// In en, this message translates to:
+  /// **'View details'**
+  String get suspendedViewDetails;
+
+  /// Heading of the appeal section.
+  ///
+  /// In en, this message translates to:
+  /// **'Appeal'**
+  String get appealTitle;
+
+  /// Appeal text field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us why the suspension should be lifted'**
+  String get appealLabel;
+
+  /// Note above the appeal form.
+  ///
+  /// In en, this message translates to:
+  /// **'You can send one appeal for this suspension.'**
+  String get appealOnceNote;
+
+  /// Appeal submit button.
+  ///
+  /// In en, this message translates to:
+  /// **'Send appeal'**
+  String get appealSubmit;
+
+  /// Appeal validation: empty message.
+  ///
+  /// In en, this message translates to:
+  /// **'Write your appeal'**
+  String get appealRequired;
+
+  /// Appeal submit failure.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t send your appeal. Try again.'**
+  String get appealFailed;
+
+  /// Appeal status pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Your appeal has been sent and is being reviewed.'**
+  String get appealPending;
+
+  /// Appeal status upheld; also the appeal_decided notification body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your appeal was reviewed. The suspension stays in place.'**
+  String get appealUpheld;
+
+  /// Appeal status lifted; also the appeal_decided notification body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your appeal was accepted and the suspension lifted.'**
+  String get appealLifted;
+
+  /// Settle-balance screen title and links to it.
+  ///
+  /// In en, this message translates to:
+  /// **'Settle your balance'**
+  String get settleBalanceTitle;
+
+  /// Settle-balance screen intro.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t book until your rider confirms they have received your payment.'**
+  String get settleBalanceIntro;
+
+  /// Label above the owed amount. rider is the rider's first name.
+  ///
+  /// In en, this message translates to:
+  /// **'You owe {rider} for this order'**
+  String balanceOwedTo(String rider);
+
+  /// Label above the owed amount when the rider's name is unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'You owe your rider for this order'**
+  String get balanceOwedToRider;
+
+  /// Opens the order a balance is for.
+  ///
+  /// In en, this message translates to:
+  /// **'View order'**
+  String get balanceViewOrder;
+
+  /// Settle-balance screen when nothing is owed; balance_settled notification title.
+  ///
+  /// In en, this message translates to:
+  /// **'Balance settled'**
+  String get balanceSettledTitle;
+
+  /// Settle-balance screen when nothing is owed.
+  ///
+  /// In en, this message translates to:
+  /// **'You can book again.'**
+  String get balanceSettledBody;
+
+  /// Settle-balance load error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your balance.'**
+  String get balanceLoadFailed;
+
+  /// Returns to the sender home.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to home'**
+  String get backToHomeButton;
+
+  /// Sender home banner while a balance is open; balance_created notification title.
+  ///
+  /// In en, this message translates to:
+  /// **'Unpaid balance'**
+  String get homeBalanceBannerTitle;
+
+  /// Sender home banner body. amount like KES 350 (total of open balances).
+  ///
+  /// In en, this message translates to:
+  /// **'You owe {amount}. Pay your rider to book again.'**
+  String homeBalanceBannerBody(String amount);
+
+  /// Rider: settle an unresolved or unpaid order.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment received?'**
+  String get riderSettleTitle;
+
+  /// Rider on an unresolved order with no ruling yet.
+  ///
+  /// In en, this message translates to:
+  /// **'If the payer has paid you since, confirm it here. This completes the order.'**
+  String get riderSettleBodyUnresolved;
+
+  /// Rider on a closed_unpaid order with an open balance. amount like KES 350.
+  ///
+  /// In en, this message translates to:
+  /// **'The payer owes you {amount} for this order. When you receive it, confirm it here.'**
+  String riderSettleBodyBalance(String amount);
+
+  /// Notification payment_ruled title.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment review complete'**
+  String get notifPaymentRuledTitle;
+
+  /// Notification payment_ruled body.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the order to see the decision.'**
+  String get notifPaymentRuledBody;
+
+  /// Notification balance_created body. amount like KES 350.
+  ///
+  /// In en, this message translates to:
+  /// **'You owe your rider {amount} for this order.'**
+  String notifBalanceCreatedBody(String amount);
+
+  /// Notification balance_created body without an amount.
+  ///
+  /// In en, this message translates to:
+  /// **'You owe your rider for this order.'**
+  String get notifBalanceCreatedBodyNoAmount;
+
+  /// Notification balance_settled body (sender and rider).
+  ///
+  /// In en, this message translates to:
+  /// **'The payment for this order is confirmed.'**
+  String get notifBalanceSettledBody;
+
+  /// Notification strike_issued title (neutral).
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get notifStrikeIssuedTitle;
+
+  /// Notification strike_issued body (neutral).
+  ///
+  /// In en, this message translates to:
+  /// **'You received a warning on this order.'**
+  String get notifStrikeIssuedBody;
+
+  /// Notification account_suspended body when no details are sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Open RideLink to see the details.'**
+  String get notifAccountSuspendedBody;
+
+  /// Notification suspension_lifted title.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspension lifted'**
+  String get notifSuspensionLiftedTitle;
+
+  /// Notification suspension_lifted body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is active again.'**
+  String get notifSuspensionLiftedBody;
+
+  /// Notification appeal_decided title.
+  ///
+  /// In en, this message translates to:
+  /// **'Appeal decided'**
+  String get notifAppealDecidedTitle;
+
+  /// Notification appeal_decided body when the decision is unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Your appeal has been reviewed.'**
+  String get notifAppealDecidedBody;
+
+  /// Error code outstanding_balance.
+  ///
+  /// In en, this message translates to:
+  /// **'Settle your balance with your rider before booking again.'**
+  String get errCodeOutstandingBalance;
+
+  /// Error code account_suspended.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is suspended.'**
+  String get errCodeAccountSuspended;
+
+  /// Warning reason payer_at_fault.
+  ///
+  /// In en, this message translates to:
+  /// **'Unpaid order'**
+  String get strikeReasonUnpaidOrder;
+
+  /// Warning reason false_report (rider's not-paid report found false).
+  ///
+  /// In en, this message translates to:
+  /// **'Payment report not upheld'**
+  String get strikeReasonFalseReport;
+
+  /// Warning with a reason this build doesn't name.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get strikeReasonGeneric;
+
+  /// Title for an intended suspension (prior notice); suspension_intended notification title.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspension notice'**
+  String get suspensionIntendedTitle;
+
+  /// First sentence of an intended-suspension notice.
+  ///
+  /// In en, this message translates to:
+  /// **'RideLink intends to suspend your account.'**
+  String get suspensionIntendedLead;
+
+  /// Intended suspension response deadline; time like 14 Oct, 15:30.
+  ///
+  /// In en, this message translates to:
+  /// **'You can respond until {time}.'**
+  String suspensionRespondUntil(String time);
+
+  /// Title for safety/fraud holds.
+  ///
+  /// In en, this message translates to:
+  /// **'Account on hold'**
+  String get accountOnHoldTitle;
+
+  /// First sentence for safety/fraud holds.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is on hold pending review.'**
+  String get accountOnHold;
+
+  /// Intended suspension response field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Your response'**
+  String get suspensionResponseLabel;
+
+  /// Intended suspension response button.
+  ///
+  /// In en, this message translates to:
+  /// **'Send response'**
+  String get suspensionResponseSubmit;
+
+  /// Response validation: empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Write your response'**
+  String get suspensionResponseRequired;
+
+  /// Response submit failure.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t send your response. Try again.'**
+  String get suspensionResponseFailed;
+
+  /// After responding to an intended suspension.
+  ///
+  /// In en, this message translates to:
+  /// **'Your response has been sent. RideLink will review it before deciding.'**
+  String get suspensionResponseSent;
+
+  /// Heading of the warnings section.
+  ///
+  /// In en, this message translates to:
+  /// **'Account standing'**
+  String get standingTitle;
+
+  /// Warnings rule shown with the list.
+  ///
+  /// In en, this message translates to:
+  /// **'3 warnings in 90 days can lead to a 7-day suspension.'**
+  String get standingRule;
+
+  /// Warnings section when empty.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no warnings.'**
+  String get standingNoWarnings;
+
+  /// Warning issue date.
+  ///
+  /// In en, this message translates to:
+  /// **'Issued {date}'**
+  String strikeIssuedOn(String date);
+
+  /// Warning expiry date.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires {date}'**
+  String strikeExpiresOn(String date);
+
+  /// Opens the one-time dispute form for a warning.
+  ///
+  /// In en, this message translates to:
+  /// **'Dispute'**
+  String get disputeButton;
+
+  /// Dispute field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us why this warning is wrong'**
+  String get disputeLabel;
+
+  /// Note above the dispute form.
+  ///
+  /// In en, this message translates to:
+  /// **'You can dispute each warning once, within 7 days.'**
+  String get disputeOnceNote;
+
+  /// Dispute submit button.
+  ///
+  /// In en, this message translates to:
+  /// **'Send dispute'**
+  String get disputeSubmit;
+
+  /// Dispute validation: empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Write your dispute'**
+  String get disputeRequired;
+
+  /// Dispute submit failure.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t send your dispute. Try again.'**
+  String get disputeFailed;
+
+  /// Dispute status pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Dispute sent. RideLink will review it.'**
+  String get disputePending;
+
+  /// Dispute upheld; also notification body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your dispute was accepted and the warning removed.'**
+  String get disputeUpheld;
+
+  /// Dispute rejected; also notification body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your dispute was reviewed. The warning stays.'**
+  String get disputeRejected;
+
+  /// Debtor: opens the I've-paid form on the settle-balance screen.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ve paid'**
+  String get iPaidButton;
+
+  /// I've-paid form heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us how you paid'**
+  String get iPaidTitle;
+
+  /// I've-paid cash note label.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get cashNoteLabel;
+
+  /// I've-paid cash note helper.
+  ///
+  /// In en, this message translates to:
+  /// **'For example, when and where you paid'**
+  String get cashNoteHelp;
+
+  /// I've-paid submit button.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get iPaidSubmit;
+
+  /// I've-paid submit failure.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t send. Try again.'**
+  String get iPaidFailed;
+
+  /// After the debtor says they paid.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ve asked your rider to confirm. RideLink will review if they don\'t respond.'**
+  String get iPaidSent;
+
+  /// Rider: forgive an open balance.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgive balance'**
+  String get forgiveBalanceButton;
+
+  /// Forgive confirmation title.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgive this balance?'**
+  String get forgiveBalanceTitle;
+
+  /// Forgive confirmation body.
+  ///
+  /// In en, this message translates to:
+  /// **'The payer will no longer owe you for this order. This can\'t be undone.'**
+  String get forgiveBalanceBody;
+
+  /// Forgive confirmation button.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgive'**
+  String get forgiveBalanceConfirm;
+
+  /// New delivery: shown when Receiver pays is chosen (P6 disclosure).
+  ///
+  /// In en, this message translates to:
+  /// **'If your receiver doesn\'t pay, you will owe the rider.'**
+  String get receiverPaysDisclosure;
+
+  /// Notification balance_claim_received title (to the rider).
+  ///
+  /// In en, this message translates to:
+  /// **'Customer says they paid'**
+  String get notifBalanceClaimTitle;
+
+  /// Notification balance_claim_received body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your customer says they paid for this order. Please confirm.'**
+  String get notifBalanceClaimBody;
+
+  /// Notification strike_dispute_decided title.
+  ///
+  /// In en, this message translates to:
+  /// **'Dispute decided'**
+  String get notifDisputeDecidedTitle;
+
+  /// Notification strike_dispute_decided body when the decision is unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Your dispute has been reviewed.'**
+  String get notifDisputeDecidedBody;
+
+  /// Upload sheet for the national ID: the typed ID number field label.
+  ///
+  /// In en, this message translates to:
+  /// **'National ID number'**
+  String get idNumberLabel;
+
+  /// ID number field helper.
+  ///
+  /// In en, this message translates to:
+  /// **'As printed on your ID'**
+  String get idNumberHint;
+
+  /// ID number validation: empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your ID number'**
+  String get idNumberRequired;
+
+  /// ID number validation: bad format.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 4 to 20 letters or digits'**
+  String get idNumberInvalid;
+
+  /// Documents screen: the national ID number is on file (not a verification).
+  ///
+  /// In en, this message translates to:
+  /// **'ID number received'**
+  String get idNumberReceived;
 }
 
 class _AppLocalizationsDelegate

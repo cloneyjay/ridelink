@@ -3197,5 +3197,462 @@
         "type": "String"
       }
     }
+  },
+  "statusClosedUnpaid": "Closed, unpaid",
+  "@statusClosedUnpaid": {
+    "description": "Status label for closed_unpaid: an admin closed the order without payment."
+  },
+  "suspensionReasonSafetyIncident": "Safety incident",
+  "@suspensionReasonSafetyIncident": {
+    "description": "Suspension reason safety_incident."
+  },
+  "suspensionReasonFraud": "Fraud or fake documents",
+  "@suspensionReasonFraud": {
+    "description": "Suspension reason fraud_or_fake_documents."
+  },
+  "suspensionReasonHarassment": "Harassment or abuse",
+  "@suspensionReasonHarassment": {
+    "description": "Suspension reason harassment_or_abuse."
+  },
+  "suspensionReasonNonPayment": "Repeated non-payment",
+  "@suspensionReasonNonPayment": {
+    "description": "Suspension reason repeated_non_payment."
+  },
+  "suspensionReasonNoShows": "Repeated no-shows or cancellations",
+  "@suspensionReasonNoShows": {
+    "description": "Suspension reason repeated_no_shows."
+  },
+  "suspensionReasonStrikes": "Repeated warnings",
+  "@suspensionReasonStrikes": {
+    "description": "Suspension reason strikes (automatic after 3 warnings)."
+  },
+  "suspensionReasonOther": "Other",
+  "@suspensionReasonOther": {
+    "description": "Suspension reason other."
+  },
+  "accountSuspendedTitle": "Account suspended",
+  "@accountSuspendedTitle": {
+    "description": "Title of the suspended screen, banners and the account_suspended notification."
+  },
+  "accountSuspendedUntil": "Your account is suspended until {date}.",
+  "@accountSuspendedUntil": {
+    "description": "Suspension end. date is local date and time like 14 Oct, 15:30.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "accountSuspendedPermanent": "Your account is suspended permanently.",
+  "@accountSuspendedPermanent": {
+    "description": "Permanent suspension (no end date)."
+  },
+  "accountSuspendedAfterOrder": "Your account will be suspended when your current order ends.",
+  "@accountSuspendedAfterOrder": {
+    "description": "Suspension decided but waiting for the current order to end (no end date yet)."
+  },
+  "accountSuspendedReason": "Reason: {reason}.",
+  "@accountSuspendedReason": {
+    "description": "Suspension reason line; reason is the category name.",
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "accountSuspendedCanAppeal": "You can appeal.",
+  "@accountSuspendedCanAppeal": {
+    "description": "Shown while an appeal can still be sent."
+  },
+  "accountStatusTitle": "Account status",
+  "@accountStatusTitle": {
+    "description": "App bar title of the suspension and appeal screen."
+  },
+  "accountNotSuspended": "Your account is active.",
+  "@accountNotSuspended": {
+    "description": "Account status screen when the account is not suspended."
+  },
+  "accountStatusLoadFailed": "Couldn't load your account status.",
+  "@accountStatusLoadFailed": {
+    "description": "Account status load error."
+  },
+  "suspendedViewDetails": "View details",
+  "@suspendedViewDetails": {
+    "description": "Button on suspension banners opening the account status screen."
+  },
+  "appealTitle": "Appeal",
+  "@appealTitle": {
+    "description": "Heading of the appeal section."
+  },
+  "appealLabel": "Tell us why the suspension should be lifted",
+  "@appealLabel": {
+    "description": "Appeal text field label."
+  },
+  "appealOnceNote": "You can send one appeal for this suspension.",
+  "@appealOnceNote": {
+    "description": "Note above the appeal form."
+  },
+  "appealSubmit": "Send appeal",
+  "@appealSubmit": {
+    "description": "Appeal submit button."
+  },
+  "appealRequired": "Write your appeal",
+  "@appealRequired": {
+    "description": "Appeal validation: empty message."
+  },
+  "appealFailed": "Couldn't send your appeal. Try again.",
+  "@appealFailed": {
+    "description": "Appeal submit failure."
+  },
+  "appealPending": "Your appeal has been sent and is being reviewed.",
+  "@appealPending": {
+    "description": "Appeal status pending."
+  },
+  "appealUpheld": "Your appeal was reviewed. The suspension stays in place.",
+  "@appealUpheld": {
+    "description": "Appeal status upheld; also the appeal_decided notification body."
+  },
+  "appealLifted": "Your appeal was accepted and the suspension lifted.",
+  "@appealLifted": {
+    "description": "Appeal status lifted; also the appeal_decided notification body."
+  },
+  "settleBalanceTitle": "Settle your balance",
+  "@settleBalanceTitle": {
+    "description": "Settle-balance screen title and links to it."
+  },
+  "settleBalanceIntro": "You can't book until your rider confirms they have received your payment.",
+  "@settleBalanceIntro": {
+    "description": "Settle-balance screen intro."
+  },
+  "balanceOwedTo": "You owe {rider} for this order",
+  "@balanceOwedTo": {
+    "description": "Label above the owed amount. rider is the rider's first name.",
+    "placeholders": {
+      "rider": {
+        "type": "String"
+      }
+    }
+  },
+  "balanceOwedToRider": "You owe your rider for this order",
+  "@balanceOwedToRider": {
+    "description": "Label above the owed amount when the rider's name is unknown."
+  },
+  "balanceViewOrder": "View order",
+  "@balanceViewOrder": {
+    "description": "Opens the order a balance is for."
+  },
+  "balanceSettledTitle": "Balance settled",
+  "@balanceSettledTitle": {
+    "description": "Settle-balance screen when nothing is owed; balance_settled notification title."
+  },
+  "balanceSettledBody": "You can book again.",
+  "@balanceSettledBody": {
+    "description": "Settle-balance screen when nothing is owed."
+  },
+  "balanceLoadFailed": "Couldn't load your balance.",
+  "@balanceLoadFailed": {
+    "description": "Settle-balance load error."
+  },
+  "backToHomeButton": "Back to home",
+  "@backToHomeButton": {
+    "description": "Returns to the sender home."
+  },
+  "homeBalanceBannerTitle": "Unpaid balance",
+  "@homeBalanceBannerTitle": {
+    "description": "Sender home banner while a balance is open; balance_created notification title."
+  },
+  "homeBalanceBannerBody": "You owe {amount}. Pay your rider to book again.",
+  "@homeBalanceBannerBody": {
+    "description": "Sender home banner body. amount like KES 350 (total of open balances).",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "riderSettleTitle": "Payment received?",
+  "@riderSettleTitle": {
+    "description": "Rider: settle an unresolved or unpaid order."
+  },
+  "riderSettleBodyUnresolved": "If the payer has paid you since, confirm it here. This completes the order.",
+  "@riderSettleBodyUnresolved": {
+    "description": "Rider on an unresolved order with no ruling yet."
+  },
+  "riderSettleBodyBalance": "The payer owes you {amount} for this order. When you receive it, confirm it here.",
+  "@riderSettleBodyBalance": {
+    "description": "Rider on a closed_unpaid order with an open balance. amount like KES 350.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "notifPaymentRuledTitle": "Payment review complete",
+  "@notifPaymentRuledTitle": {
+    "description": "Notification payment_ruled title."
+  },
+  "notifPaymentRuledBody": "Open the order to see the decision.",
+  "@notifPaymentRuledBody": {
+    "description": "Notification payment_ruled body."
+  },
+  "notifBalanceCreatedBody": "You owe your rider {amount} for this order.",
+  "@notifBalanceCreatedBody": {
+    "description": "Notification balance_created body. amount like KES 350.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "notifBalanceCreatedBodyNoAmount": "You owe your rider for this order.",
+  "@notifBalanceCreatedBodyNoAmount": {
+    "description": "Notification balance_created body without an amount."
+  },
+  "notifBalanceSettledBody": "The payment for this order is confirmed.",
+  "@notifBalanceSettledBody": {
+    "description": "Notification balance_settled body (sender and rider)."
+  },
+  "notifStrikeIssuedTitle": "Warning",
+  "@notifStrikeIssuedTitle": {
+    "description": "Notification strike_issued title (neutral)."
+  },
+  "notifStrikeIssuedBody": "You received a warning on this order.",
+  "@notifStrikeIssuedBody": {
+    "description": "Notification strike_issued body (neutral)."
+  },
+  "notifAccountSuspendedBody": "Open RideLink to see the details.",
+  "@notifAccountSuspendedBody": {
+    "description": "Notification account_suspended body when no details are sent."
+  },
+  "notifSuspensionLiftedTitle": "Suspension lifted",
+  "@notifSuspensionLiftedTitle": {
+    "description": "Notification suspension_lifted title."
+  },
+  "notifSuspensionLiftedBody": "Your account is active again.",
+  "@notifSuspensionLiftedBody": {
+    "description": "Notification suspension_lifted body."
+  },
+  "notifAppealDecidedTitle": "Appeal decided",
+  "@notifAppealDecidedTitle": {
+    "description": "Notification appeal_decided title."
+  },
+  "notifAppealDecidedBody": "Your appeal has been reviewed.",
+  "@notifAppealDecidedBody": {
+    "description": "Notification appeal_decided body when the decision is unknown."
+  },
+  "errCodeOutstandingBalance": "Settle your balance with your rider before booking again.",
+  "@errCodeOutstandingBalance": {
+    "description": "Error code outstanding_balance."
+  },
+  "errCodeAccountSuspended": "Your account is suspended.",
+  "@errCodeAccountSuspended": {
+    "description": "Error code account_suspended."
+  },
+  "strikeReasonUnpaidOrder": "Unpaid order",
+  "@strikeReasonUnpaidOrder": {
+    "description": "Warning reason payer_at_fault."
+  },
+  "strikeReasonFalseReport": "Payment report not upheld",
+  "@strikeReasonFalseReport": {
+    "description": "Warning reason false_report (rider's not-paid report found false)."
+  },
+  "strikeReasonGeneric": "Warning",
+  "@strikeReasonGeneric": {
+    "description": "Warning with a reason this build doesn't name."
+  },
+  "suspensionIntendedTitle": "Suspension notice",
+  "@suspensionIntendedTitle": {
+    "description": "Title for an intended suspension (prior notice); suspension_intended notification title."
+  },
+  "suspensionIntendedLead": "RideLink intends to suspend your account.",
+  "@suspensionIntendedLead": {
+    "description": "First sentence of an intended-suspension notice."
+  },
+  "suspensionRespondUntil": "You can respond until {time}.",
+  "@suspensionRespondUntil": {
+    "description": "Intended suspension response deadline; time like 14 Oct, 15:30.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "accountOnHoldTitle": "Account on hold",
+  "@accountOnHoldTitle": {
+    "description": "Title for safety/fraud holds."
+  },
+  "accountOnHold": "Your account is on hold pending review.",
+  "@accountOnHold": {
+    "description": "First sentence for safety/fraud holds."
+  },
+  "suspensionResponseLabel": "Your response",
+  "@suspensionResponseLabel": {
+    "description": "Intended suspension response field label."
+  },
+  "suspensionResponseSubmit": "Send response",
+  "@suspensionResponseSubmit": {
+    "description": "Intended suspension response button."
+  },
+  "suspensionResponseRequired": "Write your response",
+  "@suspensionResponseRequired": {
+    "description": "Response validation: empty."
+  },
+  "suspensionResponseFailed": "Couldn't send your response. Try again.",
+  "@suspensionResponseFailed": {
+    "description": "Response submit failure."
+  },
+  "suspensionResponseSent": "Your response has been sent. RideLink will review it before deciding.",
+  "@suspensionResponseSent": {
+    "description": "After responding to an intended suspension."
+  },
+  "standingTitle": "Account standing",
+  "@standingTitle": {
+    "description": "Heading of the warnings section."
+  },
+  "standingRule": "3 warnings in 90 days can lead to a 7-day suspension.",
+  "@standingRule": {
+    "description": "Warnings rule shown with the list."
+  },
+  "standingNoWarnings": "You have no warnings.",
+  "@standingNoWarnings": {
+    "description": "Warnings section when empty."
+  },
+  "strikeIssuedOn": "Issued {date}",
+  "@strikeIssuedOn": {
+    "description": "Warning issue date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "strikeExpiresOn": "Expires {date}",
+  "@strikeExpiresOn": {
+    "description": "Warning expiry date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "disputeButton": "Dispute",
+  "@disputeButton": {
+    "description": "Opens the one-time dispute form for a warning."
+  },
+  "disputeLabel": "Tell us why this warning is wrong",
+  "@disputeLabel": {
+    "description": "Dispute field label."
+  },
+  "disputeOnceNote": "You can dispute each warning once, within 7 days.",
+  "@disputeOnceNote": {
+    "description": "Note above the dispute form."
+  },
+  "disputeSubmit": "Send dispute",
+  "@disputeSubmit": {
+    "description": "Dispute submit button."
+  },
+  "disputeRequired": "Write your dispute",
+  "@disputeRequired": {
+    "description": "Dispute validation: empty."
+  },
+  "disputeFailed": "Couldn't send your dispute. Try again.",
+  "@disputeFailed": {
+    "description": "Dispute submit failure."
+  },
+  "disputePending": "Dispute sent. RideLink will review it.",
+  "@disputePending": {
+    "description": "Dispute status pending."
+  },
+  "disputeUpheld": "Your dispute was accepted and the warning removed.",
+  "@disputeUpheld": {
+    "description": "Dispute upheld; also notification body."
+  },
+  "disputeRejected": "Your dispute was reviewed. The warning stays.",
+  "@disputeRejected": {
+    "description": "Dispute rejected; also notification body."
+  },
+  "iPaidButton": "I've paid",
+  "@iPaidButton": {
+    "description": "Debtor: opens the I've-paid form on the settle-balance screen."
+  },
+  "iPaidTitle": "Tell us how you paid",
+  "@iPaidTitle": {
+    "description": "I've-paid form heading."
+  },
+  "cashNoteLabel": "Note (optional)",
+  "@cashNoteLabel": {
+    "description": "I've-paid cash note label."
+  },
+  "cashNoteHelp": "For example, when and where you paid",
+  "@cashNoteHelp": {
+    "description": "I've-paid cash note helper."
+  },
+  "iPaidSubmit": "Send",
+  "@iPaidSubmit": {
+    "description": "I've-paid submit button."
+  },
+  "iPaidFailed": "Couldn't send. Try again.",
+  "@iPaidFailed": {
+    "description": "I've-paid submit failure."
+  },
+  "iPaidSent": "We've asked your rider to confirm. RideLink will review if they don't respond.",
+  "@iPaidSent": {
+    "description": "After the debtor says they paid."
+  },
+  "forgiveBalanceButton": "Forgive balance",
+  "@forgiveBalanceButton": {
+    "description": "Rider: forgive an open balance."
+  },
+  "forgiveBalanceTitle": "Forgive this balance?",
+  "@forgiveBalanceTitle": {
+    "description": "Forgive confirmation title."
+  },
+  "forgiveBalanceBody": "The payer will no longer owe you for this order. This can't be undone.",
+  "@forgiveBalanceBody": {
+    "description": "Forgive confirmation body."
+  },
+  "forgiveBalanceConfirm": "Forgive",
+  "@forgiveBalanceConfirm": {
+    "description": "Forgive confirmation button."
+  },
+  "receiverPaysDisclosure": "If your receiver doesn't pay, you will owe the rider.",
+  "@receiverPaysDisclosure": {
+    "description": "New delivery: shown when Receiver pays is chosen (P6 disclosure)."
+  },
+  "notifBalanceClaimTitle": "Customer says they paid",
+  "@notifBalanceClaimTitle": {
+    "description": "Notification balance_claim_received title (to the rider)."
+  },
+  "notifBalanceClaimBody": "Your customer says they paid for this order. Please confirm.",
+  "@notifBalanceClaimBody": {
+    "description": "Notification balance_claim_received body."
+  },
+  "notifDisputeDecidedTitle": "Dispute decided",
+  "@notifDisputeDecidedTitle": {
+    "description": "Notification strike_dispute_decided title."
+  },
+  "notifDisputeDecidedBody": "Your dispute has been reviewed.",
+  "@notifDisputeDecidedBody": {
+    "description": "Notification strike_dispute_decided body when the decision is unknown."
+  },
+  "idNumberLabel": "National ID number",
+  "@idNumberLabel": {
+    "description": "Upload sheet for the national ID: the typed ID number field label."
+  },
+  "idNumberHint": "As printed on your ID",
+  "@idNumberHint": {
+    "description": "ID number field helper."
+  },
+  "idNumberRequired": "Enter your ID number",
+  "@idNumberRequired": {
+    "description": "ID number validation: empty."
+  },
+  "idNumberInvalid": "Enter 4 to 20 letters or digits",
+  "@idNumberInvalid": {
+    "description": "ID number validation: bad format."
+  },
+  "idNumberReceived": "ID number received",
+  "@idNumberReceived": {
+    "description": "Documents screen: the national ID number is on file (not a verification)."
   }
 }

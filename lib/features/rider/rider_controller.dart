@@ -13,6 +13,8 @@ import '../../core/providers.dart';
 import '../../core/realtime/realtime_event.dart';
 import '../../l10n/app_localizations.dart';
 import '../booking/data/booking_models.dart';
+import '../restrictions/data/restriction_models.dart';
+import '../restrictions/restriction_providers.dart';
 import 'data/rider_models.dart';
 
 /// Why the rider can't go online right now.
@@ -41,6 +43,12 @@ class BlockLocation extends OnlineBlock {
   final LocationResult result;
 }
 
+/// 403 `account_suspended`: offline until the suspension ends (D6).
+class BlockSuspended extends OnlineBlock {
+  const BlockSuspended(this.status);
+  final AccountStatus status;
+}
+
 class BlockError extends OnlineBlock {
   const BlockError(this.error);
 
@@ -56,6 +64,7 @@ enum AcceptResult {
   accepted,
   needsLocation,
   paused,
+  suspended,
   unavailable,
   conflict,
   failed,
@@ -315,6 +324,10 @@ class RiderController extends Notifier<RiderState> {
   }
 
   OnlineBlock _blockFromError(ApiException e) {
+    if (e.code == accountSuspendedCode) {
+      ref.invalidate(accountStatusProvider);
+      return BlockSuspended(AccountStatus.fromSuspendedError(e.body));
+    }
     if (e.code == 'rider_paused' || e.body['paused_until'] is String) {
       final until = DateTime.tryParse('${e.body['paused_until']}');
       if (until != null) {
@@ -433,6 +446,10 @@ class RiderController extends Notifier<RiderState> {
           if (state.block is BlockPaused) {
             state = state.copyWith(clearOffer: true);
             return AcceptResult.paused;
+          }
+          if (state.block is BlockSuspended) {
+            state = state.copyWith(clearOffer: true);
+            return AcceptResult.suspended;
           }
           return AcceptResult.failed;
         case 404:

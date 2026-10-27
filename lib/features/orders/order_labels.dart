@@ -22,6 +22,7 @@ String orderStatusLabel(AppLocalizations l, Order o) => switch (o.status) {
   'expired' => l.statusExpired,
   'payment_failed' => l.statusPaymentFailed,
   'unresolved' => l.statusUnresolved,
+  'closed_unpaid' => l.statusClosedUnpaid,
   _ => o.status,
 };
 
@@ -30,7 +31,11 @@ enum _Tone { success, warning, danger, live, neutral }
 _Tone _toneOf(Order o) => switch (o.status) {
   'completed' when o.closedByTimeout => _Tone.warning,
   'completed' => _Tone.success,
-  'cancelled' || 'expired' || 'payment_failed' || 'unresolved' => _Tone.danger,
+  'cancelled' ||
+  'expired' ||
+  'payment_failed' ||
+  'unresolved' ||
+  'closed_unpaid' => _Tone.danger,
   'created' || 'offered' || 'awaiting_match' => _Tone.neutral,
   _ => _Tone.live,
 };

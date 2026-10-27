@@ -220,6 +220,7 @@ const terminalStatuses = {
   'expired',
   'payment_failed',
   'unresolved',
+  'closed_unpaid',
 };
 
 class Order {

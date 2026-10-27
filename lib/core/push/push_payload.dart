@@ -21,8 +21,28 @@ const documentRejectedType = 'document_rejected';
 /// Rider: every required document is approved.
 const riderVerifiedType = 'rider_verified';
 
+/// Rider: the payer says they paid an open balance; confirm it on the order (M6).
+const balanceClaimReceivedPushType = 'balance_claim_received';
+
 /// Push types meant for the rider side, opened there whatever mode the app is in.
-const riderPushTypes = {paymentReminderType, paymentTimeoutRiderType};
+const riderPushTypes = {
+  paymentReminderType,
+  paymentTimeoutRiderType,
+  balanceClaimReceivedPushType,
+};
+
+/// Account notices (suspension, appeal, warnings) open the account status screen; a balance
+/// notice for the payer opens the settle screen.
+String? accountScreenFor(String type) => switch (type) {
+  'account_suspended' ||
+  'suspension_intended' ||
+  'suspension_lifted' ||
+  'appeal_decided' ||
+  'strike_issued' ||
+  'strike_dispute_decided' => AppRoutes.accountStatus,
+  'balance_created' => AppRoutes.settleBalance,
+  _ => null,
+};
 
 /// Rider notifications without an order and the rider screen they open (nested under rider home).
 String? riderScreenFor(String type) {

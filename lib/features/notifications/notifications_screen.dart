@@ -76,6 +76,11 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
   Future<void> _open(AppNotification n) async {
     if (_opening != null) return;
     ref.read(notificationsProvider.notifier).markRead(n.id);
+    final accountScreen = accountScreenFor(n.type);
+    if (accountScreen != null) {
+      context.push(accountScreen);
+      return;
+    }
     final riderScreen = riderScreenFor(n.type);
     if (riderScreen != null) {
       context.push(riderScreen);
@@ -225,7 +230,9 @@ class _NotificationTile extends StatelessWidget {
                     color: c.brand500,
                   ),
                 )
-              else if (n.orderId != null || riderScreenFor(n.type) != null)
+              else if (n.orderId != null ||
+                  riderScreenFor(n.type) != null ||
+                  accountScreenFor(n.type) != null)
                 Icon(Icons.chevron_right, color: c.inkFaint),
             ],
           ),

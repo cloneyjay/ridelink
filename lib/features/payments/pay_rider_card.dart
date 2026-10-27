@@ -89,10 +89,10 @@ class PayRiderCard extends ConsumerWidget {
           ],
           const SizedBox(height: AppSpacing.s3),
           if (data == null || data.cash)
-            const _PayOption(method: PayMethod.cash),
+            const PayOptionTile(method: PayMethod.cash),
           for (final m in data?.methods ?? const <PaymentMethod>[]) ...[
             const SizedBox(height: AppSpacing.s2),
-            _PayOption(method: m.type, details: m),
+            PayOptionTile(method: m.type, details: m),
           ],
           if (payment.isLoading) ...[
             const SizedBox(height: AppSpacing.s3),
@@ -127,11 +127,19 @@ class PayRiderCard extends ConsumerWidget {
   }
 }
 
-class _PayOption extends StatelessWidget {
-  const _PayOption({required this.method, this.details});
+/// One way to pay the rider: cash, or an M-Pesa method with its number, name and a copy button.
+/// Keys: `<keyPrefix>.pay.<type>`, `.number`, `<keyPrefix>.copy.<type>`, snack `<keyPrefix>.copied`.
+class PayOptionTile extends StatelessWidget {
+  const PayOptionTile({
+    super.key,
+    required this.method,
+    this.details,
+    this.keyPrefix = 'tracking',
+  });
 
   final PayMethod method;
   final PaymentMethod? details;
+  final String keyPrefix;
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +148,7 @@ class _PayOption extends StatelessWidget {
     final d = details;
     final number = d == null ? null : payNumberFor(d);
     return Container(
-      key: Key('tracking.pay.${method.wire}'),
+      key: Key('$keyPrefix.pay.${method.wire}'),
       constraints: const BoxConstraints(minHeight: AppLayout.minTapTarget),
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.s3,
@@ -166,7 +174,7 @@ class _PayOption extends StatelessWidget {
                 if (d != null) ...[
                   Text(
                     number!.shown,
-                    key: Key('tracking.pay.${method.wire}.number'),
+                    key: Key('$keyPrefix.pay.${method.wire}.number'),
                     style: AppTextStyles.bodyLg.copyWith(color: c.ink),
                   ),
                   Text(
@@ -179,7 +187,7 @@ class _PayOption extends StatelessWidget {
           ),
           if (d != null)
             IconButton(
-              key: Key('tracking.copy.${method.wire}'),
+              key: Key('$keyPrefix.copy.${method.wire}'),
               tooltip: l.copyNumber,
               constraints: const BoxConstraints(
                 minWidth: AppLayout.minTapTarget,
@@ -192,7 +200,7 @@ class _PayOption extends StatelessWidget {
                   showSnack(
                     context,
                     l.numberCopied,
-                    key: const Key('tracking.copied'),
+                    key: Key('$keyPrefix.copied'),
                   );
                 }
               },

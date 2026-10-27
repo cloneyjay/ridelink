@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/api/api_exception.dart';
@@ -28,6 +29,15 @@ String? validatePickedDocument(
   return null;
 }
 
+final _idNumber = RegExp(r'^[A-Z0-9]{4,20}$');
+
+/// National ID number as the server stores it: spaces and hyphens removed, upper-cased,
+/// 4 to 20 letters or digits. Null when invalid.
+String? normalizeIdNumber(String raw) {
+  final s = raw.replaceAll(RegExp(r'[\s-]'), '').toUpperCase();
+  return _idNumber.hasMatch(s) ? s : null;
+}
+
 /// Opens the upload sheet; resolves with the new document state, or null if dismissed.
 Future<DocumentState?> showUploadDocumentSheet(
   BuildContext context,
@@ -52,11 +62,20 @@ class UploadDocumentSheet extends ConsumerStatefulWidget {
 class _UploadDocumentSheetState extends ConsumerState<UploadDocumentSheet> {
   PickedDocument? _file;
   DateTime? _date;
+  final _idNumberField = TextEditingController();
+  String? _idNumberError;
   String? _error;
   bool _uploading = false;
 
   DocType get _type => widget.type;
   bool get _needsDate => _type.needsExpiry || _type.needsIssueDate;
+  bool get _needsIdNumber => _type == DocType.nationalId;
+
+  @override
+  void dispose() {
+    _idNumberField.dispose();
+    super.dispose();
+  }
 
   Future<void> _pick(DocumentSource source) async {
     final l = AppLocalizations.of(context);
@@ -91,6 +110,18 @@ class _UploadDocumentSheetState extends ConsumerState<UploadDocumentSheet> {
     final l = AppLocalizations.of(context);
     final file = _file;
     if (file == null) return;
+    String? idNumber;
+    if (_needsIdNumber) {
+      final raw = _idNumberField.text;
+      idNumber = normalizeIdNumber(raw);
+      final idError = raw.trim().isEmpty
+          ? l.idNumberRequired
+          : idNumber == null
+          ? l.idNumberInvalid
+          : null;
+      setState(() => _idNumberError = idError);
+      if (idError != null) return;
+    }
     if (_needsDate && _date == null) {
       setState(() => _error = l.docDateRequired);
       return;
@@ -113,6 +144,7 @@ class _UploadDocumentSheetState extends ConsumerState<UploadDocumentSheet> {
             fileName: file.name,
             expiresOn: _type.needsExpiry ? _date : null,
             issuedOn: _type.needsIssueDate ? _date : null,
+            idNumber: idNumber,
           );
       if (mounted) Navigator.of(context).pop(result);
     } on ApiException catch (e) {
@@ -165,6 +197,27 @@ class _UploadDocumentSheetState extends ConsumerState<UploadDocumentSheet> {
             ),
             const SizedBox(height: AppSpacing.s2),
             NoteRow(_type.imageOnly ? l.docFormatsImage : l.docFormatsAny),
+            if (_needsIdNumber) ...[
+              const SizedBox(height: AppSpacing.s4),
+              TextField(
+                key: const Key('upload.idNumber'),
+                controller: _idNumberField,
+                enabled: !_uploading,
+                textCapitalization: TextCapitalization.characters,
+                autocorrect: false,
+                enableSuggestions: false,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9 \-]')),
+                  LengthLimitingTextInputFormatter(30),
+                ],
+                decoration: InputDecoration(
+                  labelText: l.idNumberLabel,
+                  helperText: l.idNumberHint,
+                  errorText: _idNumberError,
+                  errorMaxLines: 2,
+                ),
+              ),
+            ],
             if (_needsDate) ...[
               const SizedBox(height: AppSpacing.s4),
               OutlinedButton.icon(

@@ -16,6 +16,8 @@ import '../booking/widgets/booking_widgets.dart';
 import '../common/confirm_dialog.dart';
 import '../payments/late_report_card.dart';
 import '../payments/payer_response_card.dart';
+import '../payments/rider_settle_card.dart';
+import '../restrictions/restriction_providers.dart';
 import '../ratings/rating_sheet.dart';
 import '../rider/rider_labels.dart';
 import '../tracking/terms_sheet.dart';
@@ -182,11 +184,47 @@ class _DetailBody extends ConsumerWidget {
             const SizedBox(height: AppSpacing.s4),
             _LateReport(orderId: o.id, deadline: o.lateReportUntil!),
           ],
+          if (role == OrderRole.sender &&
+              ref.watch(balanceForOrderProvider(o.id)) != null) ...[
+            const SizedBox(height: AppSpacing.s4),
+            _LinkTile(
+              key: const Key('orderDetail.settleBalance'),
+              icon: Icons.account_balance_wallet_outlined,
+              label: l.settleBalanceTitle,
+              onTap: () => context.push(AppRoutes.settleBalance),
+            ),
+          ],
           if (o.status == 'unresolved' && role == OrderRole.rider) ...[
             const SizedBox(height: AppSpacing.s4),
             NoteRow(
               l.paymentUnderReviewRiderBody,
               key: const Key('orderDetail.unresolvedRider'),
+            ),
+          ],
+          if (role == OrderRole.rider &&
+              (o.status == 'unresolved' ||
+                  (o.status == 'closed_unpaid' && details.balanceOpen))) ...[
+            const SizedBox(height: AppSpacing.s4),
+            RiderSettleCard(
+              keyPrefix: 'orderDetail.settle',
+              orderId: o.id,
+              body: o.status == 'unresolved' || price == null
+                  ? l.riderSettleBodyUnresolved
+                  : l.riderSettleBodyBalance(formatKes(price)),
+              onConfirm: (method, code) async {
+                await ref
+                    .read(riderRepositoryProvider)
+                    .paymentReceived(o.id, method: method, mpesaCode: code);
+                ref.invalidate(orderDetailsProvider(o.id));
+              },
+              onForgive: details.balanceOpen
+                  ? () async {
+                      await ref
+                          .read(restrictionsRepositoryProvider)
+                          .forgiveBalance(o.id);
+                      ref.invalidate(orderDetailsProvider(o.id));
+                    }
+                  : null,
             ),
           ],
           if (o.isActiveJob) ...[

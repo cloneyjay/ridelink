@@ -1,4 +1,5 @@
 import '../../l10n/app_localizations.dart';
+import '../../features/restrictions/data/restriction_models.dart';
 import 'push_payload.dart';
 
 enum PushChannel {
@@ -95,6 +96,46 @@ PushChannel pushChannelFor(PushPayload p) =>
       riderVerifiedType => (
         title: l.notifRiderVerifiedTitle,
         body: l.notifRiderVerifiedBody,
+      ),
+      paymentRuledType => (
+        title: l.notifPaymentRuledTitle,
+        body: l.notifPaymentRuledBody,
+      ),
+      balanceCreatedType => (
+        title: l.homeBalanceBannerTitle,
+        body: l.notifBalanceCreatedBodyNoAmount,
+      ),
+      balanceSettledType => (
+        title: l.balanceSettledTitle,
+        body: l.notifBalanceSettledBody,
+      ),
+      balanceClaimReceivedType => (
+        title: l.notifBalanceClaimTitle,
+        body: l.notifBalanceClaimBody,
+      ),
+      strikeIssuedType => (
+        title: l.notifStrikeIssuedTitle,
+        body: l.notifStrikeIssuedBody,
+      ),
+      strikeDisputeDecidedType => (
+        title: l.notifDisputeDecidedTitle,
+        body: l.notifDisputeDecidedBody,
+      ),
+      accountSuspendedType => (
+        title: l.accountSuspendedTitle,
+        body: l.notifAccountSuspendedBody,
+      ),
+      suspensionIntendedType => (
+        title: l.suspensionIntendedTitle,
+        body: l.suspensionIntendedLead,
+      ),
+      suspensionLiftedType => (
+        title: l.notifSuspensionLiftedTitle,
+        body: l.notifSuspensionLiftedBody,
+      ),
+      appealDecidedType => (
+        title: l.notifAppealDecidedTitle,
+        body: l.notifAppealDecidedBody,
       ),
       _ => (title: l.pushGenericTitle, body: l.pushGenericBody),
     };

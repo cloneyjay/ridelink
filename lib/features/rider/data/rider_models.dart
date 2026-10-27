@@ -81,6 +81,7 @@ class DocumentState {
     this.rejectionMessage,
     this.expiresOn,
     this.current = false,
+    this.idNumberRecorded = false,
   });
 
   factory DocumentState.fromJson(Map<String, dynamic> json) => DocumentState(
@@ -96,6 +97,7 @@ class DocumentState {
         ? DateTime.tryParse(json['expires_on'] as String)
         : null,
     current: json['current'] as bool? ?? false,
+    idNumberRecorded: json['id_number_recorded'] == true,
   );
 
   final DocType type;
@@ -113,6 +115,9 @@ class DocumentState {
 
   /// An approved, unexpired document of this type is in force.
   final bool current;
+
+  /// National ID only: the typed ID number is on file (never returned, never "verified").
+  final bool idNumberRecorded;
 
   bool get needsUpload =>
       status == DocStatus.missing || status == DocStatus.rejected;

@@ -252,6 +252,7 @@ void main() {
         goTo: AppRoutes.riderDocuments,
       );
       await tapKeyAndSettle(tester, 'documents.row.national_id');
+      await tester.enterText(byKey('upload.idNumber'), '12345678');
       await tapKeyAndSettle(tester, 'upload.gallery');
       await tapKeyAndSettle(tester, 'upload.submit');
       expect(find.text(l10nOf(tester).errCodeInvalidFileType), findsOneWidget);

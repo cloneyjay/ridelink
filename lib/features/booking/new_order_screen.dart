@@ -12,6 +12,7 @@ import '../../theme/app_colors.dart';
 import '../../theme/app_dimensions.dart';
 import '../../theme/app_text_styles.dart';
 import '../payments/payment_widgets.dart' show ChoiceRow;
+import '../restrictions/restriction_providers.dart';
 import 'booking_labels.dart';
 import 'booking_routes.dart';
 import 'confirm_pickup_screen.dart';
@@ -171,9 +172,12 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
     } catch (e) {
       if (mounted) {
         final l = AppLocalizations.of(context);
+        final blocked = openBlockScreen(context, ref, e);
         setState(() {
           _submitting = false;
-          _error = apiErrorText(e, l, fallback: l.createOrderFailed);
+          _error = blocked
+              ? null
+              : apiErrorText(e, l, fallback: l.createOrderFailed);
         });
       }
     }
@@ -272,6 +276,13 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
                   ),
                   if (p != Payer.values.last)
                     const SizedBox(height: AppSpacing.s2),
+                ],
+                if (_payer == Payer.receiver) ...[
+                  const SizedBox(height: AppSpacing.s3),
+                  NoteRow(
+                    l.receiverPaysDisclosure,
+                    key: const Key('order.receiverPaysNote'),
+                  ),
                 ],
               ],
               if (_error != null) ...[

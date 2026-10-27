@@ -127,7 +127,15 @@ class FakeRiderRepository implements RiderRepository {
   Verification verificationResult;
   int verificationCalls = 0;
   final uploads =
-      <({DocType type, String name, DateTime? expires, DateTime? issued})>[];
+      <
+        ({
+          DocType type,
+          String name,
+          DateTime? expires,
+          DateTime? issued,
+          String? idNumber,
+        })
+      >[];
   Object? uploadError;
 
   RiderLimits limitsResult = limitsFixture;
@@ -192,15 +200,21 @@ class FakeRiderRepository implements RiderRepository {
     required String fileName,
     DateTime? expiresOn,
     DateTime? issuedOn,
+    String? idNumber,
   }) async {
     uploads.add((
       type: type,
       name: fileName,
       expires: expiresOn,
       issued: issuedOn,
+      idNumber: idNumber,
     ));
     if (uploadError != null) throw uploadError!;
-    final doc = DocumentState(type: type, status: DocStatus.pending);
+    final doc = DocumentState(
+      type: type,
+      status: DocStatus.pending,
+      idNumberRecorded: idNumber != null,
+    );
     verificationResult = Verification(
       status: verificationResult.status,
       documents: [

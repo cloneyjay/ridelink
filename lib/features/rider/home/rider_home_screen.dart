@@ -18,6 +18,9 @@ import '../../booking/widgets/booking_widgets.dart';
 import '../../common/confirm_dialog.dart';
 import '../../notifications/notifications_screen.dart';
 import '../../push/notification_prompt.dart';
+import '../../restrictions/account_status_screen.dart';
+import '../../restrictions/restriction_labels.dart';
+import '../../restrictions/restriction_providers.dart';
 import '../../shell/app_menu.dart';
 import '../job/rider_job_view.dart';
 import '../offer/rider_offer_view.dart';
@@ -126,7 +129,12 @@ class _IdleHome extends ConsumerWidget {
     final controller = ref.read(riderControllerProvider.notifier);
     final profile = state.profile!;
     final online = state.online;
-    final block = state.block;
+    final status = ref.watch(accountStatusProvider).value;
+    final suspended = status?.suspended ?? false;
+    final showStatus = status != null && (suspended || status.intended);
+    final block = showStatus && state.block is BlockSuspended
+        ? null
+        : state.block;
     return RefreshIndicator(
       onRefresh: controller.load,
       child: ListView(
@@ -182,13 +190,28 @@ class _IdleHome extends ConsumerWidget {
                           key: const Key('riderHome.onlineSwitch'),
                           value: online,
                           activeTrackColor: c.statusSuccess,
-                          onChanged: (v) => controller.setOnline(v),
+                          // Suspended riders can't go online (D6).
+                          onChanged: suspended && !online
+                              ? null
+                              : (v) => controller.setOnline(v),
                         ),
                 ),
               ],
             ),
           ),
           const NotificationsOffNote(),
+          if (showStatus) ...[
+            const SizedBox(height: AppSpacing.s3),
+            SuspensionCard(
+              key: const Key('riderHome.suspended'),
+              status: status,
+              action: TextButton(
+                key: const Key('riderHome.suspended.details'),
+                onPressed: () => context.push(AppRoutes.accountStatus),
+                child: Text(l.suspendedViewDetails),
+              ),
+            ),
+          ],
           if (block != null) ...[
             const SizedBox(height: AppSpacing.s3),
             _BlockCard(block: block),
@@ -288,6 +311,13 @@ class _BlockCard extends ConsumerWidget {
           LocationServiceOff() => location.openLocationSettings,
           _ => () => controller.setOnline(true),
         },
+      ),
+      BlockSuspended(:final status) => (
+        'riderHome.block.suspended',
+        l.accountSuspendedTitle,
+        suspensionSummary(l, status),
+        l.suspendedViewDetails,
+        () => context.push(AppRoutes.accountStatus),
       ),
       BlockError(:final error) => (
         'riderHome.block.error',

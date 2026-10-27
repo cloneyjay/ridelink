@@ -2445,4 +2445,351 @@ class AppLocalizationsEn extends AppLocalizations {
   String docRejectionMessage(String message) {
     return 'Message from RideLink: $message';
   }
+
+  @override
+  String get statusClosedUnpaid => 'Closed, unpaid';
+
+  @override
+  String get suspensionReasonSafetyIncident => 'Safety incident';
+
+  @override
+  String get suspensionReasonFraud => 'Fraud or fake documents';
+
+  @override
+  String get suspensionReasonHarassment => 'Harassment or abuse';
+
+  @override
+  String get suspensionReasonNonPayment => 'Repeated non-payment';
+
+  @override
+  String get suspensionReasonNoShows => 'Repeated no-shows or cancellations';
+
+  @override
+  String get suspensionReasonStrikes => 'Repeated warnings';
+
+  @override
+  String get suspensionReasonOther => 'Other';
+
+  @override
+  String get accountSuspendedTitle => 'Account suspended';
+
+  @override
+  String accountSuspendedUntil(String date) {
+    return 'Your account is suspended until $date.';
+  }
+
+  @override
+  String get accountSuspendedPermanent =>
+      'Your account is suspended permanently.';
+
+  @override
+  String get accountSuspendedAfterOrder =>
+      'Your account will be suspended when your current order ends.';
+
+  @override
+  String accountSuspendedReason(String reason) {
+    return 'Reason: $reason.';
+  }
+
+  @override
+  String get accountSuspendedCanAppeal => 'You can appeal.';
+
+  @override
+  String get accountStatusTitle => 'Account status';
+
+  @override
+  String get accountNotSuspended => 'Your account is active.';
+
+  @override
+  String get accountStatusLoadFailed => 'Couldn\'t load your account status.';
+
+  @override
+  String get suspendedViewDetails => 'View details';
+
+  @override
+  String get appealTitle => 'Appeal';
+
+  @override
+  String get appealLabel => 'Tell us why the suspension should be lifted';
+
+  @override
+  String get appealOnceNote => 'You can send one appeal for this suspension.';
+
+  @override
+  String get appealSubmit => 'Send appeal';
+
+  @override
+  String get appealRequired => 'Write your appeal';
+
+  @override
+  String get appealFailed => 'Couldn\'t send your appeal. Try again.';
+
+  @override
+  String get appealPending =>
+      'Your appeal has been sent and is being reviewed.';
+
+  @override
+  String get appealUpheld =>
+      'Your appeal was reviewed. The suspension stays in place.';
+
+  @override
+  String get appealLifted =>
+      'Your appeal was accepted and the suspension lifted.';
+
+  @override
+  String get settleBalanceTitle => 'Settle your balance';
+
+  @override
+  String get settleBalanceIntro =>
+      'You can\'t book until your rider confirms they have received your payment.';
+
+  @override
+  String balanceOwedTo(String rider) {
+    return 'You owe $rider for this order';
+  }
+
+  @override
+  String get balanceOwedToRider => 'You owe your rider for this order';
+
+  @override
+  String get balanceViewOrder => 'View order';
+
+  @override
+  String get balanceSettledTitle => 'Balance settled';
+
+  @override
+  String get balanceSettledBody => 'You can book again.';
+
+  @override
+  String get balanceLoadFailed => 'Couldn\'t load your balance.';
+
+  @override
+  String get backToHomeButton => 'Back to home';
+
+  @override
+  String get homeBalanceBannerTitle => 'Unpaid balance';
+
+  @override
+  String homeBalanceBannerBody(String amount) {
+    return 'You owe $amount. Pay your rider to book again.';
+  }
+
+  @override
+  String get riderSettleTitle => 'Payment received?';
+
+  @override
+  String get riderSettleBodyUnresolved =>
+      'If the payer has paid you since, confirm it here. This completes the order.';
+
+  @override
+  String riderSettleBodyBalance(String amount) {
+    return 'The payer owes you $amount for this order. When you receive it, confirm it here.';
+  }
+
+  @override
+  String get notifPaymentRuledTitle => 'Payment review complete';
+
+  @override
+  String get notifPaymentRuledBody => 'Open the order to see the decision.';
+
+  @override
+  String notifBalanceCreatedBody(String amount) {
+    return 'You owe your rider $amount for this order.';
+  }
+
+  @override
+  String get notifBalanceCreatedBodyNoAmount =>
+      'You owe your rider for this order.';
+
+  @override
+  String get notifBalanceSettledBody =>
+      'The payment for this order is confirmed.';
+
+  @override
+  String get notifStrikeIssuedTitle => 'Warning';
+
+  @override
+  String get notifStrikeIssuedBody => 'You received a warning on this order.';
+
+  @override
+  String get notifAccountSuspendedBody => 'Open RideLink to see the details.';
+
+  @override
+  String get notifSuspensionLiftedTitle => 'Suspension lifted';
+
+  @override
+  String get notifSuspensionLiftedBody => 'Your account is active again.';
+
+  @override
+  String get notifAppealDecidedTitle => 'Appeal decided';
+
+  @override
+  String get notifAppealDecidedBody => 'Your appeal has been reviewed.';
+
+  @override
+  String get errCodeOutstandingBalance =>
+      'Settle your balance with your rider before booking again.';
+
+  @override
+  String get errCodeAccountSuspended => 'Your account is suspended.';
+
+  @override
+  String get strikeReasonUnpaidOrder => 'Unpaid order';
+
+  @override
+  String get strikeReasonFalseReport => 'Payment report not upheld';
+
+  @override
+  String get strikeReasonGeneric => 'Warning';
+
+  @override
+  String get suspensionIntendedTitle => 'Suspension notice';
+
+  @override
+  String get suspensionIntendedLead =>
+      'RideLink intends to suspend your account.';
+
+  @override
+  String suspensionRespondUntil(String time) {
+    return 'You can respond until $time.';
+  }
+
+  @override
+  String get accountOnHoldTitle => 'Account on hold';
+
+  @override
+  String get accountOnHold => 'Your account is on hold pending review.';
+
+  @override
+  String get suspensionResponseLabel => 'Your response';
+
+  @override
+  String get suspensionResponseSubmit => 'Send response';
+
+  @override
+  String get suspensionResponseRequired => 'Write your response';
+
+  @override
+  String get suspensionResponseFailed =>
+      'Couldn\'t send your response. Try again.';
+
+  @override
+  String get suspensionResponseSent =>
+      'Your response has been sent. RideLink will review it before deciding.';
+
+  @override
+  String get standingTitle => 'Account standing';
+
+  @override
+  String get standingRule =>
+      '3 warnings in 90 days can lead to a 7-day suspension.';
+
+  @override
+  String get standingNoWarnings => 'You have no warnings.';
+
+  @override
+  String strikeIssuedOn(String date) {
+    return 'Issued $date';
+  }
+
+  @override
+  String strikeExpiresOn(String date) {
+    return 'Expires $date';
+  }
+
+  @override
+  String get disputeButton => 'Dispute';
+
+  @override
+  String get disputeLabel => 'Tell us why this warning is wrong';
+
+  @override
+  String get disputeOnceNote =>
+      'You can dispute each warning once, within 7 days.';
+
+  @override
+  String get disputeSubmit => 'Send dispute';
+
+  @override
+  String get disputeRequired => 'Write your dispute';
+
+  @override
+  String get disputeFailed => 'Couldn\'t send your dispute. Try again.';
+
+  @override
+  String get disputePending => 'Dispute sent. RideLink will review it.';
+
+  @override
+  String get disputeUpheld =>
+      'Your dispute was accepted and the warning removed.';
+
+  @override
+  String get disputeRejected => 'Your dispute was reviewed. The warning stays.';
+
+  @override
+  String get iPaidButton => 'I\'ve paid';
+
+  @override
+  String get iPaidTitle => 'Tell us how you paid';
+
+  @override
+  String get cashNoteLabel => 'Note (optional)';
+
+  @override
+  String get cashNoteHelp => 'For example, when and where you paid';
+
+  @override
+  String get iPaidSubmit => 'Send';
+
+  @override
+  String get iPaidFailed => 'Couldn\'t send. Try again.';
+
+  @override
+  String get iPaidSent =>
+      'We\'ve asked your rider to confirm. RideLink will review if they don\'t respond.';
+
+  @override
+  String get forgiveBalanceButton => 'Forgive balance';
+
+  @override
+  String get forgiveBalanceTitle => 'Forgive this balance?';
+
+  @override
+  String get forgiveBalanceBody =>
+      'The payer will no longer owe you for this order. This can\'t be undone.';
+
+  @override
+  String get forgiveBalanceConfirm => 'Forgive';
+
+  @override
+  String get receiverPaysDisclosure =>
+      'If your receiver doesn\'t pay, you will owe the rider.';
+
+  @override
+  String get notifBalanceClaimTitle => 'Customer says they paid';
+
+  @override
+  String get notifBalanceClaimBody =>
+      'Your customer says they paid for this order. Please confirm.';
+
+  @override
+  String get notifDisputeDecidedTitle => 'Dispute decided';
+
+  @override
+  String get notifDisputeDecidedBody => 'Your dispute has been reviewed.';
+
+  @override
+  String get idNumberLabel => 'National ID number';
+
+  @override
+  String get idNumberHint => 'As printed on your ID';
+
+  @override
+  String get idNumberRequired => 'Enter your ID number';
+
+  @override
+  String get idNumberInvalid => 'Enter 4 to 20 letters or digits';
+
+  @override
+  String get idNumberReceived => 'ID number received';
 }

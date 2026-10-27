@@ -23,6 +23,8 @@ import '../../features/orders/order_history_screen.dart';
 import '../../features/payments/payment_methods_screen.dart';
 import '../../features/profile/delete_account_screen.dart';
 import '../../features/profile/profile_screen.dart';
+import '../../features/restrictions/account_status_screen.dart';
+import '../../features/restrictions/settle_balance_screen.dart';
 import '../../features/rider/home/rider_home_screen.dart';
 import '../../features/rider/onboarding/documents_screen.dart';
 import '../../features/rider/onboarding/rider_onboarding_screen.dart';
@@ -55,6 +57,8 @@ abstract final class AppRoutes {
   static const notifications = '/notifications';
   static const profile = '/profile';
   static const deleteAccount = '/profile/delete';
+  static const settleBalance = '/balance';
+  static const accountStatus = '/account/status';
 
   /// Order history for one side (sender: GET /orders, rider: GET /riders/me/orders).
   static String historyFor(AppMode side) => side == AppMode.rider
@@ -263,6 +267,14 @@ GoRouter buildRouter(
           builder: (context, state) => const DeleteAccountScreen(),
         ),
       ],
+    ),
+    GoRoute(
+      path: AppRoutes.settleBalance,
+      builder: (context, state) => const SettleBalanceScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.accountStatus,
+      builder: (context, state) => const AccountStatusScreen(),
     ),
     GoRoute(
       path: AppRoutes.riderHome,

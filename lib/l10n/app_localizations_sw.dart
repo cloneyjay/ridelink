@@ -2464,4 +2464,351 @@ class AppLocalizationsSw extends AppLocalizations {
   String docRejectionMessage(String message) {
     return 'Ujumbe kutoka RideLink: $message';
   }
+
+  @override
+  String get statusClosedUnpaid => 'Imefungwa, haijalipwa';
+
+  @override
+  String get suspensionReasonSafetyIncident => 'Tukio la usalama';
+
+  @override
+  String get suspensionReasonFraud => 'Udanganyifu au hati bandia';
+
+  @override
+  String get suspensionReasonHarassment => 'Unyanyasaji au matusi';
+
+  @override
+  String get suspensionReasonNonPayment => 'Kutolipa mara kwa mara';
+
+  @override
+  String get suspensionReasonNoShows => 'Kutofika au kughairi mara kwa mara';
+
+  @override
+  String get suspensionReasonStrikes => 'Maonyo ya mara kwa mara';
+
+  @override
+  String get suspensionReasonOther => 'Nyingine';
+
+  @override
+  String get accountSuspendedTitle => 'Akaunti imesimamishwa';
+
+  @override
+  String accountSuspendedUntil(String date) {
+    return 'Akaunti yako imesimamishwa hadi $date.';
+  }
+
+  @override
+  String get accountSuspendedPermanent => 'Akaunti yako imesimamishwa kabisa.';
+
+  @override
+  String get accountSuspendedAfterOrder =>
+      'Akaunti yako itasimamishwa oda yako ya sasa ikiisha.';
+
+  @override
+  String accountSuspendedReason(String reason) {
+    return 'Sababu: $reason.';
+  }
+
+  @override
+  String get accountSuspendedCanAppeal => 'Unaweza kukata rufaa.';
+
+  @override
+  String get accountStatusTitle => 'Hali ya akaunti';
+
+  @override
+  String get accountNotSuspended => 'Akaunti yako inatumika.';
+
+  @override
+  String get accountStatusLoadFailed =>
+      'Imeshindwa kupakia hali ya akaunti yako.';
+
+  @override
+  String get suspendedViewDetails => 'Angalia maelezo';
+
+  @override
+  String get appealTitle => 'Rufaa';
+
+  @override
+  String get appealLabel => 'Tueleze kwa nini usimamishaji uondolewe';
+
+  @override
+  String get appealOnceNote =>
+      'Unaweza kutuma rufaa moja kwa usimamishaji huu.';
+
+  @override
+  String get appealSubmit => 'Tuma rufaa';
+
+  @override
+  String get appealRequired => 'Andika rufaa yako';
+
+  @override
+  String get appealFailed => 'Imeshindwa kutuma rufaa yako. Jaribu tena.';
+
+  @override
+  String get appealPending => 'Rufaa yako imetumwa na inakaguliwa.';
+
+  @override
+  String get appealUpheld => 'Rufaa yako imekaguliwa. Usimamishaji unaendelea.';
+
+  @override
+  String get appealLifted =>
+      'Rufaa yako imekubaliwa na usimamishaji umeondolewa.';
+
+  @override
+  String get settleBalanceTitle => 'Lipa deni lako';
+
+  @override
+  String get settleBalanceIntro =>
+      'Huwezi kuagiza hadi mwendeshaji wako athibitishe kuwa amepokea malipo yako.';
+
+  @override
+  String balanceOwedTo(String rider) {
+    return 'Unadaiwa na $rider kwa agizo hili';
+  }
+
+  @override
+  String get balanceOwedToRider =>
+      'Unadaiwa na mwendeshaji wako kwa agizo hili';
+
+  @override
+  String get balanceViewOrder => 'Angalia agizo';
+
+  @override
+  String get balanceSettledTitle => 'Deni limelipwa';
+
+  @override
+  String get balanceSettledBody => 'Unaweza kuagiza tena.';
+
+  @override
+  String get balanceLoadFailed => 'Imeshindwa kupakia deni lako.';
+
+  @override
+  String get backToHomeButton => 'Rudi mwanzo';
+
+  @override
+  String get homeBalanceBannerTitle => 'Deni ambalo halijalipwa';
+
+  @override
+  String homeBalanceBannerBody(String amount) {
+    return 'Unadaiwa $amount. Mlipe mwendeshaji wako ili uagize tena.';
+  }
+
+  @override
+  String get riderSettleTitle => 'Umepokea malipo?';
+
+  @override
+  String get riderSettleBodyUnresolved =>
+      'Ikiwa mlipaji amekulipa tangu hapo, thibitisha hapa. Hii inakamilisha agizo.';
+
+  @override
+  String riderSettleBodyBalance(String amount) {
+    return 'Mlipaji anadaiwa $amount kwa agizo hili. Ukiyapokea, thibitisha hapa.';
+  }
+
+  @override
+  String get notifPaymentRuledTitle => 'Ukaguzi wa malipo umekamilika';
+
+  @override
+  String get notifPaymentRuledBody => 'Fungua agizo kuona uamuzi.';
+
+  @override
+  String notifBalanceCreatedBody(String amount) {
+    return 'Unadaiwa na mwendeshaji wako $amount kwa agizo hili.';
+  }
+
+  @override
+  String get notifBalanceCreatedBodyNoAmount =>
+      'Unadaiwa na mwendeshaji wako kwa agizo hili.';
+
+  @override
+  String get notifBalanceSettledBody => 'Malipo ya agizo hili yamethibitishwa.';
+
+  @override
+  String get notifStrikeIssuedTitle => 'Onyo';
+
+  @override
+  String get notifStrikeIssuedBody => 'Umepokea onyo kwenye agizo hili.';
+
+  @override
+  String get notifAccountSuspendedBody => 'Fungua RideLink kuona maelezo.';
+
+  @override
+  String get notifSuspensionLiftedTitle => 'Usimamishaji umeondolewa';
+
+  @override
+  String get notifSuspensionLiftedBody => 'Akaunti yako inatumika tena.';
+
+  @override
+  String get notifAppealDecidedTitle => 'Uamuzi wa rufaa';
+
+  @override
+  String get notifAppealDecidedBody => 'Rufaa yako imekaguliwa.';
+
+  @override
+  String get errCodeOutstandingBalance =>
+      'Lipa deni lako kwa mwendeshaji kabla ya kuagiza tena.';
+
+  @override
+  String get errCodeAccountSuspended => 'Akaunti yako imesimamishwa.';
+
+  @override
+  String get strikeReasonUnpaidOrder => 'Agizo ambalo halikulipwa';
+
+  @override
+  String get strikeReasonFalseReport => 'Ripoti ya malipo haikuthibitishwa';
+
+  @override
+  String get strikeReasonGeneric => 'Onyo';
+
+  @override
+  String get suspensionIntendedTitle => 'Taarifa ya kusimamishwa';
+
+  @override
+  String get suspensionIntendedLead =>
+      'RideLink inakusudia kusimamisha akaunti yako.';
+
+  @override
+  String suspensionRespondUntil(String time) {
+    return 'Unaweza kujibu hadi $time.';
+  }
+
+  @override
+  String get accountOnHoldTitle => 'Akaunti imesitishwa';
+
+  @override
+  String get accountOnHold =>
+      'Akaunti yako imesitishwa hadi ukaguzi ukamilike.';
+
+  @override
+  String get suspensionResponseLabel => 'Jibu lako';
+
+  @override
+  String get suspensionResponseSubmit => 'Tuma jibu';
+
+  @override
+  String get suspensionResponseRequired => 'Andika jibu lako';
+
+  @override
+  String get suspensionResponseFailed =>
+      'Imeshindwa kutuma jibu lako. Jaribu tena.';
+
+  @override
+  String get suspensionResponseSent =>
+      'Jibu lako limetumwa. RideLink italikagua kabla ya kuamua.';
+
+  @override
+  String get standingTitle => 'Msimamo wa akaunti';
+
+  @override
+  String get standingRule =>
+      'Maonyo 3 ndani ya siku 90 yanaweza kusababisha kusimamishwa kwa siku 7.';
+
+  @override
+  String get standingNoWarnings => 'Huna maonyo yoyote.';
+
+  @override
+  String strikeIssuedOn(String date) {
+    return 'Ilitolewa $date';
+  }
+
+  @override
+  String strikeExpiresOn(String date) {
+    return 'Itaisha $date';
+  }
+
+  @override
+  String get disputeButton => 'Pinga';
+
+  @override
+  String get disputeLabel => 'Tueleze kwa nini onyo hili si sahihi';
+
+  @override
+  String get disputeOnceNote =>
+      'Unaweza kupinga kila onyo mara moja, ndani ya siku 7.';
+
+  @override
+  String get disputeSubmit => 'Tuma pingamizi';
+
+  @override
+  String get disputeRequired => 'Andika pingamizi lako';
+
+  @override
+  String get disputeFailed => 'Imeshindwa kutuma pingamizi lako. Jaribu tena.';
+
+  @override
+  String get disputePending => 'Pingamizi limetumwa. RideLink italikagua.';
+
+  @override
+  String get disputeUpheld =>
+      'Pingamizi lako limekubaliwa na onyo limeondolewa.';
+
+  @override
+  String get disputeRejected => 'Pingamizi lako limekaguliwa. Onyo linabaki.';
+
+  @override
+  String get iPaidButton => 'Nimelipa';
+
+  @override
+  String get iPaidTitle => 'Tueleze ulivyolipa';
+
+  @override
+  String get cashNoteLabel => 'Maelezo (si lazima)';
+
+  @override
+  String get cashNoteHelp => 'Kwa mfano, lini na wapi ulilipa';
+
+  @override
+  String get iPaidSubmit => 'Tuma';
+
+  @override
+  String get iPaidFailed => 'Imeshindwa kutuma. Jaribu tena.';
+
+  @override
+  String get iPaidSent =>
+      'Tumemwomba mwendeshaji wako athibitishe. RideLink itakagua ikiwa hatajibu.';
+
+  @override
+  String get forgiveBalanceButton => 'Samehe deni';
+
+  @override
+  String get forgiveBalanceTitle => 'Usamehe deni hili?';
+
+  @override
+  String get forgiveBalanceBody =>
+      'Mlipaji hatadaiwa tena kwa agizo hili. Hili haliwezi kutenduliwa.';
+
+  @override
+  String get forgiveBalanceConfirm => 'Samehe';
+
+  @override
+  String get receiverPaysDisclosure =>
+      'Mpokeaji wako asipolipa, utadaiwa na mwendeshaji.';
+
+  @override
+  String get notifBalanceClaimTitle => 'Mteja anasema amelipa';
+
+  @override
+  String get notifBalanceClaimBody =>
+      'Mteja wako anasema amelipia agizo hili. Tafadhali thibitisha.';
+
+  @override
+  String get notifDisputeDecidedTitle => 'Uamuzi wa pingamizi';
+
+  @override
+  String get notifDisputeDecidedBody => 'Pingamizi lako limekaguliwa.';
+
+  @override
+  String get idNumberLabel => 'Nambari ya kitambulisho cha taifa';
+
+  @override
+  String get idNumberHint => 'Kama ilivyochapishwa kwenye kitambulisho chako';
+
+  @override
+  String get idNumberRequired => 'Weka nambari ya kitambulisho chako';
+
+  @override
+  String get idNumberInvalid => 'Weka herufi au tarakimu 4 hadi 20';
+
+  @override
+  String get idNumberReceived => 'Nambari ya kitambulisho imepokelewa';
 }

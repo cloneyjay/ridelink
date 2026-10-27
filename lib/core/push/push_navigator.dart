@@ -25,6 +25,11 @@ class PushNavigator {
   final SessionFlags flags;
 
   Future<void> open(PushPayload p) async {
+    final accountScreen = accountScreenFor(p.type);
+    if (accountScreen != null) {
+      router.push(accountScreen);
+      return;
+    }
     final riderScreen = riderScreenFor(p.type);
     if (riderScreen != null) {
       // Nested under rider home, so back returns there.

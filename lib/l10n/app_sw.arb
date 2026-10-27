@@ -3192,5 +3192,462 @@
       }
     },
     "x-review": "needs-review"
+  },
+  "statusClosedUnpaid": "Imefungwa, haijalipwa",
+  "@statusClosedUnpaid": {
+    "x-review": "needs-review"
+  },
+  "suspensionReasonSafetyIncident": "Tukio la usalama",
+  "@suspensionReasonSafetyIncident": {
+    "x-review": "needs-review"
+  },
+  "suspensionReasonFraud": "Udanganyifu au hati bandia",
+  "@suspensionReasonFraud": {
+    "x-review": "needs-review"
+  },
+  "suspensionReasonHarassment": "Unyanyasaji au matusi",
+  "@suspensionReasonHarassment": {
+    "x-review": "needs-review"
+  },
+  "suspensionReasonNonPayment": "Kutolipa mara kwa mara",
+  "@suspensionReasonNonPayment": {
+    "x-review": "needs-review"
+  },
+  "suspensionReasonNoShows": "Kutofika au kughairi mara kwa mara",
+  "@suspensionReasonNoShows": {
+    "x-review": "needs-review"
+  },
+  "suspensionReasonStrikes": "Maonyo ya mara kwa mara",
+  "@suspensionReasonStrikes": {
+    "x-review": "needs-review"
+  },
+  "suspensionReasonOther": "Nyingine",
+  "@suspensionReasonOther": {
+    "x-review": "needs-review"
+  },
+  "accountSuspendedTitle": "Akaunti imesimamishwa",
+  "@accountSuspendedTitle": {
+    "x-review": "needs-review"
+  },
+  "accountSuspendedUntil": "Akaunti yako imesimamishwa hadi {date}.",
+  "@accountSuspendedUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "accountSuspendedPermanent": "Akaunti yako imesimamishwa kabisa.",
+  "@accountSuspendedPermanent": {
+    "x-review": "needs-review"
+  },
+  "accountSuspendedAfterOrder": "Akaunti yako itasimamishwa oda yako ya sasa ikiisha.",
+  "@accountSuspendedAfterOrder": {
+    "x-review": "needs-review"
+  },
+  "accountSuspendedReason": "Sababu: {reason}.",
+  "@accountSuspendedReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "accountSuspendedCanAppeal": "Unaweza kukata rufaa.",
+  "@accountSuspendedCanAppeal": {
+    "x-review": "needs-review"
+  },
+  "accountStatusTitle": "Hali ya akaunti",
+  "@accountStatusTitle": {
+    "x-review": "needs-review"
+  },
+  "accountNotSuspended": "Akaunti yako inatumika.",
+  "@accountNotSuspended": {
+    "x-review": "needs-review"
+  },
+  "accountStatusLoadFailed": "Imeshindwa kupakia hali ya akaunti yako.",
+  "@accountStatusLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "suspendedViewDetails": "Angalia maelezo",
+  "@suspendedViewDetails": {
+    "x-review": "needs-review"
+  },
+  "appealTitle": "Rufaa",
+  "@appealTitle": {
+    "x-review": "needs-review"
+  },
+  "appealLabel": "Tueleze kwa nini usimamishaji uondolewe",
+  "@appealLabel": {
+    "x-review": "needs-review"
+  },
+  "appealOnceNote": "Unaweza kutuma rufaa moja kwa usimamishaji huu.",
+  "@appealOnceNote": {
+    "x-review": "needs-review"
+  },
+  "appealSubmit": "Tuma rufaa",
+  "@appealSubmit": {
+    "x-review": "needs-review"
+  },
+  "appealRequired": "Andika rufaa yako",
+  "@appealRequired": {
+    "x-review": "needs-review"
+  },
+  "appealFailed": "Imeshindwa kutuma rufaa yako. Jaribu tena.",
+  "@appealFailed": {
+    "x-review": "needs-review"
+  },
+  "appealPending": "Rufaa yako imetumwa na inakaguliwa.",
+  "@appealPending": {
+    "x-review": "needs-review"
+  },
+  "appealUpheld": "Rufaa yako imekaguliwa. Usimamishaji unaendelea.",
+  "@appealUpheld": {
+    "x-review": "needs-review"
+  },
+  "appealLifted": "Rufaa yako imekubaliwa na usimamishaji umeondolewa.",
+  "@appealLifted": {
+    "x-review": "needs-review"
+  },
+  "settleBalanceTitle": "Lipa deni lako",
+  "@settleBalanceTitle": {
+    "x-review": "needs-review"
+  },
+  "settleBalanceIntro": "Huwezi kuagiza hadi mwendeshaji wako athibitishe kuwa amepokea malipo yako.",
+  "@settleBalanceIntro": {
+    "x-review": "needs-review"
+  },
+  "balanceOwedTo": "Unadaiwa na {rider} kwa agizo hili",
+  "@balanceOwedTo": {
+    "placeholders": {
+      "rider": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "balanceOwedToRider": "Unadaiwa na mwendeshaji wako kwa agizo hili",
+  "@balanceOwedToRider": {
+    "x-review": "needs-review"
+  },
+  "balanceViewOrder": "Angalia agizo",
+  "@balanceViewOrder": {
+    "x-review": "needs-review"
+  },
+  "balanceSettledTitle": "Deni limelipwa",
+  "@balanceSettledTitle": {
+    "x-review": "needs-review"
+  },
+  "balanceSettledBody": "Unaweza kuagiza tena.",
+  "@balanceSettledBody": {
+    "x-review": "needs-review"
+  },
+  "balanceLoadFailed": "Imeshindwa kupakia deni lako.",
+  "@balanceLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "backToHomeButton": "Rudi mwanzo",
+  "@backToHomeButton": {
+    "x-review": "needs-review"
+  },
+  "homeBalanceBannerTitle": "Deni ambalo halijalipwa",
+  "@homeBalanceBannerTitle": {
+    "x-review": "needs-review"
+  },
+  "homeBalanceBannerBody": "Unadaiwa {amount}. Mlipe mwendeshaji wako ili uagize tena.",
+  "@homeBalanceBannerBody": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "riderSettleTitle": "Umepokea malipo?",
+  "@riderSettleTitle": {
+    "x-review": "needs-review"
+  },
+  "riderSettleBodyUnresolved": "Ikiwa mlipaji amekulipa tangu hapo, thibitisha hapa. Hii inakamilisha agizo.",
+  "@riderSettleBodyUnresolved": {
+    "x-review": "needs-review"
+  },
+  "riderSettleBodyBalance": "Mlipaji anadaiwa {amount} kwa agizo hili. Ukiyapokea, thibitisha hapa.",
+  "@riderSettleBodyBalance": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "notifPaymentRuledTitle": "Ukaguzi wa malipo umekamilika",
+  "@notifPaymentRuledTitle": {
+    "x-review": "needs-review"
+  },
+  "notifPaymentRuledBody": "Fungua agizo kuona uamuzi.",
+  "@notifPaymentRuledBody": {
+    "x-review": "needs-review"
+  },
+  "notifBalanceCreatedBody": "Unadaiwa na mwendeshaji wako {amount} kwa agizo hili.",
+  "@notifBalanceCreatedBody": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "notifBalanceCreatedBodyNoAmount": "Unadaiwa na mwendeshaji wako kwa agizo hili.",
+  "@notifBalanceCreatedBodyNoAmount": {
+    "x-review": "needs-review"
+  },
+  "notifBalanceSettledBody": "Malipo ya agizo hili yamethibitishwa.",
+  "@notifBalanceSettledBody": {
+    "x-review": "needs-review"
+  },
+  "notifStrikeIssuedTitle": "Onyo",
+  "@notifStrikeIssuedTitle": {
+    "x-review": "needs-review"
+  },
+  "notifStrikeIssuedBody": "Umepokea onyo kwenye agizo hili.",
+  "@notifStrikeIssuedBody": {
+    "x-review": "needs-review"
+  },
+  "notifAccountSuspendedBody": "Fungua RideLink kuona maelezo.",
+  "@notifAccountSuspendedBody": {
+    "x-review": "needs-review"
+  },
+  "notifSuspensionLiftedTitle": "Usimamishaji umeondolewa",
+  "@notifSuspensionLiftedTitle": {
+    "x-review": "needs-review"
+  },
+  "notifSuspensionLiftedBody": "Akaunti yako inatumika tena.",
+  "@notifSuspensionLiftedBody": {
+    "x-review": "needs-review"
+  },
+  "notifAppealDecidedTitle": "Uamuzi wa rufaa",
+  "@notifAppealDecidedTitle": {
+    "x-review": "needs-review"
+  },
+  "notifAppealDecidedBody": "Rufaa yako imekaguliwa.",
+  "@notifAppealDecidedBody": {
+    "x-review": "needs-review"
+  },
+  "errCodeOutstandingBalance": "Lipa deni lako kwa mwendeshaji kabla ya kuagiza tena.",
+  "@errCodeOutstandingBalance": {
+    "x-review": "needs-review"
+  },
+  "errCodeAccountSuspended": "Akaunti yako imesimamishwa.",
+  "@errCodeAccountSuspended": {
+    "x-review": "needs-review"
+  },
+  "strikeReasonUnpaidOrder": "Agizo ambalo halikulipwa",
+  "@strikeReasonUnpaidOrder": {
+    "x-review": "needs-review"
+  },
+  "strikeReasonFalseReport": "Ripoti ya malipo haikuthibitishwa",
+  "@strikeReasonFalseReport": {
+    "x-review": "needs-review"
+  },
+  "strikeReasonGeneric": "Onyo",
+  "@strikeReasonGeneric": {
+    "x-review": "needs-review"
+  },
+  "suspensionIntendedTitle": "Taarifa ya kusimamishwa",
+  "@suspensionIntendedTitle": {
+    "x-review": "needs-review"
+  },
+  "suspensionIntendedLead": "RideLink inakusudia kusimamisha akaunti yako.",
+  "@suspensionIntendedLead": {
+    "x-review": "needs-review"
+  },
+  "suspensionRespondUntil": "Unaweza kujibu hadi {time}.",
+  "@suspensionRespondUntil": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "accountOnHoldTitle": "Akaunti imesitishwa",
+  "@accountOnHoldTitle": {
+    "x-review": "needs-review"
+  },
+  "accountOnHold": "Akaunti yako imesitishwa hadi ukaguzi ukamilike.",
+  "@accountOnHold": {
+    "x-review": "needs-review"
+  },
+  "suspensionResponseLabel": "Jibu lako",
+  "@suspensionResponseLabel": {
+    "x-review": "needs-review"
+  },
+  "suspensionResponseSubmit": "Tuma jibu",
+  "@suspensionResponseSubmit": {
+    "x-review": "needs-review"
+  },
+  "suspensionResponseRequired": "Andika jibu lako",
+  "@suspensionResponseRequired": {
+    "x-review": "needs-review"
+  },
+  "suspensionResponseFailed": "Imeshindwa kutuma jibu lako. Jaribu tena.",
+  "@suspensionResponseFailed": {
+    "x-review": "needs-review"
+  },
+  "suspensionResponseSent": "Jibu lako limetumwa. RideLink italikagua kabla ya kuamua.",
+  "@suspensionResponseSent": {
+    "x-review": "needs-review"
+  },
+  "standingTitle": "Msimamo wa akaunti",
+  "@standingTitle": {
+    "x-review": "needs-review"
+  },
+  "standingRule": "Maonyo 3 ndani ya siku 90 yanaweza kusababisha kusimamishwa kwa siku 7.",
+  "@standingRule": {
+    "x-review": "needs-review"
+  },
+  "standingNoWarnings": "Huna maonyo yoyote.",
+  "@standingNoWarnings": {
+    "x-review": "needs-review"
+  },
+  "strikeIssuedOn": "Ilitolewa {date}",
+  "@strikeIssuedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "strikeExpiresOn": "Itaisha {date}",
+  "@strikeExpiresOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    },
+    "x-review": "needs-review"
+  },
+  "disputeButton": "Pinga",
+  "@disputeButton": {
+    "x-review": "needs-review"
+  },
+  "disputeLabel": "Tueleze kwa nini onyo hili si sahihi",
+  "@disputeLabel": {
+    "x-review": "needs-review"
+  },
+  "disputeOnceNote": "Unaweza kupinga kila onyo mara moja, ndani ya siku 7.",
+  "@disputeOnceNote": {
+    "x-review": "needs-review"
+  },
+  "disputeSubmit": "Tuma pingamizi",
+  "@disputeSubmit": {
+    "x-review": "needs-review"
+  },
+  "disputeRequired": "Andika pingamizi lako",
+  "@disputeRequired": {
+    "x-review": "needs-review"
+  },
+  "disputeFailed": "Imeshindwa kutuma pingamizi lako. Jaribu tena.",
+  "@disputeFailed": {
+    "x-review": "needs-review"
+  },
+  "disputePending": "Pingamizi limetumwa. RideLink italikagua.",
+  "@disputePending": {
+    "x-review": "needs-review"
+  },
+  "disputeUpheld": "Pingamizi lako limekubaliwa na onyo limeondolewa.",
+  "@disputeUpheld": {
+    "x-review": "needs-review"
+  },
+  "disputeRejected": "Pingamizi lako limekaguliwa. Onyo linabaki.",
+  "@disputeRejected": {
+    "x-review": "needs-review"
+  },
+  "iPaidButton": "Nimelipa",
+  "@iPaidButton": {
+    "x-review": "needs-review"
+  },
+  "iPaidTitle": "Tueleze ulivyolipa",
+  "@iPaidTitle": {
+    "x-review": "needs-review"
+  },
+  "cashNoteLabel": "Maelezo (si lazima)",
+  "@cashNoteLabel": {
+    "x-review": "needs-review"
+  },
+  "cashNoteHelp": "Kwa mfano, lini na wapi ulilipa",
+  "@cashNoteHelp": {
+    "x-review": "needs-review"
+  },
+  "iPaidSubmit": "Tuma",
+  "@iPaidSubmit": {
+    "x-review": "needs-review"
+  },
+  "iPaidFailed": "Imeshindwa kutuma. Jaribu tena.",
+  "@iPaidFailed": {
+    "x-review": "needs-review"
+  },
+  "iPaidSent": "Tumemwomba mwendeshaji wako athibitishe. RideLink itakagua ikiwa hatajibu.",
+  "@iPaidSent": {
+    "x-review": "needs-review"
+  },
+  "forgiveBalanceButton": "Samehe deni",
+  "@forgiveBalanceButton": {
+    "x-review": "needs-review"
+  },
+  "forgiveBalanceTitle": "Usamehe deni hili?",
+  "@forgiveBalanceTitle": {
+    "x-review": "needs-review"
+  },
+  "forgiveBalanceBody": "Mlipaji hatadaiwa tena kwa agizo hili. Hili haliwezi kutenduliwa.",
+  "@forgiveBalanceBody": {
+    "x-review": "needs-review"
+  },
+  "forgiveBalanceConfirm": "Samehe",
+  "@forgiveBalanceConfirm": {
+    "x-review": "needs-review"
+  },
+  "receiverPaysDisclosure": "Mpokeaji wako asipolipa, utadaiwa na mwendeshaji.",
+  "@receiverPaysDisclosure": {
+    "x-review": "needs-review"
+  },
+  "notifBalanceClaimTitle": "Mteja anasema amelipa",
+  "@notifBalanceClaimTitle": {
+    "x-review": "needs-review"
+  },
+  "notifBalanceClaimBody": "Mteja wako anasema amelipia agizo hili. Tafadhali thibitisha.",
+  "@notifBalanceClaimBody": {
+    "x-review": "needs-review"
+  },
+  "notifDisputeDecidedTitle": "Uamuzi wa pingamizi",
+  "@notifDisputeDecidedTitle": {
+    "x-review": "needs-review"
+  },
+  "notifDisputeDecidedBody": "Pingamizi lako limekaguliwa.",
+  "@notifDisputeDecidedBody": {
+    "x-review": "needs-review"
+  },
+  "idNumberLabel": "Nambari ya kitambulisho cha taifa",
+  "@idNumberLabel": {
+    "x-review": "needs-review"
+  },
+  "idNumberHint": "Kama ilivyochapishwa kwenye kitambulisho chako",
+  "@idNumberHint": {
+    "x-review": "needs-review"
+  },
+  "idNumberRequired": "Weka nambari ya kitambulisho chako",
+  "@idNumberRequired": {
+    "x-review": "needs-review"
+  },
+  "idNumberInvalid": "Weka herufi au tarakimu 4 hadi 20",
+  "@idNumberInvalid": {
+    "x-review": "needs-review"
+  },
+  "idNumberReceived": "Nambari ya kitambulisho imepokelewa",
+  "@idNumberReceived": {
+    "x-review": "needs-review"
   }
 }

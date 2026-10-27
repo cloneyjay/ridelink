@@ -22,6 +22,9 @@ abstract class RiderRepository {
     required String fileName,
     DateTime? expiresOn,
     DateTime? issuedOn,
+
+    /// National ID only: the normalized number (see normalizeIdNumber).
+    String? idNumber,
   });
 
   Future<RiderLimits> limits();
@@ -114,6 +117,7 @@ class ApiRiderRepository implements RiderRepository {
     required String fileName,
     DateTime? expiresOn,
     DateTime? issuedOn,
+    String? idNumber,
   }) async => DocumentState.fromJson(
     _map(
       await _api.postMultipart(
@@ -122,6 +126,8 @@ class ApiRiderRepository implements RiderRepository {
           'doc_type': type.wire,
           if (expiresOn != null) 'expires_on': _date.format(expiresOn),
           if (issuedOn != null) 'issued_on': _date.format(issuedOn),
+          if (type == DocType.nationalId && idNumber != null)
+            'id_number': idNumber,
         },
         fileBytes: bytes,
         fileName: fileName,

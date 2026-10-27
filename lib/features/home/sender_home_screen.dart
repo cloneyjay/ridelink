@@ -21,6 +21,8 @@ import '../booking/resume.dart';
 import '../push/notification_prompt.dart';
 import '../booking/data/booking_models.dart';
 import '../notifications/notifications_screen.dart';
+import '../restrictions/balance_widgets.dart';
+import '../restrictions/restriction_providers.dart';
 import '../rider/rider_controller.dart';
 import '../rider/widgets/rider_offer_watcher.dart';
 import '../shell/app_menu.dart';
@@ -59,6 +61,8 @@ class _SenderHomeScreenState extends ConsumerState<SenderHomeScreen>
   Future<void> _resume() async {
     if (_resuming) return;
     _resuming = true;
+    ref.invalidate(outstandingBalancesProvider);
+    ref.invalidate(accountStatusProvider);
     try {
       final orders = await ref.read(bookingRepositoryProvider).activeOrders();
       if (!mounted) return;
@@ -320,6 +324,7 @@ class _HomeSheet extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSpacing.s4),
               ],
+              const HomeRestrictionBanners(),
               if (_locationCard(context) case final card?) ...[
                 card,
                 const SizedBox(height: AppSpacing.s4),
@@ -429,23 +434,27 @@ class _LocationCard extends StatelessWidget {
   }
 }
 
-class _ServiceTile extends StatelessWidget {
+class _ServiceTile extends ConsumerWidget {
   const _ServiceTile({required this.service});
 
   final ServiceType service;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l = AppLocalizations.of(context);
     final c = context.colors;
-    final accent = serviceAccent(c, service);
+    // Suspended senders can't book (D6); the banner above explains why.
+    final suspended = ref.watch(isSuspendedProvider);
+    final accent = suspended ? c.inkFaint : serviceAccent(c, service);
     return Material(
-      color: serviceTint(c, service),
+      color: suspended ? c.surfaceSunken : serviceTint(c, service),
       borderRadius: BorderRadius.circular(AppRadius.lg),
       child: InkWell(
         key: Key('home.service.${service.wire}'),
         borderRadius: BorderRadius.circular(AppRadius.lg),
-        onTap: () => context.push(AppRoutes.newOrderFor(service)),
+        onTap: suspended
+            ? null
+            : () => context.push(AppRoutes.newOrderFor(service)),
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.s4),
           child: Column(

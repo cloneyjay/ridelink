@@ -495,6 +495,9 @@ void main() {
       await tap(tester, 'orderDetail.late.dialog.yes');
       await tester.pumpAndSettle();
       expect(riderRepo.jobCalls, ['payment/not-received']);
+      // The unresolved order now also shows the rider's settle card below; back to the top.
+      await tester.drag(find.byType(Scrollable).last, const Offset(0, 2000));
+      await tester.pumpAndSettle();
       expect(byKey('status.unresolved'), findsOneWidget);
       expect(byKey('orderDetail.unresolvedRider'), findsOneWidget);
       expect(byKey('orderDetail.late'), findsNothing);

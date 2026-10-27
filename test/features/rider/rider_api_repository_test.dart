@@ -81,6 +81,39 @@ void main() {
     expect(form.files.single.value.filename, 'psv.pdf');
   });
 
+  test('national ID upload sends id_number; other types never do', () async {
+    final repo = ApiRiderRepository(
+      client({
+        'riders/me/documents': (_) => jsonResponse(201, {
+          'doc_type': 'national_id',
+          'status': 'pending',
+          'id_number_recorded': true,
+        }),
+      }),
+    );
+    final doc = await repo.uploadDocument(
+      type: DocType.nationalId,
+      bytes: [1],
+      fileName: 'id.jpg',
+      idNumber: '12345678',
+    );
+    expect(doc.idNumberRecorded, isTrue);
+    expect(Map.fromEntries((adapter.requests.single.data as FormData).fields), {
+      'doc_type': 'national_id',
+      'id_number': '12345678',
+    });
+
+    await repo.uploadDocument(
+      type: DocType.riderPhoto,
+      bytes: [1],
+      fileName: 'me.jpg',
+      idNumber: '12345678',
+    );
+    expect(Map.fromEntries((adapter.requests.last.data as FormData).fields), {
+      'doc_type': 'rider_photo',
+    });
+  });
+
   test('online, settings and location payloads', () async {
     final rider = {'id': 'r1', 'is_online': true};
     final repo = ApiRiderRepository(

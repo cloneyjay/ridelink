@@ -175,6 +175,8 @@ class DocumentRow extends StatelessWidget {
       if (doc.expiresOn != null) l.docExpiresOn(formatDate(l, doc.expiresOn!)),
       if (doc.status == DocStatus.pending && doc.current)
         l.docPendingStillValid,
+      if (doc.type == DocType.nationalId && doc.idNumberRecorded)
+        l.idNumberReceived,
     ];
     return SurfaceCard(
       padding: EdgeInsets.zero,
