@@ -16,6 +16,25 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## CI
+
+GitHub Actions (`.github/workflows/ci.yml`) runs on every pull request, every push to `main`,
+and on demand (Actions tab, "Run workflow").
+
+- **Analyze and test** (all runs): `flutter pub get`, a check that the generated localizations in
+  `lib/l10n` match the `.arb` files (run `flutter gen-l10n` and commit if it fails),
+  `flutter analyze`, `flutter test`.
+- **Build debug APK** (pushes to `main` and manual runs, after the checks pass):
+  `flutter build apk --debug` with the default `AppConfig` settings (server at
+  `http://10.0.2.2:8080`, the Android emulator's address for the host machine; Google sign-in
+  hidden).
+
+To download the APK: open the run in the repository's Actions tab and download the
+`ridelink-debug-apk-<short sha>` artifact under "Artifacts". Artifacts are kept for 14 days.
+
+CI builds debug APKs only. Release signing and store builds come after the final package name is
+chosen, since the release keystore is tied to it.
+
 ## Firebase (push notifications and crash reports)
 
 The app builds and runs without Firebase: push notifications and Crashlytics stay off until

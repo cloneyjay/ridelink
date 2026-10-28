@@ -50,6 +50,8 @@ app.*.map.json
 # Miscellaneous
 *.class
 *.lock
+# Apps commit their lockfile so CI builds the exact dependency versions tested locally.
+!pubspec.lock
 *.log
 *.pyc
 *.swp
