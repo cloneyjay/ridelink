@@ -29,6 +29,7 @@ import '../../payments/late_report_card.dart';
 import '../../payments/rider_settle_card.dart';
 import '../../payments/payment_validation.dart';
 import '../../payments/payment_widgets.dart';
+import '../../profile/public/sender_profile_screen.dart';
 import '../../ratings/rating_sheet.dart';
 import '../../tracking/terms_sheet.dart';
 import '../rider_controller.dart';
@@ -415,6 +416,15 @@ class _RiderJobViewState extends ConsumerState<RiderJobView> {
               : l.senderIs(details!.senderName!),
           key: const Key('job.senderName'),
           icon: Icons.person_outline,
+        ),
+      ],
+      if (o.senderId != null && !o.isTerminal) ...[
+        const SizedBox(height: AppSpacing.s3),
+        OutlinedButton.icon(
+          key: const Key('job.senderProfile'),
+          onPressed: () => SenderProfileScreen.open(context, o.senderId!),
+          icon: const Icon(Icons.person_search_outlined),
+          label: Text(l.senderProfileTitle),
         ),
       ],
       if (o.receiverName != null && o.serviceType == ServiceType.delivery) ...[

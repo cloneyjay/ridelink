@@ -3657,5 +3657,82 @@
   "placeSearchPoweredBy": "Powered by Geoapify",
   "@placeSearchPoweredBy": {
     "x-review": "needs-review"
+  },
+  "publicProfileJoined": "Alijiunga {monthYear}",
+  "@publicProfileJoined": {
+    "x-review": "needs-review",
+    "placeholders": {
+      "monthYear": {
+        "type": "String"
+      }
+    }
+  },
+  "publicProfilePaymentSuccess": "Malipo yaliyofaulu",
+  "@publicProfilePaymentSuccess": {
+    "x-review": "needs-review"
+  },
+  "publicProfileCancellations": "Kughairi",
+  "@publicProfileCancellations": {
+    "x-review": "needs-review"
+  },
+  "publicProfileOrders": "Oda",
+  "@publicProfileOrders": {
+    "x-review": "needs-review"
+  },
+  "publicProfileOrdersAllTime": "Oda (tangu mwanzo)",
+  "@publicProfileOrdersAllTime": {
+    "x-review": "needs-review"
+  },
+  "publicProfileTripsAllTime": "Safari (tangu mwanzo)",
+  "@publicProfileTripsAllTime": {
+    "x-review": "needs-review"
+  },
+  "publicProfileNewOnRideLink": "Mpya kwenye RideLink",
+  "@publicProfileNewOnRideLink": {
+    "x-review": "needs-review"
+  },
+  "publicProfileLast30Days": "Siku 30 zilizopita",
+  "@publicProfileLast30Days": {
+    "x-review": "needs-review"
+  },
+  "publicProfileYours": "Wasifu wako wa umma",
+  "@publicProfileYours": {
+    "x-review": "needs-review"
+  },
+  "publicProfileRidersSee": "Hiki ndicho waendesha boda wanachoona kukuhusu",
+  "@publicProfileRidersSee": {
+    "x-review": "needs-review"
+  },
+  "publicProfileSendersSee": "Hiki ndicho wateja wanachoona kukuhusu",
+  "@publicProfileSendersSee": {
+    "x-review": "needs-review"
+  },
+  "senderProfileTitle": "Wasifu wa mteja",
+  "@senderProfileTitle": {
+    "x-review": "needs-review"
+  },
+  "publicProfileVerifiedRider": "Mwendesha boda aliyethibitishwa",
+  "@publicProfileVerifiedRider": {
+    "x-review": "needs-review"
+  },
+  "publicProfileUnavailable": "Wasifu huu haupatikani tena.",
+  "@publicProfileUnavailable": {
+    "x-review": "needs-review"
+  },
+  "publicProfileLoadFailed": "Imeshindikana kupakia wasifu huu.",
+  "@publicProfileLoadFailed": {
+    "x-review": "needs-review"
+  },
+  "statAccepted": "Zilizokubaliwa",
+  "@statAccepted": {
+    "x-review": "needs-review"
+  },
+  "statDisputes": "Mizozo",
+  "@statDisputes": {
+    "x-review": "needs-review"
+  },
+  "statPositive": "Chanya",
+  "@statPositive": {
+    "x-review": "needs-review"
   }
 }

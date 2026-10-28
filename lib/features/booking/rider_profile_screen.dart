@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/format/money.dart';
@@ -7,128 +8,125 @@ import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_dimensions.dart';
 import '../../theme/app_text_styles.dart';
+import '../profile/public/public_profile_providers.dart';
+import '../profile/public/public_profile_view.dart';
 import 'booking_labels.dart';
 import 'booking_routes.dart';
 import 'data/booking_models.dart';
 import 'rider_list_screen.dart';
 import 'widgets/booking_widgets.dart';
 
-/// Screen 3: the rider's public stats and this trip's price breakdown.
-class RiderProfileScreen extends StatelessWidget {
+/// Screen 3: the rider's shared public profile (GET /riders/{id}/public-profile), then this
+/// trip's pickup terms and price breakdown from the quote.
+class RiderProfileScreen extends ConsumerWidget {
   const RiderProfileScreen({super.key, required this.choice});
 
   final RiderChoice choice;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l = AppLocalizations.of(context);
     final c = context.colors;
     final rider = choice.rider;
-    const dash = '–';
+    final profile = ref.watch(riderPublicProfileProvider(rider.riderId));
+    final trip = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.s2,
+                vertical: AppSpacing.s1,
+              ),
+              decoration: BoxDecoration(
+                color: serviceTint(c, choice.order.serviceType),
+                borderRadius: BorderRadius.circular(AppRadius.sm),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    serviceIcon(choice.order.serviceType),
+                    size: AppSpacing.s4,
+                    color: serviceAccent(c, choice.order.serviceType),
+                  ),
+                  const SizedBox(width: AppSpacing.s1),
+                  Text(
+                    serviceName(l, choice.order.serviceType),
+                    style: AppTextStyles.label.copyWith(
+                      color: serviceAccent(c, choice.order.serviceType),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: AppSpacing.s2),
+        _Stat(
+          key: const Key('profile.stat.pickup'),
+          label: l.statPickup,
+          value: formatKm(rider.pickupDistanceKm),
+          caption: l.arrivesWithin(rider.pickupWindowMins),
+        ),
+        const SizedBox(height: AppSpacing.s3),
+        PriceBreakdownCard(rider: rider),
+        const SizedBox(height: AppSpacing.s6),
+        PrimaryButton(
+          key: const Key('profile.request'),
+          label: l.requestButton,
+          onPressed: () =>
+              context.push(AppRoutes.quoteFor(choice.order.id), extra: choice),
+        ),
+      ],
+    );
+    final Widget content;
+    if (profile.hasValue) {
+      content = PublicProfileView(profile: profile.value!, below: trip);
+    } else {
+      content = Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (profile.hasError)
+            SurfaceCard(
+              key: const Key('publicProfile.error'),
+              child: Column(
+                children: [
+                  Text(
+                    l.publicProfileLoadFailed,
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.body.copyWith(color: c.inkMuted),
+                  ),
+                  const SizedBox(height: AppSpacing.s3),
+                  OutlinedButton(
+                    key: const Key('publicProfile.retry'),
+                    onPressed: () => ref.invalidate(
+                      riderPublicProfileProvider(rider.riderId),
+                    ),
+                    child: Text(l.retryButton),
+                  ),
+                ],
+              ),
+            )
+          else
+            const SizedBox(
+              key: Key('publicProfile.loading'),
+              height: AppSpacing.s16 * 2,
+              child: LoadingView(),
+            ),
+          const SizedBox(height: AppSpacing.s3),
+          trip,
+        ],
+      );
+    }
     return Scaffold(
       key: const Key('screen.riderProfile'),
       appBar: AppBar(title: Text(l.riderProfileTitle)),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(AppLayout.screenPadding),
-          children: [
-            SurfaceCard(
-              padding: const EdgeInsets.all(AppSpacing.s5),
-              child: Column(
-                children: [
-                  RiderAvatar(
-                    riderId: rider.riderId,
-                    name: rider.displayName,
-                    hasPhoto: rider.hasPhoto,
-                    size: AppSpacing.s16,
-                  ),
-                  const SizedBox(height: AppSpacing.s3),
-                  Text(
-                    rider.displayName,
-                    style: AppTextStyles.displayMd.copyWith(color: c.ink),
-                  ),
-                  const SizedBox(height: AppSpacing.s2),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.s2,
-                      vertical: AppSpacing.s1,
-                    ),
-                    decoration: BoxDecoration(
-                      color: serviceTint(c, choice.order.serviceType),
-                      borderRadius: BorderRadius.circular(AppRadius.sm),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          serviceIcon(choice.order.serviceType),
-                          size: AppSpacing.s4,
-                          color: serviceAccent(c, choice.order.serviceType),
-                        ),
-                        const SizedBox(width: AppSpacing.s1),
-                        Text(
-                          serviceName(l, choice.order.serviceType),
-                          style: AppTextStyles.label.copyWith(
-                            color: serviceAccent(c, choice.order.serviceType),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: AppSpacing.s3),
-            GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: AppSpacing.s2,
-              crossAxisSpacing: AppSpacing.s2,
-              childAspectRatio: 1.6,
-              children: [
-                _Stat(
-                  key: const Key('profile.stat.rating'),
-                  label: l.statRating,
-                  value: rider.ratingCount == 0
-                      ? dash
-                      : rider.ratingAverage.toStringAsFixed(1),
-                  caption: rider.ratingCount == 0
-                      ? l.noRatingsYet
-                      : l.ratingCount(rider.ratingCount),
-                ),
-                _Stat(
-                  key: const Key('profile.stat.onTime'),
-                  label: l.statOnTime,
-                  value: rider.onTimeRate == null
-                      ? dash
-                      : '${(rider.onTimeRate! * 100).round()}%',
-                ),
-                _Stat(
-                  key: const Key('profile.stat.completed'),
-                  label: l.statCompleted,
-                  value: rider.completed?.toString() ?? dash,
-                ),
-                _Stat(
-                  key: const Key('profile.stat.pickup'),
-                  label: l.statPickup,
-                  value: formatKm(rider.pickupDistanceKm),
-                  caption: l.arrivesWithin(rider.pickupWindowMins),
-                ),
-              ],
-            ),
-            const SizedBox(height: AppSpacing.s3),
-            PriceBreakdownCard(rider: rider),
-            const SizedBox(height: AppSpacing.s6),
-            PrimaryButton(
-              key: const Key('profile.request'),
-              label: l.requestButton,
-              onPressed: () => context.push(
-                AppRoutes.quoteFor(choice.order.id),
-                extra: choice,
-              ),
-            ),
-          ],
+          children: [content],
         ),
       ),
     );

@@ -63,6 +63,7 @@ RiderOffer riderOfferFixture({
   String orderId = 'order-9',
   Duration window = const Duration(seconds: 60),
   DateTime? offeredAt,
+  String? senderId = 'sender-1',
 }) {
   final offered = offeredAt ?? testNow;
   return RiderOffer(
@@ -77,6 +78,7 @@ RiderOffer riderOfferFixture({
     quotedTotal: 214,
     pickupDistanceKm: 0.8,
     pickupWindowMins: 10,
+    senderId: senderId,
   );
 }
 
@@ -89,8 +91,10 @@ Order jobFixture({
   int agreedPrice = 214,
   String? cancelReason,
   ServiceType service = ServiceType.delivery,
+  String? senderId,
 }) => Order(
   id: id,
+  senderId: senderId,
   serviceType: service,
   status: status,
   pickupAddress: 'Westlands Mall, Waiyaki Way, Nairobi',

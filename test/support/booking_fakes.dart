@@ -35,6 +35,7 @@ import 'auth_harness.dart';
 import 'beta_fakes.dart';
 import 'fakes.dart';
 import 'phase3_fakes.dart';
+import 'public_profile_fakes.dart';
 import 'restriction_fakes.dart';
 import 'rider_fakes.dart';
 
@@ -453,7 +454,10 @@ class BookingHarness {
     required this.share,
     required this.store,
     required this.restrictions,
+    required this.publicProfiles,
   });
+
+  final FakePublicProfileRepository publicProfiles;
 
   final FakeRestrictionsRepository restrictions;
   final FakeOrdersRepository orders;
@@ -501,6 +505,7 @@ Future<BookingHarness> pumpBookingApp(
   FakeNotificationRepository? notifications,
   MemoryLocalStore? store,
   FakeRestrictionsRepository? restrictions,
+  FakePublicProfileRepository? publicProfiles,
   ModeStore? modeStore,
   DateTime Function()? clock,
   ServerClock? serverClock,
@@ -552,6 +557,7 @@ Future<BookingHarness> pumpBookingApp(
     share: FakeShareService(),
     store: store ?? MemoryLocalStore(),
     restrictions: restrictions ?? FakeRestrictionsRepository(),
+    publicProfiles: publicProfiles ?? FakePublicProfileRepository(),
   );
   addTearDown(router.dispose);
   addTearDown(events.close);
@@ -583,6 +589,9 @@ Future<BookingHarness> pumpBookingApp(
         shareServiceProvider.overrideWithValue(harness.share),
         localStoreProvider.overrideWithValue(harness.store),
         restrictionsRepositoryProvider.overrideWithValue(harness.restrictions),
+        publicProfileRepositoryProvider.overrideWithValue(
+          harness.publicProfiles,
+        ),
         legalRepositoryProvider.overrideWithValue(FakeLegalRepository()),
         urlOpenerProvider.overrideWithValue(FakeUrlOpener()),
         if (clock != null) clockProvider.overrideWithValue(clock),

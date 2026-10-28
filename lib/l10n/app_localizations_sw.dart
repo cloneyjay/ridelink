@@ -2818,4 +2818,62 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get placeSearchPoweredBy => 'Powered by Geoapify';
+
+  @override
+  String publicProfileJoined(String monthYear) {
+    return 'Alijiunga $monthYear';
+  }
+
+  @override
+  String get publicProfilePaymentSuccess => 'Malipo yaliyofaulu';
+
+  @override
+  String get publicProfileCancellations => 'Kughairi';
+
+  @override
+  String get publicProfileOrders => 'Oda';
+
+  @override
+  String get publicProfileOrdersAllTime => 'Oda (tangu mwanzo)';
+
+  @override
+  String get publicProfileTripsAllTime => 'Safari (tangu mwanzo)';
+
+  @override
+  String get publicProfileNewOnRideLink => 'Mpya kwenye RideLink';
+
+  @override
+  String get publicProfileLast30Days => 'Siku 30 zilizopita';
+
+  @override
+  String get publicProfileYours => 'Wasifu wako wa umma';
+
+  @override
+  String get publicProfileRidersSee =>
+      'Hiki ndicho waendesha boda wanachoona kukuhusu';
+
+  @override
+  String get publicProfileSendersSee =>
+      'Hiki ndicho wateja wanachoona kukuhusu';
+
+  @override
+  String get senderProfileTitle => 'Wasifu wa mteja';
+
+  @override
+  String get publicProfileVerifiedRider => 'Mwendesha boda aliyethibitishwa';
+
+  @override
+  String get publicProfileUnavailable => 'Wasifu huu haupatikani tena.';
+
+  @override
+  String get publicProfileLoadFailed => 'Imeshindikana kupakia wasifu huu.';
+
+  @override
+  String get statAccepted => 'Zilizokubaliwa';
+
+  @override
+  String get statDisputes => 'Mizozo';
+
+  @override
+  String get statPositive => 'Chanya';
 }

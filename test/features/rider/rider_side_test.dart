@@ -9,6 +9,7 @@ import 'package:ridelink/features/payments/data/payment_models.dart';
 import 'package:ridelink/features/rider/data/rider_models.dart';
 
 import '../../support/booking_fakes.dart';
+import '../../support/public_profile_fakes.dart';
 
 void main() {
   setUpAll(() => GoogleFonts.config.allowRuntimeFetching = false);
@@ -328,6 +329,90 @@ void main() {
   });
 
   group('active job', () {
+    group('sender profile entry', () {
+      FakeRiderRepository job([String status = 'accepted']) {
+        final j = jobFixture(status: status, senderId: 'sender-1');
+        return FakeRiderRepository(
+          profile: riderProfileFixture(online: true),
+          activeResult: RiderActive(order: j),
+        )..job = j;
+      }
+
+      testWidgets('job shows Sender profile and opens the screen', (
+        tester,
+      ) async {
+        final h = await pumpBookingApp(
+          tester,
+          clock: () => testNow,
+          riderRepo: job(),
+          goTo: AppRoutes.riderHome,
+        );
+        expect(find.text('Sender profile'), findsOneWidget);
+        await tap(tester, 'job.senderProfile');
+        expect(byKey('screen.senderProfile'), findsOneWidget);
+        expect(h.publicProfiles.senderCalls, ['sender-1']);
+        expect(find.text('Wanjiru'), findsOneWidget);
+      });
+
+      testWidgets('a 404 closes the sender screen with a neutral message', (
+        tester,
+      ) async {
+        final profiles = FakePublicProfileRepository()
+          ..senderError = notFound();
+        await pumpBookingApp(
+          tester,
+          clock: () => testNow,
+          riderRepo: job(),
+          publicProfiles: profiles,
+          goTo: AppRoutes.riderHome,
+        );
+        await tap(tester, 'job.senderProfile');
+        await pumpFor(tester, 20);
+        expect(byKey('screen.senderProfile'), findsNothing);
+        expect(byKey('screen.riderJob'), findsOneWidget);
+        expect(byKey('senderProfile.unavailable'), findsOneWidget);
+        expect(
+          find.text(l10nOf(tester).publicProfileUnavailable),
+          findsOneWidget,
+        );
+      });
+
+      testWidgets('order ending while open: refetch 404 closes the screen', (
+        tester,
+      ) async {
+        final profiles = FakePublicProfileRepository();
+        final h = await pumpBookingApp(
+          tester,
+          clock: () => testNow,
+          riderRepo: job(),
+          publicProfiles: profiles,
+          goTo: AppRoutes.riderHome,
+        );
+        await tap(tester, 'job.senderProfile');
+        expect(byKey('screen.senderProfile'), findsOneWidget);
+        profiles.senderError = notFound();
+        h.emit('offer.resolved', {'order_id': 'order-9'});
+        await pumpFor(tester, 20);
+        expect(byKey('screen.senderProfile'), findsNothing);
+        expect(byKey('senderProfile.unavailable'), findsOneWidget);
+        expect(profiles.senderCalls.length, 2);
+      });
+
+      testWidgets('no entry without a sender id', (tester) async {
+        final j = jobFixture();
+        await pumpBookingApp(
+          tester,
+          clock: () => testNow,
+          riderRepo: FakeRiderRepository(
+            profile: riderProfileFixture(online: true),
+            activeResult: RiderActive(order: j),
+          )..job = j,
+          goTo: AppRoutes.riderHome,
+        );
+        expect(byKey('job.senderProfile'), findsNothing);
+      });
+    });
+
     FakeRiderRepository withJob([String status = 'accepted']) {
       final job = jobFixture(status: status);
       return FakeRiderRepository(

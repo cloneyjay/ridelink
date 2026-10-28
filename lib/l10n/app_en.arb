@@ -3662,5 +3662,82 @@
   "placeSearchPoweredBy": "Powered by Geoapify",
   "@placeSearchPoweredBy": {
     "description": "Required credit for the place search provider, shown under search results."
+  },
+  "publicProfileJoined": "Joined {monthYear}",
+  "@publicProfileJoined": {
+    "description": "Public profile header: when the account was created, month and year (e.g. Oct 2026).",
+    "placeholders": {
+      "monthYear": {
+        "type": "String"
+      }
+    }
+  },
+  "publicProfilePaymentSuccess": "Payment success",
+  "@publicProfilePaymentSuccess": {
+    "description": "Sender public profile stat: share of orders the sender paid."
+  },
+  "publicProfileCancellations": "Cancellations",
+  "@publicProfileCancellations": {
+    "description": "Sender public profile stat: share of accepted orders the sender cancelled."
+  },
+  "publicProfileOrders": "Orders",
+  "@publicProfileOrders": {
+    "description": "Sender public profile stat: orders in the last 30 days."
+  },
+  "publicProfileOrdersAllTime": "Orders (all time)",
+  "@publicProfileOrdersAllTime": {
+    "description": "Sender public profile: orders since joining."
+  },
+  "publicProfileTripsAllTime": "Trips (all time)",
+  "@publicProfileTripsAllTime": {
+    "description": "Rider public profile: completed trips since joining."
+  },
+  "publicProfileNewOnRideLink": "New on RideLink",
+  "@publicProfileNewOnRideLink": {
+    "description": "Shown instead of a percentage when there are too few orders to show it."
+  },
+  "publicProfileLast30Days": "Last 30 days",
+  "@publicProfileLast30Days": {
+    "description": "Public profile: heading over the 30-day stats."
+  },
+  "publicProfileYours": "Your public profile",
+  "@publicProfileYours": {
+    "description": "Profile tab entry and screen title: your profile as the other side sees it."
+  },
+  "publicProfileRidersSee": "This is what riders see about you",
+  "@publicProfileRidersSee": {
+    "description": "Your public profile subtitle when viewing the sender profile."
+  },
+  "publicProfileSendersSee": "This is what senders see about you",
+  "@publicProfileSendersSee": {
+    "description": "Your public profile subtitle when viewing the rider profile."
+  },
+  "senderProfileTitle": "Sender profile",
+  "@senderProfileTitle": {
+    "description": "Rider side: title of the sender's public profile, and the entry that opens it."
+  },
+  "publicProfileVerifiedRider": "Verified rider",
+  "@publicProfileVerifiedRider": {
+    "description": "Rider public profile badge: documents approved."
+  },
+  "publicProfileUnavailable": "This profile is no longer available.",
+  "@publicProfileUnavailable": {
+    "description": "DRAFT copy, needs approval. Snackbar when a sender profile can no longer be viewed (404)."
+  },
+  "publicProfileLoadFailed": "Couldn't load this profile.",
+  "@publicProfileLoadFailed": {
+    "description": "DRAFT copy, needs approval. Public profile failed to load (not a 404)."
+  },
+  "statAccepted": "Accepted",
+  "@statAccepted": {
+    "description": "DRAFT copy, needs approval. Rider public profile stat: share of offers accepted (30 days)."
+  },
+  "statDisputes": "Disputes",
+  "@statDisputes": {
+    "description": "DRAFT copy, needs approval. Rider public profile stat: share of orders disputed (30 days)."
+  },
+  "statPositive": "Positive",
+  "@statPositive": {
+    "description": "DRAFT copy, needs approval. Rider public profile stat: share of positive ratings (30 days)."
   }
 }

@@ -7,6 +7,7 @@ import '../features/booking/data/booking_repository.dart';
 import '../features/evidence/data/evidence_repository.dart';
 import '../features/notifications/data/notification_repository.dart';
 import '../features/orders/data/orders_repository.dart';
+import '../features/profile/public/public_profile_repository.dart';
 import '../features/ratings/rating_prompt_store.dart';
 import '../features/restrictions/data/restrictions_repository.dart';
 import '../features/rider/data/rider_repository.dart';
@@ -246,6 +247,10 @@ final notificationRepositoryProvider = Provider<NotificationRepository>(
 
 final restrictionsRepositoryProvider = Provider<RestrictionsRepository>(
   (ref) => ApiRestrictionsRepository(ref.watch(apiClientProvider)),
+);
+
+final publicProfileRepositoryProvider = Provider<PublicProfileRepository>(
+  (ref) => ApiPublicProfileRepository(ref.watch(apiClientProvider)),
 );
 
 final navigationLauncherProvider = Provider<NavigationLauncher>(

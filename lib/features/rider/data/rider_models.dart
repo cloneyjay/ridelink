@@ -322,6 +322,7 @@ class RiderOffer {
     this.breakdown,
     this.pickupDistanceKm,
     this.pickupWindowMins,
+    this.senderId,
   });
 
   factory RiderOffer.fromJson(Map<String, dynamic> json) {
@@ -344,11 +345,15 @@ class RiderOffer {
           : null,
       pickupDistanceKm: (json['pickup_distance_km'] as num?)?.toDouble(),
       pickupWindowMins: (json['pickup_window_mins'] as num?)?.toInt(),
+      senderId: json['sender_id'] as String?,
     );
   }
 
   final String id;
   final String orderId;
+
+  /// The order's sender, for the trust card; null until the server sends it.
+  final String? senderId;
   final DateTime? offeredAt;
   final DateTime expiresAt;
   final ServiceType serviceType;

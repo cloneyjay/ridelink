@@ -5041,6 +5041,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Powered by Geoapify'**
   String get placeSearchPoweredBy;
+
+  /// Public profile header: when the account was created, month and year (e.g. Oct 2026).
+  ///
+  /// In en, this message translates to:
+  /// **'Joined {monthYear}'**
+  String publicProfileJoined(String monthYear);
+
+  /// Sender public profile stat: share of orders the sender paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment success'**
+  String get publicProfilePaymentSuccess;
+
+  /// Sender public profile stat: share of accepted orders the sender cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancellations'**
+  String get publicProfileCancellations;
+
+  /// Sender public profile stat: orders in the last 30 days.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders'**
+  String get publicProfileOrders;
+
+  /// Sender public profile: orders since joining.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders (all time)'**
+  String get publicProfileOrdersAllTime;
+
+  /// Rider public profile: completed trips since joining.
+  ///
+  /// In en, this message translates to:
+  /// **'Trips (all time)'**
+  String get publicProfileTripsAllTime;
+
+  /// Shown instead of a percentage when there are too few orders to show it.
+  ///
+  /// In en, this message translates to:
+  /// **'New on RideLink'**
+  String get publicProfileNewOnRideLink;
+
+  /// Public profile: heading over the 30-day stats.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 30 days'**
+  String get publicProfileLast30Days;
+
+  /// Profile tab entry and screen title: your profile as the other side sees it.
+  ///
+  /// In en, this message translates to:
+  /// **'Your public profile'**
+  String get publicProfileYours;
+
+  /// Your public profile subtitle when viewing the sender profile.
+  ///
+  /// In en, this message translates to:
+  /// **'This is what riders see about you'**
+  String get publicProfileRidersSee;
+
+  /// Your public profile subtitle when viewing the rider profile.
+  ///
+  /// In en, this message translates to:
+  /// **'This is what senders see about you'**
+  String get publicProfileSendersSee;
+
+  /// Rider side: title of the sender's public profile, and the entry that opens it.
+  ///
+  /// In en, this message translates to:
+  /// **'Sender profile'**
+  String get senderProfileTitle;
+
+  /// Rider public profile badge: documents approved.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified rider'**
+  String get publicProfileVerifiedRider;
+
+  /// DRAFT copy, needs approval. Snackbar when a sender profile can no longer be viewed (404).
+  ///
+  /// In en, this message translates to:
+  /// **'This profile is no longer available.'**
+  String get publicProfileUnavailable;
+
+  /// DRAFT copy, needs approval. Public profile failed to load (not a 404).
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load this profile.'**
+  String get publicProfileLoadFailed;
+
+  /// DRAFT copy, needs approval. Rider public profile stat: share of offers accepted (30 days).
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted'**
+  String get statAccepted;
+
+  /// DRAFT copy, needs approval. Rider public profile stat: share of orders disputed (30 days).
+  ///
+  /// In en, this message translates to:
+  /// **'Disputes'**
+  String get statDisputes;
+
+  /// DRAFT copy, needs approval. Rider public profile stat: share of positive ratings (30 days).
+  ///
+  /// In en, this message translates to:
+  /// **'Positive'**
+  String get statPositive;
 }
 
 class _AppLocalizationsDelegate

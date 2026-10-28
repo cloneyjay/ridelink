@@ -2799,4 +2799,60 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get placeSearchPoweredBy => 'Powered by Geoapify';
+
+  @override
+  String publicProfileJoined(String monthYear) {
+    return 'Joined $monthYear';
+  }
+
+  @override
+  String get publicProfilePaymentSuccess => 'Payment success';
+
+  @override
+  String get publicProfileCancellations => 'Cancellations';
+
+  @override
+  String get publicProfileOrders => 'Orders';
+
+  @override
+  String get publicProfileOrdersAllTime => 'Orders (all time)';
+
+  @override
+  String get publicProfileTripsAllTime => 'Trips (all time)';
+
+  @override
+  String get publicProfileNewOnRideLink => 'New on RideLink';
+
+  @override
+  String get publicProfileLast30Days => 'Last 30 days';
+
+  @override
+  String get publicProfileYours => 'Your public profile';
+
+  @override
+  String get publicProfileRidersSee => 'This is what riders see about you';
+
+  @override
+  String get publicProfileSendersSee => 'This is what senders see about you';
+
+  @override
+  String get senderProfileTitle => 'Sender profile';
+
+  @override
+  String get publicProfileVerifiedRider => 'Verified rider';
+
+  @override
+  String get publicProfileUnavailable => 'This profile is no longer available.';
+
+  @override
+  String get publicProfileLoadFailed => 'Couldn\'t load this profile.';
+
+  @override
+  String get statAccepted => 'Accepted';
+
+  @override
+  String get statDisputes => 'Disputes';
+
+  @override
+  String get statPositive => 'Positive';
 }

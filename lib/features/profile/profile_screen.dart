@@ -15,6 +15,7 @@ import '../booking/widgets/booking_widgets.dart';
 import '../common/confirm_dialog.dart';
 import '../orders/data/order_models.dart';
 import '../rider/data/rider_models.dart';
+import 'public/my_public_profile_screen.dart';
 
 final profileProvider = FutureProvider.autoDispose<Profile>(
   (ref) => ref.watch(accountRepositoryProvider).profile(),
@@ -195,6 +196,13 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
           key: const Key('profile.language'),
           label: l.profileLanguage,
           value: l.profileLanguageValue,
+        ),
+        const SizedBox(height: AppSpacing.s4),
+        OutlinedButton.icon(
+          key: const Key('profile.publicProfile'),
+          onPressed: () => MyPublicProfileScreen.open(context),
+          icon: const Icon(Icons.badge_outlined),
+          label: Text(l.publicProfileYours),
         ),
         const SizedBox(height: AppSpacing.s8),
         OutlinedButton.icon(

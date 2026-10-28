@@ -11,8 +11,10 @@ import '../../../theme/app_dimensions.dart';
 import '../../../theme/app_text_styles.dart';
 import '../../booking/booking_labels.dart';
 import '../../booking/widgets/booking_widgets.dart';
+import '../../profile/public/sender_profile_screen.dart';
 import '../data/rider_models.dart';
 import '../rider_controller.dart';
+import 'sender_trust_card.dart';
 
 /// Screen 6: a sender's request with the server-enforced countdown, earnings and pickup terms.
 class RiderOfferView extends ConsumerStatefulWidget {
@@ -245,6 +247,13 @@ class _RiderOfferViewState extends ConsumerState<RiderOfferView> {
                   ],
                 ),
               ),
+              if (o.senderId != null) ...[
+                const SizedBox(height: AppSpacing.s3),
+                SenderTrustCard(
+                  senderId: o.senderId!,
+                  onOpen: () => SenderProfileScreen.open(context, o.senderId!),
+                ),
+              ],
               if (_error != null) ...[
                 const SizedBox(height: AppSpacing.s3),
                 InlineError(_error!, key: const Key('offer.error')),
